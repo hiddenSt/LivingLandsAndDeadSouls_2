@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Default_Gun2
+  m_Controller: {fileID: 9100000, guid: a0258e486a880324aa0d641b43afdc43, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3253cae04b720834b86d00bfe18686d1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 50119af5455cc714588e8abd638ea085, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3ceb8fcfb946b644a931d310a89a5214, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0c0d249c7c57d6a438e3a982b6c60232, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 460c9660266ba9d43b013abff228da09, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1d89738d6ecd96b47b82cff6d70c3a71, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 679e9f9d6bd582143ab2202ca6c23d1a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 15065b5aba9049c4fb4647622e90fa8e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 798239d064de03e48890755494ccf3ad, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b7bbef7580faa8e46b53ebd97b8638a5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7f48f05c28e99d34a9a8117a7b23f7b6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e0ecc50f47e48c74a8675f61e95b6c0b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 157b656e0cc2aec47a039e1cee6be859, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bb3aa23a2518fee4fbda91da610ea5b0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d3e2181ff659daa4fac998b18202f285, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: daa78ba302684f846b99413a81b4963f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e47270b8384b90e42b95f6a814f314e2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: eb53fd00bb2a6c845b53897b2b94bf98, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6e3777044dc5c5046ba4247fe182f8cb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c1b8ce60369cc1f48a05eb2dfe8eefb4, type: 2}

@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: 9c1c290618278cd4abe21ddc38cba751
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - medkitButton: {fileID: 2006789691260030032, guid: d3d368ff1e9064244b2340beb3e153c5,
+      type: 3}
+  - meatButton: {fileID: 2032792334077885221, guid: 9759cd313f1bd19409f4c6d9c30688d3,
+      type: 3}
+  - outfit1Button: {fileID: 3597022782940009738, guid: 25177b5a33b89884d8dd4eb0d140e7db,
+      type: 3}
+  - outfit2Button: {fileID: 3042517254717511213, guid: d2e9501b9866a444895cb322f70ec510,
+      type: 3}
+  - gun1Button: {fileID: 2075217616807376735, guid: 27541f0185ce5bd4e80ef9429c6d2926,
+      type: 3}
+  - gun2Button: {fileID: 858819677447254099, guid: 5e8fc62a09b302e4281791312065818d,
+      type: 3}
+  - ammoButton: {fileID: 1358912297869063236, guid: d7ad449a060895843a6c4224e989de82,
+      type: 3}
+  - outfit1Image: {fileID: 8156613626934858934, guid: 600bc8e2ad1973f468e8c31c42ecb3c7,
+      type: 3}
+  - outfit2Image: {fileID: 4565447936479215907, guid: f7873f0427608a14d84b3244e0bd0877,
+      type: 3}
+  - gun1Image: {fileID: 8707911310549260132, guid: a2094273aab0dab46be28864c5423c7c,
+      type: 3}
+  - gun2Image: {fileID: 4512183773342997114, guid: c0a8f8a3caa0f2e439fe648654bd9105,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

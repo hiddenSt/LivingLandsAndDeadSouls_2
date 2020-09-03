@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: bcfe1ca116b80fa44a4749cc70ac5343
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - topMap: {instanceID: 0}
+  - WaterTile: {fileID: 11400000, guid: cfbbda65a192db74293b54e79501a88a, type: 2}
+  - LandTile: {fileID: 11400000, guid: acd343f57754b62458296255cdf94a81, type: 2}
+  - buildingMap: {instanceID: 0}
+  - BuildingTile: {fileID: 11400000, guid: bd00963681ebf0a4eb454191c5521dde, type: 2}
+  - HorizontTile: {fileID: 11400000, guid: bd00963681ebf0a4eb454191c5521dde, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
