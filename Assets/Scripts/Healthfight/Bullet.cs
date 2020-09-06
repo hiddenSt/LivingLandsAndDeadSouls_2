@@ -18,7 +18,7 @@ namespace HealthFight
 
             bulletSpriteRenderer.sortingOrder = 90;
             var dmgCmp = bulletGameObject.AddComponent<DamageComponent>();
-            dmgCmp.damage = damage;
+            dmgCmp.damagePoints = damage;
             dmgCmp.originID = originID;
             dmgCmp.damageRadius = damageRadius_;
                 
@@ -46,7 +46,7 @@ namespace HealthFight
 
             bulletSpriteRenderer.sortingOrder = 90;
             var dmgCmp = bulletGameObject.AddComponent<DamageComponent>();
-            dmgCmp.damage = damage;
+            dmgCmp.damagePoints = damage;
             dmgCmp.originID = originID;
             dmgCmp.damageRadius = damageRadius_;
             
