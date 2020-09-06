@@ -26,5 +26,4 @@ namespace HealthFight {
 
     private int _damagePoints;
   }
-
 }

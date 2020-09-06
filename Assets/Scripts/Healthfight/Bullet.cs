@@ -19,7 +19,7 @@ namespace HealthFight
             bulletSpriteRenderer.sortingOrder = 90;
             var dmgCmp = bulletGameObject.AddComponent<DamageComponent>();
             dmgCmp.damagePoints = damage;
-            dmgCmp.originID = originID;
+            dmgCmp.originId = originID;
             dmgCmp.damageRadius = damageRadius_;
                 
             var myRigidBody = bulletGameObject.AddComponent<Rigidbody2D>();
@@ -47,7 +47,7 @@ namespace HealthFight
             bulletSpriteRenderer.sortingOrder = 90;
             var dmgCmp = bulletGameObject.AddComponent<DamageComponent>();
             dmgCmp.damagePoints = damage;
-            dmgCmp.originID = originID;
+            dmgCmp.originId = originID;
             dmgCmp.damageRadius = damageRadius_;
             
             var myRigidBody = bulletGameObject.AddComponent<Rigidbody2D>();
@@ -81,7 +81,7 @@ namespace HealthFight
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.name == "Bullet" || other.GetComponent<HealthComponent>() == null || other.GetComponent<HealthComponent>().originID == this.GetComponent<DamageComponent>().originID) return;
+            if (other.name == "Bullet" || other.GetComponent<HealthComponent>() == null || other.GetComponent<HealthComponent>().originId == this.GetComponent<DamageComponent>().originId) return;
             Destroy(this.gameObject);
         }
         

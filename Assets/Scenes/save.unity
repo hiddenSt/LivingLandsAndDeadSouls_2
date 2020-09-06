@@ -3398,6 +3398,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 326907163, guid: 4797f038ee636a3408d0c3626ea6af76, type: 3}
+      propertyPath: bar
+      value: 
+      objectReference: {fileID: 1168353192975095460}
     - target: {fileID: 326907164, guid: 4797f038ee636a3408d0c3626ea6af76, type: 3}
       propertyPath: slots.Array.data[0]
       value: 

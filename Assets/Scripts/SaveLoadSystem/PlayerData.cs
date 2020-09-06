@@ -40,7 +40,7 @@ namespace SaveLoadSystem
                 }
                 else if (playerInventory.slots[i].transform.GetChild(1).GetComponent<InventorySystem.HealthBoost>() != null)
                 {
-                    if (playerInventory.slots[i].transform.GetChild(1).GetComponent<InventorySystem.HealthBoost>().healthBoost == 20)
+                    if (playerInventory.slots[i].transform.GetChild(1).GetComponent<InventorySystem.HealthBoost>().healthBoostPoints == 20)
                         inventory[i] = 1;
                     else
                         inventory[i] = 2;

@@ -1,26 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace InventorySystem
-{
-    public class HealthBoost : MonoBehaviour
-    {
-        // Start is called before the first frame update
-        void Start()
-        {
-            _playerHealth = GameObject.Find("Player").GetComponent<HealthFight.HealthComponent>();
-        }
-
-        public void Use()
-        {
-            _playerHealth.IncreaseHealth(healthBoost);
-            Destroy(gameObject);
-        }
-
-        //data members
-        public int healthBoost;
-
-        private HealthFight.HealthComponent _playerHealth;
+namespace InventorySystem {
+  
+  public class HealthBoost : MonoBehaviour {
+    private void Start() {
+      _playerHealth = GameObject.Find("Player").GetComponent<HealthFight.HealthComponent>();
     }
-}// end of namespace inventorySystems
+
+    public void Use() {
+      _playerHealth.IncreaseHealth(healthBoostPoints);
+      Destroy(gameObject);
+    }
+    
+    [FormerlySerializedAs("healthBoost")] public int healthBoostPoints;
+
+    private HealthFight.HealthComponent _playerHealth;
+  }
+}

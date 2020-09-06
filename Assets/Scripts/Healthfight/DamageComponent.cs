@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Analytics;
+﻿using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace HealthFight {
@@ -17,7 +13,7 @@ namespace HealthFight {
 
     [FormerlySerializedAs("damage")] public int damagePoints;
     public float damageRadius;
-    public int originID;
+    public int originId;
     public CircleCollider2D damageCollider;
     private Damage _damage;
   }

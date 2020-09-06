@@ -26,6 +26,8 @@ namespace HealthFight {
 
     public void SetHealthPointsLimit(int points) {
       _healthPointsLimit = points;
+      if (_healthPoints > _healthPointsLimit)
+        _healthPoints = _healthPointsLimit;
     }
 
     public int GetHealthPointsLimit() {
@@ -43,5 +45,4 @@ namespace HealthFight {
     private int _healthPoints;
     private int _healthPointsLimit;
   }
-
 }

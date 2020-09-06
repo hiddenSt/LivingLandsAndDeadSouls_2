@@ -22,7 +22,7 @@ public class ButtonHandler : MonoBehaviour
         characteristics = GameObject.Find("Characteristics");
         if (characteristics.GetComponent<AllParameters>().freePoints > 0)
         {
-            GameObject.Find("Player").GetComponent<HealthComponent>().maxHealth += 10;
+            GameObject.Find("Player").GetComponent<HealthComponent>().IncreaseHealthPointsLimit(10);
             characteristics.GetComponent<AllParameters>().freePoints -= 1;
             characteristics.GetComponent<AllParameters>().health += 1;
             characteristics.GetComponent<AllParameters>().Display();
