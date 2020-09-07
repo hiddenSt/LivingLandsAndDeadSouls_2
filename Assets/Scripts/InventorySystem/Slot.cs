@@ -18,17 +18,7 @@ namespace InventorySystem
                 _playerInventory.items[index] = 0;
             }
         }
-
-        public void Cross()
-        {
-         
-        }
-
-        public void DestroyItem()
-        {
-            Destroy(this.gameObject);
-        }
-
+        
         //data members
         public int index;
         public GameObject destroyButton;

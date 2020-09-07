@@ -44,31 +44,6 @@ namespace InventorySystem
             gameObject.transform.GetChild(1).GetComponent<DropItem>().isActive = false;
         }
         
-        public void Cross()
-        {
-            var child1 = this.gameObject.transform.GetChild(0);
-            var child2 = this.gameObject.transform.GetChild(1);
-            if (child1 == null)
-                return;
-            for (int i = 0; i < _playerInventory.items.Length; ++i)
-            {
-                if (_playerInventory.items[i] == 0)
-                {
-                    itemButton.SetActive(true);
-                    Instantiate(itemButton, _playerInventory.slots[i].transform, false);
-                    itemButton.GetComponent<OutfitSelect>().skinIndex = i;
-                    _playerInventory.items[i] = 1;
-                    Destroy(child1.gameObject);
-                    Destroy(child2.gameObject);
-                    skinIndex = 0;
-                    ChangeSkin();
-                    return;
-                }
-            }
-            Destroy(child1.gameObject);
-            Destroy(child2.gameObject);
-        }
-        
         //data members
         public int skinIndex;
         public GameObject itemButton;

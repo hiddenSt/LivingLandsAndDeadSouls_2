@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+
 
 namespace InventorySystem
 {
     public class OutfitSelect : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+      private void Start()
         {
             _outfitSlot = GameObject.Find("SuitSlot");
             _outfitSlotComponent = _outfitSlot.GetComponent<OutfitSlot>();

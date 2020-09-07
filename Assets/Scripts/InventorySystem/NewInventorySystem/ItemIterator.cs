@@ -2,7 +2,7 @@
   
   public interface IItemIterator {
     Item First();
-    Item Next();
+    void Next();
     bool IsDone();
     Item CurrentItem();
   }
