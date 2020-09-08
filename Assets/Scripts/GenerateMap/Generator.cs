@@ -18,6 +18,7 @@ namespace GenerateMap
             buildingValue = Menu.ParameterManager.instance.buildingValue;
             if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad)
                 return;
+            mapContent = new int[tmpSize.x, tmpSize.y];
             Generate();
         }
         
@@ -133,19 +134,69 @@ namespace GenerateMap
                 
             }
         }
-        
+
+        void GenerateObjects(int value, int count, int distance, GameObject gameObject, int objectCode, int placeDistance){
+          List<GameObject> objectList = new List<GameObject>();
+          int _errors = 0;
+            SpriteRenderer layer = null;
+            GameObject locBush = null;
+            bool canGenerate = false;
+            bool parent = false;
+            for (int i = 0; i < bushValue; i++)
+            {
+                canGenerate = false;
+                if (_errors > 1000)
+                {
+                    break;
+                }
+                while (canGenerate != true)
+                {
+                    _errors++;
+                    if (_errors > 1000)
+                    {
+                        break;
+                    }
+                    var xPar = Random.Range(0, height);
+                    var yPar = Random.Range(0, width);
+
+                    canGenerate = FindContent(xPar, yPar, 10);
+
+                    if (canGenerate == true)
+                    {
+                        locBush = Instantiate(gameObject);
+                        locBush.transform.position = new Vector3
+                            (width / 2 - xPar, height / 2 - yPar);
+                        layer = locBush.GetComponentInChildren<SpriteRenderer>();
+                        layer.sortingOrder = height / 2 - (int) locBush.transform.position.y;
+                        objectList.Add(locBush);
+                        mapContent[xPar, yPar] = 2;
+                        int sizeOfrockPlace = Random.Range(1, 10);
+                        for (int j = 0; j < sizeOfrockPlace; j++)
+                        {
+                            float size = Random.Range(2f, 3.5f);
+                            int x = Random.Range(xPar - placeDistance, xPar + placeDistance);
+                            int y = Random.Range(yPar - placeDistance, yPar + placeDistance);
+                            locBush = Instantiate(gameObject);
+                            locBush.transform.position =
+                                new Vector3(width / 2 - x, height / 2 - y);
+                            layer = locBush.GetComponentInChildren<SpriteRenderer>();
+                            layer.sortingOrder = height / 2 -
+                                                 (int) locBush.transform.position.y;
+                            objectList.Add(locBush);
+                            mapContent[x, y] = 3;
+                        }
+                    }
+                }
+            }
+        }
         public void Generate()
         {
-            GenerateTile();
-            //CreateHorizon();
-            GenerateBuilding();
-            GenerateTree();
-            GenerateRock();
-            GenerateBush();
-            GenerateLoot();
-            GenerateHorizon();
+          GenerateTile();
+          GenerateObjects(bushValue,5,10,bush,3,2);
+          GenerateObjects(bushValue,5,10,tree,3,5);
+          GenerateObjects(bushValue,2,10,rock,3,2);
         }
-
+        
         void CreateHorizon()
         {
             GameObject locTree;
