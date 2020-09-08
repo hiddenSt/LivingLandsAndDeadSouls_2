@@ -192,9 +192,13 @@ namespace GenerateMap
         public void Generate()
         {
           GenerateTile();
-          GenerateObjects(bushValue,5,10,bush,3,2);
-          GenerateObjects(bushValue,5,10,tree,3,5);
-          GenerateObjects(bushValue,2,10,rock,3,2);
+          //CreateHorizon();
+          GenerateBuilding();
+          GenerateTree();
+          GenerateRock();
+          GenerateBush();
+          GenerateLoot();
+          GenerateHorizon();
         }
         
         void CreateHorizon()
