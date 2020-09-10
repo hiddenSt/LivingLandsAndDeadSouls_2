@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
-namespace Authenticate
-{
+namespace Authenticate {
   public class Authenticate: MonoBehaviour {
     public GameObject LoginPanel;
     

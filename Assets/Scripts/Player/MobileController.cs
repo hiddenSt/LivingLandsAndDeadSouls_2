@@ -2,8 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Player
-{
+namespace Player {
   public class MobileController : MonoBehaviour,IDragHandler,IPointerUpHandler,IPointerDownHandler {
     private Image _joystickBackGround;
     [SerializeField]

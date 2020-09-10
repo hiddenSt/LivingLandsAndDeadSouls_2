@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characteristics
-{
+namespace Characteristics {
   public class ActiveController : MonoBehaviour {
     private GameObject _characteristics;
 

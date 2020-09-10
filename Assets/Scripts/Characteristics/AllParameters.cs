@@ -1,8 +1,7 @@
 ﻿using Menu;
 using UnityEngine;
 
-namespace Characteristics
-{
+namespace Characteristics {
   public class AllParameters : MonoBehaviour {
     public float Experience;
     public int Level = 1;

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Authenticate
-{
+namespace Authenticate {
   public class SceneLoader : MonoBehaviour {
     public void LoadFirstPageScene() {
       SceneManager.LoadScene("FirstPage");

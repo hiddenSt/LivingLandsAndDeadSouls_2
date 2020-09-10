@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Player
-{
+namespace Player {
   public class PlayerController : MonoBehaviour {
     public Animator animator;
     public float PlayerSpeed = 0.25f;

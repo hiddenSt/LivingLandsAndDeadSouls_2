@@ -2,8 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Authenticate
-{
+namespace Authenticate {
   public class PasswordRecovery : Authenticate { 
     private const string _playfabloginAppID = "99BF5";
     public void RecoveryPassword() {

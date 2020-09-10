@@ -1,8 +1,7 @@
 ﻿using HealthFight;
 using UnityEngine;
 
-namespace Characteristics
-{
+namespace Characteristics {
   public class ButtonHandler : MonoBehaviour {
     public GameObject Characteristics;
     public void UpStrength() {
