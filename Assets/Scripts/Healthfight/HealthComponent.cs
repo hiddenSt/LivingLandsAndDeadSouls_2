@@ -14,8 +14,7 @@ namespace HealthFight {
       if (bar == null) {
         CreateHealthBar();
       }
-
-      var circleCollider = this.gameObject.GetComponent<CircleCollider2D>();
+      
       _animator = this.gameObject.GetComponent<Animator>();
     }
 
@@ -51,6 +50,10 @@ namespace HealthFight {
       bar.maxHealth = maxHealth;
     }
 
+    public void GetDamageFrom(Damage damage) {
+      
+    }
+    
     //Bad parameter name
     public void DecreaseHealth(int points) { 
       _health.Decrease(points);
@@ -61,6 +64,7 @@ namespace HealthFight {
       }
       
       health = _health.GetHealthPoints();
+      //...
       if (OnHealthChanged != null) {
         OnHealthChanged.Invoke(health);
       }
@@ -74,9 +78,11 @@ namespace HealthFight {
         healthPoints = maxHealth;
       
       health = healthPoints;
+      //...
       if (OnHealthChanged != null) {
         OnHealthChanged.Invoke(health);
       }
+      //...
       bar.SetSize(health/maxHealth);
     }
         
@@ -85,10 +91,12 @@ namespace HealthFight {
       _health.Increase(points);
       
       health = _health.GetHealthPoints();
+      //...
       if (OnHealthChanged != null) {
         OnHealthChanged.Invoke(health);
       }
       
+      //...
       bar.SetSize(health/maxHealth);
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Utility;
 
 namespace InventorySystem.NewInventorySystem.ArrayRepository {
   class ArrayRepository : IItemsRepositoryStrategy {
@@ -20,11 +21,11 @@ namespace InventorySystem.NewInventorySystem.ArrayRepository {
       } 
     }
 
-    public void RemoveItem(Item item) {
+    public void RemoveItem(Identifier identifier) {
       for (int i = 0; i < _itemsArray.Count; ++i) {
         if (_isEmptySlot[i])
           continue;
-        if (_itemsArray[i] == item) {
+        if (_itemsArray[i].GetIdentifier() == identifier) {
           _itemsArray[i] = null;
           _isEmptySlot[i] = true;
           return;
@@ -32,12 +33,14 @@ namespace InventorySystem.NewInventorySystem.ArrayRepository {
       }
     }
 
-    public Item GetItem(int count) {
-      if (count > _itemsArray.Count) {
-        throw new Exception("Items array out of range");
+    public Item GetItem(Identifier identifier) {
+      for (int i = 0; i < _itemsArray.Count; ++i) {
+        if (_isEmptySlot[i])
+          continue;
+        if (_itemsArray[i].GetIdentifier() == identifier)
+          return _itemsArray[i];
       }
-
-      return _itemsArray[count];
+      return null;
     }
 
     public int GetSize() {

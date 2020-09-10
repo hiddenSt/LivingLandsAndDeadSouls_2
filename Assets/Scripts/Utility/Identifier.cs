@@ -1,8 +1,10 @@
 ﻿namespace Utility {
 
-  public interface Identifier {
-    bool EqualsTo(Identifier other);
-    bool GreaterThan(Identifier other);
-    bool SmallerThan(Identifier other);
+  public abstract class Identifier {
+    public abstract bool EqualsTo(Identifier other);
+    public abstract bool GreaterThan(Identifier other);
+    public abstract bool SmallerThan(Identifier other);
+
+    
   }
 }

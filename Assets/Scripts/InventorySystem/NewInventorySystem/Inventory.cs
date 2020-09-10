@@ -14,7 +14,7 @@ namespace InventorySystem.NewInventorySystem {
       if (_inventorySize > _inventoryCapacity)
         return null;
       ++_inventorySize;
-      item.SetIdentifier(_identifierFactory.CreateIdentifier()); //TODO: Identifier fixes
+      item.SetIdentifier(_identifierFactory.CreateIdentifier());
       _itemsRepository.AddItem(item);
       item.PickUp();
       return item.GetIdentifier();

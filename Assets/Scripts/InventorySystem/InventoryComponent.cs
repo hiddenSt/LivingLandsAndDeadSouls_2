@@ -1,5 +1,4 @@
-﻿using System;
-using InventorySystem.NewInventorySystem.ArrayRepository;
+﻿using InventorySystem.NewInventorySystem.ArrayRepository;
 using UnityEngine;
 using Utility;
 
@@ -9,7 +8,7 @@ namespace InventorySystem {
   public class InventoryComponent : MonoBehaviour {
     public GameObject[] slots;
     public GameObject[] buttons;
-    
+
     private void Start() {
       _slotsSize = slots.Length;
       buttons = new GameObject[_slotsSize];
@@ -18,13 +17,13 @@ namespace InventorySystem {
 
     private void OnCollisionEnter2D(Collision2D other) {
       loot = other.gameObject.GetComponent<LootComonent>();
-      if (loot == null || !CanAddItem()) 
+      if (loot == null || !CanAddItem())
         return;
       AddToInventory(loot.item, loot.button);
       Destroy(other.gameObject);
     }
 
-    public void AddToInventory(InventorySystem.NewInventorySystem.Item item, GameObject button) {
+    public void AddToInventory(NewInventorySystem.Item item, GameObject button) {
       Identifier newItemIdentifier = _inventory.AddItem(item);
       
       for (int i = 0; i < slots.Length; ++i) {
@@ -49,7 +48,7 @@ namespace InventorySystem {
     }
     
     public void UseItem(int position) {
-      
+      _inventory.GetItem(_itemsIdentifiers[position]).Use();
     }
 
     private bool CanAddItem() {
