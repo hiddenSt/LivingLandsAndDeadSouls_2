@@ -1,45 +1,41 @@
-﻿using UnityEngine;
-using PlayFab;
-using UnityEngine.UI;
+﻿using PlayFab;
 using PlayFab.ClientModels;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class Login : Authenticate.Authenticate
+namespace Authenticate
 {
-  public void OnClickLogin(){
-    GetUserEmail();
-    GetUserPassword();
-    Debug.Log("Email"+userEmail);
-    Debug.Log("Password"+userPassword);
-    var request = new LoginWithEmailAddressRequest { Email=userEmail, Password=userPassword };
-    PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailed);
-  }
+  public class Login : Authenticate {
+    public void OnClickLogin() {
+      GetUserEmail();
+      GetUserPassword();
+      Debug.Log("Email"+_userEmail);
+      Debug.Log("Password"+_userPassword);
+      var request = new LoginWithEmailAddressRequest { Email =_userEmail, Password =_userPassword };
+      PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailed);
+    }
   
-  private void OnLoginSuccess(LoginResult result)
-  {
-    Debug.Log("User logged");
-    SceneManager.LoadScene("Menu");
-  }
-  
-  void OnLoginFailed(PlayFabError error)
-  {
-    Debug.Log(error.GenerateErrorReport());
-    string[] errorReport = error.GenerateErrorReport().Split();
-    if (errorReport[1] == "User")
-    {
-      GameObject.Find("LoginFailed").GetComponent<Text>().text="Данный пользователь не найден";
+    private void OnLoginSuccess(LoginResult result) {
+      Debug.Log("User logged");
+      SceneManager.LoadScene("Menu");
     }
-    if (errorReport[4]=="host")
-    {
-      GameObject.Find("LoginFailed").GetComponent<Text>().text="Отсутствует соединение с сетью Интернет";
-    }
-    if (errorReport[4]=="Email:")
-    {
-      GameObject.Find("LoginFailed").GetComponent<Text>().text="Неправильный пароль или логин";
-    }
-    if (errorReport[1] == "Invalid")
-    {
-      GameObject.Find("LoginFailed").GetComponent<Text>().text="Неправильный пароль или логин";
+
+    private void OnLoginFailed(PlayFabError error) {
+      Debug.Log(error.GenerateErrorReport());
+      var errorReport = error.GenerateErrorReport().Split();
+      if (errorReport[1] == "User") {
+        GameObject.Find("LoginFailed").GetComponent<Text>().text="Данный пользователь не найден";
+      }
+      if (errorReport[4]=="host") {
+        GameObject.Find("LoginFailed").GetComponent<Text>().text="Отсутствует соединение с сетью Интернет";
+      }
+      if (errorReport[4]=="Email:") {
+        GameObject.Find("LoginFailed").GetComponent<Text>().text="Неправильный пароль или логин";
+      }
+      if (errorReport[1] == "Invalid") {
+        GameObject.Find("LoginFailed").GetComponent<Text>().text="Неправильный пароль или логин";
+      }
     }
   }
 }

@@ -4,48 +4,42 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Register : Authenticate.Authenticate
+namespace Authenticate
 {
-  private string userName;
-  public void OnClickRegister()
-  {
-  GetUserEmail();
-  GetUserPassword();
-  GetUsername();
-    var registerRequest = new RegisterPlayFabUserRequest { Email=userEmail, 
-      Password=userPassword, Username=userName };
-    PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnRegisterSuccess, OnRegisterFailure);
-  }
+  public class Register : Authenticate {
+    private string _userName;
+    public void OnClickRegister() {
+      GetUserEmail();
+      GetUserPassword();
+      GetUsername();
+      var registerRequest = new RegisterPlayFabUserRequest { Email=_userEmail, 
+        Password=_userPassword, Username=_userName };
+      PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnRegisterSuccess, OnRegisterFailure);
+    }
   
-  private void OnRegisterSuccess(RegisterPlayFabUserResult result)
-  {
-    Debug.Log("User registered");
-    SceneManager.LoadScene("Menu");
-  }
-  
-  private void OnRegisterFailure(PlayFabError error)
-  {
-    Debug.LogError(error.GenerateErrorReport());
-    string[] errorReport = error.GenerateErrorReport().Split();
-    if (errorReport[1]=="Username")
-    {
-      GameObject.Find("LoginFailed").GetComponent<Text>().text="Никнейм занят";
+    private void OnRegisterSuccess(RegisterPlayFabUserResult result) {
+      Debug.Log("User registered");
+      SceneManager.LoadScene("Menu");
     }
-    else if (errorReport[1]=="Email")
+    private void OnRegisterFailure(PlayFabError error)
     {
-      GameObject.Find("LoginFailed").GetComponent<Text>().text="Email занят или имеет неверный формат";
+      Debug.LogError(error.GenerateErrorReport());
+      var errorReport = error.GenerateErrorReport().Split();
+      if (errorReport[1]=="Username") {
+        GameObject.Find("LoginFailed").GetComponent<Text>().text="Никнейм занят";
+      }
+      else if (errorReport[1]=="Email") {
+        GameObject.Find("LoginFailed").GetComponent<Text>().text="Email занят или имеет неверный формат";
+      }
+      else if (errorReport[4]=="Username:") {
+        GameObject.Find("LoginFailed").GetComponent<Text>().text="Логин может содержать буквы латинницы";
+      }
+      else if (errorReport[4]=="Password:") {
+        GameObject.Find("LoginFailed").GetComponent<Text>().text="Неверный формат пароля";
+      }
     }
-    else if (errorReport[4]=="Username:")
-    {
-      GameObject.Find("LoginFailed").GetComponent<Text>().text="Логин может содержать буквы латинницы";
+    public void GetUsername() {
+      _userName = LoginPanel.transform.Find("Username").GetComponent<InputField>().text;
     }
-    else if (errorReport[4]=="Password:")
-    {
-      GameObject.Find("LoginFailed").GetComponent<Text>().text="Неверный формат пароля";
-    }
-  }
-  public void GetUsername()
-  {
-    userName = loginPanel.transform.Find("Username").GetComponent<InputField>().text;
   }
 }

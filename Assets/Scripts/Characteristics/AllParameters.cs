@@ -3,39 +3,52 @@ using UnityEngine;
 
 namespace Characteristics
 {
-  public class AllParameters : MonoBehaviour
-  {
-    public void AddExperience(float exp)
-    {
-      if (experience + exp >= toNextLevelExp)
-      {
-        experience = experience + exp - toNextLevelExp;
-        level += 1;
-        freePoints += 2;
-        toNextLevelExp *= 1.5f;
+  public class AllParameters : MonoBehaviour {
+    public float Experience;
+    public int Level = 1;
+    public float ToNextLevelExp = 100;
+    public int Strength;
+    public int Health;
+    public int Skill;
+    public int FreePoints;
+    
+    private GameObject _valueSniper;
+    private GameObject _personName;
+    private GameObject _valueHealth;
+    private GameObject _valueFreePoints;
+    private GameObject _valueLevel;
+    private GameObject _valueStrength;
+    private Component _val3Ue;
+    private string _playerName;
+    private Canvas _canvas;
+    private bool _infoOpen = false;
+    
+    public void AddExperience(float exp) {
+      if (Experience + exp >= ToNextLevelExp) {
+        Experience = Experience + exp - ToNextLevelExp;
+        Level += 1;
+        FreePoints += 2;
+        ToNextLevelExp *= 1.5f;
         Update();
       }
-      else
-      {
-        experience += exp;
+      else {
+        Experience += exp;
         Update();
       }
     }
 
-    public void Display()
-    {
+    public void Display() {
       _personName.GetComponent<UnityEngine.UI.Text>().text = _playerName;
-      _valueLevel.GetComponent<UnityEngine.UI.Text>().text=level.ToString();
-      _valueFreePoints.GetComponent<UnityEngine.UI.Text>().text=freePoints.ToString();
-      _valueStrength.GetComponent<UnityEngine.UI.Text>().text=strength.ToString();
-      _valueHealth.GetComponent<UnityEngine.UI.Text>().text=health.ToString();
-      _valueSniper.GetComponent<UnityEngine.UI.Text>().text=sniper.ToString();
+      _valueLevel.GetComponent<UnityEngine.UI.Text>().text=Level.ToString();
+      _valueFreePoints.GetComponent<UnityEngine.UI.Text>().text=FreePoints.ToString();
+      _valueStrength.GetComponent<UnityEngine.UI.Text>().text=Strength.ToString();
+      _valueHealth.GetComponent<UnityEngine.UI.Text>().text=Health.ToString();
+      _valueSniper.GetComponent<UnityEngine.UI.Text>().text=Skill.ToString();
     }
 
-    public void Start(){
-      experience = 0;
-      switch (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().characterI)
-      {
+    public void Start() {
+      Experience = 0;
+      switch (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().characterI) {
         case 0:
           _playerName = "Dick Clarque";
           break;
@@ -47,45 +60,24 @@ namespace Characteristics
           break; 
       }
       _personName = GameObject.Find("Person name");
-      _valueFreePoints=GameObject.Find("ValueFreePoints");
-      _valueLevel=GameObject.Find("ValueLevel");
-      _valueHealth=GameObject.Find("ValueHealth");
-      _valueStrength=GameObject.Find("ValueStrength");
-      _valueSniper=GameObject.Find("ValueSniper");
-      _canvas=GetComponent<Canvas>();
-      _canvas.enabled=false;
+      _valueFreePoints = GameObject.Find("ValueFreePoints");
+      _valueLevel = GameObject.Find("ValueLevel");
+      _valueHealth = GameObject.Find("ValueHealth");
+      _valueStrength = GameObject.Find("ValueStrength");
+      _valueSniper = GameObject.Find("ValueSniper");
+      _canvas = GetComponent<Canvas>();
+      _canvas.enabled = false;
     }
 
-    public void Update(){
+    public void Update() {
       if (!Input.GetKeyDown(KeyCode.I)) return;
-      if (_canvas.enabled)
-      {
-        _canvas.enabled=false;
+      if (_canvas.enabled) {
+        _canvas.enabled = false;
       }
-      else
-      {
+      else {
         Display();
-        _canvas.enabled=true;
+        _canvas.enabled = true;
       }
     }
-    
-    //data members
-    public float experience;
-    public int level = 1;
-    public float toNextLevelExp = 100;
-    public int strength;
-    public int health;
-    public int sniper;
-    public int freePoints;
-    private GameObject _valueSniper;
-    private GameObject _personName;
-    private GameObject _valueHealth;
-    private GameObject _valueFreePoints;
-    private GameObject _valueLevel;
-    private GameObject _valueStrength;
-    private Component _val3Ue;
-    private string _playerName;
-    private Canvas _canvas;
-    private bool _infoOpen = false;
   }
 }
