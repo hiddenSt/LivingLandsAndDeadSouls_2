@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Menu;
 using SaveLoadSystem;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEditor;
 
 namespace GenerateMap
 {
@@ -78,30 +76,25 @@ namespace GenerateMap
             switch (tmpSize.x)
             {
                 case 200:
-                    buildingValue *= MAP_SCALER_SMALL;
-                    forestValue *= MAP_SCALER_SMALL;
-                    bushValue *= MAP_SCALER_SMALL;
-                    rockValue *= MAP_SCALER_SMALL;
-                    break;
+                  CURRENT_MAP_SCALER = MAP_SCALER_SMALL;
+                  break;
                 case 500:
-                    buildingValue *= MAP_SCALER_MEDIUM;
-                    forestValue *= MAP_SCALER_MEDIUM;
-                    bushValue *= MAP_SCALER_MEDIUM;
-                    rockValue *= MAP_SCALER_MEDIUM;
-                    break;
+                  CURRENT_MAP_SCALER = MAP_SCALER_MEDIUM;
+                  break;
                 case 1000:
-                    buildingValue *= MAP_SCALER_BIG;
-                    forestValue *= MAP_SCALER_BIG;
-                    bushValue *= MAP_SCALER_BIG;
-                    rockValue *= MAP_SCALER_BIG;
-                    break;
+                  CURRENT_MAP_SCALER = MAP_SCALER_BIG;
+                  break;
             }
+            buildingValue *= CURRENT_MAP_SCALER;
+            forestValue *= CURRENT_MAP_SCALER;
+            bushValue *= CURRENT_MAP_SCALER;
+            rockValue *= CURRENT_MAP_SCALER;
+            forestSize *= CURRENT_MAP_SCALER;
             mapContent = new int[height, width];
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    //Land(трава или песок и т.д.)
                     landMap.SetTile(new Vector3Int
                         (-x + width / 2, -y + height / 2, 0), landTile);
                 }
@@ -110,192 +103,96 @@ namespace GenerateMap
 
         void GenerateHorizon()
         {
-            for (int i = 0; i < 10; ++i)
+            for (int i = 0; i < HORIZON_SIZE; ++i)
             {
-                for (int x = 0; x < width + 10; ++x)
-                {
-                    waterTileMap.SetTile(new Vector3Int(-x + width / 2, -height / 2 - i, 0), waterTile);
-                }
-
-                for (int x = 0; x < width + 10; ++x)
-                {
-                    waterTileMap.SetTile(new Vector3Int(-x + width / 2, height / 2 + 1 + i, 0), waterTile);
-                }
-
-                for (int y = 0; y < height + 10; ++y)
-                {
-                    waterTileMap.SetTile(new Vector3Int(-width / 2 - i, -y + height / 2, 0), waterTile);
-                }
-
-                for (int y = 0; y < height + 10; ++y)
-                {
-                    waterTileMap.SetTile(new Vector3Int(width / 2 + 1 + i, -y + height / 2, 0), waterTile);
-                }
+              for (int x = -HORIZON_SIZE; x < width + HORIZON_SIZE; ++x)
+              {
+                waterTileMap.SetTile(new Vector3Int(-x + width / 2, -height / 2 - i, 0), waterTile);
+              }
+              for (int x = -HORIZON_SIZE; x < width + HORIZON_SIZE; ++x)
+              {
+                waterTileMap.SetTile(new Vector3Int(-x + width / 2, height / 2 + 1 + i, 0), waterTile);
+              }
+              for (int y = 0; y < height; ++y)
+              {
+                waterTileMap.SetTile(new Vector3Int(-width / 2 - i, -y + height / 2, 0), waterTile);
+              }
+              for (int y = 0; y < height; ++y)
+              {
+                waterTileMap.SetTile(new Vector3Int(width / 2 + 1 + i, -y + height / 2, 0), waterTile);
+              }
                 
             }
         }
 
-        void GenerateObjects(int value, int count, int distance, GameObject gameObject, int objectCode, int placeDistance){
+        List<GameObject> GenerateObjects(int count, int placeSize, int distance, GameObject gameObject,
+          int objectCode, int placeDistance, float minSize, float maxSize){
           List<GameObject> objectList = new List<GameObject>();
           int _errors = 0;
-            SpriteRenderer layer = null;
-            GameObject locBush = null;
+          SpriteRenderer layer = null;
+            GameObject locObject = null;
             bool canGenerate = false;
             bool parent = false;
-            for (int i = 0; i < bushValue; i++)
-            {
+            for (int i = 0; i < count; i++){
+                _errors = 0;
                 canGenerate = false;
-                if (_errors > 1000)
-                {
-                    break;
-                }
                 while (canGenerate != true)
                 {
-                    _errors++;
-                    if (_errors > 1000)
-                    {
-                        break;
-                    }
+                  _errors++;
+                  if (_errors > 1000){
+                    return objectList;
+                  }
                     var xPar = Random.Range(0, height);
                     var yPar = Random.Range(0, width);
 
-                    canGenerate = FindContent(xPar, yPar, 10);
-
+                    canGenerate = FindContent(xPar, yPar, distance);
+                    if (placeSize == 0){
+                      placeSize = Random.Range(2, 5);
+                    }
                     if (canGenerate == true)
                     {
-                        locBush = Instantiate(gameObject);
-                        locBush.transform.position = new Vector3
+                      locObject = Instantiate(gameObject);
+                      locObject.transform.position = new Vector3
                             (width / 2 - xPar, height / 2 - yPar);
-                        layer = locBush.GetComponentInChildren<SpriteRenderer>();
-                        layer.sortingOrder = height / 2 - (int) locBush.transform.position.y;
-                        objectList.Add(locBush);
-                        mapContent[xPar, yPar] = 2;
-                        int sizeOfrockPlace = Random.Range(1, 10);
-                        for (int j = 0; j < sizeOfrockPlace; j++)
+                        layer = locObject.GetComponentInChildren<SpriteRenderer>();
+                        layer.sortingOrder = height / 2 - (int) locObject.transform.position.y;
+                        objectList.Add(locObject);
+                        mapContent[xPar, yPar] = objectCode;
+                        for (int j = 0; j < placeSize; j++)
                         {
-                            float size = Random.Range(2f, 3.5f);
+                            float size = Random.Range(minSize, maxSize);
                             int x = Random.Range(xPar - placeDistance, xPar + placeDistance);
                             int y = Random.Range(yPar - placeDistance, yPar + placeDistance);
-                            locBush = Instantiate(gameObject);
-                            locBush.transform.position =
+                            locObject = Instantiate(gameObject);
+                            locObject.transform.position =
                                 new Vector3(width / 2 - x, height / 2 - y);
-                            layer = locBush.GetComponentInChildren<SpriteRenderer>();
+                            locObject.transform.localScale = new Vector3(size,size,1);
+                            layer = locObject.GetComponentInChildren<SpriteRenderer>();
                             layer.sortingOrder = height / 2 -
-                                                 (int) locBush.transform.position.y;
-                            objectList.Add(locBush);
+                                                 (int) locObject.transform.position.y+2;
+                            objectList.Add(locObject);
                             mapContent[x, y] = 3;
                         }
+                        break;
                     }
                 }
             }
+            return objectList;
         }
         public void Generate()
         {
           GenerateTile();
-          //CreateHorizon();
           GenerateBuilding();
-          GenerateTree();
-          GenerateRock();
-          GenerateBush();
-          GenerateLoot();
-          GenerateHorizon();
+          treeList = GenerateObjects(forestValue,forestSize,5*CURRENT_MAP_SCALER, tree,2,5*CURRENT_MAP_SCALER,2, 3.5f);
+            bushList = GenerateObjects(forestValue / CURRENT_MAP_SCALER,0,5, bush,1,1,1, 2);
+            rockList = GenerateObjects(forestValue / CURRENT_MAP_SCALER,0,5, rock,3,2,1, 2);
+            GenerateHorizon();
+          Debug.Log("Info"+treeList.Count);
+          Debug.Log("Info"+bushList.Count);
+          Debug.Log("Info"+rockList.Count);
         }
         
-        void CreateHorizon()
-        {
-            GameObject locTree;
-            for (int x = 0; x < horizonLine; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    waterTileMap.SetTile(new Vector3Int
-                        (-x + width / 2, -y + height / 2, 0), horizonTile);
-                }
-            }
-
-            for (int x = width; x > width - horizonLine; x--)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    waterTileMap.SetTile(new Vector3Int
-                        (-x + width / 2, -y + height / 2, 0), horizonTile);
-                }
-            }
-
-            for (int y = 0; y < horizonLine; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    waterTileMap.SetTile(new Vector3Int
-                        (-x + width / 2, -y + height / 2, 0), horizonTile);
-                }
-            }
-
-            for (int y = height; y > height - horizonLine; y--)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    waterTileMap.SetTile(new Vector3Int
-                        (-x + width / 2, -y + height / 2, 0), horizonTile);
-                }
-            }
-        }
-
-        public void GenerateBush()
-        {
-            int _errors = 0;
-            SpriteRenderer layer = null;
-            GameObject locBush = null;
-            bool canGenerate = false;
-            bool parent = false;
-            bushList = new List<GameObject>();
-            for (int i = 0; i < bushValue; i++)
-            {
-                canGenerate = false;
-                if (_errors > 1000)
-                {
-                    break;
-                }
-                while (canGenerate != true)
-                {
-                    _errors++;
-                    if (_errors > 1000)
-                    {
-                        break;
-                    }
-                    var xPar = Random.Range(0, height);
-                    var yPar = Random.Range(0, width);
-
-                    canGenerate = FindContent(xPar, yPar, 10);
-
-                    if (canGenerate == true)
-                    {
-                        locBush = Instantiate(bush);
-                        locBush.transform.position = new Vector3
-                            (width / 2 - xPar, height / 2 - yPar);
-                        layer = locBush.GetComponentInChildren<SpriteRenderer>();
-                        layer.sortingOrder = height / 2 - (int) locBush.transform.position.y;
-                        bushList.Add(locBush);
-                        mapContent[xPar, yPar] = 2;
-                        int sizeOfrockPlace = Random.Range(1, 10);
-                        for (int j = 0; j < sizeOfrockPlace; j++)
-                        {
-                            float size = Random.Range(2f, 3.5f);
-                            int x = Random.Range(xPar - 1, xPar + 1);
-                            int y = Random.Range(yPar - 1, yPar + 1);
-                            locBush = Instantiate(bush);
-                            locBush.transform.position =
-                                new Vector3(width / 2 - x, height / 2 - y);
-                            layer = locBush.GetComponentInChildren<SpriteRenderer>();
-                            layer.sortingOrder = height / 2 -
-                                                 (int) locBush.transform.position.y;
-                            bushList.Add(locBush);
-                            mapContent[x, y] = 3;
-                        }
-                    }
-                }
-            }
-        }
+       
 
         public void GenerateLoot()
         {
@@ -348,8 +245,7 @@ namespace GenerateMap
                 }
             }
         }
-
-        //Можно ли генерировать в радиусе данной клетке
+        
         public bool FindContent(int x, int y, int distanceBetweenObjects)
         {
             bool checker = true;
@@ -447,126 +343,13 @@ namespace GenerateMap
                 }
             }
         }
-
-
-        public void GenerateTree()
-        {
-            int _errors = 0;
-            float size;
-            SpriteRenderer layer = null;
-            GameObject tree = null;
-            bool canGenerate = false;
-            bool parent = false;
-            treeList = new List<GameObject>();
-            for (int i = 0; i < forestValue; i++)
-            {
-                canGenerate = false;
-                if (_errors > 1000)
-                {
-                    break;
-                }
-                while (canGenerate != true)
-                {
-                    _errors++;
-                    if (_errors > 1000)
-                    {
-                        break;
-                    }
-                    var xPar = Random.Range(0, height);
-                    var yPar = Random.Range(0, width);
-
-                    canGenerate = FindContent(xPar, yPar, 15);
-
-                    if (canGenerate == true)
-                    {
-
-                        mapContent[xPar, yPar] = 4;
-
-                        for (int j = 0; j < forestSize; j++)
-                        {
-                            var x = Random.Range(xPar - 5, xPar + 5);
-                            var y = Random.Range(yPar - 5, yPar + 5);
-
-
-                            tree = Instantiate(this.tree);
-                            size = Random.Range(2.5f, 3);
-                            tree.transform.localScale = new Vector3(size, size, 1);
-                            tree.transform.position = new Vector3(width / 2 - x, height / 2 - y);
-                            layer = tree.GetComponentInChildren<SpriteRenderer>();
-                            layer.sortingOrder = height / 2 - (int) tree.transform.position.y + 2;
-                            treeList.Add(tree);
-                            mapContent[x, y] = 4;
-                        }
-                    }
-                }
-            }
-        }
-
-        public void GenerateRock()
-        {
-            int _errors = 0;
-            SpriteRenderer layer = null;
-            GameObject rock = null;
-            bool canGenerate = false;
-            bool parent = false;
-            for (int i = 0; i < rockValue; i++)
-            {
-                canGenerate = false;
-                //Чтобы не зациклилось. Если на одном кусте долго работает код, то программа выходит (errors)
-                if (_errors > 1000)
-                {
-                    break;
-                }
-                while (canGenerate != true)
-                {
-                    _errors++;
-                    if (_errors > 1000)
-                    {
-                        break;
-                    }
-                    var xPar = Random.Range(0, height);
-                    var yPar = Random.Range(0, width);
-
-                    canGenerate = FindContent(xPar, yPar, 10);
-
-                    if (canGenerate == true)
-                    {
-                        rock = Instantiate(this.rock);
-                        rock.transform.position = new Vector3(width / 2 - xPar, height / 2 - yPar);
-                        layer = rock.GetComponentInChildren<SpriteRenderer>();
-                        layer.sortingOrder = height / 2 - (int) rock.transform.position.y;
-                        rockList.Add(rock);
-                        mapContent[xPar, yPar] = 2;
-
-                        var sizeOfRockPlace = Random.Range(1, 4);
-                        for (int j = 0; j < sizeOfRockPlace; j++)
-                        {
-                            var size = Random.Range(0.5f, 2);
-
-                            var x = Random.Range(xPar - 1, xPar + 1);
-                            var y = Random.Range(yPar - 1, yPar + 1);
-                            rock = Instantiate(this.rock);
-
-                            rock.transform.localScale = new Vector3(size, size, 0);
-
-                            rock.transform.position = new Vector3(width / 2 - x, height / 2 - y);
-                            layer = rock.GetComponentInChildren<SpriteRenderer>();
-                            layer.sortingOrder = height / 2 - (int) rock.transform.position.y;
-                            rockList.Add(rock);
-                            mapContent[x, y] = 3;
-                        }
-                    }
-                }
-            }
-        }
-        
-        
-        //data members
+      //data members
         private const int HORIZON_HELP_LINE = 5;
         private const int MAP_SCALER_SMALL = 3;
-        private const int MAP_SCALER_MEDIUM = 5;
+        private const int MAP_SCALER_MEDIUM = 6;
         private const int MAP_SCALER_BIG = 10;
-        
+        private const int HORIZON_SIZE = 15;
+        private int CURRENT_MAP_SCALER;
         [Range(5, 40)] public int forestSize;
         [Range(3, 10)] public int forestValue;
         [Range(1, 40)] public int buildingValue;
