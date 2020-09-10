@@ -8,56 +8,49 @@ namespace GenerateMap
 {
     public class Generator : MonoBehaviour
     {
-        void Start()
+      public void Start()
         {
-            tmpSize = Menu.ParameterManager.instance.tmpSize;
-            forestValue = Menu.ParameterManager.instance.forestValue;
-            forestSize = Menu.ParameterManager.instance.sizeOfForest;
-            buildingValue = Menu.ParameterManager.instance.buildingValue;
+            TMPSize = ParameterManager.instance.tmpSize;
+            forestValue = ParameterManager.instance.forestValue;
+            forestSize = ParameterManager.instance.sizeOfForest;
+            buildingValue = ParameterManager.instance.buildingValue;
             if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad)
                 return;
-            mapContent = new int[tmpSize.x, tmpSize.y];
+            _mapContent = new int[TMPSize.x, TMPSize.y];
             Generate();
         }
         
         public void GenerateMap(MapData mapData, Vector3Int tmpSize)
         {
-            this.tmpSize = tmpSize;
+            TMPSize = tmpSize;
             width = tmpSize.x;
             height = tmpSize.y;
-            for (int i = 0; i < mapData.bushPosition.Count; ++i)
+            for (var i = 0; i < mapData.bushPosition.Count; ++i)
             {
                 var pos = new Vector3(mapData.bushPosition[i].x, mapData.bushPosition[i].y, mapData.bushPosition[i].z);
                 var bushObj = Instantiate(bush, pos, Quaternion.identity);
                 bushObj.GetComponentInChildren<SpriteRenderer>().sortingOrder = mapData.bushSortingOrder[i];
                 bushList.Add(bushObj);
             }
-            
-            for (int i = 0; i < mapData.treePosition.Count; ++i)
+            for (var i = 0; i < mapData.treePosition.Count; ++i)
             {
                 var pos = new Vector3(mapData.treePosition[i].x, mapData.treePosition[i].y, mapData.treePosition[i].z);
                 var treeObj = Instantiate(tree, pos, Quaternion.identity);
                 treeObj.GetComponentInChildren<SpriteRenderer>().sortingOrder = mapData.treeSortingOrder[i];
                 treeList.Add(treeObj);
             }
-            
-            for (int i = 0; i < mapData.rockPosition.Count; ++i)
+            for (var i = 0; i < mapData.rockPosition.Count; ++i)
             {
                 var pos = new Vector3(mapData.rockPosition[i].x, mapData.rockPosition[i].y, mapData.rockPosition[i].z);
                 var rockObj = Instantiate(rock, pos, Quaternion.identity);
                 rockObj.GetComponent<SpriteRenderer>().sortingOrder = mapData.rockSortingOrder[i];
                 rockList.Add(rockObj);
             }
-            
-            for (int i = 0; i < mapData.housePosition.Count; ++i)
+            for (var i = 0; i < mapData.housePosition.Count; ++i)
             {
                 var pos = new Vector3(mapData.housePosition[i].x, mapData.housePosition[i].y, mapData.housePosition[i].z);
-                GameObject houseObj;
-                if (mapData.houseTypeList[i] == 0)
-                    houseObj = Instantiate(house, pos, Quaternion.identity);
-                else
-                    houseObj = Instantiate(bigHouse, pos, Quaternion.identity);
-                
+                var houseObj = Instantiate(mapData.houseTypeList[i] == 0 ? house : bigHouse, pos, Quaternion.identity);
+
                 houseObj.GetComponent<SpriteRenderer>().sortingOrder = mapData.houseSortingOrder[i];
                 houseTypeList.Add(mapData.houseTypeList[i]);
                 houseList.Add(houseObj);
@@ -71,29 +64,27 @@ namespace GenerateMap
         
         private void GenerateTile()
         {
-            width = tmpSize.x;
-            height = tmpSize.y;
-            switch (tmpSize.x)
+            width = TMPSize.x;
+            height = TMPSize.y;
+            switch (TMPSize.x)
             {
                 case 200:
-                  CURRENT_MAP_SCALER = MAP_SCALER_SMALL;
+                  _currentMapScaler = MapScalerSmall;
                   break;
                 case 500:
-                  CURRENT_MAP_SCALER = MAP_SCALER_MEDIUM;
+                  _currentMapScaler = MapScalerMedium;
                   break;
                 case 1000:
-                  CURRENT_MAP_SCALER = MAP_SCALER_BIG;
+                  _currentMapScaler = MapScalerBig;
                   break;
             }
-            buildingValue *= CURRENT_MAP_SCALER;
-            forestValue *= CURRENT_MAP_SCALER;
-            bushValue *= CURRENT_MAP_SCALER;
-            rockValue *= CURRENT_MAP_SCALER;
-            forestSize *= CURRENT_MAP_SCALER;
-            mapContent = new int[height, width];
-            for (int x = 0; x < width; x++)
+            buildingValue *= _currentMapScaler;
+            forestValue *= _currentMapScaler;
+            forestSize *= _currentMapScaler;
+            _mapContent = new int[height, width];
+            for (var x = 0; x < width; x++)
             {
-                for (int y = 0; y < height; y++)
+                for (var y = 0; y < height; y++)
                 {
                     landMap.SetTile(new Vector3Int
                         (-x + width / 2, -y + height / 2, 0), landTile);
@@ -101,172 +92,104 @@ namespace GenerateMap
             }
         }
 
-        void GenerateHorizon()
+        private void GenerateHorizon()
         {
-            for (int i = 0; i < HORIZON_SIZE; ++i)
+            for (var i = 0; i < HorizonSize; ++i)
             {
-              for (int x = -HORIZON_SIZE; x < width + HORIZON_SIZE; ++x)
+              for (var x = -HorizonSize; x < width + HorizonSize; ++x)
               {
                 waterTileMap.SetTile(new Vector3Int(-x + width / 2, -height / 2 - i, 0), waterTile);
               }
-              for (int x = -HORIZON_SIZE; x < width + HORIZON_SIZE; ++x)
+              for (var x = -HorizonSize; x < width + HorizonSize; ++x)
               {
                 waterTileMap.SetTile(new Vector3Int(-x + width / 2, height / 2 + 1 + i, 0), waterTile);
               }
-              for (int y = 0; y < height; ++y)
+              for (var y = 0; y < height; ++y)
               {
                 waterTileMap.SetTile(new Vector3Int(-width / 2 - i, -y + height / 2, 0), waterTile);
               }
-              for (int y = 0; y < height; ++y)
+              for (var y = 0; y < height; ++y)
               {
                 waterTileMap.SetTile(new Vector3Int(width / 2 + 1 + i, -y + height / 2, 0), waterTile);
               }
-                
             }
         }
 
-        List<GameObject> GenerateObjects(int count, int placeSize, int distance, GameObject gameObject,
+        private List<GameObject> GenerateObjects(int count, int placeSize, int distance, GameObject generatingObject,
           int objectCode, int placeDistance, float minSize, float maxSize){
-          List<GameObject> objectList = new List<GameObject>();
-          int _errors = 0;
-          SpriteRenderer layer = null;
-            GameObject locObject = null;
-            bool canGenerate = false;
-            bool parent = false;
-            for (int i = 0; i < count; i++){
-                _errors = 0;
-                canGenerate = false;
-                while (canGenerate != true)
-                {
-                  _errors++;
-                  if (_errors > 1000){
+          var objectList = new List<GameObject>();
+          for (var i = 0; i < count; i++){
+                var errors = 0;
+                while (true){
+                  errors++;
+                  if (errors > 1000){
                     return objectList;
                   }
-                    var xPar = Random.Range(0, height);
-                    var yPar = Random.Range(0, width);
-
-                    canGenerate = FindContent(xPar, yPar, distance);
-                    if (placeSize == 0){
-                      placeSize = Random.Range(2, 5);
+                  var xPar = Random.Range(0, height);
+                  var yPar = Random.Range(0, width);
+                  var canGenerate = FindContent(xPar, yPar, distance);
+                  if (placeSize == 0){
+                    placeSize = Random.Range(2, 5);
+                  }
+                  if (!canGenerate) continue;
+                  var locObject = Instantiate(generatingObject);
+                  locObject.transform.position = new Vector3
+                    (width / 2 - xPar, height / 2 - yPar);
+                  var layer = locObject.GetComponentInChildren<SpriteRenderer>();
+                  layer.sortingOrder = height / 2 - (int) locObject.transform.position.y;
+                  objectList.Add(locObject);
+                  _mapContent[xPar, yPar] = objectCode;
+                  var size = maxSize;
+                  for (var j = 0; j < placeSize; j++)
+                  {
+                    if ((int)minSize != (int)maxSize){
+                      size = Random.Range(minSize, maxSize);
                     }
-                    if (canGenerate == true)
-                    {
-                      locObject = Instantiate(gameObject);
-                      locObject.transform.position = new Vector3
-                            (width / 2 - xPar, height / 2 - yPar);
-                        layer = locObject.GetComponentInChildren<SpriteRenderer>();
-                        layer.sortingOrder = height / 2 - (int) locObject.transform.position.y;
-                        objectList.Add(locObject);
-                        mapContent[xPar, yPar] = objectCode;
-                        for (int j = 0; j < placeSize; j++)
-                        {
-                            float size = Random.Range(minSize, maxSize);
-                            int x = Random.Range(xPar - placeDistance, xPar + placeDistance);
-                            int y = Random.Range(yPar - placeDistance, yPar + placeDistance);
-                            locObject = Instantiate(gameObject);
-                            locObject.transform.position =
-                                new Vector3(width / 2 - x, height / 2 - y);
-                            locObject.transform.localScale = new Vector3(size,size,1);
-                            layer = locObject.GetComponentInChildren<SpriteRenderer>();
-                            layer.sortingOrder = height / 2 -
-                                                 (int) locObject.transform.position.y+2;
-                            objectList.Add(locObject);
-                            mapContent[x, y] = 3;
-                        }
-                        break;
-                    }
+                    var x = Random.Range(xPar - placeDistance, xPar + placeDistance);
+                    var y = Random.Range(yPar - placeDistance, yPar + placeDistance);
+                    locObject = Instantiate(generatingObject);
+                    locObject.transform.position =
+                      new Vector3(width / 2 - x, height / 2 - y);
+                    locObject.transform.localScale = new Vector3(size,size,1);
+                    layer = locObject.GetComponentInChildren<SpriteRenderer>();
+                    layer.sortingOrder = height / 2 -
+                      (int) locObject.transform.position.y+2;
+                    objectList.Add(locObject);
+                    _mapContent[x, y] = 3;
+                  }
+                  break;
                 }
-            }
-            return objectList;
+          }
+          return objectList;
         }
-        public void Generate()
+
+        private void Generate()
         {
           GenerateTile();
           GenerateBuilding();
-          treeList = GenerateObjects(forestValue,forestSize,5*CURRENT_MAP_SCALER, tree,2,5*CURRENT_MAP_SCALER,2, 3.5f);
-            bushList = GenerateObjects(forestValue / CURRENT_MAP_SCALER,0,5, bush,1,1,1, 2);
-            rockList = GenerateObjects(forestValue / CURRENT_MAP_SCALER,0,5, rock,3,2,1, 2);
+          treeList = GenerateObjects(forestValue,forestSize,7*_currentMapScaler, tree,1,6*_currentMapScaler,2, 3.5f);
+            bushList = GenerateObjects(forestValue / _currentMapScaler,0,5, bush,2,1,1, 2);
+            rockList = GenerateObjects(forestValue / _currentMapScaler,0,5, rock,3,2,1, 3);
             GenerateHorizon();
           Debug.Log("Info"+treeList.Count);
           Debug.Log("Info"+bushList.Count);
           Debug.Log("Info"+rockList.Count);
         }
-        
-       
 
-        public void GenerateLoot()
+        private bool FindContent(int x, int y, int distanceBetweenObjects)
         {
-            int _errors=0;
-            lootList = new List<GameObject>();
-            bool generated;
-            bool canGenerate;
-            int posX, posY;
-            for (int i = 0; i < lootList.Count; i++)
+            var checker = true;
+            for (var i = x - distanceBetweenObjects; i < x + distanceBetweenObjects; i++)
             {
-                if (_errors > 1000)
-                {
-                    break;
+                for (var j = y - distanceBetweenObjects; j < y + distanceBetweenObjects; j++){
+                  if (i >= width || j >= height || i <= 0 || j <= 0)
+                  {
+                    return false;
+                  }
+                  if (_mapContent[i, j] == 0) continue;
+                  checker = false;
+                  break;
                 }
-                for (int j = 0; j < lootCount[i]; j++)
-                {
-                    if (_errors > 1000)
-                    {
-                        break;
-                    }
-                    canGenerate = true;
-                    generated = false;
-                    while (generated != true)
-                    {
-                        _errors++;
-                        if (_errors > 1000)
-                        {
-                            break;
-                        }
-                        posX = Random.Range(0, width);
-                        posY = Random.Range(0, height);
-                        canGenerate = FindContent(posX, posY, 3);
-                        if (canGenerate == false)
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            Debug.Log("Loot generated");
-                            GameObject loot = Instantiate(lootList[i]);
-                            loot.transform.position = new Vector3
-                                (width / 2 - posX, height / 2 - posY, 0);
-                            loot.GetComponent<SpriteRenderer>().sortingOrder =
-                                height / 2 - (int) loot.transform.position.y;
-                            generated = true;
-                            //mapContent[posX, posY] = 5;
-                        }
-                    }
-
-                }
-            }
-        }
-        
-        public bool FindContent(int x, int y, int distanceBetweenObjects)
-        {
-            bool checker = true;
-            for (int i = x - distanceBetweenObjects; i < x + distanceBetweenObjects; i++)
-            {
-                for (int j = y - distanceBetweenObjects; j < y + distanceBetweenObjects; j++)
-                {
-                    if (i >= width || j >= height || i <= 0 || j <= 0)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        if (mapContent[i, j] != 0)
-                        {
-                            checker = false;
-                            break;
-                        }
-                    }
-                }
-
                 if (checker == false)
                 {
                     break;
@@ -275,87 +198,65 @@ namespace GenerateMap
             return checker;
         }
 
-        public void GenerateBuilding()
+        private void GenerateBuilding()
         {
-            int _errors = 0;
-            GameObject house = null;
-            bool generated = false;
-            bool canGenerate = false;
-            SpriteRenderer render;
+            var tryGenerateCounter = 0;
             houseList = new List<GameObject>();
             houseTypeList = new List<int>();
-            for (int i = 0; i < buildingValue; i++)
+            for (var i = 0; i < buildingValue; i++)
             {
-                generated = false;
-                if (_errors > 1000)
+                var generated = false;
+                if (tryGenerateCounter > 1000)
                 {
                     break;
                 }
+                tryGenerateCounter = 0;
                 while (!generated)
                 {
-                    _errors++;
-                    if (_errors > 1000)
+                    tryGenerateCounter++;
+                    if (tryGenerateCounter > 1000)
                     {
                         break;
                     }
                     var chance = Random.Range(0, 100);
-                    var cordX = Random.Range(0 + horizonLine + HORIZON_HELP_LINE,
-                        width - horizonLine - HORIZON_HELP_LINE);
-                    var cordY = Random.Range(0 + horizonLine + HORIZON_HELP_LINE,
-                        height - horizonLine - HORIZON_HELP_LINE);
-
+                    var cordX = Random.Range(0 + horizonLine + HorizonHelpLine,
+                        width - horizonLine - HorizonHelpLine);
+                    var cordY = Random.Range(0 + horizonLine + HorizonHelpLine,
+                        height - horizonLine - HorizonHelpLine);
+                    var canGenerate = FindContent(cordX, cordY, chance % 2 == 0 ? 15 : 30);
+                    if (!canGenerate) continue;
+                    GameObject locHouse;
                     if (chance % 2 == 0)
                     {
-                        canGenerate = FindContent(cordX, cordY, 15);
+                      locHouse = Instantiate(this.house);
+                      houseTypeList.Add(0);
                     }
                     else
                     {
-                        canGenerate = FindContent(cordX, cordY, 30);
+                      locHouse = Instantiate(bigHouse);
+                      houseTypeList.Add(1);
                     }
-
-                    if (canGenerate == true)
-                    {
-                        if (chance % 2 == 0)
-                        {
-                            house = Instantiate(this.house);
-                            houseTypeList.Add(0);
-                        }
-                        else
-                        {
-                            house = Instantiate(bigHouse);
-                            houseTypeList.Add(1);
-                        }
-
-                        render = house.GetComponent<SpriteRenderer>();
-                        house.transform.position = new Vector3
-                            (-cordX + width / 2, -cordY + height / 2, 0);
-                        render.sortingOrder = height / 2 - (int) house.transform.position.y + 1;
-                        houseList.Add(house);
-                        mapContent[cordX, cordY] = 1;
-                        generated = true;
-                        canGenerate = false;
-                    }
-                    else
-                    {
-                        canGenerate = false;
-                        continue;
-                    }
+                    var render = locHouse.GetComponent<SpriteRenderer>();
+                    locHouse.transform.position = new Vector3
+                      (-cordX + width / 2, -cordY + height / 2, 0);
+                    render.sortingOrder = height / 2 - (int) locHouse.transform.position.y + 1;
+                    houseList.Add(locHouse);
+                    _mapContent[cordX, cordY] = 1;
+                    generated = true;
                 }
             }
         }
       //data members
-        private const int HORIZON_HELP_LINE = 5;
-        private const int MAP_SCALER_SMALL = 3;
-        private const int MAP_SCALER_MEDIUM = 6;
-        private const int MAP_SCALER_BIG = 10;
-        private const int HORIZON_SIZE = 15;
-        private int CURRENT_MAP_SCALER;
+        private const int HorizonHelpLine = 5;
+        private const int MapScalerSmall = 3;
+        private const int MapScalerMedium = 6;
+        private const int MapScalerBig = 10;
+        private const int HorizonSize = 15;
+        private int _currentMapScaler;
         [Range(5, 40)] public int forestSize;
         [Range(3, 10)] public int forestValue;
         [Range(1, 40)] public int buildingValue;
-        [Range(5, 40)] public int rockValue;
-        public int bushValue;
-        
+
         public GameObject bush;
         public GameObject rock;
         public GameObject house;
@@ -369,14 +270,13 @@ namespace GenerateMap
         public Tile landTile;
         public Tile horizonTile;
         public Tile autumnTile;
-        
-        public int[,] mapContent;// 1 - building, 2 - rock, 3 - bush, 4 - tree
+
+        private int[,] _mapContent;// 1 - building, 2 - rock, 3 - bush, 4 - tree
         public int horizonLine;
         public int width;
         public int height;
-        public Vector3Int tmpSize;
-        public List<int> lootCount;
-        
+        public Vector3Int TMPSize;
+
         //Lists of GameObjects
         [Range(5, 40)] private List<GameObject> _mapLootList;
         public List<GameObject> bushList;
