@@ -29,8 +29,7 @@ namespace Characteristics {
         FreePoints += 2;
         ToNextLevelExp *= 1.5f;
         Update();
-      }
-      else {
+      } else {
         Experience += exp;
         Update();
       }
@@ -72,8 +71,7 @@ namespace Characteristics {
       if (!Input.GetKeyDown(KeyCode.I)) return;
       if (_canvas.enabled) {
         _canvas.enabled = false;
-      }
-      else {
+      } else {
         Display();
         _canvas.enabled = true;
       }

@@ -26,14 +26,11 @@ namespace Authenticate  {
       var errorReport = error.GenerateErrorReport().Split();
       if (errorReport[1] == "Username") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text = "Никнейм занят";
-      }
-      else if (errorReport[1] == "Email") {
+      } else if (errorReport[1] == "Email") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text = "Email занят или имеет неверный формат";
-      }
-      else if (errorReport[4] == "Username:") {
+      } else if (errorReport[4] == "Username:") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text = "Логин может содержать буквы латинницы";
-      }
-      else if (errorReport[4] == "Password:") {
+      } else if (errorReport[4] == "Password:") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text = "Неверный формат пароля";
       }
     }

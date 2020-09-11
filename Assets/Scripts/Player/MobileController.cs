@@ -3,22 +3,22 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Player {
-  public class MobileController : MonoBehaviour,IDragHandler,IPointerUpHandler,IPointerDownHandler {
+  public class MobileController : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler {
     private Image _joystickBackGround;
     [SerializeField]
     private Image joystick;
     private Vector2 _inputVector;
     
-    public void Start() {
-    _joystickBackGround = GetComponent<Image>();
+    public void Start() { 
+      _joystickBackGround = GetComponent<Image>();
       joystick = transform.GetChild(0).GetComponent<Image>();
     }
 
-    public void OnPointerDown(PointerEventData ped) {
-      OnDrag(ped);
+    public void OnPointerDown(PointerEventData pointerEventData) {
+      OnDrag(pointerEventData);
     }
 
-    public void OnPointerUp(PointerEventData ped) {
+    public void OnPointerUp(PointerEventData pointerEventData) {
       _inputVector = Vector2.zero;
       joystick.rectTransform.anchoredPosition = Vector2.zero;
     }
@@ -37,11 +37,11 @@ namespace Player {
       }
     }
 
-    public float Horizontal() {
+    public float GetXJoystickPos() {
       return _inputVector.x != 0 ? _inputVector.x : Input.GetAxis("Horizontal");
     }
 
-    public float Vertical() {
+    public float GetYJoystickPos() {
       return _inputVector.y != 0 ? _inputVector.y : Input.GetAxis("Vertical");
     }
   }

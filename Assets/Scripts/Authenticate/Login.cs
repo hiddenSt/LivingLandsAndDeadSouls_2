@@ -25,14 +25,11 @@ namespace Authenticate {
       var errorReport = error.GenerateErrorReport().Split();
       if (errorReport[1] == "User") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text = "Данный пользователь не найден";
-      }
-      if (errorReport[4] == "host") {
+      } else if (errorReport[4] == "host") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text = "Отсутствует соединение с сетью Интернет";
-      }
-      if (errorReport[4] == "Email:") {
+      } else if (errorReport[4] == "Email:") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text ="Неправильный пароль или логин";
-      }
-      if (errorReport[1] == "Invalid") {
+      } else if (errorReport[1] == "Invalid") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text = "Неправильный пароль или логин";
       }
     }

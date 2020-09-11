@@ -28,24 +28,20 @@ namespace Player {
     }
 
     public void Update() {
-      if (MobController.Horizontal() > 0.9) {
+      if (MobController.GetXJoystickPos() > 0.9) {
         Direction = 2;
         animator.Play("Move_right");
-      }
-      else if (MobController.Horizontal() < -0.9) {
+      } else if (MobController.GetXJoystickPos() < -0.9) {
         Direction = 3;
         animator.Play("Move_left");
-      }
-      else {
-        if (MobController.Vertical() > 0) {
+      } else {
+        if (MobController.GetYJoystickPos() > 0) {
           Direction = 1;
           animator.Play("Move_back");
-        }
-        else if (MobController.Vertical() < 0) {
+        } else if (MobController.GetYJoystickPos() < 0) {
           Direction = 0;
           animator.Play("Move_face");
-        }
-        else {
+        } else {
           switch (Direction) {
             case 0:
               animator.Play("Idle_face");
@@ -63,14 +59,13 @@ namespace Player {
         }
       }
         
-      _dirX = MobController.Horizontal();
-      _dirY = MobController.Vertical();
+      _dirX = MobController.GetXJoystickPos();
+      _dirY = MobController.GetYJoystickPos();
       var moveInput = new Vector2(_dirX, _dirY);
       MoveVelocity = moveInput * PlayerSpeed;
       if (_dirX == 0 && _dirY == 0) {
         _soundOfRun.Stop();
-      }
-      else {
+      } else {
         if (!_soundOfRun.isPlaying) {
           _soundOfRun.Play();
         }
