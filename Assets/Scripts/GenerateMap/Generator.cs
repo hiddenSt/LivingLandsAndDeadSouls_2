@@ -105,6 +105,50 @@ namespace GenerateMap {
       }
     }
     
+    private List<GameObject> GenerateZones(int count, int placeSize, int distance, GameObject generatingObject,
+      int objectCode, int placeDistance, float minSize, float maxSize) {
+      var objectList = new List<GameObject>();
+      GameObject generatedObject;
+      for (int i = 0; i < count; i++) {
+        var parentCoordinates = GenerateObjectCoordinates(distance);
+        if (parentCoordinates == null) {
+          return objectList;
+        }
+        int xParent = parentCoordinates[0];
+        int yParent = parentCoordinates[1];
+        if (placeSize == 0) {
+          placeSize = Random.Range(2, 5);
+        }
+        generatedObject = GenerateObject(generatingObject, parentCoordinates);
+        ChangeObjectSize(generatedObject, minSize, maxSize);
+        objectList.Add(generatedObject);
+        _mapContent[xParent, yParent] = objectCode;
+        for (var j = 0; j < placeSize; j++) {
+          int[] objectCoordinates = {Random.Range(xParent - placeDistance,
+              xParent + placeDistance), 
+            Random.Range(yParent - placeDistance, yParent + placeDistance)
+          };
+          objectList.Add(GenerateObject(
+            generatingObject, objectCoordinates));
+          _mapContent[objectCoordinates[0], objectCoordinates[1]] = objectCode;
+        }
+      }
+      return objectList;
+    }
+    
+    private void GenerateHorizon() {
+      for (int i = 0; i < _horizonSize; ++i) {
+        for (int x = -_horizonSize; x < MapWidth + _horizonSize; ++x) 
+          WaterTileMap.SetTile(new Vector3Int(-x + MapWidth / 2, -MapHeight / 2 - i, 0), WaterTile);
+        for (int x = -_horizonSize; x < MapWidth + _horizonSize; ++x) 
+          WaterTileMap.SetTile(new Vector3Int(-x + MapWidth / 2, MapHeight / 2 + 1 + i, 0), WaterTile);
+        for (int y = 0; y < MapHeight; ++y) 
+          WaterTileMap.SetTile(new Vector3Int(-MapWidth / 2 - i, -y + MapHeight / 2, 0), WaterTile);
+        for (int y = 0; y < MapHeight; ++y) 
+          WaterTileMap.SetTile(new Vector3Int(MapWidth / 2 + 1 + i, -y + MapHeight / 2, 0), WaterTile);
+      }
+    }
+    
     private int[] GenerateObjectCoordinates(int distanceFromAnotherObject) {
       int errors = 0;
       while (true) {
@@ -147,55 +191,11 @@ namespace GenerateMap {
       return generatedObject;
     }
     
-    private List<GameObject> GenerateZones(int count, int placeSize, int distance, GameObject generatingObject,
-      int objectCode, int placeDistance, float minSize, float maxSize) {
-      var objectList = new List<GameObject>();
-      GameObject generatedObject;
-      for (int i = 0; i < count; i++) {
-        var parentCoordinates = GenerateObjectCoordinates(distance);
-        if (parentCoordinates == null) {
-          return objectList;
-        }
-        int xParent = parentCoordinates[0];
-        int yParent = parentCoordinates[1];
-        if (placeSize == 0) {
-          placeSize = Random.Range(2, 5);
-        }
-        generatedObject = GenerateObject(generatingObject, parentCoordinates);
-        ChangeObjectSize(generatedObject, minSize, maxSize);
-        objectList.Add(generatedObject);
-        _mapContent[xParent, yParent] = objectCode;
-        for (var j = 0; j < placeSize; j++) {
-          int[] objectCoordinates = {Random.Range(xParent - placeDistance,
-              xParent + placeDistance), 
-            Random.Range(yParent - placeDistance, yParent + placeDistance)
-          };
-          objectList.Add(GenerateObject(
-            generatingObject, objectCoordinates));
-          _mapContent[objectCoordinates[0], objectCoordinates[1]] = objectCode;
-        }
-      }
-      return objectList;
-    }
-    
     private void ChangeObjectSize(GameObject changingObject, float minSize, float maxSize) {
       float size = Random.Range(minSize, maxSize);
       changingObject.transform.localScale = new Vector3(size, size, 1);
     }
-    
-    private void GenerateHorizon() {
-      for (int i = 0; i < _horizonSize; ++i) {
-        for (int x = -_horizonSize; x < MapWidth + _horizonSize; ++x) 
-          WaterTileMap.SetTile(new Vector3Int(-x + MapWidth / 2, -MapHeight / 2 - i, 0), WaterTile);
-        for (int x = -_horizonSize; x < MapWidth + _horizonSize; ++x) 
-          WaterTileMap.SetTile(new Vector3Int(-x + MapWidth / 2, MapHeight / 2 + 1 + i, 0), WaterTile);
-        for (int y = 0; y < MapHeight; ++y) 
-          WaterTileMap.SetTile(new Vector3Int(-MapWidth / 2 - i, -y + MapHeight / 2, 0), WaterTile);
-        for (int y = 0; y < MapHeight; ++y) 
-          WaterTileMap.SetTile(new Vector3Int(MapWidth / 2 + 1 + i, -y + MapHeight / 2, 0), WaterTile);
-      }
-    }
-    
+
     public void GenerateMap(MapData mapData, Vector3Int tmpSize) {
       TMPSize = tmpSize;
       MapWidth = tmpSize.x;
