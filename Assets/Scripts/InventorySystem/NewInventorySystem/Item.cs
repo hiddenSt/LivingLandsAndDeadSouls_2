@@ -1,20 +1,14 @@
-﻿using Utility;
+﻿using UI;
+using Utility;
 
 namespace InventorySystem.NewInventorySystem {
 
- public abstract class Item {
-    public abstract void Use();
-    public abstract void PickUp();
-    public abstract void Drop();
-
-    public Identifier GetIdentifier() {
-      return _identifier;
-    }
-
-    public void SetIdentifier(Identifier identifier) {
-      _identifier = identifier;
-    }
-
-    private Identifier _identifier;
-  }
+ public interface Item {
+    void Use();
+    void PickUp();
+    void Drop();
+    Identifier GetIdentifier();
+    void SetIdentifier(Identifier identifier);
+    IUiPresenter GetUiPresenter();
+ }
 }

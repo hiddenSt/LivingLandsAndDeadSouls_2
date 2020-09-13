@@ -48,7 +48,7 @@ namespace InventorySystem.NewInventorySystem.ArrayRepository {
     }
     
     public IItemIterator GetIterator() {
-      return new ArrayIterator(this);
+      return null; //new ArrayIterator(this);
     }
 
     private List<Item> _itemsArray;
