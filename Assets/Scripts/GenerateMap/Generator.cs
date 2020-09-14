@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Menu;
 using SaveLoadSystem;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 namespace GenerateMap {
   public class Generator : MonoBehaviour {
@@ -54,11 +57,8 @@ namespace GenerateMap {
     
     private void Generate() {
       GenerateTile();
-      GenerateBuilding();
-      TreeList = GenerateZones(ForestPlaceSize, ForestValue, 7 * _currentMapScaler, TreeInstance,
-        4, 6 * _currentMapScaler, 2, 3.5f);
-      BushList = GenerateZones(ForestPlaceSize / _currentMapScaler, 0, 5, BushInstance, 3, 1, 1,2);
-      RockList = GenerateZones(ForestPlaceSize / _currentMapScaler, 0, 5, RockInstance, 2, 2, 1, 2);
+      MapUnityGenerator generator = new MapUnityGenerator();
+      generator.GenerateMapUnity();
       GenerateHorizon();
     }
     
@@ -149,30 +149,30 @@ namespace GenerateMap {
       }
     }
     
-    private int[] GenerateObjectCoordinates(int distanceFromAnotherObject) {
-      int errors = 0;
-      while (true) {
-        errors++;
-        if (errors > 1000) {
-          return null;
-        }
-        int xParent = Random.Range(0, MapHeight);
-        int yParent = Random.Range(0, MapWidth);
-        bool canGenerate = FindContent(xParent, yParent, distanceFromAnotherObject);
-        if (!canGenerate) continue;
-        return new[]{xParent, yParent};
+  private int[] GenerateObjectCoordinates(int distanceFromAnotherObject) {
+    int errors = 0;
+    while (true) {
+      errors++;
+      if (errors > 1000) {
+        return null;
       }
+      int xParent = Random.Range(0, MapHeight);
+      int yParent = Random.Range(0, MapWidth);
+      bool canGenerate = FindContent(xParent, yParent, distanceFromAnotherObject);
+      if (!canGenerate) continue;
+      return new[]{xParent, yParent};
     }
+  }
 
-    private bool FindContent(int x, int y, int distanceBetweenObjects) {
-      var checker = true;
-      for (var i = x - distanceBetweenObjects; i < x + distanceBetweenObjects; i++) {
-        for (var j = y - distanceBetweenObjects; j < y + distanceBetweenObjects; j++) {
-          if (i >= MapWidth || j >= MapHeight || i <= 0 || j <= 0) {
-            return false;
-          }
-          if (_mapContent[i, j] == 0) continue;
-          checker = false;
+  private bool FindContent(int x, int y, int distanceBetweenObjects) {
+    var checker = true;
+    for (var i = x - distanceBetweenObjects; i < x + distanceBetweenObjects; i++) {
+      for (var j = y - distanceBetweenObjects; j < y + distanceBetweenObjects; j++) {
+        if (i >= MapWidth || j >= MapHeight || i <= 0 || j <= 0) {
+          return false;
+        }
+        if (_mapContent[i, j] == 0) continue;
+        checker = false;
           break;
         }
         if (checker == false) {
