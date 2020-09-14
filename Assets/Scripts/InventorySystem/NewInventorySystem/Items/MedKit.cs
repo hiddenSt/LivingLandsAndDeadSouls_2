@@ -1,4 +1,4 @@
-﻿
+﻿/*
 using UnityEngine;
 
 namespace InventorySystem.NewInventorySystem.Items {
@@ -19,3 +19,4 @@ namespace InventorySystem.NewInventorySystem.Items {
     private int _healthBoostPoints;
   }
 }
+*/

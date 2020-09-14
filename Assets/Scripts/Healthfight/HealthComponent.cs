@@ -31,7 +31,7 @@ namespace HealthFight {
       //:(   
       _animator.Play("Death_left");
       _animator.speed = 0.5f;
-      GameObject.Find("Characteristics").GetComponent<AllParameters>().AddExperience(50); // Dirty dependency
+      GameObject.Find("Characteristics").GetComponent<Characteristics.AllParameters>().AddExperience(50); // Dirty dependency
 
       Destroy(bar.gameObject);
       Destroy(other.gameObject);
