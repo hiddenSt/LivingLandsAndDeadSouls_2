@@ -57,11 +57,11 @@ namespace HealthFight {
       return bulletGameObject;
     }
 
-    void Start() {
+    private void Start() {
       ttl = 1000;
     }
 
-    void Update() {
+    private void Update() {
       --ttl;
       if (ttl <= 0) {
         Destroy(this.gameObject);

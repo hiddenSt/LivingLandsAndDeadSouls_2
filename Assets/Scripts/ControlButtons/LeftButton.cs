@@ -6,12 +6,12 @@ namespace ControlButtons {
   public class LeftButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler {
     AudioSource Audio;
     GameObject player;
-    PlayerController playerController;
+    Player.PlayerController playerController;
 
     void Start() {
       Audio = GameObject.Find("AudioManager").GetComponent<AudioSource>();
       player = GameObject.Find("Player");
-      playerController = player.GetComponent<PlayerController>();
+      playerController = player.GetComponent<Player.PlayerController>();
     }
 
     public virtual void OnPointerDown(PointerEventData ped) {

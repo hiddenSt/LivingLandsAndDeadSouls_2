@@ -7,7 +7,7 @@ namespace ControlButtons {
     private void Start() {
       _audio = GameObject.Find("AudioManager").GetComponent<AudioSource>();
       _player = GameObject.Find("Player");
-      _playerController = _player.GetComponent<PlayerController>();
+      _playerController = _player.GetComponent<Player.PlayerController>();
     }
 
     public virtual void OnPointerDown(PointerEventData ped) {
@@ -25,6 +25,6 @@ namespace ControlButtons {
     
     private AudioSource _audio;
     private GameObject _player;
-    private PlayerController _playerController;
+    private Player.PlayerController _playerController;
   }
 }

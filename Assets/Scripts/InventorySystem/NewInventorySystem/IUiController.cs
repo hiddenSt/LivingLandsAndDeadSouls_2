@@ -3,8 +3,8 @@
 namespace InventorySystem.NewInventorySystem {
   
   public interface IUiController {
-    void SetItemIcon(UI.IUiPresenter itemUiPresenter);
-    void RemoveItemIcon(Identifier itemIdentifier);
+    void SetItemIcon(string itemType, Identifier itemIdentifier);
+    void RemoveItem(Identifier itemIdentifier);
     void SetInventory(Inventory inventory);
   }
 }

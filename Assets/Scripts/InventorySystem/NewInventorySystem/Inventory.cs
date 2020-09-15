@@ -11,22 +11,21 @@ namespace InventorySystem.NewInventorySystem {
       _uiController = uiController;
     }
     
-    public Identifier AddItem(Item item) {
+    public void AddItem(Item item) {
       if (_inventorySize > _inventoryCapacity)
-        return null;
+        return;
       
       ++_inventorySize;
-      item.SetIdentifier(_identifierFactory.CreateIdentifier());
+      item.SetIdentifier(new Identifier());
       _itemsRepository.AddItem(item);
       item.PickUp();
       
-      _uiController.SetItemIcon(item.GetUiPresenter());
-      return item.GetIdentifier();
+      _uiController.SetItemIcon(item.GetItemType(), item.GetIdentifier());
     }
 
-    public void RemoveItem(Item item) {
+    public void RemoveItem(Identifier identifier) {
+      Item item = GetItem(identifier);
       item.Drop();
-      _uiController.RemoveItemIcon(item.GetIdentifier());
       _itemsRepository.RemoveItem(item.GetIdentifier());
     }
 
@@ -52,7 +51,6 @@ namespace InventorySystem.NewInventorySystem {
 
     private IItemsRepositoryStrategy _itemsRepository;
     private int _inventorySize;
-    private IdentifierFactory _identifierFactory;
     private int _inventoryCapacity;
     private IUiController _uiController;
   }

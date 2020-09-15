@@ -1,10 +1,15 @@
 ﻿namespace Utility {
 
-  public abstract class Identifier {
-    public abstract bool EqualsTo(Identifier other);
-    public abstract bool GreaterThan(Identifier other);
-    public abstract bool SmallerThan(Identifier other);
+  public class Identifier {
+    public Identifier() {
+      _id = _idCounter;
+      ++_idCounter;
+    }
+    public bool EqualsTo(Identifier other) {
+      return other._id == _id;
+    }
 
-    
+    private static int _idCounter = 1;
+    private int _id;
   }
 }
