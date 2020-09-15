@@ -35,7 +35,7 @@ namespace GenerateMap.Strategies {
           checker = false;
           break;
         }
-        if (checker == false){
+        if (checker == false) {
           break;
         }
       }

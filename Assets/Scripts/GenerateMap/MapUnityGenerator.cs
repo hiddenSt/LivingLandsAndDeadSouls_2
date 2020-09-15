@@ -21,7 +21,6 @@ namespace GenerateMap {
     private int [,] _mapData;
   
     public MapUnityGenerator() {
-      _mapData = new int[_mapSize, _mapSize];
       _parametersManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
       switch (_parametersManager.tmpSize.x) {
         case 200:
@@ -38,27 +37,31 @@ namespace GenerateMap {
           break;
       }
       _objectInstanceStorage = GameObject.Find("ObjectInstanceStorage").gameObject;
-      _generator = new MapGenerator(new BuildingGenerateStrategy(new BuildingData(_parametersManager.
-          buildingValue * _currentScaler / 2, 7*_currentScaler,1)), 
-        new GenerateLandscapeStrategy(new ZoneData(_parametersManager.forestValue * _currentScaler ,
-          7*_currentScaler,2,_parametersManager.sizeOfForest * _currentScaler ,
-          6*_currentScaler)), new GenerateLandscapeStrategy(new ZoneData
-          (_parametersManager.forestValue * _currentScaler,3 *_currentScaler,3,4,1)), 
-        new GenerateLandscapeStrategy(new ZoneData(_parametersManager.forestValue * _currentScaler, 
-          3 *_currentScaler,4,4,2)));
+      var buildingGenerateStrategy = new BuildingGenerateStrategy(new BuildingData(
+        _parametersManager.buildingValue * _currentScaler / 2, 7 * _currentScaler, 1));
+      var forestGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
+        _parametersManager.forestValue * _currentScaler, 7 * _currentScaler, 2, 
+        _parametersManager.sizeOfForest * _currentScaler, 6 * _currentScaler));
+      var bushGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
+        _parametersManager.forestValue * _currentScaler, 3 * _currentScaler, 3, 4, 1));
+      var rockGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
+        _parametersManager.forestValue * _currentScaler, 3 * _currentScaler, 4, 4, 2));
+      _generator = new MapGenerator(buildingGenerateStrategy, forestGenerateStrategy, 
+        bushGenerateStrategy, rockGenerateStrategy);
     }
 
     private void FindObjectInstances() {
-      _bigHouse = _objectInstanceStorage.GetComponent<ObjectInstancesStorage>().GetObjectInstance("Big_house");
-      _smallHouse = _objectInstanceStorage.GetComponent<ObjectInstancesStorage>().GetObjectInstance("Small_house");
-      _tree = _objectInstanceStorage.GetComponent<ObjectInstancesStorage>().GetObjectInstance("Tree");
-      _bush = _objectInstanceStorage.GetComponent<ObjectInstancesStorage>().GetObjectInstance("Bush");
-      _rock = _objectInstanceStorage.GetComponent<ObjectInstancesStorage>().GetObjectInstance("Rock");
+      _bigHouse = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Big_house");
+      _smallHouse = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Small_house");
+      _tree = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Tree");
+      _bush = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Bush");
+      _rock = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Rock");
     }
   
     public void GenerateMapUnity() {
       FindObjectInstances();
-      _generator.GenerateMap(_mapData);
+      _generator.GenerateMap(_mapSize);
+      _mapData = _generator.GetMapData();
       for (int i = 0; i < _mapSize; i++) {
         for (int j = 0; j < _mapSize; j++) {
           GameObject generatedObject;
@@ -87,7 +90,7 @@ namespace GenerateMap {
     private void ChangeGameObjectParameters(GameObject changingObject, int xPos, int yPos) {
       changingObject.transform.localPosition = new Vector3(_mapSize / 2 - xPos, _mapSize / 2 - yPos ,1);
       changingObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = _mapSize / 2 - 
-        (int) changingObject.transform.position.y + 3;
+        (int) changingObject.transform.position.y + 4;
     }
   }
 }

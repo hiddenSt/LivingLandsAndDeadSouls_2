@@ -1,8 +1,9 @@
 ﻿using GenerateMap.Strategies;
-using UnityEngine;
 
 namespace GenerateMap {
-  public class MapGenerator : MonoBehaviour  {
+  public class MapGenerator {
+    private int[,] _mapData;
+    
     public MapGenerator(BuildingGenerateStrategy buildingGenerateStrategy, 
       GenerateLandscapeStrategy forestGenerateStrategy, 
       GenerateLandscapeStrategy bushGenerateStrategy, 
@@ -13,11 +14,16 @@ namespace GenerateMap {
       _rockGenerateStrategy = rockGenerateStrategy;
     }
   
-    public void GenerateMap(int[,] mapData) {
-      _buildingGenerateStrategy.Generate(mapData);
-      _forestGenerateStrategy.Generate(mapData);
-      _rockGenerateStrategy.Generate(mapData);
-      _bushGenerateStrategy.Generate(mapData);
+    public void GenerateMap(int mapSize) {
+      _mapData = new int[mapSize, mapSize];
+      _mapData = _buildingGenerateStrategy.Generate(_mapData);
+      _mapData = _forestGenerateStrategy.Generate(_mapData);
+      _mapData = _rockGenerateStrategy.Generate(_mapData);
+      _mapData = _bushGenerateStrategy.Generate(_mapData);
+    }
+
+    public int[,] GetMapData() {
+      return _mapData;
     }
   
     private BuildingGenerateStrategy _buildingGenerateStrategy;
