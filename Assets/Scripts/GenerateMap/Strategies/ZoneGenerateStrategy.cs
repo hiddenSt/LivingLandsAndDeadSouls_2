@@ -15,7 +15,7 @@ namespace GenerateMap.Strategies {
     public int[,] Generate(int [,] mapData) {
       Debug.Log("Value"+_data.Value);
       _mapCountrySize = (int) Math.Sqrt(mapData.Length);
-      for (int i = 0; i < _data.Value; i++){
+      for (int i = 0; i < _data.Value; i++) {
         var parentCoordinates = GenerateZoneCenterCoordinates(_data.DistanceFromAnotherObjects, mapData);
         if (parentCoordinates == null) {
           return mapData;

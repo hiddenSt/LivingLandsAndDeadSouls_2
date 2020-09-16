@@ -44,7 +44,7 @@ namespace GenerateMap {
         bushGenerateStrategy, rockGenerateStrategy);
     }
 
-    public int[,] GenerateMapUnity(){
+    public int[,] GenerateMapUnity() {
       _mapData = _generator.GenerateMap(_mapSize);
       return _mapData;
     }

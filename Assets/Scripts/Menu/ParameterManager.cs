@@ -1,14 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
-namespace Menu
-{
-    public class ParameterManager : MonoBehaviour
-    {
-        void Start()
-        {
+namespace Menu {
+    public class ParameterManager : MonoBehaviour {
+        void Start() {
             _mapScalerSmall = 3;
             _mapScalerMedium = 5;
             _mapScalerBig = 10;

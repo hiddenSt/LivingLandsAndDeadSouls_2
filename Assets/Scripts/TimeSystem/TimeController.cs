@@ -215,15 +215,6 @@ namespace TimeSystem
             }
         }
 
-        private void ChangeTreeSprite(string path)
-        {
-          _mapDataStorage.TreeList.ForEach(tree =>
-            {
-                var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
-                spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/" + path);
-            });
-        }
-        
         //data members
         private MapDataStorage _mapDataStorage;
         private Tile LandTile;
