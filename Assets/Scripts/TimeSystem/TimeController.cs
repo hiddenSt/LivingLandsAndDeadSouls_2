@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using GenerateMap;
+﻿using GenerateMap;
+using GenerateMap.TileGenerator;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 namespace TimeSystem
@@ -37,8 +37,11 @@ namespace TimeSystem
             }
         }
 
-        void Start()
-        {
+        void Start(){
+            LandTile = GameObject.Find("TileStorage").GetComponent<TileInstancesStorage>().FindTile("Grass");
+            WinterTile = GameObject.Find("TileStorage").GetComponent<TileInstancesStorage>().FindTile("Winter_grass");
+            AutumnTile = GameObject.Find("TileStorage").GetComponent<TileInstancesStorage>().FindTile("OrangeGrass");
+            LandTileMap = GameObject.Find("LandTileMap").GetComponent<Tilemap>();
             playerLight = GameObject.Find("Player").GetComponent<Light2D>();
             playerLight.intensity = 0;
             //light.color = new Vector4(0.83f, 0.81f, 0.42f, 1);
@@ -92,12 +95,14 @@ namespace TimeSystem
 
         public void ChangeSeason()
         {
+          _mapDataStorage = GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>();
+          Debug.Log("Tree"+GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>().TreeList.Count);
             switch (season)
             {
                 case 0:
                     _weatherChance = 2 * _precipitation;
                     //light.color = new Vector4(0.95f, 0.76f, 0.35f, 1);
-                    generator.treeList.ForEach(tree =>
+                    _mapDataStorage.TreeList.ForEach(tree =>
                     {
                         var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/tri");
@@ -106,23 +111,23 @@ namespace TimeSystem
                 case 1:
                     //light.color = new Vector4(1f, 1f, 1f, 1);
                     _weatherChance = 10 * _precipitation;
-                    generator.treeList.ForEach(tree =>
+                    _mapDataStorage.TreeList.ForEach(tree =>
                     {
                         var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Yellow_Tree");
                     });
-                    generator.bushList.ForEach(bush =>
+                    _mapDataStorage.BushList.ForEach(bush =>
                     {
                         var spriteRenderer = bush.GetComponent<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Fall_Bush");
                     });
-                    for (int x = 0; x < generator.width; x++)
+                    for (int x = 0; x < _mapDataStorage.MapWidth; x++)
                     {
-                        for (int y = 0; y < generator.height; y++)
+                        for (int y = 0; y < _mapDataStorage.MapHeight; y++)
                         {
-                            generator.landMap.SetTile(
-                                new Vector3Int(-x + generator.width / 2, -y + generator.height / 2, 0),
-                                generator.autumnTile);
+                            LandTileMap.SetTile(
+                                new Vector3Int(-x + _mapDataStorage.MapWidth / 2, -y + _mapDataStorage.MapHeight / 2, 0),
+                                AutumnTile);
                         }
                     }
 
@@ -131,36 +136,36 @@ namespace TimeSystem
 
                 case 2:
                     _weatherChance = 10;
-                    generator.rockList.ForEach(rock =>
+                    _mapDataStorage.RockList.ForEach(rock =>
                     {
                         var spriteRenderer = rock.GetComponent<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Rock");
                     });
-                    generator.treeList.ForEach(tree =>
+                    _mapDataStorage.TreeList.ForEach(tree =>
                     {
                         var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Tree");
                     });
-                    generator.bushList.ForEach(bush =>
+                    _mapDataStorage.BushList.ForEach(bush =>
                     {
                         var spriteRenderer = bush.GetComponent<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Bush");
 
                     });
-                    generator.houseList.ForEach(house =>
+                    _mapDataStorage.HouseList.ForEach(house =>
                     {
                         var spriteRenderer = house.GetComponent<SpriteRenderer>();
                         if (spriteRenderer.tag == "Small House")
                             spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Small_House");
                         else spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Big_House");
                     });
-                    for (int x = 0; x < generator.width; x++)
+                    for (int x = 0; x < _mapDataStorage.MapWidth; x++)
                     {
-                        for (int y = 0; y < generator.height; y++)
+                        for (int y = 0; y < _mapDataStorage.MapHeight; y++)
                         {
-                            generator.landMap.SetTile(
-                                new Vector3Int(-x + generator.width / 2, -y + generator.height / 2, 0),
-                                generator.winterTile);
+                            LandTileMap.SetTile(
+                                new Vector3Int(-x + _mapDataStorage.MapWidth / 2, -y + _mapDataStorage.MapHeight / 2, 0),
+                                WinterTile);
                         }
                     }
 
@@ -169,38 +174,38 @@ namespace TimeSystem
 
                 case 3:
                     _weatherChance = 5 * _precipitation;
-                    generator.rockList.ForEach(rock =>
+                    _mapDataStorage.RockList.ForEach(rock =>
                     {
                         var spriteRenderer = rock.GetComponent<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/ROCKKK");
 
                     });
-                    generator.treeList.ForEach(tree =>
+                    _mapDataStorage.TreeList.ForEach(tree =>
                     {
                         var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Spring_Tree");
 
                     });
-                    generator.houseList.ForEach(house =>
+                    _mapDataStorage.HouseList.ForEach(house =>
                     {
                         var spriteRenderer = house.GetComponent<SpriteRenderer>();
                         if (spriteRenderer.tag == "Small House")
                             spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/gray_house1");
                         else spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Big_House");
                     });
-                    generator.bushList.ForEach(bush =>
+                    _mapDataStorage.BushList.ForEach(bush =>
                     {
                         var spriteRenderer = bush.GetComponent<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Bush");
                     });
                     
-                    for (int x = 0; x < generator.width; x++)
+                    for (int x = 0; x < _mapDataStorage.MapWidth; x++)
                     {
-                        for (int y = 0; y < generator.height; y++)
+                        for (int y = 0; y < _mapDataStorage.MapHeight; y++)
                         {
-                            generator.landMap.SetTile(
-                                new Vector3Int(-x + generator.width / 2, -y + generator.height / 2, 0),
-                                generator.landTile);
+                            LandTileMap.SetTile(
+                                new Vector3Int(-x + _mapDataStorage.MapWidth / 2, -y + _mapDataStorage.MapHeight / 2, 0),
+                                LandTile);
                         }
                     }
                     break;
@@ -209,7 +214,7 @@ namespace TimeSystem
 
         private void ChangeTreeSprite(string path)
         {
-            generator.treeList.ForEach(tree =>
+          _mapDataStorage.TreeList.ForEach(tree =>
             {
                 var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
                 spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/" + path);
@@ -217,6 +222,11 @@ namespace TimeSystem
         }
         
         //data members
+        private MapDataStorage _mapDataStorage;
+        private Tile LandTile;
+        private Tile WinterTile;
+        private Tile AutumnTile;
+        private Tilemap LandTileMap;
         public Light2D light;
         public Light2D playerLight;
         public Text dayYear;

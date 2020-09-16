@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -17,14 +18,12 @@ public class DownButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     public virtual void OnPointerDown(PointerEventData ped)
     {
         print("DownPointerDown");
-        playerController.needToGo = true;
-        playerController.direction = 0;
+        playerController.Direction = 0;
         Audio.Play();
     }
     public virtual void OnPointerUp(PointerEventData ped)
     {
         Audio.Stop();
-        playerController.needToGo = false;
         print("DownPointerUp");
     }
 }

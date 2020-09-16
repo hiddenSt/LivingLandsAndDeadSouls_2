@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -18,13 +19,11 @@ public class RightButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
         Audio.Play();
         print("RightPointerDown");
-        playerController.needToGo = true;
-        playerController.direction = 2;
+        playerController.Direction = 2;
     }
     public virtual void OnPointerUp(PointerEventData ped)
     {
         Audio.Stop();
-        playerController.needToGo = false;
         print("RightPointerUp");
     }
 }

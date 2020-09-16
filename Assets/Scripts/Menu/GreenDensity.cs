@@ -7,12 +7,12 @@ namespace Menu
 {
     public class GreenDensity : MonoBehaviour
     {
-        void Start()
+      public void Start()
         {
-            Transform button1T = this.gameObject.transform.Find("NormalButton");
-            Transform button2T = this.gameObject.transform.Find("MediumButton");
-            Transform button3T = this.gameObject.transform.Find("HightButton");
-            Transform button4T = this.gameObject.transform.Find("GBTBButton");
+            var button1T = gameObject.transform.Find("NormalButton");
+            var button2T = gameObject.transform.Find("MediumButton");
+            var button3T = gameObject.transform.Find("HightButton");
+            var button4T = gameObject.transform.Find("GBTBButton");
             _button1 = button1T.gameObject.GetComponent<Image>();
             _button2 = button2T.gameObject.GetComponent<Image>();
             _button3 = button3T.gameObject.GetComponent<Image>();

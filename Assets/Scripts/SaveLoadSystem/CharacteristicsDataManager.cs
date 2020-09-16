@@ -4,6 +4,7 @@ using SaveLoadSystem;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Characteristics;
 
 namespace SaveLoadSystem
 {
@@ -29,13 +30,13 @@ namespace SaveLoadSystem
             var data = formatter.Deserialize(stream) as CharacteristicsData;
             stream.Close();
             var allParams = GameObject.Find("Characteristics").GetComponent<AllParameters>();
-            allParams.experience = data.experience;
-            allParams.health = data.health;
-            allParams.level = data.level;
-            allParams.sniper = data.sniper;
-            allParams.strength = data.strength;
-            allParams.freePoints = data.freePoints;
-            allParams.toNextLevelExp = data.toNextLevelExp;
+            allParams.Experience = data.experience;
+            allParams.Health = data.health;
+            allParams.Level = data.level;
+            allParams.Skill = data.sniper;
+            allParams.Strength = data.strength;
+            allParams.FreePoints = data.freePoints;
+            allParams.ToNextLevelExp = data.toNextLevelExp;
         }
 
         public override void DeleteSaves()

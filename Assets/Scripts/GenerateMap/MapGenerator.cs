@@ -14,18 +14,15 @@ namespace GenerateMap {
       _rockGenerateStrategy = rockGenerateStrategy;
     }
   
-    public void GenerateMap(int mapSize) {
+    public int[,] GenerateMap(int mapSize) {
       _mapData = new int[mapSize, mapSize];
       _mapData = _buildingGenerateStrategy.Generate(_mapData);
       _mapData = _forestGenerateStrategy.Generate(_mapData);
       _mapData = _rockGenerateStrategy.Generate(_mapData);
       _mapData = _bushGenerateStrategy.Generate(_mapData);
-    }
-
-    public int[,] GetMapData() {
       return _mapData;
     }
-  
+
     private BuildingGenerateStrategy _buildingGenerateStrategy;
     private GenerateLandscapeStrategy _forestGenerateStrategy;
     private GenerateLandscapeStrategy _bushGenerateStrategy;

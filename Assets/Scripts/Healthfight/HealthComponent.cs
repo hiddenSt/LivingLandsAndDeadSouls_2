@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Characteristics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -53,7 +54,7 @@ namespace HealthFight
         private void DropLoot(GameObject lootStorage, GameObject parentObject){
           int value = new Random().Next(0,100);
           if (value > 50){
-            GameObject dropItem = Instantiate(lootStorage.transform.Find("Meat").gameObject);
+            GameObject dropItem = Instantiate(lootStorage.transform.GetChild(0).gameObject);
             dropItem.transform.position = parentObject.transform.position;
           }
         }

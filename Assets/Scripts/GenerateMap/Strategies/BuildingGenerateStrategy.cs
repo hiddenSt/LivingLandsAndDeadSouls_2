@@ -17,9 +17,11 @@ namespace GenerateMap.Strategies {
       _mapCountrySize = (int) Math.Sqrt(mapData.Length);
       for (int i = 0; i < _data.Value; i++){
         var coordinates = GenerateBuildingCoordinates(_data.DistanceFromAnotherObjects, mapData);
-        if (coordinates != null) {
+        if (coordinates == null) continue;
+        if (Random.Range(0, 100) % 2 == 0)
           mapData[coordinates[0], coordinates[1]] = _data.ObjectCode;
-        }
+        else 
+          mapData[coordinates[0], coordinates[1]] = -_data.ObjectCode;
       }
       return mapData;
     }
