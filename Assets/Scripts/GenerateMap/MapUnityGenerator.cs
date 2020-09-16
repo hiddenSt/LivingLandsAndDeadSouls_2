@@ -35,7 +35,7 @@ namespace GenerateMap {
         _parametersManager.buildingValue * _currentScaler / 2, 7 * _currentScaler, 1));
       var forestGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
         _parametersManager.forestValue * _currentScaler, 7 * _currentScaler, 2, 
-        _parametersManager.sizeOfForest * _currentScaler, 6 * _currentScaler));
+        _parametersManager.sizeOfForest * _currentScaler, 5 * _currentScaler));
       var bushGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
         _parametersManager.forestValue * _currentScaler, 7 * _currentScaler, 3, 4, 2));
       var rockGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(

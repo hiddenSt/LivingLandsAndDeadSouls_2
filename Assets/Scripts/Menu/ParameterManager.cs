@@ -24,7 +24,7 @@ namespace Menu
                 Destroy(gameObject);
             DontDestroyOnLoad(gameObject);
         }
-        
+
         //data members
         public static ParameterManager instance = null;
         public int rockValue = 4;
@@ -51,6 +51,7 @@ namespace Menu
         public GameObject gun1Image;
         public GameObject gun2Image;
 
+        public int[,] _mapData;
         private int _mapScalerSmall;
         private int _mapScalerMedium;
         private int _mapScalerBig;

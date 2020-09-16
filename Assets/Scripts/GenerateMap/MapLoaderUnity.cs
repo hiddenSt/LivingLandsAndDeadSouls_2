@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Menu;
 using UnityEngine;
 
 namespace GenerateMap {
@@ -9,15 +10,19 @@ namespace GenerateMap {
     private GameObject _bush;
     private GameObject _rock;
     private GameObject _objectInstanceStorage;
-    private LoadingMapData _mapData;
     private List<GameObject> treeList;
     private List<GameObject> rockList;
     private List<GameObject> bushList;
     private List<GameObject> houseList;
     private List<int> houseTypeList;
+    private int[,] _mapData;
+    private ParameterManager _parameterManager;
+    private int _season;
 
-    public MapLoaderUnity(LoadingMapData mapData){
+    public MapLoaderUnity(int [,] mapData) {
+      _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
       _mapData = mapData;
+      _season = _parameterManager.startSeason;
       _objectInstanceStorage = GameObject.Find("ObjectInstanceStorage");
     }
     
@@ -28,7 +33,6 @@ namespace GenerateMap {
       InstantiateObjects();
       LoadMapDataStorage();
       LoadTimeControlParameters();
-      Debug.Log("Map"+_mapData.MapData.Length);
     }
     
     private void FindObjectInstances() {
@@ -40,23 +44,20 @@ namespace GenerateMap {
     }
     
     private void ChangeGameObjectParameters(GameObject changingObject, int xPos, int yPos, int extraLayerValue) {
-      changingObject.transform.localPosition = new Vector3(_mapData.MapWidth / 2 - xPos, 
-        _mapData.MapHeight / 2 - yPos ,1);
-      changingObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = _mapData.MapHeight / 2 - 
+      changingObject.transform.localPosition = new Vector3(_parameterManager.tmpSize.x / 2 - xPos, 
+        _parameterManager.tmpSize.y / 2 - yPos ,1);
+      changingObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = _parameterManager.tmpSize.y / 2 - 
         (int) changingObject.transform.position.y + extraLayerValue;
     }
 
     private void LoadTimeControlParameters() {
       var timeController = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>();
-      timeController.year = _mapData.Year;
-      timeController.day = _mapData.Day;
-      timeController.hour = _mapData.Hour;
-      timeController.season = _mapData.Season;
+      timeController.season = _season;
       timeController.ChangeSeason();
     }
 
     private void TileLoad() {
-      TileGenerator.TileGenerator tileGenerator = new TileGenerator.TileGenerator(15, _mapData.MapWidth);
+      TileGenerator.TileGenerator tileGenerator = new TileGenerator.TileGenerator(15, _parameterManager.tmpSize.x);
       tileGenerator.GenerateHorizon();
       tileGenerator.GenerateLands();
     }
@@ -70,23 +71,21 @@ namespace GenerateMap {
       houseTypeList = new List<int>();
     }
 
-    private void LoadMapDataStorage() {
+
+    private void LoadMapDataStorage(){
       MapDataStorage mapDataStorage = GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>();
-      mapDataStorage.BushList = bushList;
-      mapDataStorage.TreeList = treeList;
-      mapDataStorage.RockList = rockList;
-      mapDataStorage.HouseList = houseList;
-      mapDataStorage.HouseTypeList = houseTypeList;
-      mapDataStorage.MapContent = _mapData.MapData;
-      mapDataStorage.MapHeight = _mapData.MapHeight;
-      mapDataStorage.MapWidth = _mapData.MapWidth;
-      mapDataStorage.Season = _mapData.Season;
+      GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>().BushList = bushList;
+      GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>().TreeList = treeList;
+      GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>().RockList = rockList;
+      GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>().HouseList = houseList;
+      GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>().HouseTypeList = houseTypeList;
     }
+    
     private void InstantiateObjects() {
-      for (int i = 0; i < _mapData.MapHeight; i++) {
-        for (int j = 0; j < _mapData.MapWidth; j++) {
+      for (int i = 0; i < _parameterManager.tmpSize.y; i++) {
+        for (int j = 0; j < _parameterManager.tmpSize.y; j++) {
           GameObject generatedObject;
-          switch (_mapData.MapData[i, j]) {
+          switch (_mapData[i, j]) {
             case 1:
               generatedObject = Instantiate(Instantiate(_bigHouse));
               houseList.Add(generatedObject);

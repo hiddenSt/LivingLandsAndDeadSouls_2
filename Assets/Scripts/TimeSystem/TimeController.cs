@@ -1,5 +1,6 @@
 ﻿using GenerateMap;
 using GenerateMap.TileGenerator;
+using Menu;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Tilemaps;
@@ -38,6 +39,8 @@ namespace TimeSystem
         }
 
         void Start(){
+            _mapWidth = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().tmpSize.x;
+            _mapHeight = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().tmpSize.y;
             LandTile = GameObject.Find("TileStorage").GetComponent<TileInstancesStorage>().FindTile("Grass");
             WinterTile = GameObject.Find("TileStorage").GetComponent<TileInstancesStorage>().FindTile("Winter_grass");
             AutumnTile = GameObject.Find("TileStorage").GetComponent<TileInstancesStorage>().FindTile("OrangeGrass");
@@ -121,12 +124,12 @@ namespace TimeSystem
                         var spriteRenderer = bush.GetComponent<SpriteRenderer>();
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Fall_Bush");
                     });
-                    for (int x = 0; x < _mapDataStorage.MapWidth; x++)
+                    for (int x = 0; x < _mapWidth; x++)
                     {
-                        for (int y = 0; y < _mapDataStorage.MapHeight; y++)
+                        for (int y = 0; y < _mapHeight; y++)
                         {
                             LandTileMap.SetTile(
-                                new Vector3Int(-x + _mapDataStorage.MapWidth / 2, -y + _mapDataStorage.MapHeight / 2, 0),
+                                new Vector3Int(-x + _mapWidth / 2, -y + _mapHeight / 2, 0),
                                 AutumnTile);
                         }
                     }
@@ -159,12 +162,12 @@ namespace TimeSystem
                             spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Small_House");
                         else spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Big_House");
                     });
-                    for (int x = 0; x < _mapDataStorage.MapWidth; x++)
+                    for (int x = 0; x < _mapWidth; x++)
                     {
-                        for (int y = 0; y < _mapDataStorage.MapHeight; y++)
+                        for (int y = 0; y < _mapHeight; y++)
                         {
                             LandTileMap.SetTile(
-                                new Vector3Int(-x + _mapDataStorage.MapWidth / 2, -y + _mapDataStorage.MapHeight / 2, 0),
+                                new Vector3Int(-x + _mapWidth / 2, -y + _mapHeight / 2, 0),
                                 WinterTile);
                         }
                     }
@@ -199,12 +202,12 @@ namespace TimeSystem
                         spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Bush");
                     });
                     
-                    for (int x = 0; x < _mapDataStorage.MapWidth; x++)
+                    for (int x = 0; x < _mapWidth; x++)
                     {
-                        for (int y = 0; y < _mapDataStorage.MapHeight; y++)
+                        for (int y = 0; y < _mapHeight; y++)
                         {
                             LandTileMap.SetTile(
-                                new Vector3Int(-x + _mapDataStorage.MapWidth / 2, -y + _mapDataStorage.MapHeight / 2, 0),
+                                new Vector3Int(-x + _mapWidth / 2, -y + _mapHeight / 2, 0),
                                 LandTile);
                         }
                     }
@@ -240,7 +243,8 @@ namespace TimeSystem
         public int day = 0;
         public int weatherTTL;
         public double ch;
-
+        private int _mapWidth;
+        private int _mapHeight;
         private double _weatherChance = 2;
         private int _precipitation;
         private bool _weatherIsActive = false;
