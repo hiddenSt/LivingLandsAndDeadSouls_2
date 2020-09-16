@@ -4,11 +4,10 @@ using Utility;
 namespace InventorySystem.NewInventorySystem {
   
   public class Inventory {
-    public Inventory(IItemsRepositoryStrategy itemsRepositoryStrategy, int capacity, IUiController uiController) {
+    public Inventory(IItemsRepositoryStrategy itemsRepositoryStrategy, int capacity) {
       _itemsRepository = itemsRepositoryStrategy;
       _inventorySize = 0;
       _inventoryCapacity = capacity;
-      _uiController = uiController;
     }
     
     public void AddItem(Item item) {
@@ -19,14 +18,13 @@ namespace InventorySystem.NewInventorySystem {
       item.SetIdentifier(new Identifier());
       _itemsRepository.AddItem(item);
       item.PickUp();
-      
-      _uiController.SetItemIcon(item.GetItemType(), item.GetIdentifier());
     }
 
     public void RemoveItem(Identifier identifier) {
       Item item = GetItem(identifier);
       item.Drop();
       _itemsRepository.RemoveItem(item.GetIdentifier());
+      --_inventorySize;
     }
 
     public Item GetItem(Identifier identifier) {
@@ -52,6 +50,5 @@ namespace InventorySystem.NewInventorySystem {
     private IItemsRepositoryStrategy _itemsRepository;
     private int _inventorySize;
     private int _inventoryCapacity;
-    private IUiController _uiController;
   }
 }

@@ -1,6 +1,6 @@
 ﻿
 
-namespace SaveLoadSystem {
+namespace SaveLoadSystem.DTO {
   [System.Serializable]
   public class AudioData {
     public AudioData(float masterVolume, float musicVolume) {

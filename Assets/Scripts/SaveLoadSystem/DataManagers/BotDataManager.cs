@@ -3,11 +3,11 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 
-namespace SaveLoadSystem {
-  public class BotDataManager : DataManager {
-    public override void Save() {
+namespace SaveLoadSystem.DataManagers {
+  public class BotDataManager : IDataManager {
+    public void Save() {
       var formatter = new BinaryFormatter();
-      var data = new BotData(-100, 100, -100, 100,
+      var data = new DTO.BotData(-100, 100, -100, 100,
         GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().hostileCharVal,
         GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().neutralCharVal);
       var path = Application.persistentDataPath + "/bots.data";
@@ -16,19 +16,19 @@ namespace SaveLoadSystem {
       stream.Close();
     }
 
-    public override void Load() {
+    public void Load() {
       var path = Application.persistentDataPath + "/bots.data";
       if (!File.Exists(path)) return;
       var formatter = new BinaryFormatter();
       var stream = new FileStream(path, FileMode.Open);
-      var data = formatter.Deserialize(stream) as BotData;
+      var data = formatter.Deserialize(stream) as DTO.BotData;
       stream.Close();
       var parameterManager = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>();
       parameterManager.hostileCharVal = data.enemyCount;
       parameterManager.neutralCharVal = data.animalsCount;
     }
 
-    public override void DeleteSaves() {
+    public void DeleteSaves() {
       var path = Application.persistentDataPath + "/bots.data";
       if (!File.Exists(path)) return;
       File.Delete(path);

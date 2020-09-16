@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 namespace Interaction {
   
   public class HouseInteraction : MonoBehaviour {
-    private void Start() {
+    /*private void Start() {
       _interactButton = GameObject.Find("EButton").GetComponent<Button>();
       _playerInventory = GameObject.Find("Player").GetComponent<InventorySystem.Inventory>();
       _playerHealthComponent = GameObject.Find("Player").GetComponent<HealthFight.HealthComponent>();
@@ -71,6 +71,6 @@ namespace Interaction {
     private InventorySystem.Inventory _playerInventory;
     private HealthFight.HealthComponent _playerHealthComponent;
     private bool _isLooted;
-    private Button _interactButton;
+    private Button _interactButton;*/
   }
 }// end of namespace interaction

@@ -1,5 +1,7 @@
-﻿using InventorySystem.NewInventorySystem;
+﻿using Components;
+using InventorySystem.NewInventorySystem;
 using UnityEngine;
+using UnityEngine.UI;
 using Utility;
 
 namespace UI {
@@ -8,54 +10,71 @@ namespace UI {
     public GameObject[] slots;
     public GameObject[] buttons;
     
-    public void SetItemIcon(string itemType, Identifier identifier) {
+    public void SetItem(Image itemImage, Identifier itemIdentifier) {
       for (int i = 0; i < _slotsSize; ++i) {
         if (_isEmptySlot[i]) {
           _isEmptySlot[i] = true;
-          _identifiers[i] = identifier;
-          _itemsTypes[i] = itemType;
-          //Set item's icon and activates button
+          _identifiers[i] = itemIdentifier;
+          _itemsImages[i] = itemImage;
+          SetButton(i);
           return;
         }
       }
     }
 
-    public void RemoveItem(Identifier itemIdentifier) {
-      // Deactivate button and remove item's icon
-      _inventory.RemoveItem(itemIdentifier);
+    
+    public void RemoveItem(int index) {
+      _inventoryComponent.RemoveItem(_identifiers[index]);
+      RemoveButton(index);
     }
     
-    public void SetInventory(Inventory inventory) {
-      _inventory = inventory;
+    public void SetInventoryComponent(InventoryComponent inventoryComponent) {
+      _inventoryComponent = inventoryComponent;
     }
 
-    public void DropItem(int i) {
-      InventorySystem.NewInventorySystem.Item item = _inventory.GetItem(_identifiers[i]);
-      _inventory.RemoveItem(_identifiers[i]);
-      _isEmptySlot[i] = true;
-      //Drops Item
-      //Deactivate button and remove icon
+    public void DropItem(int index) {
+      InventorySystem.NewInventorySystem.Item item = _inventoryComponent.GetItem(_identifiers[index]);
+      _inventoryComponent.RemoveItem(_identifiers[index]);
+      
+      _isEmptySlot[index] = true;
+      RemoveButton(index);
+    }
+    
+    public void UseItem(int index) {
+      _inventoryComponent.GetItem(_identifiers[index]).Use();
+      _inventoryComponent.RemoveItem(_identifiers[index]);
+      RemoveButton(index);
     }
 
-    public void UseItem(int i) {
-      _inventory.GetItem(_identifiers[i]).Use();
-      _inventory.RemoveItem(_identifiers[i]);
+    private void SetButton(int index) {
+      var button = buttons[index].GetComponent<Button>();
+      button.interactable = true;
+      button.onClick.AddListener(() => UseItem(index));
+      Instantiate(_itemsImages[index], slots[index].transform);
+    }
+
+    private void RemoveButton(int index) {
+      var button = buttons[index].GetComponent<Button>();
+      button.interactable = false;
+      button.onClick.RemoveListener(() => UseItem(index));
+      Destroy(slots[index].transform.GetChild(0));
     }
     
     private void Start() {
       _slotsSize = slots.Length;
-      _isEmptySlot = new bool[_slotsSize];
-      _itemsTypes = new string[_slotsSize];
       _identifiers = new Identifier[_slotsSize];
+      _itemsImages = new Image[_slotsSize];
+      
+      _isEmptySlot = new bool[_slotsSize];
       for (int i = 0; i < _slotsSize; ++i)
         _isEmptySlot[i] = true;
     }
 
     private bool[] _isEmptySlot;
-    private Inventory _inventory;
+    private InventoryComponent _inventoryComponent;
     private int _slotsSize;
     private Identifier[] _identifiers;
-    private string[] _itemsTypes;
     private Transform _playerTransform;
+    private Image[] _itemsImages;
   }
 }

@@ -170,7 +170,6 @@ namespace TimeSystem {
                 generator.landTile);
             }
           }
-
           break;
       }
     }

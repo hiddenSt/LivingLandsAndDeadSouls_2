@@ -1,6 +1,6 @@
 ﻿
 
-namespace SaveLoadSystem {
+namespace SaveLoadSystem.DTO {
   [System.Serializable]
   public class BotData {
     public BotData(float xBegin, float xEnd, float yBegin, float yEnd, int enemyCount_, int animalsCount_) {

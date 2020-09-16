@@ -4,27 +4,13 @@ using UnityEngine.UI;
 namespace HealthFight { 
   public class Gun : MonoBehaviour {
     public void Use() {
-      _direction = _playerController.moveVelocity;
-      
       if (ammoCount <= 0)
         return;
       
+      _direction = _playerController.moveVelocity;
+      
       if (_direction == Vector2.zero) {
-        switch (_playerController.direction) {
-          case 0:
-            SendBullet(new Vector2(0, -1));
-            break;
-          case 1:
-            SendBullet(new Vector2(0, 1));
-            break;
-          case 2:
-            SendBullet(new Vector2(1, 0));
-            break;
-          case 3:
-            SendBullet(new Vector2(-1, 0));
-            break;
-        }
-        
+        SendBulletWhenStandStill();
         --ammoCount;
         ChangeBulletsCountUi();
         return;
@@ -40,6 +26,39 @@ namespace HealthFight {
       }
     }
     
+    public void SetGun(Items.Gun gun) {
+      damage = gun.GetDamage().GetDamagePoints();
+      ammoCount = gun.GetAmmoCount();
+      fireRate = gun.GetFireRate();
+      _ammoText.text = ammoCount.ToString();
+    }
+    
+    private void SendBulletWhenStandStill() {
+      switch (_playerController.direction) {
+        case 0:
+          SendBullet(new Vector2(0, -1));
+          break;
+        case 1:
+          SendBullet(new Vector2(0, 1));
+          break;
+        case 2:
+          SendBullet(new Vector2(1, 0));
+          break;
+        case 3:
+          SendBullet(new Vector2(-1, 0));
+          break;
+      }
+    }
+    
+    private void SendBullet(Vector2 directionVec2) {
+      _bullet = Bullet.Create(_playerController.transform, directionVec2,5f * fireRate, damage + damageBuff,
+        _damageRadius, _originID);
+    }
+    
+    private void ChangeBulletsCountUi() {
+      _ammoText.text = ammoCount.ToString();
+    }
+        
     private void Start() {
       ammoCount = 0;
       _originID = GameObject.Find("Player").GetInstanceID();
@@ -50,23 +69,7 @@ namespace HealthFight {
       fireRate = 0;
       _ammoText.text = ammoCount.ToString();
     }
-
-    public void SetGun(int damage, int ammoCount, int fireRate) {
-      this.damage = damage;
-      this.ammoCount = ammoCount;
-      this.fireRate = fireRate;
-      _ammoText.text = ammoCount.ToString();
-    }
     
-    private void SendBullet(Vector2 directionVec2) {
-      _bullet = Bullet.Create(_playerController.transform, directionVec2,5f * fireRate, damage + damageBuff,
-        _damageRadius, _originID);
-    }
-
-    private void ChangeBulletsCountUi() {
-      _ammoText.text = ammoCount.ToString();
-    }
-        
     public int fireRate;
     public int ammoCount;
     public int damage;

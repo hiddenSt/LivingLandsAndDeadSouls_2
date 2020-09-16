@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SaveLoadSystem {
+namespace SaveLoadSystem.DTO {
   
   [System.Serializable]
   public class PlayerData {
@@ -13,7 +13,7 @@ namespace SaveLoadSystem {
     //6 - outfit1
     //7 - outfit2
 
-    public PlayerData(Vector3 playerPosition, InventorySystem.Inventory playerInventory, int gun, int skinIndex,
+    /*public PlayerData(Vector3 playerPosition, InventorySystem.Inventory playerInventory, int gun, int skinIndex,
       int character, int health, int ammoCount, int maxHealth) {
       this.health = health;
       this.maxHealth = maxHealth;
@@ -76,6 +76,6 @@ namespace SaveLoadSystem {
     public int currentSkinIndex;
     public int currentGun;
     public int currentCharacter;
-    public int maxHealth;
+    public int maxHealth;*/
   }
 }

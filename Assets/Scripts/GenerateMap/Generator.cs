@@ -21,7 +21,7 @@ namespace GenerateMap
             Generate();
         }
         
-        public void GenerateMap(MapData mapData, Vector3Int tmpSize)
+        public void GenerateMap(SaveLoadSystem.DTO.MapData mapData, Vector3Int tmpSize)
         {
             this.tmpSize = tmpSize;
             width = tmpSize.x;

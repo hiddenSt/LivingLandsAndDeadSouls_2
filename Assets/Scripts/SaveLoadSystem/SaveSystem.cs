@@ -23,6 +23,6 @@ namespace SaveLoadSystem {
     }
 
     //data members
-    public static List<DataManager> DataManagers;
+    public static List<IDataManager> DataManagers;
   }
 }

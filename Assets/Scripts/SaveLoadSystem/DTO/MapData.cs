@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace SaveLoadSystem {
+namespace SaveLoadSystem.DTO {
   [System.Serializable]
   public class MapData {
     public MapData(List<GameObject> bushList, List<GameObject> treeList, List<GameObject> rockList,

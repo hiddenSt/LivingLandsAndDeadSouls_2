@@ -51,7 +51,7 @@ namespace HealthFight {
     }
 
     public void GetDamageFrom(Damage damage) {
-      
+      damage.MakeDamage(_health);
     }
     
     //Bad parameter name

@@ -4,13 +4,13 @@ using InventorySystem;
 using System.IO;
 
 
-namespace SaveLoadSystem {
-  public class PlayerDataManager : DataManager {
+namespace SaveLoadSystem.DataManagers {
+  public class PlayerDataManager : IDataManager {
     public PlayerDataManager() {
       _loader = null;
     }
 
-    public override void Save() {
+    public void Save() {
       var bag = GameObject.Find("BackpackButton").GetComponent<Bag>();
       if (bag.IsClosed())
         bag.OpenCloseBag();
@@ -27,7 +27,7 @@ namespace SaveLoadSystem {
 
       var playerHealthComponent = GameObject.Find("Player").GetComponent<HealthFight.HealthComponent>();
       var outfitSlot = GameObject.Find("SuitSlot");
-      var data = new PlayerData(player.transform.position,
+      var data = new DTO.PlayerData(player.transform.position,
         player.GetComponent<InventorySystem.Inventory>(), gun,
         outfitSlot.GetComponent<OutfitSlot>().skinIndex,
         gunSlot.GetComponent<GunSlot>().character,
@@ -37,14 +37,14 @@ namespace SaveLoadSystem {
       stream.Close();
     }
 
-    public override void Load() {
+    public void Load() {
       var path = Application.persistentDataPath + "/player.data";
       if (!File.Exists(path)) return;
       _loader = new GameObject();
       var loaderComponent = _loader.AddComponent<Loader>();
       var formatter = new BinaryFormatter();
       var stream = new FileStream(path, FileMode.Open);
-      var data = formatter.Deserialize(stream) as PlayerData;
+      var data = formatter.Deserialize(stream) as DTO.PlayerData;
       stream.Close();
 
       var player = GameObject.Find("Player");
@@ -149,7 +149,7 @@ namespace SaveLoadSystem {
       }
     }
 
-    public override void DeleteSaves() {
+    public void DeleteSaves() {
       var path = Application.persistentDataPath + "/player.data";
       if (!File.Exists(path)) return;
       File.Delete(path);
