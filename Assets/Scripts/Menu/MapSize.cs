@@ -16,20 +16,20 @@ public class MapSize : MonoBehaviour
     }
     public void SmallPressed()
     {
-        Menu.ParameterManager.instance.tmpSize.x=200;
-        Menu.ParameterManager.instance.tmpSize.y=200;
+        Menu.ParameterManager.Instance.MapSizeVector.x=200;
+        Menu.ParameterManager.Instance.MapSizeVector.y=200;
         SwitchButtonColor(1);
     }
     public void MedPressed()
     {
-        Menu.ParameterManager.instance.tmpSize.x=500;
-        Menu.ParameterManager.instance.tmpSize.y=500;
+        Menu.ParameterManager.Instance.MapSizeVector.x=500;
+        Menu.ParameterManager.Instance.MapSizeVector.y=500;
         SwitchButtonColor(2);
     }
     public void LargePressed()
     {
-        Menu.ParameterManager.instance.tmpSize.x=1000;
-        Menu.ParameterManager.instance.tmpSize.y=1000;
+        Menu.ParameterManager.Instance.MapSizeVector.x=1000;
+        Menu.ParameterManager.Instance.MapSizeVector.y=1000;
         SwitchButtonColor(3);
     }
     

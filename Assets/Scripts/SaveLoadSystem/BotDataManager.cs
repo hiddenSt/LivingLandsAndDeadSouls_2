@@ -13,8 +13,8 @@ namespace SaveLoadSystem
         {
             var formatter = new BinaryFormatter();
             var data = new BotData(-100, 100, -100, 100,
-                GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().hostileCharVal,
-                GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().neutralCharVal);
+                GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().HostileCharVal,
+                GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().NeutralCharVal);
             var path = Application.persistentDataPath + "/bots.data";
             var stream = new FileStream(path, FileMode.Create);
             formatter.Serialize(stream, data);
@@ -30,8 +30,8 @@ namespace SaveLoadSystem
             var data = formatter.Deserialize(stream) as BotData;
             stream.Close();
             var parameterManager = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>();
-            parameterManager.hostileCharVal = data.enemyCount;
-            parameterManager.neutralCharVal = data.animalsCount;
+            parameterManager.HostileCharVal = data.enemyCount;
+            parameterManager.NeutralCharVal = data.animalsCount;
             //var initSpawner = GameObject.Find("InitSpawner").GetComponent<InitSpawner>();
             //initSpawner.xAxisBeginOfRange = data.xAxisBeginOfRange;
             //initSpawner.xAxisEndOfRange = data.xAxisEndOfRange;

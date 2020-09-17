@@ -23,7 +23,7 @@ namespace GenerateMap {
     public MapLoaderUnity(int [,] mapData) {
       _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
       _mapData = mapData;
-      _season = _parameterManager.startSeason;
+      _season = _parameterManager.StartSeason;
       _objectInstanceStorage = GameObject.Find("ObjectInstanceStorage");
     }
     
@@ -37,8 +37,10 @@ namespace GenerateMap {
     }
     
     private void FindObjectInstances() {
-      _bigHouse = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Big_house");
-      _smallHouse = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Small_house");
+      _bigHouse = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance(
+        "Big_house");
+      _smallHouse = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance(
+        "Small_house");
       _tree = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Tree");
       _bush = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Bush");
       _rock = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Rock");
@@ -46,21 +48,22 @@ namespace GenerateMap {
     
     private void ChangeGameObjectParameters(GameObject changingObject, int xPos, int yPos,
       int extraLayerValue) {
-      changingObject.transform.localPosition = new Vector3(_parameterManager.tmpSize.x / 2 - xPos, 
-        _parameterManager.tmpSize.y / 2 - yPos ,1);
-      changingObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = _parameterManager.tmpSize.y / 2 - 
-        (int) changingObject.transform.position.y + extraLayerValue;
+      changingObject.transform.localPosition = new Vector3(_parameterManager.MapSizeVector.x / 2 - xPos, 
+        _parameterManager.MapSizeVector.y / 2 - yPos ,1);
+      changingObject.GetComponentInChildren<SpriteRenderer>().sortingOrder =
+        _parameterManager.MapSizeVector.y / 2 - (int) changingObject.transform.position.y + 
+        extraLayerValue;
     }
 
     private void LoadTimeControlParameters() {
       var timeController = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>();
-      timeController.season = _season;
+      timeController.Season = _season;
       timeController.ChangeSeason();
     }
 
     private void TileLoad() {
-      TileGenerator.TileGenerator tileGenerator = new TileGenerator.TileGenerator(
-        15, _parameterManager.tmpSize.x);
+      TileGenerator.TileGenerator tileGenerator = new TileGenerator.TileGenerator(15,
+        _parameterManager.MapSizeVector.x);
       tileGenerator.GenerateHorizon();
       tileGenerator.GenerateLands();
     }
@@ -75,7 +78,7 @@ namespace GenerateMap {
     }
 
 
-    private void LoadMapDataStorage(){
+    private void LoadMapDataStorage() {
       MapDataStorage mapDataStorage = GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>();
       mapDataStorage.BushList = _bushList;
       mapDataStorage.TreeList = _treeList;
@@ -85,12 +88,12 @@ namespace GenerateMap {
     }
     
     private void InstantiateObjects() {
-      for (int i = 0; i < _parameterManager.tmpSize.y; i++) {
-        for (int j = 0; j < _parameterManager.tmpSize.y; j++) {
+      for (int i = 0; i < _parameterManager.MapSizeVector.y; i++) {
+        for (int j = 0; j < _parameterManager.MapSizeVector.y; j++) {
           GameObject generatedObject;
           switch (_mapData[i, j]) {
             case 1:
-              generatedObject = Instantiate(Instantiate(_bigHouse));
+              generatedObject = Instantiate(_bigHouse);
               _houseList.Add(generatedObject);
               _houseTypeList.Add(1);
               ChangeGameObjectParameters(generatedObject, i ,j, 3);
@@ -111,7 +114,7 @@ namespace GenerateMap {
               ChangeGameObjectParameters(generatedObject, i ,j, 2);
               break;
             case -1:
-              generatedObject = Instantiate(Instantiate(_smallHouse));
+              generatedObject = Instantiate(_smallHouse);
               _houseList.Add(generatedObject);
               _houseTypeList.Add(0);
               ChangeGameObjectParameters(generatedObject, i ,j, 3);

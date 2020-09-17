@@ -22,7 +22,7 @@ namespace Menu
         }
         public void PlayPressed()
         {
-            GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad = false;
+            GameObject.Find("ParametersManager").GetComponent<ParameterManager>().NeedToLoad = false;
             DontDestroyOnLoad(GameObject.Find("AudioManager"));
             DontDestroyOnLoad(GameObject.Find("Sounds"));
             SaveLoadSystem.SaveSystem.DeleteSaves();
@@ -31,12 +31,13 @@ namespace Menu
 
         public void ContinuePressed()
         {
+            Debug.Log("Used continue button");
             var path = Application.persistentDataPath + "/player.data";
-            if (!File.Exists(path))
-                return;
+            /*if (!File.Exists(path))
+                return;*/
             DontDestroyOnLoad(GameObject.Find("AudioManager"));
             DontDestroyOnLoad(GameObject.Find("Sounds"));
-            GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad = true;
+            GameObject.Find("ParametersManager").GetComponent<ParameterManager>().NeedToLoad = true;
             SceneManager.LoadScene("save");
         }
 

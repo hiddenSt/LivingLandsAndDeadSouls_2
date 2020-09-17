@@ -17687,19 +17687,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d7cc85e365b4b40945d7c56e48f3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 798519898}
-  playerLight: {fileID: 6783679401409266031}
-  dayYear: {fileID: 4119644700673788471}
-  generator: {fileID: 1549871023}
-  rainGenerator: {fileID: 1483847667}
-  snowGenerator: {fileID: 972034947}
-  hour: 12
-  timeS: 0.01
-  year: 0
-  season: 0
-  day: 0
-  weatherTTL: 0
-  ch: 0
+  Light: {fileID: 798519898}
+  PlayerLight: {fileID: 6783679401409266031}
+  DayYear: {fileID: 4119644700673788471}
+  Generator: {fileID: 1549871023}
+  RainGenerator: {fileID: 1483847667}
+  SnowGenerator: {fileID: 972034947}
+  Hour: 12
+  TimeS: 0.01
+  Year: 0
+  Season: 0
+  Day: 0
+  WeatherTTL: 0
+  Ch: 0
 --- !u!1 &2011389892
 GameObject:
   m_ObjectHideFlags: 0

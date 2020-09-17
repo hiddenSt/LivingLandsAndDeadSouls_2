@@ -16,7 +16,7 @@ namespace SaveLoadSystem
 
         public static void Load()
         {
-            if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad == false)
+            if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().NeedToLoad == false)
                 return;
             foreach (var dataManager in dataManagers)
                 dataManager.Load();

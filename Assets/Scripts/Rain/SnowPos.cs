@@ -10,7 +10,7 @@ public class SnowPos : MonoBehaviour
     {
         ParticleSystem ps = GetComponent<ParticleSystem>();
         var sh = ps.shape;
-        sh.scale = new Vector3(Menu.ParameterManager.instance.tmpSize.x*18, 1, 1);
+        sh.scale = new Vector3(Menu.ParameterManager.Instance.MapSizeVector.x*18, 1, 1);
 
     }
 
@@ -18,6 +18,6 @@ public class SnowPos : MonoBehaviour
     void Update()
     {
         //player = GameObject.FindGameObjectWithTag("Player").transform;
-        transform.position = new Vector3(0, Menu.ParameterManager.instance.tmpSize.y * 18, transform.position.z);
+        transform.position = new Vector3(0, Menu.ParameterManager.Instance.MapSizeVector.y * 18, transform.position.z);
     }
 }

@@ -45,8 +45,8 @@ namespace Menu
         
         private void SetForestSettings(int forestValue, int sizeofForest)
         {
-            ParameterManager.instance.forestValue = forestValue;
-            ParameterManager.instance.sizeOfForest = sizeofForest;
+            ParameterManager.Instance.ForestValue = forestValue;
+            ParameterManager.Instance.SizeOfForest = sizeofForest;
         }
         
         private void SwitchButtonColor(int button)

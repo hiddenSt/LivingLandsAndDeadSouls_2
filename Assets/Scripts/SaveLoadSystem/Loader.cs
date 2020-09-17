@@ -10,17 +10,17 @@ namespace SaveLoadSystem
         public void LoadButtons()
         {
             var parametrManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
-            meatButton = parametrManager.meatButton;
-            medkitButton = parametrManager.medkitButton;
-            outfit1Button = parametrManager.outfit1Button;
-            outfit2Button = parametrManager.outfit2Button;
-            gun1Button = parametrManager.gun1Button;
-            gun2Button = parametrManager.gun2Button;
-            ammoButton = parametrManager.ammoButton;
-            outfit1Image = parametrManager.outfit1Image;
-            outfit2Image = parametrManager.outfit2Image;
-            gun1Image = parametrManager.gun1Image;
-            gun2Image = parametrManager.gun2Image;
+            meatButton = parametrManager.MeatButton;
+            medkitButton = parametrManager.MedkitButton;
+            outfit1Button = parametrManager.Outfit1Button;
+            outfit2Button = parametrManager.Outfit2Button;
+            gun1Button = parametrManager.Gun1Button;
+            gun2Button = parametrManager.Gun2Button;
+            ammoButton = parametrManager.AmmoButton;
+            outfit1Image = parametrManager.Outfit1Image;
+            outfit2Image = parametrManager.Outfit2Image;
+            gun1Image = parametrManager.Gun1Image;
+            gun2Image = parametrManager.Gun2Image;
         }
         
         public GameObject LoadObjectOnScene(GameObject objectToLoad, Transform parentTransform)

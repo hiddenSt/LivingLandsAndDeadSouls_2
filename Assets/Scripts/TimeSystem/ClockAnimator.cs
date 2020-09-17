@@ -12,7 +12,7 @@ namespace TimeSystem
         // Update is called once per frame
         void Update()
         {
-            hoursTransform.localRotation = Quaternion.Euler(0f, 0f, time.hour * -hoursToDegrees);
+            hoursTransform.localRotation = Quaternion.Euler(0f, 0f, time.Hour * -hoursToDegrees);
         }
         
         //data members

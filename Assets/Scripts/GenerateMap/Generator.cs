@@ -6,8 +6,8 @@ namespace GenerateMap {
     private ParameterManager _parameterManager;
     public void Start() {
       _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
-      if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad) {
-        int[,] mapData = _parameterManager._mapData;
+      if (_parameterManager.NeedToLoad) {
+        int[,] mapData = _parameterManager.MapData;
         Load(mapData);
       }
       else {

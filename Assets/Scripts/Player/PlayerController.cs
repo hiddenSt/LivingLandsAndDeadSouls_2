@@ -17,7 +17,7 @@ namespace Player {
     private GameObject _bullet;
     public void Start() {
       _height = GameObject.Find("ParametersManager").GetComponent
-        <Menu.ParameterManager>().tmpSize.y;
+        <Menu.ParameterManager>().MapSizeVector.y;
       _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
       _soundOfRun = GameObject.Find("RunSound").GetComponent<AudioSource>();
       animator = GetComponent<Animator>();

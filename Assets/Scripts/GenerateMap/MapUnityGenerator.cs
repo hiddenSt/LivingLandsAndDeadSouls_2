@@ -15,8 +15,8 @@ namespace GenerateMap {
     private int[,] _mapData;
 
     public MapUnityGenerator() {
-      _mapSize = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().tmpSize.x;
       _parametersManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
+      _mapSize = _parametersManager.MapSizeVector.x;
       switch (_mapSize) {
         case 200:
           _mapSize = 200;
@@ -32,14 +32,14 @@ namespace GenerateMap {
           break;
       }
       var buildingGenerateStrategy = new BuildingGenerateStrategy(new BuildingData(
-        _parametersManager.buildingValue * _currentScaler / 2, 7 * _currentScaler, 1));
+        _parametersManager.BuildingValue * _currentScaler / 2, 7 * _currentScaler, 1));
       var forestGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
-        _parametersManager.forestValue * _currentScaler, 7 * _currentScaler, 2, 
-        _parametersManager.sizeOfForest * _currentScaler, 5 * _currentScaler));
+        _parametersManager.ForestValue * _currentScaler, 7 * _currentScaler, 2, 
+        _parametersManager.SizeOfForest * _currentScaler, 5 * _currentScaler));
       var bushGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
-        _parametersManager.forestValue * _currentScaler, 7 * _currentScaler, 3, 4, 2));
+        _parametersManager.ForestValue * _currentScaler, 7 * _currentScaler, 3, 4, 2));
       var rockGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
-        _parametersManager.forestValue * _currentScaler, 7 * _currentScaler, 4, 4, 2));
+        _parametersManager.ForestValue * _currentScaler, 7 * _currentScaler, 4, 4, 2));
       _generator = new MapGenerator(buildingGenerateStrategy, forestGenerateStrategy, 
         bushGenerateStrategy, rockGenerateStrategy);
     }

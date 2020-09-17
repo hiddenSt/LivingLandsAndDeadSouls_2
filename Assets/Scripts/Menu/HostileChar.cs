@@ -19,19 +19,19 @@ namespace Menu
 
         public void SmallPressed()
         {
-            ParameterManager.instance.hostileCharVal = Random.Range(50, 150);
+            ParameterManager.Instance.HostileCharVal = Random.Range(50, 150);
             SwitchButtonColor(1);
         }
 
         public void MedPressed()
         {
-            ParameterManager.instance.hostileCharVal = Random.Range(100, 250);
+            ParameterManager.Instance.HostileCharVal = Random.Range(100, 250);
             SwitchButtonColor(2);
         }
 
         public void LargePressed()
         {
-            ParameterManager.instance.hostileCharVal = Random.Range(150, 350);
+            ParameterManager.Instance.HostileCharVal = Random.Range(150, 350);
             SwitchButtonColor(3);
         }
 

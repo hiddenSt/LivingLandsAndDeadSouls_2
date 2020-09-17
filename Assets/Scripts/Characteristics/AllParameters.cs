@@ -46,7 +46,7 @@ namespace Characteristics {
 
     public void Start() {
       Experience = 0;
-      switch (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().characterI) {
+      switch (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().CharacterI) {
         case 0:
           _playerName = "Dick Clarque";
           break;
