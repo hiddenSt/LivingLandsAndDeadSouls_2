@@ -5,25 +5,28 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SaveLoadSystem.DataManagers {
   public class MapDataManager : IDataManager {
+    public MapDataManager(string filePath) {
+      _filePath = filePath;
+    }
+    
     public void Save() {
       var generator = GameObject.Find("Generate").GetComponent<Generator>();
       var formatter = new BinaryFormatter();
-      var path = Application.persistentDataPath + "/map.data";
+    
       var season = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().season;
       var year = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().year;
       var day = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().day;
       var data = new DTO.MapData(generator.bushList, generator.treeList, generator.rockList, generator.houseList,
         generator.houseTypeList, season, year, day, generator.tmpSize);
-      var stream = new FileStream(path, FileMode.Create);
+      var stream = new FileStream(_filePath, FileMode.Create);
       formatter.Serialize(stream, data);
       stream.Close();
     }
 
     public void Load() {
-      var path = Application.persistentDataPath + "/map.data";
-      if (!File.Exists(path)) return;
+      if (!File.Exists(_filePath)) return;
       var formatter = new BinaryFormatter();
-      var stream = new FileStream(path, FileMode.Open);
+      var stream = new FileStream(_filePath, FileMode.Open);
       var data = formatter.Deserialize(stream) as DTO.MapData;
       stream.Close();
       var generator = GameObject.Find("Generate").GetComponent<Generator>();
@@ -35,9 +38,10 @@ namespace SaveLoadSystem.DataManagers {
     }
 
     public void DeleteSaves() {
-      var path = Application.persistentDataPath + "/map.data";
-      if (!File.Exists(path)) return;
-      File.Delete(path);
+      if (!File.Exists(_filePath)) return;
+      File.Delete(_filePath);
     }
+
+    private string _filePath;
   }
 }

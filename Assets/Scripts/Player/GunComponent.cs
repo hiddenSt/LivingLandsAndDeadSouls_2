@@ -1,4 +1,6 @@
-﻿using HealthFight;
+﻿using Components;
+using HealthFight;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,21 +8,26 @@ namespace Player {
 
   public class GunComponent : MonoBehaviour {
     public Button fireButton;
+    public IGunSlotUi gunSlotUi;
     
     private void Start() {
+      _playerController = gameObject.GetComponent<Player.PlayerController>();
+      _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
       fireButton.interactable = false;
       _playerTransform = gameObject.transform;
-      _playerController = gameObject.GetComponent<Player.PlayerController>();
-      _ammoText = GameObject.Find("AmmoText").GetComponent<Text>();
+      gunSlotUi.SetGunComponent(this);
+      _isActive = false;
     }
 
     public void SetGun(Items.Gun gun) {
+      if (_isActive) {
+        RemoveToInventoryOrDrop();
+      }
+      
       _gun = gun;
-      _fireRate = _gun.GetFireRate();
-      _damage = _gun.GetDamage();
       _ammoCount = _gun.GetAmmoCount();
-      fireButton.interactable = true;
-      fireButton.onClick.AddListener(Shot);
+      
+      ActivateGun();
     }
 
     public void Shot() {
@@ -32,13 +39,13 @@ namespace Player {
       if (_direction == Vector2.zero) {
         SendBulletWhenStandStill();
         --_ammoCount;
-        ChangeBulletsCountUi();
+        gunSlotUi.ChangeAmmoCount(_ammoCount);
         return;
       }
       
-      for (int i = 0; i < _fireRate; ++i) {
+      for (int i = 0; i < _gun.GetFireRate(); ++i) {
         --_ammoCount;
-        ChangeBulletsCountUi();
+        gunSlotUi.ChangeAmmoCount(_ammoCount);
         SendBullet(_direction);
         if (_ammoCount <= 0)
           return;
@@ -63,31 +70,57 @@ namespace Player {
     }
     
     private void SendBullet(Vector2 directionVec2) {
-      _bullet = Bullet.Create(_playerController.transform, directionVec2,5f * _fireRate, _damage.GetDamagePoints() + _damageBuff,
+      _bullet = Bullet.Create(_playerController.transform, directionVec2,5f * _gun.GetFireRate(), _gun.GetDamagePoints() + _damageBuff,
         0.1f, gameObject.GetInstanceID());
     }
 
-    private void ChangeBulletsCountUi() {
-      _ammoText.text = _ammoCount.ToString();
-    }
-    
-    public void RemoveGun() {
-      fireButton.interactable = true;
-      fireButton.onClick.AddListener(Shot);
+    public void RemoveToInventoryOrDrop() {
+      bool itemIsAdded = _playerInventoryComponent.AddItem(_gun, _gun.GetGunImage());
+      if (!itemIsAdded) {
+         DropGun();
+      }
+      DeactivateGun();
       _gun.SetAmmoCount(_ammoCount);
       _gun = null;
-      _ammoText.text = "0";
+      gunSlotUi.ChangeAmmoCount(0);
+    }
+
+    private void DropGun() {
+      var droppedGun = new GameObject();
+      var lootComponent = droppedGun.AddComponent<LootComponent>();
+      var circleCollider2D = droppedGun.AddComponent<CircleCollider2D>();
+      var spriteRenderer = droppedGun.AddComponent<SpriteRenderer>();
+      lootComponent.item = _gun;
+      lootComponent.itemImage = _gun.GetGunImage();
+      circleCollider2D.radius = 0.3f;
+      spriteRenderer.sprite = _gun.GetGunImage();
+      _gun.Drop();
+      Instantiate(droppedGun);
+      droppedGun.transform.position = _playerTransform.position + new Vector3(0, 3f);
+    }
+    
+    private void ActivateGun() {
+      _isActive = true;
+      fireButton.interactable = true;
+      fireButton.onClick.AddListener(Shot);
+      gunSlotUi.SetGunImageAndActivateListener(_gun.GetGunImage());
+    }
+
+    private void DeactivateGun() {
+      _isActive = false;
+      fireButton.interactable = false;
+      fireButton.onClick.RemoveListener(Shot);
+      gunSlotUi.RemoveGunImageAndDeactivateListener();
     }
 
     private int _damageBuff = 0;
     private int _ammoCount;
-    private int _fireRate;
-    private Damage _damage;
-    private Items.Gun _gun;
-    private Transform _playerTransform;
     private Vector2 _direction;
-    private Player.PlayerController _playerController;
     private GameObject _bullet;
-    private Text _ammoText;
+    private bool _isActive;
+    private InventoryComponent _playerInventoryComponent;
+    private PlayerController _playerController;
+    private Transform _playerTransform;
+    private Items.Gun _gun;
   }
 }

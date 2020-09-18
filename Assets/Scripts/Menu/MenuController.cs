@@ -8,12 +8,20 @@ namespace Menu {
 
   public class MenuController : MonoBehaviour {
     private void Start() {
+      var audioDataPath = Application.persistentDataPath + "/audio.data";
+      var mapDataPath = Application.persistentDataPath + "/map.data";
+      var playerDataPath = Application.persistentDataPath + "/player.data";
+      var botsDataPath = Application.persistentDataPath + "/bots.data";
+      var characteristicsDataPath = Application.persistentDataPath + "/characteristics.data";
+
       SaveLoadSystem.SaveSystem.DataManagers = new List<IDataManager>();
-      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.PlayerDataManager());
-      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.BotDataManager());
-      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.MapDataManager());
-      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.CharacteristicsDataManager());
-      var audioDataManager = new SaveLoadSystem.DataManagers.AudioDataManager();
+      
+      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.PlayerDataManager(playerDataPath));
+      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.BotDataManager(botsDataPath));
+      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.MapDataManager(mapDataPath));
+      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.CharacteristicsDataManager(characteristicsDataPath));
+      
+      var audioDataManager = new SaveLoadSystem.DataManagers.AudioDataManager(audioDataPath);
       audioDataManager.Load();
       SaveLoadSystem.SaveSystem.DataManagers.Add(audioDataManager);
     }
@@ -23,7 +31,6 @@ namespace Menu {
       SaveLoadSystem.SaveSystem.DeleteSaves();
       
       MoveToTheGameScene();
-      SceneManager.LoadScene("save");
     }
 
     public void ContinuePressed() {
@@ -33,11 +40,11 @@ namespace Menu {
       GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad = true;
       
       MoveToTheGameScene();
-      SceneManager.LoadScene("save");
     }
 
     public void ExitPressed() {
-      var audioManager = new SaveLoadSystem.DataManagers.AudioDataManager();
+      var audioDataPath = Application.persistentDataPath + "/audio.data";
+      var audioManager = new SaveLoadSystem.DataManagers.AudioDataManager(audioDataPath);
       audioManager.Save();
       Application.Quit();
     }
@@ -45,6 +52,7 @@ namespace Menu {
     private void MoveToTheGameScene() {
       DontDestroyOnLoad(GameObject.Find("AudioManager"));
       DontDestroyOnLoad(GameObject.Find("Sounds"));
+      SceneManager.LoadScene("save");
     }
   }
 }

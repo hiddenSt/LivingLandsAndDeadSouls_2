@@ -6,21 +6,23 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SaveLoadSystem.DataManagers {
   public class AudioDataManager : IDataManager {
+    public AudioDataManager(string filepath) {
+      _filePath = filepath;
+    }
+    
     public void Save() {
       var formatter = new BinaryFormatter();
-      var path = Application.persistentDataPath + "/audio.data";
       var audioController = GameObject.Find("AudioManager").GetComponent<Menu.AudioManager>();
       var data = new DTO.AudioData(audioController.masterVolume, audioController.musicVolume);
-      var stream = new FileStream(path, FileMode.Create);
+      var stream = new FileStream(_filePath, FileMode.Create);
       formatter.Serialize(stream, data);
       stream.Close();
     }
 
     public void Load() {
-      var path = Application.persistentDataPath + "/audio.data";
-      if (!File.Exists(path)) return;
+      if (!File.Exists(_filePath)) return;
       var formatter = new BinaryFormatter();
-      var stream = new FileStream(path, FileMode.Open);
+      var stream = new FileStream(_filePath, FileMode.Open);
       var data = formatter.Deserialize(stream) as DTO.AudioData;
       stream.Close();
       var audioController = GameObject.Find("AudioManager").GetComponent<Menu.AudioManager>();
@@ -29,9 +31,10 @@ namespace SaveLoadSystem.DataManagers {
     }
 
     public void DeleteSaves() {
-      var path = Application.persistentDataPath + "/audio.data";
-      if (!File.Exists(path)) return;
-      File.Delete(path);
+      if (!File.Exists(_filePath)) return;
+      File.Delete(_filePath);
     }
+
+    private string _filePath;
   }
 }

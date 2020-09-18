@@ -10,31 +10,25 @@ namespace UI {
     public GameObject[] slots;
     public GameObject[] buttons;
     
-    public void SetItem(Image itemImage, Identifier itemIdentifier) {
+    public void SetItem(Sprite itemImage, Identifier itemIdentifier) {
       for (int i = 0; i < _slotsSize; ++i) {
         if (_isEmptySlot[i]) {
           _isEmptySlot[i] = true;
           _identifiers[i] = itemIdentifier;
-          _itemsImages[i] = itemImage;
+          _itemsImages[i].sprite = itemImage;
           SetButton(i);
           return;
         }
       }
     }
-
     
     public void RemoveItem(int index) {
       _inventoryComponent.RemoveItem(_identifiers[index]);
       RemoveButton(index);
     }
     
-    public void SetInventoryComponent(InventoryComponent inventoryComponent) {
-      _inventoryComponent = inventoryComponent;
-    }
-
     public void DropItem(int index) {
-      InventorySystem.NewInventorySystem.Item item = _inventoryComponent.GetItem(_identifiers[index]);
-      _inventoryComponent.RemoveItem(_identifiers[index]);
+      _inventoryComponent.DropItem(_identifiers[index], _itemsImages[index].sprite);
       
       _isEmptySlot[index] = true;
       RemoveButton(index);
@@ -61,6 +55,7 @@ namespace UI {
     }
     
     private void Start() {
+      _inventoryComponent = gameObject.GetComponent<InventoryComponent>();
       _slotsSize = slots.Length;
       _identifiers = new Identifier[_slotsSize];
       _itemsImages = new Image[_slotsSize];

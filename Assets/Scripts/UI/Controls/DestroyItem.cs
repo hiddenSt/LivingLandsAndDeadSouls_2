@@ -38,21 +38,7 @@ namespace InventorySystem {
 
 
     private void SingleClick() {
-      GunSelect gunSelect;
-      OutfitSelect outfitSelect;
-      HealthBoost healthBoost;
-      gunSelect = gameObject.GetComponent<GunSelect>();
-      outfitSelect = gameObject.GetComponent<OutfitSelect>();
-      healthBoost = gameObject.GetComponent<HealthBoost>();
-      if (gunSelect != null) {
-        gunSelect.Use();
-      }
-      else if (outfitSelect != null) {
-        outfitSelect.Use();
-      }
-      else if (healthBoost != null) {
-        healthBoost.Use();
-      }
+    
     }
 
     private void DoubleClick() {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Items {
 
   public class Gun : InventorySystem.NewInventorySystem.Item {
-    public Gun(string gunType, int fireRate, int damagePoints, int ammoCount, int ammoLimit, Image gunImage) {
+    public Gun(string gunType, int fireRate, int damagePoints, int ammoCount, int ammoLimit, Sprite gunImage) {
       _type = "Gun";
       _fireRate = fireRate;
       _ammoCount = ammoCount;
@@ -19,7 +19,6 @@ namespace Items {
     public override void Use() {
       _gunComponent.SetGun(this);
       _outfitComponent.ChangeGunSkin(_gunType);
-      var button = _gunSlotUi.GetComponent<Button>();
     }
 
     public override void Drop() {
@@ -28,7 +27,6 @@ namespace Items {
 
     public override void PickUp() {
       _gunComponent = GameObject.Find("Player").GetComponent<GunComponent>();
-      _gunSlotUi = GameObject.Find("GunSlot");
     }
     
     public void SetGunTypeIndex(int index) {
@@ -59,12 +57,20 @@ namespace Items {
       return _damage;
     }
 
+    public int GetDamagePoints() {
+      return _damage.GetDamagePoints();
+    }
+
     public int GetFireRate() {
       return _fireRate;
     }
 
     public string GetGunType() {
       return _gunType;
+    }
+
+    public Sprite GetGunImage() {
+      return _gunImage;
     }
     
     private int _fireRate;
@@ -75,7 +81,6 @@ namespace Items {
     private GunComponent _gunComponent;
     private string _gunType;
     private OutfitComponent _outfitComponent;
-    private GameObject _gunSlotUi;
-    private Image _gunImage;
+    private Sprite _gunImage;
   }
 }

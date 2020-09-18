@@ -2,7 +2,7 @@
 
 namespace Menu {
   public class ParameterManager : MonoBehaviour {
-    void Start() {
+    private void Start() {
       _mapScalerSmall = 3;
       _mapScalerMedium = 5;
       _mapScalerBig = 10;
@@ -32,18 +32,6 @@ namespace Menu {
     public int startSeason = 0;
     public Vector3Int tmpSize;
     public bool needToLoad = false;
-
-    public GameObject medkitButton;
-    public GameObject meatButton;
-    public GameObject outfit1Button;
-    public GameObject outfit2Button;
-    public GameObject gun1Button;
-    public GameObject gun2Button;
-    public GameObject ammoButton;
-    public GameObject outfit1Image;
-    public GameObject outfit2Image;
-    public GameObject gun1Image;
-    public GameObject gun2Image;
 
     private int _mapScalerSmall;
     private int _mapScalerMedium;

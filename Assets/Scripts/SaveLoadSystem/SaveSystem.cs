@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using Menu;
-using UnityEngine;
-
 
 namespace SaveLoadSystem {
   public static class SaveSystem {
@@ -11,8 +8,6 @@ namespace SaveLoadSystem {
     }
 
     public static void Load() {
-      if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad == false)
-        return;
       foreach (var dataManager in DataManagers)
         dataManager.Load();
     }

@@ -15,8 +15,7 @@ public class DestroyingItem : MonoBehaviour
 
     public void DontDestroy()
     {
-        GameObject.Find("DestroyingItem").GetComponent<Item>().dropItemComp.isActive = true;
-        GameObject.Find("DestroyCanvas").transform.
+      GameObject.Find("DestroyCanvas").transform.
             GetChild(0).gameObject.SetActive(false);
     }
 }

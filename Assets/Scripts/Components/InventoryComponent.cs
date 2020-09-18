@@ -7,29 +7,35 @@ using Utility;
 namespace Components {
   public class InventoryComponent : MonoBehaviour {
     public int inventorySize;
-    public IUiController inventoryUi;
+    private IUiController _inventoryUi;
 
     private void Start() {
       _inventory = new Inventory(new ArrayRepository(inventorySize), inventorySize);
-      inventoryUi.SetInventoryComponent(this);
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    public void SetUiController(IUiController uiController) {
+      _inventoryUi = uiController;
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other) {
       var loot = other.gameObject.GetComponent<LootComponent>();
       if (loot == null)
         return;
-      AddItem(loot.item, loot.itemImage);
-      Destroy(other.gameObject);
+      bool itemIsAdded = AddItem(loot.item, loot.itemImage);
+      if (itemIsAdded)
+        Destroy(other.gameObject);
     }
 
-    public void AddItem(InventorySystem.NewInventorySystem.Item item, Image itemImage) {
+    public bool AddItem(InventorySystem.NewInventorySystem.Item item, Sprite itemImage) {
       if (!CanAddItem())
-        return;
+        return false;
       _inventory.AddItem(item);
-      inventoryUi.SetItem(itemImage, item.GetIdentifier());
+      Debug.Log("LOOT");
+      _inventoryUi.SetItem(itemImage, item.GetIdentifier());
+      return true;
     }
 
-    public void DropItem(Identifier identifier, Image itemImage) {
+    public void DropItem(Identifier identifier, Sprite itemImage) {
       InventorySystem.NewInventorySystem.Item item = _inventory.GetItem(identifier);
       _inventory.RemoveItem(identifier);
       
@@ -40,9 +46,10 @@ namespace Components {
       
       lootComponent.item = item;
       lootComponent.itemImage = itemImage;
-      spriteRenderer.sprite = itemImage.sprite;
+      spriteRenderer.sprite = itemImage;
       circleCollider2D.radius = 0.1f;
       droppedItem.transform.position = gameObject.transform.position + new Vector3(0, 3f);
+      
       Instantiate(droppedItem);
     }
 
