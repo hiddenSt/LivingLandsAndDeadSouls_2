@@ -2,7 +2,7 @@
 using UnityEngine.Tilemaps;
 
 namespace GenerateMap.TileGenerator {
-  public class TileGenerator: MonoBehaviour {
+  public class TileGenerator : MonoBehaviour {
     private int _horizonWidth;
     private int _mapSize;
     private Tilemap _horizonTileMap;
@@ -22,14 +22,14 @@ namespace GenerateMap.TileGenerator {
     public void GenerateHorizon() {
       for (int i = 0; i < _horizonWidth; ++i) {
         for (int x = -_horizonWidth; x < _mapSize + _horizonWidth; ++x)
-          _horizonTileMap.SetTile(new Vector3Int(-x + _mapSize / 2, -_mapSize / 2 - i, 0), 
+          _horizonTileMap.SetTile(new Vector3Int(-x + _mapSize / 2, -_mapSize / 2 - i, 0),
             _horizonTile);
         for (int x = -_horizonWidth; x < _mapSize + _horizonWidth; ++x)
           _horizonTileMap.SetTile(new Vector3Int(-x + _mapSize / 2, _mapSize / 2 + 1 + i, 0),
             _horizonTile);
         for (int y = 0; y < _mapSize; ++y)
           _horizonTileMap.SetTile(new Vector3Int(-_mapSize / 2 - i, -y + _mapSize / 2, 0),
-           _horizonTile);
+            _horizonTile);
         for (int y = 0; y < _mapSize; ++y)
           _horizonTileMap.SetTile(new Vector3Int(_mapSize / 2 + 1 + i, -y + _mapSize / 2, 0),
             _horizonTile);

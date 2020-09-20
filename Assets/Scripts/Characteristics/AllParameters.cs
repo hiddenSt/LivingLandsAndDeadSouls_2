@@ -10,7 +10,7 @@ namespace Characteristics {
     public int Health;
     public int Skill;
     public int FreePoints;
-    
+
     private GameObject _valueSniper;
     private GameObject _personName;
     private GameObject _valueHealth;
@@ -21,7 +21,7 @@ namespace Characteristics {
     private string _playerName;
     private Canvas _canvas;
     private bool _infoOpen = false;
-    
+
     public void AddExperience(float exp) {
       if (Experience + exp >= ToNextLevelExp) {
         Experience = Experience + exp - ToNextLevelExp;
@@ -37,11 +37,11 @@ namespace Characteristics {
 
     public void Display() {
       _personName.GetComponent<UnityEngine.UI.Text>().text = _playerName;
-      _valueLevel.GetComponent<UnityEngine.UI.Text>().text=Level.ToString();
-      _valueFreePoints.GetComponent<UnityEngine.UI.Text>().text=FreePoints.ToString();
-      _valueStrength.GetComponent<UnityEngine.UI.Text>().text=Strength.ToString();
-      _valueHealth.GetComponent<UnityEngine.UI.Text>().text=Health.ToString();
-      _valueSniper.GetComponent<UnityEngine.UI.Text>().text=Skill.ToString();
+      _valueLevel.GetComponent<UnityEngine.UI.Text>().text = Level.ToString();
+      _valueFreePoints.GetComponent<UnityEngine.UI.Text>().text = FreePoints.ToString();
+      _valueStrength.GetComponent<UnityEngine.UI.Text>().text = Strength.ToString();
+      _valueHealth.GetComponent<UnityEngine.UI.Text>().text = Health.ToString();
+      _valueSniper.GetComponent<UnityEngine.UI.Text>().text = Skill.ToString();
     }
 
     public void Start() {
@@ -55,8 +55,9 @@ namespace Characteristics {
           break;
         case 2:
           _playerName = "Vitali Tsal";
-          break; 
+          break;
       }
+
       _personName = GameObject.Find("Person name");
       _valueFreePoints = GameObject.Find("ValueFreePoints");
       _valueLevel = GameObject.Find("ValueLevel");

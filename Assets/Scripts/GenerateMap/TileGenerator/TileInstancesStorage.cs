@@ -2,9 +2,8 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace GenerateMap.TileGenerator { 
+namespace GenerateMap.TileGenerator {
   public class TileInstancesStorage : MonoBehaviour {
-    
     public List<Tile> TileList;
 
     public Tile FindTile(string tileName) {
@@ -13,6 +12,7 @@ namespace GenerateMap.TileGenerator {
           return TileList[i];
         }
       }
+
       return null;
     }
   }

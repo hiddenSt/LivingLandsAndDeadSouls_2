@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Characteristics {
   public class ButtonHandler : MonoBehaviour {
     public GameObject Characteristics;
+
     public void UpStrength() {
       Characteristics = GameObject.Find("Characteristics");
       if (Characteristics.GetComponent<AllParameters>().FreePoints <= 0) return;
@@ -25,8 +26,8 @@ namespace Characteristics {
     public void UpSniper() {
       Characteristics = GameObject.Find("Characteristics");
       if (Characteristics.GetComponent<AllParameters>().FreePoints <= 0) return;
-      Characteristics.GetComponent<AllParameters>().FreePoints -= 1 ;
-      Characteristics.GetComponent<AllParameters>().Skill += 1 ;
+      Characteristics.GetComponent<AllParameters>().FreePoints -= 1;
+      Characteristics.GetComponent<AllParameters>().Skill += 1;
       Characteristics.GetComponent<AllParameters>().Display();
     }
   }

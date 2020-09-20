@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace GenerateMap {
   public class MapLoaderUnity : MonoBehaviour {
-    
     private GameObject _smallHouse;
     private GameObject _bigHouse;
     private GameObject _tree;
@@ -20,13 +19,13 @@ namespace GenerateMap {
     private ParameterManager _parameterManager;
     private int _season;
 
-    public MapLoaderUnity(int [,] mapData) {
+    public MapLoaderUnity(int[,] mapData) {
       _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
       _mapData = mapData;
       _season = _parameterManager.StartSeason;
       _objectInstanceStorage = GameObject.Find("ObjectInstanceStorage");
     }
-    
+
     public void MapLoad() {
       TileLoad();
       FindObjectInstances();
@@ -35,7 +34,7 @@ namespace GenerateMap {
       LoadMapDataStorage();
       LoadTimeControlParameters();
     }
-    
+
     private void FindObjectInstances() {
       _bigHouse = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance(
         "Big_house");
@@ -45,13 +44,13 @@ namespace GenerateMap {
       _bush = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Bush");
       _rock = _objectInstanceStorage.GetComponent<InstancesStorage>().GetObjectInstance("Rock");
     }
-    
+
     private void ChangeGameObjectParameters(GameObject changingObject, int xPos, int yPos,
       int extraLayerValue) {
-      changingObject.transform.localPosition = new Vector3(_parameterManager.MapSizeVector.x / 2 - xPos, 
-        _parameterManager.MapSizeVector.y / 2 - yPos ,1);
+      changingObject.transform.localPosition = new Vector3(_parameterManager.MapSizeVector.x / 2 - xPos,
+        _parameterManager.MapSizeVector.y / 2 - yPos, 1);
       changingObject.GetComponentInChildren<SpriteRenderer>().sortingOrder =
-        _parameterManager.MapSizeVector.y / 2 - (int) changingObject.transform.position.y + 
+        _parameterManager.MapSizeVector.y / 2 - (int) changingObject.transform.position.y +
         extraLayerValue;
     }
 
@@ -86,7 +85,7 @@ namespace GenerateMap {
       mapDataStorage.HouseList = _houseList;
       mapDataStorage.HouseTypeList = _houseTypeList;
     }
-    
+
     private void InstantiateObjects() {
       for (int i = 0; i < _parameterManager.MapSizeVector.y; i++) {
         for (int j = 0; j < _parameterManager.MapSizeVector.y; j++) {
@@ -96,28 +95,28 @@ namespace GenerateMap {
               generatedObject = Instantiate(_bigHouse);
               _houseList.Add(generatedObject);
               _houseTypeList.Add(1);
-              ChangeGameObjectParameters(generatedObject, i ,j, 3);
+              ChangeGameObjectParameters(generatedObject, i, j, 3);
               break;
             case 2:
               generatedObject = Instantiate(_tree);
               _treeList.Add(generatedObject);
-              ChangeGameObjectParameters(generatedObject, i ,j, 2);
+              ChangeGameObjectParameters(generatedObject, i, j, 2);
               break;
             case 3:
               generatedObject = Instantiate(_bush);
               _bushList.Add(generatedObject);
-              ChangeGameObjectParameters(generatedObject, i ,j, 2);
+              ChangeGameObjectParameters(generatedObject, i, j, 2);
               break;
             case 4:
               generatedObject = Instantiate(_rock);
               _rockList.Add(generatedObject);
-              ChangeGameObjectParameters(generatedObject, i ,j, 2);
+              ChangeGameObjectParameters(generatedObject, i, j, 2);
               break;
             case -1:
               generatedObject = Instantiate(_smallHouse);
               _houseList.Add(generatedObject);
               _houseTypeList.Add(0);
-              ChangeGameObjectParameters(generatedObject, i ,j, 3);
+              ChangeGameObjectParameters(generatedObject, i, j, 3);
               break;
           }
         }

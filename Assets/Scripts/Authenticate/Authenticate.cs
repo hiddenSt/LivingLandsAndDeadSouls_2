@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 
 namespace Authenticate {
-  public class Authenticate: MonoBehaviour {
+  public class Authenticate : MonoBehaviour {
     public GameObject LoginPanel;
-    
-    protected  string _userEmail;
+
+    protected string _userEmail;
     protected string _userPassword;
 
     public void GetUserEmail() {

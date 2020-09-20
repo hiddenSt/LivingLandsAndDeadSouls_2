@@ -31,16 +31,17 @@ namespace GenerateMap {
           _currentScaler = _mapScalerBig;
           break;
       }
+
       var buildingGenerateStrategy = new BuildingGenerateStrategy(new BuildingData(
         _parametersManager.BuildingValue * _currentScaler / 2, 7 * _currentScaler, 1));
       var forestGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
-        _parametersManager.ForestValue * _currentScaler, 7 * _currentScaler, 2, 
+        _parametersManager.ForestValue * _currentScaler, 7 * _currentScaler, 2,
         _parametersManager.SizeOfForest * _currentScaler, 5 * _currentScaler));
       var bushGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
         _parametersManager.ForestValue * _currentScaler, 7 * _currentScaler, 3, 4, 2));
       var rockGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
         _parametersManager.ForestValue * _currentScaler, 7 * _currentScaler, 4, 4, 2));
-      _generator = new MapGenerator(buildingGenerateStrategy, forestGenerateStrategy, 
+      _generator = new MapGenerator(buildingGenerateStrategy, forestGenerateStrategy,
         bushGenerateStrategy, rockGenerateStrategy);
     }
 

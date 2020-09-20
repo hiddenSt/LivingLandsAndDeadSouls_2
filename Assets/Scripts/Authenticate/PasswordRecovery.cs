@@ -3,12 +3,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Authenticate {
-  public class PasswordRecovery : Authenticate { 
+  public class PasswordRecovery : Authenticate {
     private const string _playfabloginAppID = "99BF5";
+
     public void RecoveryPassword() {
       GetUserEmail();
-      var request = new SendAccountRecoveryEmailRequest{Email = _userEmail, 
-        TitleId = _playfabloginAppID};
+      var request = new SendAccountRecoveryEmailRequest {
+        Email = _userEmail,
+        TitleId = _playfabloginAppID
+      };
       PlayFab.PlayFabClientAPI.SendAccountRecoveryEmail(request, OnRecoveryEmailSuccess,
         OnRecoveryEmailFailed);
     }

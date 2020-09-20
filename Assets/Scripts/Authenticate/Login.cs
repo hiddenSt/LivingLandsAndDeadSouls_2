@@ -9,12 +9,12 @@ namespace Authenticate {
     public void OnClickLogin() {
       GetUserEmail();
       GetUserPassword();
-      Debug.Log("Email"+_userEmail);
-      Debug.Log("Password"+_userPassword);
-      var request = new LoginWithEmailAddressRequest { Email = _userEmail, Password = _userPassword };
+      Debug.Log("Email" + _userEmail);
+      Debug.Log("Password" + _userPassword);
+      var request = new LoginWithEmailAddressRequest {Email = _userEmail, Password = _userPassword};
       PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailed);
     }
-  
+
     private void OnLoginSuccess(LoginResult result) {
       Debug.Log("User logged");
       SceneManager.LoadScene("Menu");
@@ -28,7 +28,7 @@ namespace Authenticate {
       } else if (errorReport[4] == "host") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text = "Отсутствует соединение с сетью Интернет";
       } else if (errorReport[4] == "Email:") {
-        GameObject.Find("LoginFailed").GetComponent<Text>().text ="Неправильный пароль или логин";
+        GameObject.Find("LoginFailed").GetComponent<Text>().text = "Неправильный пароль или логин";
       } else if (errorReport[1] == "Invalid") {
         GameObject.Find("LoginFailed").GetComponent<Text>().text = "Неправильный пароль или логин";
       }

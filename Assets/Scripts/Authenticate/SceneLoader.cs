@@ -6,7 +6,7 @@ namespace Authenticate {
     public void LoadFirstPageScene() {
       SceneManager.LoadScene("FirstPage");
     }
-  
+
     public void LoadRegisterScene() {
       SceneManager.LoadScene("Register");
     }
