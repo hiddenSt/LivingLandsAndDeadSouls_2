@@ -12,7 +12,7 @@ namespace InventorySystem
             _playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
             _playerAnimator = GameObject.Find("Player").GetComponent<Animator>();
             _gunComponent = GameObject.Find("FireButton").GetComponent<HealthFight.Gun>();
-            character = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().characterI;
+            character = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().CharacterI;
             ChangeCharacter();
         }
 

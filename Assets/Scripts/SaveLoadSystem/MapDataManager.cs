@@ -14,12 +14,12 @@ namespace SaveLoadSystem
             var generator = GameObject.Find("Generate").GetComponent<Generator>();
             var formatter = new BinaryFormatter();
             var path = Application.persistentDataPath + "/map.data";
-            var season =  GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().season;
-            var year = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().year;
-            var day = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().day;
-            var data = new MapData(generator.bushList, generator.treeList, generator.rockList, generator.houseList, generator.houseTypeList, season, year, day, generator.tmpSize);
+            var season =  GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().Season;
+            var year = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().Year;
+            var day = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().Day;
+            //var data = new MapData(generator.BushList, generator.TreeList, generator.RockList, generator.HouseList, generator.HouseTypeList, season, year, day, generator.TMPSize);
             var stream = new FileStream(path, FileMode.Create);
-            formatter.Serialize(stream, data);
+            //formatter.Serialize(stream, data);
             stream.Close();
         }
 
@@ -33,10 +33,10 @@ namespace SaveLoadSystem
             stream.Close();
             var generator = GameObject.Find("Generate").GetComponent<Generator>();
             var tmpSize = new Vector3Int(data.tmpSizeX, data.tmpSizeY, data.tmpSizeZ);
-            generator.GenerateMap(data, tmpSize);
+            //enerator.GenerateMap(data, tmpSize);
             var timeController = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>();
-            timeController.year = data.year;
-            timeController.day = data.day;
+            timeController.Year = data.year;
+            timeController.Day = data.day;
         }
 
         public override void DeleteSaves()

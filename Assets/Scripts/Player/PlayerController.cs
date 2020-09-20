@@ -1,102 +1,80 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
-    void Start()
-    {
-        _height = GameObject.Find("ParametersManager").GetComponent
-            <Menu.ParameterManager>().tmpSize.y;
-        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        _soundOfRun = GameObject.Find("RunSound").GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
-        mContr = GameObject.Find("JoystickBG").GetComponent<MobileController>();
-        Debug.Log("Controller is initialized");
-        rigidBody = GetComponent<Rigidbody2D>();
-        _anim = GetComponent<Animator>();
-    }
-    void Update()
-    {
-        if (mContr.Horizontal() > 0.9)
-        {
-                direction = 2;
-                animator.Play("Move_right");
-            }
-            else if (mContr.Horizontal() < -0.9)
-            {
-                direction = 3;
-                animator.Play("Move_left");
-            }
-            else 
-            {
-                if (mContr.Vertical() > 0)
-                {
-                    direction = 1;
-                    animator.Play("Move_back");
-                }
-                else if (mContr.Vertical() < 0)
-                {
-                    direction = 0;
-                    animator.Play("Move_face");
-                }
-                else
-                {
-                    switch (direction)
-                    {
-                        case 0:
-                            animator.Play("Idle_face");
-                            break;
-                        case 1 :
-                            animator.Play("Idle_back");
-                            break;
-                        case 2:
-                            animator.Play("Idle_right");
-                            break;
-                        case 3:
-                            animator.Play("Idle_left");
-                            break;
-                    }
-                }
-            }
-        
-            _dirX = mContr.Horizontal();
-            _dirY = mContr.Vertical();
-            Vector2 moveInput = new Vector2(_dirX, _dirY);
-            moveVelocity = moveInput * playerSpeed;
-            if (_dirX == 0 && _dirY == 0)
-            {
-                _soundOfRun.Stop();
-            }
-            else
-            {
-                if (!_soundOfRun.isPlaying)
-                {
-                    _soundOfRun.Play();
-                }
-            }
-
-    }
-    void FixedUpdate()
-    {
-        rigidBody.MovePosition(rigidBody.position + moveVelocity);
-        _spriteRenderer.sortingOrder = _height / 2 - (int)gameObject.transform.position.y+1;
-    }
-
+namespace Player {
+  public class PlayerController : MonoBehaviour {
+    public Animator animator;
+    public float PlayerSpeed = 0.25f;
+    public Vector2 MoveVelocity;
+    public int Direction;//0-вниз 1-вверх 2-вправо 3-влево
+    public MobileController MobController;
+    
     private int _height;
     private SpriteRenderer _spriteRenderer;
     private AudioSource _soundOfRun;
-    public Animator animator;
-    public float playerSpeed = 0.25f;
-    public Vector2 moveVelocity;
-    public MobileController mContr;
-    private Rigidbody2D rigidBody;
-    private Animator _anim;
-    public bool needToGo = false;
-    public bool needToFire = false;
-    public int direction = 0;//0-вниз 1-вверх 2-вправо 3-влево
+    private Rigidbody2D _rigidBody;
     private float _dirX;
     private float _dirY;
     private GameObject _bullet;
+    public void Start() {
+      _height = GameObject.Find("ParametersManager").GetComponent
+        <Menu.ParameterManager>().MapSizeVector.y;
+      _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+      _soundOfRun = GameObject.Find("RunSound").GetComponent<AudioSource>();
+      animator = GetComponent<Animator>();
+      MobController = GameObject.Find("JoystickBG").GetComponent<MobileController>();
+      Debug.Log("Controller is initialized");
+      _rigidBody = GetComponent<Rigidbody2D>();
+      GetComponent<Animator>();
+    }
+
+    public void Update() {
+      if (MobController.GetXJoystickPos() > 0.9) {
+        Direction = 2;
+        animator.Play("Move_right");
+      } else if (MobController.GetXJoystickPos() < -0.9) {
+        Direction = 3;
+        animator.Play("Move_left");
+      } else {
+        if (MobController.GetYJoystickPos() > 0) {
+          Direction = 1;
+          animator.Play("Move_back");
+        } else if (MobController.GetYJoystickPos() < 0) {
+          Direction = 0;
+          animator.Play("Move_face");
+        } else {
+          switch (Direction) {
+            case 0:
+              animator.Play("Idle_face");
+              break;
+            case 1 :
+              animator.Play("Idle_back");
+              break;
+            case 2:
+              animator.Play("Idle_right");
+              break;
+            case 3:
+              animator.Play("Idle_left");
+              break;
+          }
+        }
+      }
+        
+      _dirX = MobController.GetXJoystickPos();
+      _dirY = MobController.GetYJoystickPos();
+      var moveInput = new Vector2(_dirX, _dirY);
+      MoveVelocity = moveInput * PlayerSpeed;
+      if (_dirX == 0 && _dirY == 0) {
+        _soundOfRun.Stop();
+      } else {
+        if (!_soundOfRun.isPlaying) {
+          _soundOfRun.Play();
+        }
+      }
+    }
+
+    public void FixedUpdate() {
+      _rigidBody.MovePosition(_rigidBody.position + MoveVelocity);
+      _spriteRenderer.sortingOrder = _height / 2 - (int)gameObject.transform.position.y + 1;
+    }
+  }
 }

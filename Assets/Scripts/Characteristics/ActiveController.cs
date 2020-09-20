@@ -1,24 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ActiveController : MonoBehaviour
-{
-    private GameObject characteristics;
+namespace Characteristics {
+  public class ActiveController : MonoBehaviour {
+    private GameObject _characteristics;
 
-    void Start()
-    {
-        characteristics=GameObject.Find("Characteristics");
+    public void Start() {
+      _characteristics = GameObject.Find("Characteristics");
     }
 
-    public void Enable()
-    {
-        characteristics.GetComponent<Canvas>().enabled=true;
-        characteristics.GetComponent<AllParameters>().Display();
+    public void Enable() {
+      _characteristics.GetComponent<Canvas>().enabled = true;
+      _characteristics.GetComponent<AllParameters>().Display();
     }
 
-    public void Disabled()
-    {
-        characteristics.GetComponent<Canvas>().enabled=false;
+    public void Disable() {
+      _characteristics.GetComponent<Canvas>().enabled = false;
     }
+  }
 }

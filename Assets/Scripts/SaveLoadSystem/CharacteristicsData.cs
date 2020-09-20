@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Characteristics;
 using UnityEngine;
 
 namespace SaveLoadSystem
@@ -9,13 +10,13 @@ namespace SaveLoadSystem
     {
         public CharacteristicsData(AllParameters characteristics)
         {
-            level = characteristics.level;
-            experience = characteristics.experience;
-            toNextLevelExp = characteristics.toNextLevelExp;
-            strength = characteristics.strength;
-            health = characteristics.health;
-            sniper = characteristics.sniper;
-            freePoints = characteristics.freePoints;
+            level = characteristics.Level;
+            experience = characteristics.Experience;
+            toNextLevelExp = characteristics.ToNextLevelExp;
+            strength = characteristics.Strength;
+            health = characteristics.Health;
+            sniper = characteristics.Skill;
+            freePoints = characteristics.FreePoints;
         }
         
         //data members

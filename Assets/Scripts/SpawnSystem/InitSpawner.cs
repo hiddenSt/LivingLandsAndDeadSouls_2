@@ -8,8 +8,8 @@ namespace SpawnSystem
     {
         void Start()
         {
-            _enemyCount = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().hostileCharVal;
-            _animalsCount = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().neutralCharVal;
+            _enemyCount = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().HostileCharVal;
+            _animalsCount = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().NeutralCharVal;
             for (int i = 0; i < enemyGameObjects.Length; ++i)
             {
                 for (int j = 0; j < _enemyCount / enemyGameObjects.Length; ++j)

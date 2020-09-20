@@ -16,7 +16,7 @@ namespace SaveLoadSystem
         void Update()
         {
             while (GameObject.Find("GunSlot") == null) {}
-            if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad == true)
+            if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().NeedToLoad == true)
             {
                 SaveLoadSystem.SaveSystem.Load();
             }

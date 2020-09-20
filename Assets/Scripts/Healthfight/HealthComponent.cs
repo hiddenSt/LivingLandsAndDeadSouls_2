@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Characteristics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = System.Random;
 
 
 namespace HealthFight
@@ -27,6 +29,7 @@ namespace HealthFight
             }
             var circleCollider = this.gameObject.GetComponent<CircleCollider2D>();
             _animator = this.gameObject.GetComponent<Animator>();
+            lootStorage = GameObject.Find("LootStorage");
         }
 
         private void CreateHealthBar()
@@ -41,12 +44,20 @@ namespace HealthFight
             health -= decrease;
             if (health <= 0)
             {
+              DropLoot(lootStorage,this.gameObject);
                 _animator.Play("Death_left");
                 Destroy(this.gameObject);
             }
             _bar.SetSize(health/100f);
         }
 
+        private void DropLoot(GameObject lootStorage, GameObject parentObject){
+          int value = new Random().Next(0,100);
+          if (value > 50){
+            GameObject dropItem = Instantiate(lootStorage.transform.GetChild(0).gameObject);
+            dropItem.transform.position = parentObject.transform.position;
+          }
+        }
         public void SetHealth(int healthPoints)
         {
             if (healthPoints > maxHealth)
@@ -89,7 +100,7 @@ namespace HealthFight
         public bool isPlayer = false;
         public int originID;
         public int maxHealth = 100;
-        
+        public GameObject lootStorage;
         private HealthBar _bar;
         private Animator _animator;
     }

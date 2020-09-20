@@ -19,19 +19,19 @@ namespace Menu
 
         public void DickClarkPressed()
         {
-            Menu.ParameterManager.instance.characterI = 0;
+            Menu.ParameterManager.Instance.CharacterI = 0;
             SwitchButtonColor(1);
         }
 
         public void HuLiePressed()
         {
-            Menu.ParameterManager.instance.characterI = 1;
+            Menu.ParameterManager.Instance.CharacterI = 1;
             SwitchButtonColor(2);
         }
 
         public void VitaliTsalPressed()
         {
-            Menu.ParameterManager.instance.characterI = 2;
+            Menu.ParameterManager.Instance.CharacterI = 2;
             SwitchButtonColor(3);
         }
         
