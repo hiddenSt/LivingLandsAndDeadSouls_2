@@ -6,10 +6,10 @@ using Utility;
 
 namespace UI {
   
-  public class InventoryInventoryUi : MonoBehaviour, IInventoryUi {
+  public class InventoryUi : MonoBehaviour, IInventoryUi {
+    public InventoryComponent inventoryComponent;
     public GameObject[] slots;
     private bool[] _isEmptySlot;
-    private InventoryComponent _inventoryComponent;
     private int _slotsSize;
     private Identifier[] _identifiers;
     private IItemUi[] _itemsUi;
@@ -17,7 +17,7 @@ namespace UI {
     private GameObject[] _images;
 
     public void SetItem(IItemUi itemUi, Identifier itemIdentifier) {
-      for (var i = 0; i < _slotsSize; ++i)
+      for (int i = 0; i < _slotsSize; ++i)
         if (_isEmptySlot[i]) {
           _isEmptySlot[i] = false;
           _identifiers[i] = itemIdentifier;
@@ -34,22 +34,35 @@ namespace UI {
     }
 
     public void UseItem(int index) {
-      _inventoryComponent.GetItem(_identifiers[index]).Use();
+      inventoryComponent.GetItem(_identifiers[index]).Use();
     }
     
-    public void RemoveItem(int index) {
-      _isEmptySlot[index] = true;
-      _inventoryComponent.RemoveItem(_identifiers[index]);
+    public void RemoveItem(Identifier identifier) {
+      for (int i = 0; i < _slotsSize; ++i) {
+        if (_identifiers[i] == null || _identifiers[i] != identifier) {
+          continue;
+        }
+        _isEmptySlot[i] = true;
+        inventoryComponent.RemoveItem(_identifiers[i]);
+        _identifiers[i] = null;
+        _itemsUi[i] = null;
+        RemoveItemUi(i);
+        return;
+      }
+    }
+
+    public void DropItem(int index) {
+      inventoryComponent.DropItem(_identifiers[index], _itemsUi[index].GetItemImage());
       RemoveItemUi(index);
     }
-    
+
     private void RemoveItemUi(int index) {
       Destroy(_buttons[index]);
       Destroy(_images[index]);
     }
 
     private void Start() {
-      _inventoryComponent.SetInventoryUi(this);
+      inventoryComponent.SetInventoryUi(this);
       _slotsSize = slots.Length;
       _identifiers = new Identifier[_slotsSize];
       _itemsUi = new IItemUi[_slotsSize];

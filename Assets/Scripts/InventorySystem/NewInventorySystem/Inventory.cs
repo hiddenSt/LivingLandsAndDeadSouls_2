@@ -6,7 +6,7 @@ namespace InventorySystem.NewInventorySystem {
     private IItemsRepositoryStrategy _itemsRepository;
     private int _inventorySize;
     private int _inventoryCapacity;
-    
+
     public Inventory(IItemsRepositoryStrategy itemsRepositoryStrategy, int capacity) {
       _itemsRepository = itemsRepositoryStrategy;
       _inventorySize = 0;
@@ -16,7 +16,6 @@ namespace InventorySystem.NewInventorySystem {
     public void AddItem(Item item) {
       if (_inventorySize > _inventoryCapacity)
         return;
-
       ++_inventorySize;
       item.SetIdentifier(new Identifier());
       _itemsRepository.AddItem(item);

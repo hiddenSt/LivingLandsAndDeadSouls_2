@@ -8,10 +8,11 @@ namespace Components {
   
   public class InventoryComponent : MonoBehaviour {
     public int inventorySize;
+    public float dropDistanceY = 0.3f;
     public IInventoryUi inventoryInventoryUi;
     private Inventory _inventory;
     private Image[] _itemsImages;
-    
+
     private void OnTriggerEnter2D(Collider2D other) {
       var loot = other.gameObject.GetComponent<LootComponent>();
       if (loot == null)
@@ -42,7 +43,7 @@ namespace Components {
       lootComponent.itemImage = itemImage;
       spriteRenderer.sprite = itemImage;
       circleCollider2D.radius = 0.1f;
-      droppedItem.transform.position = gameObject.transform.position + new Vector3(0, 3f);
+      droppedItem.transform.position = gameObject.transform.position + new Vector3(0, dropDistanceY);
 
       Instantiate(droppedItem);
     }
