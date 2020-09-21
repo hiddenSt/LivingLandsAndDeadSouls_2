@@ -13,16 +13,14 @@ namespace Items {
     private GunComponent _gunComponent;
     private string _gunType;
     private OutfitComponent _outfitComponent;
-    private Sprite _gunImage;
-    
-    public Gun(string gunType, int fireRate, int damagePoints, int ammoCount, int ammoLimit, Sprite gunImage) {
+
+    public Gun(string gunType, int fireRate, int damagePoints, int ammoCount, int ammoLimit) {
       _type = "Gun";
       _fireRate = fireRate;
       _ammoCount = ammoCount;
       _ammoLimit = ammoLimit;
       _damage = new Damage(damagePoints);
       _gunType = gunType;
-      _gunImage = gunImage;
     }
 
     public override void Use() {
@@ -76,10 +74,6 @@ namespace Items {
 
     public string GetGunType() {
       return _gunType;
-    }
-
-    public Sprite GetGunImage() {
-      return _gunImage;
     }
   }
 }

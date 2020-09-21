@@ -29,7 +29,7 @@ namespace Player {
     }
     
     public void RemoveToInventoryOrDrop() {
-      var itemIsAdded = _playerInventoryComponent.AddItem(_gun, _gun.GetGunImage());
+      var itemIsAdded = _playerInventoryComponent.AddItem(_gun);
       if (!itemIsAdded) {
         DropGun();
       }
@@ -43,20 +43,18 @@ namespace Player {
       _isActive = true;
       fireButton.interactable = true;
       fireButton.onClick.AddListener(Shot);
-      gunSlotUi.SetGunImageAndActivateListener(_gun.GetGunImage());
+      gunSlotUi.SetGunImageAndActivateListener(_gun.GeItemUi().GetItemImage());
     }
 
     public void Shot() {
       if (_ammoCount <= 0) {
         return;
       }
-
       _direction = _playerController.moveVelocity;
       if (_direction == Vector2.zero) {
         SendBulletWhenStandStill();
         return;
       }
-
       for (var i = 0; i < _gun.GetFireRate(); ++i) {
         SendBullet(_direction);
         if (_ammoCount <= 0) {
@@ -91,16 +89,12 @@ namespace Player {
 
     private void DropGun() {
       var droppedGun = new GameObject();
-      
       var lootComponent = droppedGun.AddComponent<LootComponent>();
       var circleCollider2D = droppedGun.AddComponent<CircleCollider2D>();
       var spriteRenderer = droppedGun.AddComponent<SpriteRenderer>();
-      
       lootComponent.item = _gun;
-      lootComponent.itemImage = _gun.GetGunImage();
       circleCollider2D.radius = 0.3f;
-      spriteRenderer.sprite = _gun.GetGunImage();
-      
+      spriteRenderer.sprite = _gun.GeItemUi().GetItemImage();
       _gun.Drop();
       Instantiate(droppedGun);
       droppedGun.transform.position = _playerTransform.position + new Vector3(0, 3f);

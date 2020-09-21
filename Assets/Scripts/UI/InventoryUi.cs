@@ -52,7 +52,7 @@ namespace UI {
     }
 
     public void DropItem(int index) {
-      inventoryComponent.DropItem(_identifiers[index], _itemsUi[index].GetItemImage());
+      inventoryComponent.DropItem(_identifiers[index]);
       RemoveItemUi(index);
     }
 

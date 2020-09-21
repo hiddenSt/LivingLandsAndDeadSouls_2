@@ -17,12 +17,12 @@ namespace Components {
       var loot = other.gameObject.GetComponent<LootComponent>();
       if (loot == null)
         return;
-      var itemIsAdded = AddItem(loot.item, loot.itemImage);
+      var itemIsAdded = AddItem(loot.item);
       if (itemIsAdded)
         Destroy(other.gameObject);
     }
     
-    public bool AddItem(InventorySystem.Item item, Sprite itemImage) {
+    public bool AddItem(InventorySystem.Item item) {
       if (!CanAddItem())
         return false;
       _inventory.AddItem(item);
@@ -30,7 +30,7 @@ namespace Components {
       return true;
     }
 
-    public void DropItem(Identifier identifier, Sprite itemImage) {
+    public void DropItem(Identifier identifier) {
       var item = _inventory.GetItem(identifier);
       _inventory.RemoveItem(identifier);
 
@@ -40,8 +40,7 @@ namespace Components {
       var spriteRenderer = droppedItem.AddComponent<SpriteRenderer>();
 
       lootComponent.item = item;
-      lootComponent.itemImage = itemImage;
-      spriteRenderer.sprite = itemImage;
+      spriteRenderer.sprite = item.GeItemUi().GetItemImage();
       circleCollider2D.radius = 0.1f;
       droppedItem.transform.position = gameObject.transform.position + new Vector3(0, dropDistanceY);
 

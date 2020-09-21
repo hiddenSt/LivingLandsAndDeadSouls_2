@@ -17,14 +17,14 @@ namespace InventorySystem {
       return _type;
     }
     
-    public Identifier GetIdentifier() {
-      return _identifier;
-    }
-    
     public IItemUi GeItemUi() {
       return _itemUi;
     }
 
+    public Identifier GetIdentifier() {
+      return _identifier;
+    }
+    
     public void SetItemUi(IItemUi itemUi) {
       _itemUi = itemUi;
     }
