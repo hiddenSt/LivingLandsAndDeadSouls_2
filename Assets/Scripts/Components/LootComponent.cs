@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Components {
   public class LootComponent : MonoBehaviour {
-    public InventorySystem.NewInventorySystem.Item item;
+    public InventorySystem.Item item;
     public Sprite itemImage;
   }
 }

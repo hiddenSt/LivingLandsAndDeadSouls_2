@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace InventorySystem.NewInventorySystem {
+namespace InventorySystem {
 
   public interface IItemUi {
      GameObject SetItemButton(Transform position);

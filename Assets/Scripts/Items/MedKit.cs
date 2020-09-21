@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Items {
-  public class MedKit : InventorySystem.NewInventorySystem.Item {
+  public class MedKit : InventorySystem.Item {
     public MedKit(int healthBoostPoints) {
       _type = "MedKit";
       _healthBoostPoints = healthBoostPoints;

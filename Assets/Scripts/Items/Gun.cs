@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Items {
   
-  public class Gun : InventorySystem.NewInventorySystem.Item {
+  public class Gun : InventorySystem.Item {
     private int _fireRate;
     private int _ammoLimit;
     private Damage _damage;

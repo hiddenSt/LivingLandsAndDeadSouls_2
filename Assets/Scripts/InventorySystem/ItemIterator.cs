@@ -1,4 +1,4 @@
-﻿namespace InventorySystem.NewInventorySystem {
+﻿namespace InventorySystem {
   public interface IItemIterator {
     void First();
     void Next();

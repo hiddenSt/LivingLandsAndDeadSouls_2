@@ -5,7 +5,7 @@ using System.Collections;
 using InventorySystem;
 
 namespace InventorySystem {
-  public class LongTouchUnity : UIBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler {
+ /* public class LongTouchUnity : UIBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler {
     private void Update() {
       if (!_isPointerDown) return;
       if (!(Time.time - _timePressStarted > durationThreshold)) return;
@@ -38,5 +38,5 @@ namespace InventorySystem {
     private bool _isPointerDown = false;
     private bool _longPressTrigger = false;
     private float _timePressStarted;
-  }
+  }*/
 } //end of namespace InventorySystem

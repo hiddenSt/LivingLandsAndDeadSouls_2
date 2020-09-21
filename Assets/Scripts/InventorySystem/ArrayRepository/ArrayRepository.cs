@@ -1,12 +1,15 @@
 ﻿using Utility;
 
-namespace InventorySystem.NewInventorySystem.ArrayRepository {
+namespace InventorySystem.ArrayRepository {
   
   public class ArrayRepository : IItemsRepositoryStrategy {
     public ArrayRepository(int size) {
       _itemsArray = new Item[size];
       _isEmptySlot = new bool[size];
-      for (var i = 0; i < size; ++i) _isEmptySlot[i] = true;
+      for (var i = 0; i < size; ++i) {
+        _isEmptySlot[i] = true;
+        _itemsArray[i] = null;
+      }
     }
 
     public void AddItem(Item item) {
@@ -37,16 +40,19 @@ namespace InventorySystem.NewInventorySystem.ArrayRepository {
         if (_itemsArray[i].GetIdentifier() == identifier)
           return _itemsArray[i];
       }
-
       return null;
     }
 
+    public Item GetItemByIndex(int i) {
+      return _itemsArray[i];
+    }
+    
     public int GetSize() {
       return _itemsArray.Length;
     }
 
     public IItemIterator GetIterator() {
-      return null; //new ArrayIterator(this);
+      return new ArrayRepositoryIterator(this);
     }
     
     

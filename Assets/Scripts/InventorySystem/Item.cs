@@ -1,6 +1,6 @@
 ﻿using Utility;
 
-namespace InventorySystem.NewInventorySystem {
+namespace InventorySystem {
   
   public abstract class Item {
     protected string _type;

@@ -1,5 +1,5 @@
-﻿using InventorySystem.NewInventorySystem;
-using InventorySystem.NewInventorySystem.ArrayRepository;
+﻿using InventorySystem;
+using InventorySystem.ArrayRepository;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
@@ -22,7 +22,7 @@ namespace Components {
         Destroy(other.gameObject);
     }
     
-    public bool AddItem(InventorySystem.NewInventorySystem.Item item, Sprite itemImage) {
+    public bool AddItem(InventorySystem.Item item, Sprite itemImage) {
       if (!CanAddItem())
         return false;
       _inventory.AddItem(item);
@@ -56,7 +56,7 @@ namespace Components {
       _inventory.RemoveItem(identifier);
     }
 
-    public InventorySystem.NewInventorySystem.Item GetItem(Identifier identifier) {
+    public InventorySystem.Item GetItem(Identifier identifier) {
       return _inventory.GetItem(identifier);
     }
 

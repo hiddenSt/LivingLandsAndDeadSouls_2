@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Items {
   
-  public class Outfit : InventorySystem.NewInventorySystem.Item {
+  public class Outfit : InventorySystem.Item {
     public Outfit(string outfitType, Image outfitImage) {
       _type = "Outfit";
       _outfitType = outfitType;

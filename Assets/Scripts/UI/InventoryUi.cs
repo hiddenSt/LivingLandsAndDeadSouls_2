@@ -1,5 +1,5 @@
 ﻿using Components;
-using InventorySystem.NewInventorySystem;
+using InventorySystem;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
