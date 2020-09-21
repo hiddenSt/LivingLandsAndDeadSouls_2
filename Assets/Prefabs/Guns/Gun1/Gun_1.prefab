@@ -133,3 +133,4 @@ MonoBehaviour:
   itemImage: {fileID: 2090505161963202784, guid: dd56ce400ac2f2445a022e8e3738c144,
     type: 3}
   button: {fileID: 2075217616807376735, guid: 27541f0185ce5bd4e80ef9429c6d2926, type: 3}
+  relatedPosition: {x: 0, y: 0, z: 0}
