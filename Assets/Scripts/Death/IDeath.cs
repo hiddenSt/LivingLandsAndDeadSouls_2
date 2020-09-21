@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDeath
-{ 
-    void AfterDeath();
+public interface IDeath {
+  void AfterDeath();
 }

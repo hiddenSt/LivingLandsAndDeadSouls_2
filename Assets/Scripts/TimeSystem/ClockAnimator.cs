@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 namespace TimeSystem {
-  
   public class ClockAnimator : MonoBehaviour {
     private void Update() {
       hoursTransform.localRotation = Quaternion.Euler(0f, 0f, time.hour * -hoursToDegrees);

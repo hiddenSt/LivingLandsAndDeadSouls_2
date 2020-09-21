@@ -4,10 +4,10 @@ using UnityEngine.UI;
 namespace Menu {
   public class GreenDensity : MonoBehaviour {
     private void Start() {
-      Transform button1T = this.gameObject.transform.Find("NormalButton");
-      Transform button2T = this.gameObject.transform.Find("MediumButton");
-      Transform button3T = this.gameObject.transform.Find("HightButton");
-      Transform button4T = this.gameObject.transform.Find("GBTBButton");
+      var button1T = gameObject.transform.Find("NormalButton");
+      var button2T = gameObject.transform.Find("MediumButton");
+      var button3T = gameObject.transform.Find("HightButton");
+      var button4T = gameObject.transform.Find("GBTBButton");
       _button1 = button1T.gameObject.GetComponent<Image>();
       _button2 = button2T.gameObject.GetComponent<Image>();
       _button3 = button3T.gameObject.GetComponent<Image>();
@@ -38,7 +38,7 @@ namespace Menu {
       ParameterManager.instance.forestValue = forestValue;
       ParameterManager.instance.sizeOfForest = sizeofForest;
     }
-    
+
     private void SwitchButtonColor(int button) {
       switch (button) {
         case 1:
@@ -67,12 +67,11 @@ namespace Menu {
           break;
       }
     }
-    
+
     //data members
     private Image _button1;
     private Image _button2;
     private Image _button3;
     private Image _button4;
-
   }
-}//end of namespace Menu
+} //end of namespace Menu

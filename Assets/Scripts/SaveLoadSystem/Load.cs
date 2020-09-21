@@ -5,12 +5,9 @@ using UnityEngine;
 namespace SaveLoadSystem {
   public class Load : MonoBehaviour {
     private void Update() {
+      if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad == true) SaveSystem.Load();
 
-      if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad == true) {
-        SaveLoadSystem.SaveSystem.Load();
-      }
-
-      Destroy(this.gameObject);
+      Destroy(gameObject);
     }
   }
 }

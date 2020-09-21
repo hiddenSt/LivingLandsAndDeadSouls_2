@@ -1,6 +1,4 @@
-﻿
-namespace HealthFight {
-
+﻿namespace HealthFight {
   public class Damage {
     public Damage(int damagePoints) {
       _damagePoints = damagePoints;

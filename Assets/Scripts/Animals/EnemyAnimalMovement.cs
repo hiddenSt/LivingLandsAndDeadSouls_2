@@ -79,7 +79,7 @@ namespace Animals {
         return;
       }
 
-      if (other.GetComponent<HealthFight.DamageComponent>() != null)
+      if (other.GetComponent<DamageComponent>() != null)
         return;
       switch (_walkDirection) {
         case 0:

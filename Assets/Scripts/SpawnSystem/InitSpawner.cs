@@ -5,25 +5,23 @@ namespace SpawnSystem {
     private void Start() {
       _enemyCount = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().hostileCharVal;
       _animalsCount = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().neutralCharVal;
-      for (int i = 0; i < enemyGameObjects.Length; ++i) {
-        for (int j = 0; j < _enemyCount / enemyGameObjects.Length; ++j) {
-          _randX = Random.Range(xAxisBeginOfRange, xAxisEndOfRange);
-          _randY = Random.Range(yAxisBeginOfRange, yAxisEndOfRange);
-          _spawnPosition = new Vector2(_randX, _randY);
-          Instantiate(enemyGameObjects[i], _spawnPosition, Quaternion.identity);
-        }
+      for (var i = 0; i < enemyGameObjects.Length; ++i)
+      for (var j = 0; j < _enemyCount / enemyGameObjects.Length; ++j) {
+        _randX = Random.Range(xAxisBeginOfRange, xAxisEndOfRange);
+        _randY = Random.Range(yAxisBeginOfRange, yAxisEndOfRange);
+        _spawnPosition = new Vector2(_randX, _randY);
+        Instantiate(enemyGameObjects[i], _spawnPosition, Quaternion.identity);
       }
 
-      for (int i = 0; i < commonAnimals.Length; ++i) {
-        for (int j = 0; j < _animalsCount / commonAnimals.Length; ++j) {
-          _randX = Random.Range(xAxisBeginOfRange, xAxisEndOfRange);
-          _randY = Random.Range(yAxisBeginOfRange, yAxisEndOfRange);
-          _spawnPosition = new Vector2(_randX, _randY);
-          Instantiate(commonAnimals[i], _spawnPosition, Quaternion.identity);
-        }
+      for (var i = 0; i < commonAnimals.Length; ++i)
+      for (var j = 0; j < _animalsCount / commonAnimals.Length; ++j) {
+        _randX = Random.Range(xAxisBeginOfRange, xAxisEndOfRange);
+        _randY = Random.Range(yAxisBeginOfRange, yAxisEndOfRange);
+        _spawnPosition = new Vector2(_randX, _randY);
+        Instantiate(commonAnimals[i], _spawnPosition, Quaternion.identity);
       }
 
-      Destroy(this.gameObject);
+      Destroy(gameObject);
     }
 
 

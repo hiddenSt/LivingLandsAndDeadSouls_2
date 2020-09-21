@@ -10,7 +10,7 @@ namespace InventorySystem {
     protected void Start() {
       StartCoroutine(InputListener());
     }
-    
+
     private IEnumerator InputListener() {
       while (enabled) {
         if (Input.GetMouseButtonDown(0))
@@ -22,7 +22,7 @@ namespace InventorySystem {
     private IEnumerator ClickEvent() {
       yield return new WaitForEndOfFrame();
 
-      float count = 0f;
+      var count = 0f;
       while (count < doubleClickTimeLimit) {
         if (Input.GetMouseButtonDown(0)) {
           DoubleClick();
@@ -37,9 +37,7 @@ namespace InventorySystem {
     }
 
 
-    private void SingleClick() {
-    
-    }
+    private void SingleClick() { }
 
     private void DoubleClick() {
       _destroyPanel = GameObject.Find("FakePanel");

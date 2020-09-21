@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Menu {
-
   public class MenuController : MonoBehaviour {
     private void Start() {
       var audioDataPath = Application.persistentDataPath + "/audio.data";
@@ -14,22 +13,22 @@ namespace Menu {
       var botsDataPath = Application.persistentDataPath + "/bots.data";
       var characteristicsDataPath = Application.persistentDataPath + "/characteristics.data";
 
-      SaveLoadSystem.SaveSystem.DataManagers = new List<IDataManager>();
-      
-      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.PlayerDataManager(playerDataPath));
-      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.BotDataManager(botsDataPath));
-      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.MapDataManager(mapDataPath));
-      SaveLoadSystem.SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.CharacteristicsDataManager(characteristicsDataPath));
-      
+      SaveSystem.DataManagers = new List<IDataManager>();
+
+      SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.PlayerDataManager(playerDataPath));
+      SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.BotDataManager(botsDataPath));
+      SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.MapDataManager(mapDataPath));
+      SaveSystem.DataManagers.Add(new SaveLoadSystem.DataManagers.CharacteristicsDataManager(characteristicsDataPath));
+
       var audioDataManager = new SaveLoadSystem.DataManagers.AudioDataManager(audioDataPath);
       audioDataManager.Load();
-      SaveLoadSystem.SaveSystem.DataManagers.Add(audioDataManager);
+      SaveSystem.DataManagers.Add(audioDataManager);
     }
 
     public void PlayPressed() {
       GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad = false;
-      SaveLoadSystem.SaveSystem.DeleteSaves();
-      
+      SaveSystem.DeleteSaves();
+
       MoveToTheGameScene();
     }
 
@@ -38,7 +37,7 @@ namespace Menu {
       if (!File.Exists(path))
         return;
       GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad = true;
-      
+
       MoveToTheGameScene();
     }
 

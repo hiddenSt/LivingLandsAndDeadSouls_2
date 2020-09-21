@@ -6,10 +6,6 @@ namespace InventorySystem {
     public void OnBeginDrag(PointerEventData eventData) { }
     public void OnDrag(PointerEventData eventData) { }
 
-    public void OnEndDrag(PointerEventData eventData) {
-
-    }
-
-  
+    public void OnEndDrag(PointerEventData eventData) { }
   }
 }

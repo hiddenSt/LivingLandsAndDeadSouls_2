@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Items {
-
+  
   public class Outfit : InventorySystem.NewInventorySystem.Item {
-    public Outfit(string outfitType, Image outfitImage)  {
+    public Outfit(string outfitType, Image outfitImage) {
       _type = "Outfit";
       _outfitType = outfitType;
       _outfitImage = outfitImage;
@@ -21,7 +21,7 @@ namespace Items {
     }
 
     public override void PickUp() {
-      _outfitComponent = GameObject.Find("SuitSlot").GetComponent<Player.OutfitComponent>();
+      _outfitComponent = GameObject.Find("Player").GetComponent<Player.OutfitComponent>();
       _playerAnimator = GameObject.Find("Player").GetComponent<Animator>();
     }
 
@@ -32,7 +32,7 @@ namespace Items {
     public string GetOutfitType() {
       return _outfitType;
     }
-    
+
     private Player.OutfitComponent _outfitComponent;
     private Animator _playerAnimator;
     private Dictionary<string, AnimatorOverrideController> _animatorOverrideController;

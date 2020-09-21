@@ -1,5 +1,4 @@
-﻿
-namespace SaveLoadSystem.DTO {
+﻿namespace SaveLoadSystem.DTO {
   [System.Serializable]
   public class CharacteristicsData {
     public CharacteristicsData(Characteristics.AllParameters characteristics) {

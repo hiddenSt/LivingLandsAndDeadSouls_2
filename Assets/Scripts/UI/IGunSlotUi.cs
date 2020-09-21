@@ -11,4 +11,3 @@ namespace UI {
     void SetGunComponent(GunComponent gunComponent);
   }
 }
-

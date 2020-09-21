@@ -8,11 +8,11 @@ namespace SaveLoadSystem.DataManagers {
     public MapDataManager(string filePath) {
       _filePath = filePath;
     }
-    
+
     public void Save() {
       var generator = GameObject.Find("Generate").GetComponent<Generator>();
       var formatter = new BinaryFormatter();
-    
+
       var season = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().season;
       var year = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().year;
       var day = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().day;

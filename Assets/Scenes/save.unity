@@ -21729,6 +21729,7 @@ GameObject:
   - component: {fileID: 5919126772530493814}
   - component: {fileID: 5919126772530493815}
   - component: {fileID: 5919126772530493819}
+  - component: {fileID: 5919126772530493809}
   m_Layer: 5
   m_Name: InventoryCanvas
   m_TagString: Untagged
@@ -21736,6 +21737,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5919126772530493809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5919126772530493808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3e8dae8b03da942abaa4036dca2519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: []
+  buttons: []
 --- !u!224 &5919126772530493812
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22332,32 +22347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 6
---- !u!114 &6783679401409266036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6783679401409266029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a3e8dae8b03da942abaa4036dca2519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slots:
-  - {fileID: 5919126772684291313}
-  - {fileID: 5919126772937613838}
-  - {fileID: 5919126771333427231}
-  - {fileID: 5919126771606347389}
-  - {fileID: 5919126772354062079}
-  - {fileID: 5919126771369056055}
-  buttons:
-  - {fileID: 425050223}
-  - {fileID: 2043460007}
-  - {fileID: 1284452474}
-  - {fileID: 1665167208}
-  - {fileID: 2051894860}
-  - {fileID: 1386373015}
 --- !u!222 &6817741584698001172
 CanvasRenderer:
   m_ObjectHideFlags: 0

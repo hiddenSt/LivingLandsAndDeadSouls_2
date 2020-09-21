@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 namespace Rain {
-
   public class RainPos : MonoBehaviour {
     private Transform _player;
 

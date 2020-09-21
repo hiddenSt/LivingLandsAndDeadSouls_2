@@ -1,11 +1,20 @@
 ﻿using HealthFight;
 using Player;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Items {
-
+  
   public class Gun : InventorySystem.NewInventorySystem.Item {
+    private int _fireRate;
+    private int _ammoLimit;
+    private Damage _damage;
+    private int _ammoCount;
+    private int _gunTypeIndex;
+    private GunComponent _gunComponent;
+    private string _gunType;
+    private OutfitComponent _outfitComponent;
+    private Sprite _gunImage;
+    
     public Gun(string gunType, int fireRate, int damagePoints, int ammoCount, int ammoLimit, Sprite gunImage) {
       _type = "Gun";
       _fireRate = fireRate;
@@ -15,7 +24,7 @@ namespace Items {
       _gunType = gunType;
       _gunImage = gunImage;
     }
-    
+
     public override void Use() {
       _gunComponent.SetGun(this);
       _outfitComponent.ChangeGunSkin(_gunType);
@@ -28,7 +37,7 @@ namespace Items {
     public override void PickUp() {
       _gunComponent = GameObject.Find("Player").GetComponent<GunComponent>();
     }
-    
+
     public void SetGunTypeIndex(int index) {
       _gunTypeIndex = index;
     }
@@ -72,15 +81,5 @@ namespace Items {
     public Sprite GetGunImage() {
       return _gunImage;
     }
-    
-    private int _fireRate;
-    private int _ammoLimit;
-    private Damage _damage;
-    private int _ammoCount;
-    private int _gunTypeIndex;
-    private GunComponent _gunComponent;
-    private string _gunType;
-    private OutfitComponent _outfitComponent;
-    private Sprite _gunImage;
   }
 }

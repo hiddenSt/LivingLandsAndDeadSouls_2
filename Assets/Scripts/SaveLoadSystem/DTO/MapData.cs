@@ -11,7 +11,7 @@ namespace SaveLoadSystem.DTO {
       tmpSizeZ = tmpSize.z;
       bushPosition = new List<ObjectPosition>(bushList.Count);
       bushSortingOrder = new int[bushList.Count];
-      for (int i = 0; i < bushList.Count; ++i) {
+      for (var i = 0; i < bushList.Count; ++i) {
         var objPos = new ObjectPosition();
         objPos.x = bushList[i].transform.position.x;
         objPos.y = bushList[i].transform.position.y;

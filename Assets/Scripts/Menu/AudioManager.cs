@@ -2,70 +2,69 @@
 using UnityEngine.UI;
 
 namespace Menu {
-  
   public class AudioManager : MonoBehaviour {
-    
     private void Start() {
       _musicVolume = GameObject.Find("MenuMusic").GetComponent<AudioSource>();
       _sounds = GameObject.Find("Sounds");
       masterVolume = 50f;
       musicVolume = 50f;
-      
+
       if (!_musicVolume.isPlaying)
         _musicVolume.Play();
-      
+
       _lastAllVolume = 0.5f;
       _lastAllVolume = 0.5f;
     }
 
     private void Update() {
       _rainSound = GameObject.Find("Rain Generator");
-      
+
       if (_rainSound != null) {
         if (!GameObject.Find("Rain Sound").GetComponent<AudioSource>().isPlaying)
           GameObject.Find("Rain Sound").GetComponent<AudioSource>().Play();
-      } else {
+      }
+      else {
         GameObject.Find("Rain Sound").GetComponent<AudioSource>().Stop();
       }
-      
+
       if (musicVolume != _lastMusicVolume)
-        _sounds.transform.GetChild(0).GetComponent<AudioSource>().volume = masterVolume / 100f  * musicVolume / 100f;
+        _sounds.transform.GetChild(0).GetComponent<AudioSource>().volume = masterVolume / 100f * musicVolume / 100f;
 
       if (masterVolume != _lastAllVolume) {
-        for (int i = 0; i < _sounds.transform.childCount; i++)
+        for (var i = 0; i < _sounds.transform.childCount; i++)
           _sounds.transform.GetChild(i).GetComponent<AudioSource>().volume = masterVolume / 100f;
         _sounds.transform.GetChild(0).GetComponent<AudioSource>().volume = masterVolume / 100f * musicVolume / 100f;
       }
-      
+
       _lastAllVolume = masterVolume;
       _lastMusicVolume = musicVolume;
     }
 
-    public void ChangeSlider()
-    {
-        if (masterSlider == null)
-            return;
-        masterSlider.GetComponent<Slider>().value = masterVolume;
-        musicSlider.GetComponent<Slider>().value = musicVolume;
+    public void ChangeSlider() {
+      if (masterSlider == null)
+        return;
+      masterSlider.GetComponent<Slider>().value = masterVolume;
+      musicSlider.GetComponent<Slider>().value = musicVolume;
     }
 
     public static AudioManager Instance {
       get {
-        if (instance == null) instance = new GameObject ("GameManager").AddComponent<AudioManager>();
+        if (instance == null) instance = new GameObject("GameManager").AddComponent<AudioManager>();
         return instance;
       }
     }
-    
+
     private void Awake() {
       if (instance) {
         DestroyImmediate(gameObject);
-      } else {
+      }
+      else {
         instance = this;
-        DontDestroyOnLoad (gameObject);
+        DontDestroyOnLoad(gameObject);
       }
     }
-    
-    
+
+
     //data members
     public GameObject masterSlider;
     public GameObject musicSlider;
@@ -79,4 +78,4 @@ namespace Menu {
     private GameObject _sounds;
     private GameObject _rainSound;
   }
-}//end of namespace Menu
+} //end of namespace Menu

@@ -8,13 +8,13 @@ namespace SaveLoadSystem.DataManagers {
     public BotDataManager(string filePath) {
       _filePath = filePath;
     }
-    
+
     public void Save() {
       var formatter = new BinaryFormatter();
       var data = new DTO.BotData(-100, 100, -100, 100,
         GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().hostileCharVal,
         GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().neutralCharVal);
-      
+
       var stream = new FileStream(_filePath, FileMode.Create);
       formatter.Serialize(stream, data);
       stream.Close();

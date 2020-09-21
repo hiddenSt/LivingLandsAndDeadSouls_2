@@ -2,12 +2,11 @@
 using UnityEngine.UI;
 
 namespace Menu {
-
   public class Precipitation : MonoBehaviour {
-    void Start() {
-      Transform button1T = this.gameObject.transform.Find("FewButton");
-      Transform button2T = this.gameObject.transform.Find("MediumButton");
-      Transform button3T = this.gameObject.transform.Find("ManyButton");
+    private void Start() {
+      var button1T = gameObject.transform.Find("FewButton");
+      var button2T = gameObject.transform.Find("MediumButton");
+      var button3T = gameObject.transform.Find("ManyButton");
       _button1 = button1T.gameObject.GetComponent<Image>();
       _button2 = button2T.gameObject.GetComponent<Image>();
       _button3 = button3T.gameObject.GetComponent<Image>();

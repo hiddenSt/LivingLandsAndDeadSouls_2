@@ -7,7 +7,7 @@ namespace HealthFight {
       var bulletGameObject = new GameObject("Bullet");
       var bulletSpriteRenderer = bulletGameObject.AddComponent<SpriteRenderer>();
 
-      bulletSpriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/Objects/bullet");
+      bulletSpriteRenderer.sprite = Resources.Load<Sprite>("Sprites/Objects/bullet");
 
       bulletSpriteRenderer.sortingOrder = 90;
       var dmgCmp = bulletGameObject.AddComponent<DamageComponent>();
@@ -34,7 +34,7 @@ namespace HealthFight {
       var bulletGameObject = new GameObject("Bullet");
       var bulletSpriteRenderer = bulletGameObject.AddComponent<SpriteRenderer>();
 
-      bulletSpriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/Objects/bullet");
+      bulletSpriteRenderer.sprite = Resources.Load<Sprite>("Sprites/Objects/bullet");
 
       bulletSpriteRenderer.sortingOrder = 90;
       var dmgCmp = bulletGameObject.AddComponent<DamageComponent>();
@@ -63,15 +63,13 @@ namespace HealthFight {
 
     private void Update() {
       --ttl;
-      if (ttl <= 0) {
-        Destroy(this.gameObject);
-      }
+      if (ttl <= 0) Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
       if (other.name == "Bullet" || other.GetComponent<HealthComponent>() == null ||
-          other.GetComponent<HealthComponent>().originId == this.GetComponent<DamageComponent>().originId) return;
-      Destroy(this.gameObject);
+          other.GetComponent<HealthComponent>().originId == GetComponent<DamageComponent>().originId) return;
+      Destroy(gameObject);
     }
 
     //data members

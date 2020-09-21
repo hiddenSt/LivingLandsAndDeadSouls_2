@@ -2,12 +2,11 @@
 using UnityEngine.UI;
 
 namespace Menu {
-
   public class NeutralChar : MonoBehaviour {
-    void Start() {
-      _button1 = this.gameObject.transform.Find("FewButton").GetComponent<Image>();
-      _button2 = this.gameObject.transform.Find("MediumButton").GetComponent<Image>();
-      _button3 = this.gameObject.transform.Find("ManyButton").GetComponent<Image>();
+    private void Start() {
+      _button1 = gameObject.transform.Find("FewButton").GetComponent<Image>();
+      _button2 = gameObject.transform.Find("MediumButton").GetComponent<Image>();
+      _button3 = gameObject.transform.Find("ManyButton").GetComponent<Image>();
     }
 
     public void SmallPressed() {
@@ -23,7 +22,7 @@ namespace Menu {
     public void LargePressed() {
       SetNeutralCharSettings(200, 450, 3);
     }
-    
+
     private void SetNeutralCharSettings(int beginOfRange, int endORange, int button) {
       ParameterManager.instance.neutralCharVal = Random.Range(beginOfRange, endORange);
       SwitchButtonColor(button);

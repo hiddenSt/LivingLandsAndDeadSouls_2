@@ -7,7 +7,7 @@ namespace SaveLoadSystem.DataManagers {
     public CharacteristicsDataManager(string filePath) {
       _filePath = filePath;
     }
-    
+
     public void Save() {
       var formatter = new BinaryFormatter();
       var characteristics = GameObject.Find("Characteristics").GetComponent<Characteristics.AllParameters>();

@@ -1,5 +1,4 @@
-﻿
-namespace SaveLoadSystem {
+﻿namespace SaveLoadSystem {
   [System.Serializable]
   public struct ObjectPosition {
     public float x;

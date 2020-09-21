@@ -4,10 +4,10 @@ using UnityEngine.Serialization;
 namespace HealthFight {
   public class DamageComponent : MonoBehaviour {
     private void Start() {
-      damageCollider = this.gameObject.AddComponent<CircleCollider2D>();
+      damageCollider = gameObject.AddComponent<CircleCollider2D>();
       damageCollider.isTrigger = true;
       damageCollider.radius = damageRadius;
-      
+
       _damage = new Damage(damagePoints);
     }
 

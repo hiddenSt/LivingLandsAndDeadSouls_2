@@ -10,11 +10,11 @@ namespace Characteristics {
     public void Disabled() {
       _characteristics.GetComponent<Canvas>().enabled = false;
     }
-    
+
     private void Start() {
       _characteristics = GameObject.Find("Characteristics");
     }
-    
+
     private GameObject _characteristics;
   }
 }

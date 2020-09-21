@@ -2,7 +2,6 @@
 using UnityEngine.SceneManagement;
 
 namespace Menu {
-
   public class PauseMenu : MonoBehaviour {
     public void OnGamePause() {
       Time.timeScale = 0;

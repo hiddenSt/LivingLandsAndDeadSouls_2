@@ -3,11 +3,11 @@
 namespace InventorySystem {
   public class Bag : MonoBehaviour {
     public GameObject[] inventorySlots;
-    
+
     private void Start() {
       _skills = GameObject.Find("Skills");
     }
-    
+
 
     public bool IsClosed() {
       return _isClosed;

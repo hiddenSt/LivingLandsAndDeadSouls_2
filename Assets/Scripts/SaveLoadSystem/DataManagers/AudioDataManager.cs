@@ -3,13 +3,12 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 
-
 namespace SaveLoadSystem.DataManagers {
   public class AudioDataManager : IDataManager {
     public AudioDataManager(string filepath) {
       _filePath = filepath;
     }
-    
+
     public void Save() {
       var formatter = new BinaryFormatter();
       var audioController = GameObject.Find("AudioManager").GetComponent<Menu.AudioManager>();

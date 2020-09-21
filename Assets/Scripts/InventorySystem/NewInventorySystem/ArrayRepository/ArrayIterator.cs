@@ -1,28 +1,27 @@
-﻿/*namespace InventorySystem.NewInventorySystem.ArrayRepository {
-  class ArrayIterator : IItemIterator {
-    public ArrayIterator(ArrayRepository arrayRepository) {
-      _arrayRepository = arrayRepository;
-      _currentItemIndex = 0;
+﻿namespace InventorySystem.NewInventorySystem.ArrayRepository {
+
+  public class ArrayRepositoryIterator : IItemIterator {
+    private ArrayRepository _itemsRepository;
+    private Item _currentItem;
+
+    public ArrayRepositoryIterator(ArrayRepository itemsRepository) {
+      _itemsRepository = itemsRepository;
     }
-     public Item First() {
-      return _arrayRepository.GetItem();
+
+    public void First() {
+      
     }
 
     public void Next() {
-      if (IsDone())
-        return;
-      ++_currentItemIndex;
+      
+    }
+
+    public bool IsDone() {
+      return true;
     }
 
     public Item CurrentItem() {
-      return _arrayRepository.GetItem(_currentItemIndex);
-    } 
-    
-    public bool IsDone() {
-      return _currentItemIndex < _arrayRepository.GetSize();
+      return _currentItem;
     }
-
-    private ArrayRepository _arrayRepository;
-    private int _currentItemIndex;
   }
-}*/
+}

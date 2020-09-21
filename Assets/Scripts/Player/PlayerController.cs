@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 namespace Player {
-
   public class PlayerController : MonoBehaviour {
     private void Start() {
       _height = GameObject.Find("ParametersManager").GetComponent
@@ -53,20 +52,17 @@ namespace Player {
 
       _dirX = mContr.Horizontal();
       _dirY = mContr.Vertical();
-      Vector2 moveInput = new Vector2(_dirX, _dirY);
+      var moveInput = new Vector2(_dirX, _dirY);
       moveVelocity = moveInput * playerSpeed;
       if (_dirX == 0 && _dirY == 0) {
         _soundOfRun.Stop();
       }
       else {
-        if (!_soundOfRun.isPlaying) {
-          _soundOfRun.Play();
-        }
+        if (!_soundOfRun.isPlaying) _soundOfRun.Play();
       }
-
     }
 
-    void FixedUpdate() {
+    private void FixedUpdate() {
       rigidBody.MovePosition(rigidBody.position + moveVelocity);
       _spriteRenderer.sortingOrder = _height / 2 - (int) gameObject.transform.position.y + 1;
     }

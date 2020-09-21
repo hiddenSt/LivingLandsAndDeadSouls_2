@@ -1,6 +1,4 @@
-﻿
-namespace HealthFight {
-
+﻿namespace HealthFight {
   public class Health {
     public Health(int healthPoints, int healthPointsLimit) {
       _healthPoints = healthPoints;
@@ -40,7 +38,7 @@ namespace HealthFight {
     public bool IsAlive() {
       return _healthPoints >= 0;
     }
-    
+
     private int _healthPoints;
     private int _healthPointsLimit;
   }

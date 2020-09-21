@@ -109,7 +109,8 @@ namespace PlayFab.Internal
 
                 using (var stream = new MemoryStream())
                 {
-                    using (var zipstream = new GZipStream(stream, CompressionMode.Compress, Ionic.Zlib.CompressionLevel.BestCompression))
+                    using (var zipstream =
+ new GZipStream(stream, CompressionMode.Compress, Ionic.Zlib.CompressionLevel.BestCompression))
                     {
                         zipstream.Write(reqContainer.Payload, 0, reqContainer.Payload.Length);
                     }
@@ -181,7 +182,8 @@ namespace PlayFab.Internal
                     {
                         if (reqContainer.ErrorCallback != null)
                         {
-                            reqContainer.Error = PlayFabHttp.GeneratePlayFabError(reqContainer.ApiEndpoint, response, reqContainer.CustomData);
+                            reqContainer.Error =
+ PlayFabHttp.GeneratePlayFabError(reqContainer.ApiEndpoint, response, reqContainer.CustomData);
                             PlayFabHttp.SendErrorEvent(reqContainer.ApiRequest, reqContainer.Error);
                             reqContainer.ErrorCallback(reqContainer.Error);
                         }
@@ -198,7 +200,8 @@ namespace PlayFab.Internal
                 reqContainer.JsonResponse = errorCb;
                 if (reqContainer.ErrorCallback != null)
                 {
-                    reqContainer.Error = PlayFabHttp.GeneratePlayFabError(reqContainer.ApiEndpoint, reqContainer.JsonResponse, reqContainer.CustomData);
+                    reqContainer.Error =
+ PlayFabHttp.GeneratePlayFabError(reqContainer.ApiEndpoint, reqContainer.JsonResponse, reqContainer.CustomData);
                     PlayFabHttp.SendErrorEvent(reqContainer.ApiRequest, reqContainer.Error);
                     reqContainer.ErrorCallback(reqContainer.Error);
                 }

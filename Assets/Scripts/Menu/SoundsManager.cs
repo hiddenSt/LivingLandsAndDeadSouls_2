@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 namespace Menu {
-
   public class SoundsManager : MonoBehaviour {
     public static SoundsManager Instance {
       get {
@@ -10,9 +9,10 @@ namespace Menu {
       }
     }
 
-    void Awake() {
-      if (instance)
+    private void Awake() {
+      if (instance) {
         DestroyImmediate(gameObject);
+      }
       else {
         instance = this;
         DontDestroyOnLoad(gameObject);

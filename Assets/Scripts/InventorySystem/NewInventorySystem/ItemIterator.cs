@@ -1,7 +1,6 @@
 ﻿namespace InventorySystem.NewInventorySystem {
-  
   public interface IItemIterator {
-    Item First();
+    void First();
     void Next();
     bool IsDone();
     Item CurrentItem();

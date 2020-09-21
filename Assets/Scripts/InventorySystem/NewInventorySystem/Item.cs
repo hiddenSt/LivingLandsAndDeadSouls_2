@@ -1,17 +1,27 @@
-﻿using UI;
-using Utility;
+﻿using Utility;
 
 namespace InventorySystem.NewInventorySystem {
+  
+  public abstract class Item {
+    protected string _type;
+    protected IItemUi _itemUi;
+    private Identifier _identifier;
 
- public abstract class Item {
     public abstract void Use();
     public abstract void PickUp();
     public abstract void Drop();
 
+    public void SetItemUi(IItemUi itemUi) {
+      _itemUi = itemUi;
+    }
     public string GetItemType() {
       return _type;
     }
     
+    public IItemUi GeItemUi() {
+      return _itemUi;
+    }
+
     public Identifier GetIdentifier() {
       return _identifier;
     }
@@ -19,8 +29,5 @@ namespace InventorySystem.NewInventorySystem {
     public void SetIdentifier(Identifier identifier) {
       _identifier = identifier;
     }
-
-    protected string _type;
-    private Identifier _identifier;
- }
+  }
 }

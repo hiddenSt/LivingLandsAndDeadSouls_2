@@ -3,19 +3,18 @@ using PlayFab.PfEditor;
 using UnityEditor;
 using UnityEngine;
 
-public class MakeScriptableObject
-{
-    [MenuItem("PlayFab/MakePlayFabSharedSettings")]
-    public static void MakePlayFabSharedSettings()
-    {
-        PlayFabSharedSettings asset = ScriptableObject.CreateInstance<PlayFabSharedSettings>();
+public class MakeScriptableObject {
+  [MenuItem("PlayFab/MakePlayFabSharedSettings")]
+  public static void MakePlayFabSharedSettings() {
+    var asset = ScriptableObject.CreateInstance<PlayFabSharedSettings>();
 
-        AssetDatabase.CreateAsset(asset, "Assets/PlayFabSdk/Shared/Public/Resources/PlayFabSharedSettings.asset"); // TODO: Path should not be hard coded
-        AssetDatabase.SaveAssets();
+    AssetDatabase.CreateAsset(asset,
+      "Assets/PlayFabSdk/Shared/Public/Resources/PlayFabSharedSettings.asset"); // TODO: Path should not be hard coded
+    AssetDatabase.SaveAssets();
 
-        EditorUtility.FocusProjectWindow();
+    EditorUtility.FocusProjectWindow();
 
-        Selection.activeObject = asset;
-    }
+    Selection.activeObject = asset;
+  }
 }
 #endif

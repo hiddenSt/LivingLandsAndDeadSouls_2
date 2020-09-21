@@ -2,13 +2,12 @@
 using UnityEngine.UI;
 
 namespace Menu {
-
   public class StartSeason : MonoBehaviour {
     private void Start() {
-      _button1 = this.gameObject.transform.Find("Summer").GetComponent<Image>();
-      _button2 = this.gameObject.transform.Find("Autumn").GetComponent<Image>();
-      _button3 = this.gameObject.transform.Find("Winter").GetComponent<Image>();
-      _button4 = this.gameObject.transform.Find("Spring").GetComponent<Image>();
+      _button1 = gameObject.transform.Find("Summer").GetComponent<Image>();
+      _button2 = gameObject.transform.Find("Autumn").GetComponent<Image>();
+      _button3 = gameObject.transform.Find("Winter").GetComponent<Image>();
+      _button4 = gameObject.transform.Find("Spring").GetComponent<Image>();
     }
 
     public void Summer() {

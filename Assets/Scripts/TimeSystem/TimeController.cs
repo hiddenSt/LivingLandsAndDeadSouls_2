@@ -47,7 +47,9 @@ namespace TimeSystem {
             season = 0;
             year += 1;
           }
-          else season += 1;
+          else {
+            season += 1;
+          }
 
           ChangeSeason();
         }
@@ -55,23 +57,16 @@ namespace TimeSystem {
 
       RainControl(_weatherChance);
 
-      if (hour >= 3.5 && hour < 17 && light.intensity <= 1) {
+      if (hour >= 3.5 && hour < 17 && light.intensity <= 1)
         light.intensity += 0.0015f;
-      }
       else if (light.intensity >= 0)
         light.intensity -= 0.0015f;
 
-      if (light.intensity == 1) {
-        playerLight.intensity = 0;
-      }
+      if (light.intensity == 1) playerLight.intensity = 0;
 
-      if (hour > 18 && hour < 22 && playerLight.intensity < 1) {
-        playerLight.intensity += 0.0025f;
-      }
+      if (hour > 18 && hour < 22 && playerLight.intensity < 1) playerLight.intensity += 0.0025f;
 
-      if (hour > 4 && hour < 8 && playerLight.intensity > 0) {
-        playerLight.intensity -= 0.0025f;
-      }
+      if (hour > 4 && hour < 8 && playerLight.intensity > 0) playerLight.intensity -= 0.0025f;
 
       dayYear.text = "Day " + day.ToString() + "\n Year " + year.ToString();
     }
@@ -83,7 +78,7 @@ namespace TimeSystem {
           //light.color = new Vector4(0.95f, 0.76f, 0.35f, 1);
           generator.treeList.ForEach(tree => {
             var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/tri");
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/tri");
           });
           break;
         case 1:
@@ -91,19 +86,17 @@ namespace TimeSystem {
           _weatherChance = 10 * _precipitation;
           generator.treeList.ForEach(tree => {
             var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Yellow_Tree");
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Yellow_Tree");
           });
           generator.bushList.ForEach(bush => {
             var spriteRenderer = bush.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Fall_Bush");
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Fall_Bush");
           });
-          for (int x = 0; x < generator.width; x++) {
-            for (int y = 0; y < generator.height; y++) {
-              generator.landMap.SetTile(
-                new Vector3Int(-x + generator.width / 2, -y + generator.height / 2, 0),
-                generator.autumnTile);
-            }
-          }
+          for (var x = 0; x < generator.width; x++)
+          for (var y = 0; y < generator.height; y++)
+            generator.landMap.SetTile(
+              new Vector3Int(-x + generator.width / 2, -y + generator.height / 2, 0),
+              generator.autumnTile);
 
           //light.color=new Vector4(0.96f, 0.59f, 0.03f, 1);
           break;
@@ -112,30 +105,27 @@ namespace TimeSystem {
           _weatherChance = 10;
           generator.rockList.ForEach(rock => {
             var spriteRenderer = rock.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Rock");
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Winter_Rock");
           });
           generator.treeList.ForEach(tree => {
             var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Tree");
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Winter_Tree");
           });
           generator.bushList.ForEach(bush => {
             var spriteRenderer = bush.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Bush");
-
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Winter_Bush");
           });
           generator.houseList.ForEach(house => {
             var spriteRenderer = house.GetComponent<SpriteRenderer>();
             if (spriteRenderer.tag == "Small House")
-              spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Small_House");
-            else spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Winter_Big_House");
+              spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Winter_Small_House");
+            else spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Winter_Big_House");
           });
-          for (int x = 0; x < generator.width; x++) {
-            for (int y = 0; y < generator.height; y++) {
-              generator.landMap.SetTile(
-                new Vector3Int(-x + generator.width / 2, -y + generator.height / 2, 0),
-                generator.winterTile);
-            }
-          }
+          for (var x = 0; x < generator.width; x++)
+          for (var y = 0; y < generator.height; y++)
+            generator.landMap.SetTile(
+              new Vector3Int(-x + generator.width / 2, -y + generator.height / 2, 0),
+              generator.winterTile);
 
           //light.color = new Vector4(0.07f, 0.94f, 0.94f, 1);
           break;
@@ -144,32 +134,28 @@ namespace TimeSystem {
           _weatherChance = 5 * _precipitation;
           generator.rockList.ForEach(rock => {
             var spriteRenderer = rock.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/ROCKKK");
-
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/ROCKKK");
           });
           generator.treeList.ForEach(tree => {
             var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Spring_Tree");
-
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Spring_Tree");
           });
           generator.houseList.ForEach(house => {
             var spriteRenderer = house.GetComponent<SpriteRenderer>();
             if (spriteRenderer.tag == "Small House")
-              spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/gray_house1");
-            else spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Big_House");
+              spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/gray_house1");
+            else spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Big_House");
           });
           generator.bushList.ForEach(bush => {
             var spriteRenderer = bush.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/Bush");
+            spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/Bush");
           });
 
-          for (int x = 0; x < generator.width; x++) {
-            for (int y = 0; y < generator.height; y++) {
-              generator.landMap.SetTile(
-                new Vector3Int(-x + generator.width / 2, -y + generator.height / 2, 0),
-                generator.landTile);
-            }
-          }
+          for (var x = 0; x < generator.width; x++)
+          for (var y = 0; y < generator.height; y++)
+            generator.landMap.SetTile(
+              new Vector3Int(-x + generator.width / 2, -y + generator.height / 2, 0),
+              generator.landTile);
           break;
       }
     }
@@ -177,7 +163,7 @@ namespace TimeSystem {
     private void ChangeTreeSprite(string path) {
       generator.treeList.ForEach(tree => {
         var spriteRenderer = tree.GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = UnityEngine.Resources.Load<Sprite>("Sprites/environment/" + path);
+        spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/environment/" + path);
       });
     }
 
@@ -199,6 +185,5 @@ namespace TimeSystem {
     private double _weatherChance = 2;
     private int _precipitation;
     private bool _weatherIsActive = false;
-
   }
 }

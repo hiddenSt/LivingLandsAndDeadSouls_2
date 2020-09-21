@@ -25,7 +25,7 @@ namespace HealthFight {
       borderGameObject.transform.localScale = size + Vector3.one * borderThickness;
       borderGameObject.GetComponent<SpriteRenderer>().color = Color.black;
       borderGameObject.GetComponent<SpriteRenderer>().sprite =
-        UnityEngine.Resources.Load<Sprite>("Sprites/Objects/WhitePixel");
+        Resources.Load<Sprite>("Sprites/Objects/WhitePixel");
       borderGameObject.GetComponent<SpriteRenderer>().sortingOrder = 90;
 
       //Background
@@ -35,7 +35,7 @@ namespace HealthFight {
       backgroundGameObject.transform.localScale = size;
       backgroundGameObject.GetComponent<SpriteRenderer>().color = backgroundColor;
       backgroundGameObject.GetComponent<SpriteRenderer>().sprite =
-        UnityEngine.Resources.Load<Sprite>("Sprites/Objects/WhitePixel");
+        Resources.Load<Sprite>("Sprites/Objects/WhitePixel");
       backgroundGameObject.GetComponent<SpriteRenderer>().sortingOrder = 100;
 
       //Bar
@@ -51,7 +51,7 @@ namespace HealthFight {
       barSpriteGameObject.transform.localScale = size;
       barSpriteGameObject.GetComponent<SpriteRenderer>().color = barColor;
       barSpriteGameObject.GetComponent<SpriteRenderer>().sprite =
-        UnityEngine.Resources.Load<Sprite>("Sprites/Objects/WhitePixel");
+        Resources.Load<Sprite>("Sprites/Objects/WhitePixel");
       barSpriteGameObject.GetComponent<SpriteRenderer>().sortingOrder = 110;
 
       var healthBar = healthBarGameObject.AddComponent<HealthBar>();

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Controls {
-
+  
   public class GunSlotControl : MonoBehaviour, IGunSlotUi {
     public void ChangeAmmoCount(int count) {
       _ammoText.text = count.ToString();

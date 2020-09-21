@@ -2,32 +2,31 @@
 using UnityEngine.UI;
 
 namespace Menu {
-
   public class MapSize : MonoBehaviour {
-    void Start() {
-      Transform button1T = this.gameObject.transform.Find("SmallButton");
-      Transform button2T = this.gameObject.transform.Find("MediumButton");
-      Transform button3T = this.gameObject.transform.Find("LargeButton");
+    private void Start() {
+      var button1T = gameObject.transform.Find("SmallButton");
+      var button2T = gameObject.transform.Find("MediumButton");
+      var button3T = gameObject.transform.Find("LargeButton");
       _button1 = button1T.gameObject.GetComponent<Image>();
       _button2 = button2T.gameObject.GetComponent<Image>();
       _button3 = button3T.gameObject.GetComponent<Image>();
     }
 
     public void SmallPressed() {
-      Menu.ParameterManager.instance.tmpSize.x = 200;
-      Menu.ParameterManager.instance.tmpSize.y = 200;
+      ParameterManager.instance.tmpSize.x = 200;
+      ParameterManager.instance.tmpSize.y = 200;
       SwitchButtonColor(1);
     }
 
     public void MedPressed() {
-      Menu.ParameterManager.instance.tmpSize.x = 500;
-      Menu.ParameterManager.instance.tmpSize.y = 500;
+      ParameterManager.instance.tmpSize.x = 500;
+      ParameterManager.instance.tmpSize.y = 500;
       SwitchButtonColor(2);
     }
 
     public void LargePressed() {
-      Menu.ParameterManager.instance.tmpSize.x = 1000;
-      Menu.ParameterManager.instance.tmpSize.y = 1000;
+      ParameterManager.instance.tmpSize.x = 1000;
+      ParameterManager.instance.tmpSize.y = 1000;
       SwitchButtonColor(3);
     }
 

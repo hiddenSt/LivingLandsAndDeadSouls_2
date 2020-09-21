@@ -2,7 +2,6 @@
 using UnityEngine;
 
 namespace Characteristics {
-
   public class AllParameters : MonoBehaviour {
     public void AddExperience(float exp) {
       if (experience + exp >= toNextLevelExp) {
@@ -38,7 +37,6 @@ namespace Characteristics {
         case 2:
           _playerName = "Vitali Tsal";
           break;
-
       }
 
       _personName = GameObject.Find("Person name");

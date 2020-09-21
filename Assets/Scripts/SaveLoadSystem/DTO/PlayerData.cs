@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 namespace SaveLoadSystem.DTO {
-  
   [System.Serializable]
   public class PlayerData {
     //0 - empty

@@ -12,7 +12,7 @@ namespace SaveLoadSystem.DataManagers {
     public void Save() { }
     public void DeleteSaves() { }
 
-    
+
     //data members
     private GameObject _loader;
     private string _filePath;

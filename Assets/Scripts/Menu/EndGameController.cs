@@ -14,10 +14,9 @@ namespace Menu {
         _delay -= Time.deltaTime;
 
         if (_delay <= 0) {
-          GameObject sounds = GameObject.Find("Sounds");
-          for (int i = 1; i < sounds.transform.childCount; i++) {
+          var sounds = GameObject.Find("Sounds");
+          for (var i = 1; i < sounds.transform.childCount; i++)
             sounds.transform.GetChild(i).GetComponent<AudioSource>().Stop();
-          }
 
           Debug.Log("Before");
           SaveLoadSystem.SaveSystem.DeleteSaves();
@@ -31,7 +30,7 @@ namespace Menu {
 
       if (_playerHealth != null || _playerHealth.health > 0)
         return;
-      
+
       endofGame = true;
       endGameCanvas.SetActive(true);
       _playerHealthBar.SetSize(0);
@@ -41,8 +40,8 @@ namespace Menu {
     public GameObject endGameCanvas;
 
     private HealthComponent _playerHealth;
-    private HealthFight.HealthBar _playerHealthBar;
+    private HealthBar _playerHealthBar;
     private float _delay = 4f;
     private bool endofGame = false;
   }
-}//end of namespace Menu
+} //end of namespace Menu

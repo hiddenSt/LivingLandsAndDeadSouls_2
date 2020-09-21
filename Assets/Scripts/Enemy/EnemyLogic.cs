@@ -4,12 +4,12 @@ using Random = UnityEngine.Random;
 namespace Enemy {
   public class EnemyLogic : MonoBehaviour {
     private void Start() {
-      _myRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
-      _animator = this.gameObject.GetComponent<Animator>();
+      _myRigidBody = gameObject.GetComponent<Rigidbody2D>();
+      _animator = gameObject.GetComponent<Animator>();
       _waitCounter = waitTime;
       _walkCounter = waitTime;
     }
-    
+
     private void Update() {
       if (isActive == false) {
         _myRigidBody.velocity = new Vector2(0, 0);
@@ -37,25 +37,26 @@ namespace Enemy {
             break;
         }
 
-          if (!(_walkCounter < 0)) return;
+        if (!(_walkCounter < 0)) return;
 
-          isWalking = false;
-          _waitCounter = waitTime;
-          switch (_walkDirection) {
-            case 0:
-              _animator.Play("IdleBack");
-              break;
-            case 1:
-              _animator.Play("IdleRight");
-              break;
-            case 2:
-              _animator.Play("IdleFace");
-              break;
-            case 3:
-              _animator.Play("IdleLeft");
-              break;
-          }
-      } else {
+        isWalking = false;
+        _waitCounter = waitTime;
+        switch (_walkDirection) {
+          case 0:
+            _animator.Play("IdleBack");
+            break;
+          case 1:
+            _animator.Play("IdleRight");
+            break;
+          case 2:
+            _animator.Play("IdleFace");
+            break;
+          case 3:
+            _animator.Play("IdleLeft");
+            break;
+        }
+      }
+      else {
         _waitCounter -= Time.deltaTime;
         _myRigidBody.velocity = Vector2.zero;
         if (_waitCounter < 0)
@@ -86,7 +87,8 @@ namespace Enemy {
           _walkDirection = 1;
           break;
       }
-      if (isWalking != false) 
+
+      if (isWalking != false)
         return;
       isWalking = true;
       _waitCounter = 0;
@@ -105,4 +107,4 @@ namespace Enemy {
     private int _walkDirection;
     public bool isActive = true;
   }
-}//end of namespace Enemy
+} //end of namespace Enemy

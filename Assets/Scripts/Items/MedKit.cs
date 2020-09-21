@@ -2,13 +2,12 @@
 using UnityEngine;
 
 namespace Items {
-
   public class MedKit : InventorySystem.NewInventorySystem.Item {
     public MedKit(int healthBoostPoints) {
       _type = "MedKit";
       _healthBoostPoints = healthBoostPoints;
     }
-    
+
     public override void Use() {
       _playerHealthComponent.IncreaseHealth(_healthBoostPoints);
     }
