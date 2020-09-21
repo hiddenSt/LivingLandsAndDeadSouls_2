@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 18277777852404220}
   - component: {fileID: 7970359431228217872}
   - component: {fileID: 8638085594082982997}
-  - component: {fileID: 7698589893183944147}
+  - component: {fileID: 6691772947860750485}
+  - component: {fileID: 5443192446554970203}
   m_Layer: 0
   m_Name: Gun_1
   m_TagString: Untagged
@@ -100,7 +101,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.09
---- !u!114 &7698589893183944147
+--- !u!114 &6691772947860750485
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,12 +110,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1627506103263643169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3a01a26cd34b14789da8b3409a847f, type: 3}
+  m_Script: {fileID: 11500000, guid: 42ed6bc2d560ecd4c9a5a94598ddf8c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: Autogun
-  fireRate: 10
-  damage: 2
-  image: {fileID: 21300000, guid: 3326d9bfd6191dd4e8d48ce77901adc0, type: 3}
+  gunType: Rifle
+  fireRate: 5
+  damagePoints: 5
   ammoCount: 10
-  ammoLimit: 10
+  ammoLimit: 15
+--- !u!114 &5443192446554970203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627506103263643169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01831aa0b82bb84d8cb2b13e265e7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemImage: {fileID: 2090505161963202784, guid: dd56ce400ac2f2445a022e8e3738c144,
+    type: 3}
+  button: {fileID: 2075217616807376735, guid: 27541f0185ce5bd4e80ef9429c6d2926, type: 3}
