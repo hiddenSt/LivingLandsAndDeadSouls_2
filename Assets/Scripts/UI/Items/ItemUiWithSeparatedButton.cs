@@ -1,5 +1,7 @@
-﻿using InventorySystem;
+﻿using System;
+using InventorySystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Items {
 
@@ -7,6 +9,7 @@ namespace UI.Items {
     public GameObject itemImage;
     public GameObject button;
     public Vector3 relatedPosition;
+    private Sprite _itemImageSprite;
 
     public GameObject SetItemButton(Transform position) {
       var instantiatedButton = Instantiate(button, position);
@@ -19,8 +22,11 @@ namespace UI.Items {
     }
 
     public Sprite GetItemImage() {
-      return itemImage.GetComponent<Sprite>();
+      return _itemImageSprite;
+    }
+
+    private void Start() {
+      _itemImageSprite = itemImage.GetComponent<Image>().sprite;
     }
   }
-
 }

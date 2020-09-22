@@ -21,7 +21,6 @@ namespace UI.Controls {
     }
 
     public void SetGunImageAndActivateListener(Sprite gunImage) {
-      Debug.Log("GunImage: " + gunImage);
       _gunImage.sprite = gunImage;
       _dropButton.onClick.AddListener(playerGunComponent.RemoveToInventoryOrDrop);
       _dropButton.interactable = true;
