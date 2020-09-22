@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-namespace Menu {
+namespace DTOBetweenScenes {
+  
   public class ParameterManager : MonoBehaviour {
     private void Start() {
       _mapScalerSmall = 3;

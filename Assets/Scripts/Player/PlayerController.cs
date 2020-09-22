@@ -4,7 +4,7 @@ namespace Player {
   public class PlayerController : MonoBehaviour {
     private void Start() {
       _height = GameObject.Find("ParametersManager").GetComponent
-        <Menu.ParameterManager>().tmpSize.y;
+        <DTOBetweenScenes.ParameterManager>().tmpSize.y;
       _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
       _soundOfRun = GameObject.Find("RunSound").GetComponent<AudioSource>();
       animator = GetComponent<Animator>();

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using DTOBetweenScenes;
 
 
 namespace SaveLoadSystem.DataManagers {
@@ -12,8 +13,8 @@ namespace SaveLoadSystem.DataManagers {
     public void Save() {
       var formatter = new BinaryFormatter();
       var data = new DTO.BotData(-100, 100, -100, 100,
-        GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().hostileCharVal,
-        GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().neutralCharVal);
+        GameObject.Find("ParametersManager").GetComponent<ParameterManager>().hostileCharVal,
+        GameObject.Find("ParametersManager").GetComponent<ParameterManager>().neutralCharVal);
 
       var stream = new FileStream(_filePath, FileMode.Create);
       formatter.Serialize(stream, data);
@@ -26,7 +27,7 @@ namespace SaveLoadSystem.DataManagers {
       var stream = new FileStream(_filePath, FileMode.Open);
       var data = formatter.Deserialize(stream) as DTO.BotData;
       stream.Close();
-      var parameterManager = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>();
+      var parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
       parameterManager.hostileCharVal = data.enemyCount;
       parameterManager.neutralCharVal = data.animalsCount;
     }

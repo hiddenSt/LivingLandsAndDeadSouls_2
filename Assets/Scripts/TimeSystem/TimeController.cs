@@ -1,4 +1,5 @@
-﻿using GenerateMap;
+﻿using DTOBetweenScenes;
+using GenerateMap;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
@@ -32,8 +33,8 @@ namespace TimeSystem {
       playerLight = GameObject.Find("Player").GetComponent<Light2D>();
       playerLight.intensity = 0;
       //light.color = new Vector4(0.83f, 0.81f, 0.42f, 1);
-      _precipitation = Menu.ParameterManager.instance.precipitation;
-      season = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().startSeason;
+      _precipitation = ParameterManager.instance.precipitation;
+      season = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().startSeason;
       ChangeSeason();
     }
 

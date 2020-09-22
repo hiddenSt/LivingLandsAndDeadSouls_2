@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using DTOBetweenScenes;
+using UnityEngine;
 
 namespace SpawnSystem {
   public class InitSpawner : MonoBehaviour {
     private void Start() {
-      _enemyCount = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().hostileCharVal;
-      _animalsCount = GameObject.Find("ParametersManager").GetComponent<Menu.ParameterManager>().neutralCharVal;
+      _enemyCount = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().hostileCharVal;
+      _animalsCount = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().neutralCharVal;
       for (var i = 0; i < enemyGameObjects.Length; ++i)
       for (var j = 0; j < _enemyCount / enemyGameObjects.Length; ++j) {
         _randX = Random.Range(xAxisBeginOfRange, xAxisEndOfRange);

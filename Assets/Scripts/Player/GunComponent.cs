@@ -113,6 +113,7 @@ namespace Player {
       fireButton.interactable = false;
       fireButton.onClick.RemoveListener(Shot);
       _gunSlotUi.RemoveGunImageAndDeactivateListener();
+      _gunSlotUi.ChangeAmmoCount(0);
     }
     
     private void Start() {

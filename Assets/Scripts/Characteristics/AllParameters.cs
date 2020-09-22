@@ -27,7 +27,7 @@ namespace Characteristics {
     }
 
     private void Start() {
-      switch (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().characterI) {
+      switch (GameObject.Find("ParametersManager").GetComponent<DTOBetweenScenes.ParameterManager>().characterI) {
         case 0:
           _playerName = "Dick Clarque";
           break;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DTOBetweenScenes;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Menu {

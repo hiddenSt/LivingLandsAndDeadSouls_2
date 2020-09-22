@@ -38,6 +38,7 @@ namespace Player {
         .GetComponent<PlayerParameters>().characterDefaultAnimator;
       _animator = gameObject.GetComponent<Animator>();
       _skinsAnimator = _characterDefaultAnimator;
+      _gunType = "WithoutGun";
     }
   }
 }

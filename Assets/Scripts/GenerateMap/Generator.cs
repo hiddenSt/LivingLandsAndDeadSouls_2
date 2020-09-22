@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Menu;
-using SaveLoadSystem;
+﻿using System.Collections.Generic;
+using DTOBetweenScenes;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEditor;
+
 
 namespace GenerateMap {
   public class Generator : MonoBehaviour {
