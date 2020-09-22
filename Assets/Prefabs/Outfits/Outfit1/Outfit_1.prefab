@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outfitType: 
-  skinsName:
+  gunTypes:
   - WithoutGun
   - Rifle
   - MachineGun

@@ -16742,6 +16742,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOutfitComponent: {fileID: 6783679401409266032}
+--- !u!1 &1816826994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1816826996}
+  - component: {fileID: 1816826995}
+  m_Layer: 0
+  m_Name: PlayerParameters
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1816826995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816826994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bde23edc23d2d14fa1e6c5322ba1508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunTypes:
+  - WithoutGun
+  - Rifle
+  - MachineGun
+  animatorOverrideControllers:
+  - {fileID: 22100000, guid: 7097d1f322e508f4e866e447469dc8bf, type: 2}
+  - {fileID: 22100000, guid: 3cf79dd8971236343a1a7e1735d1e143, type: 2}
+  - {fileID: 22100000, guid: 88aad2b026f91cb4c8aeb1e193489043, type: 2}
+--- !u!4 &1816826996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816826994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 126.40668, y: 244.21378, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1821261931
 GameObject:
   m_ObjectHideFlags: 0

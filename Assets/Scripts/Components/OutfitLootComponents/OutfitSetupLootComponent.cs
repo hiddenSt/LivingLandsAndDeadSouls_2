@@ -8,7 +8,7 @@ namespace Components.OutfitLootComponents {
 
   public class OutfitSetupLootComponent : MonoBehaviour {
     public string outfitType;
-    public string[] skinsName;
+    public string[] gunTypes;
     public AnimatorOverrideController[] animatorOverrideControllers;
     private SortedDictionary<string, AnimatorOverrideController> _animatorOverrideControllers;
 
@@ -21,8 +21,8 @@ namespace Components.OutfitLootComponents {
 
     private void Start() {
       _animatorOverrideControllers = new SortedDictionary<string, AnimatorOverrideController>();
-      for (int i = 0; i < skinsName.Length; ++i) {
-        _animatorOverrideControllers.Add(skinsName[i], animatorOverrideControllers[i]);
+      for (int i = 0; i < gunTypes.Length; ++i) {
+        _animatorOverrideControllers.Add(gunTypes[i], animatorOverrideControllers[i]);
       }
       _itemUi = gameObject.GetComponent<ItemUiWithSeparatedButton>();
       _lootComponent.item = new Outfit(outfitType, _animatorOverrideControllers);

@@ -37,6 +37,7 @@ namespace Player {
       _characterDefaultAnimator = GameObject.Find("PlayerParameters")
         .GetComponent<PlayerParameters>().characterDefaultAnimator;
       _animator = gameObject.GetComponent<Animator>();
+      _skinsAnimator = _characterDefaultAnimator;
     }
   }
 }
