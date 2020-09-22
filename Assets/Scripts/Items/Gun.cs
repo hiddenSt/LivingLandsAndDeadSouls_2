@@ -12,7 +12,6 @@ namespace Items {
     private int _gunTypeIndex;
     private GunComponent _gunComponent;
     private string _gunType;
-    private OutfitComponent _outfitComponent;
 
     public Gun(string gunType, int fireRate, int damagePoints, int ammoCount, int ammoLimit) {
       _type = "Gun";
@@ -25,7 +24,6 @@ namespace Items {
 
     public override void Use() {
       _gunComponent.SetGun(this);
-      _outfitComponent.ChangeGunSkin(_gunType);
     }
 
     public override void Drop() {
@@ -34,7 +32,6 @@ namespace Items {
 
     public override void PickUp() {
       _gunComponent = GameObject.Find("Player").GetComponent<GunComponent>();
-      _outfitComponent = GameObject.Find("Player").GetComponent<OutfitComponent>();
     }
 
     public void SetGunTypeIndex(int index) {

@@ -18,12 +18,14 @@ namespace Player {
     private PlayerController _playerController;
     private Transform _playerTransform;
     private Items.Gun _gun;
+    private OutfitComponent _outfitComponent;
 
     public void SetGun(Items.Gun gun) {
       if (_isActive) {
         RemoveToInventoryOrDrop();
       }
       _gun = gun;
+      _outfitComponent.ChangeGunSkin(_gun.GetGunType());
       _ammoCount = _gun.GetAmmoCount();
       ActivateGun();
     }
@@ -36,6 +38,7 @@ namespace Player {
       DeactivateGun();
       _gun.SetAmmoCount(_ammoCount);
       _gun = null;
+      _outfitComponent.ChangeGunSkin("WithoutGun");
       _gunSlotUi.ChangeAmmoCount(0);
     }
     
@@ -44,6 +47,7 @@ namespace Player {
       fireButton.interactable = true;
       fireButton.onClick.AddListener(Shot);
       _gunSlotUi.SetGunImageAndActivateListener(_gun.GeItemUi().GetItemImage());
+      _gunSlotUi.ChangeAmmoCount(_ammoCount);
     }
 
     public void Shot() {
@@ -114,6 +118,7 @@ namespace Player {
     private void Start() {
       _playerController = gameObject.GetComponent<PlayerController>();
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
+      _outfitComponent = gameObject.GetComponent<OutfitComponent>();
       fireButton.interactable = false;
       _playerTransform = gameObject.transform;
       _gunSlotUi.SetGunComponent(this);
