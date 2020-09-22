@@ -11,7 +11,7 @@ namespace Items {
     }
 
     public override void Use() {
-      _outfitComponent.SetOutfit(_animatorOverrideController, base.GeItemUi().GetItemImage());
+      _outfitComponent.SetOutfit(this);
     }
 
     public override void Drop() {
@@ -22,6 +22,10 @@ namespace Items {
     public override void PickUp() {
       _outfitComponent = GameObject.Find("Player").GetComponent<Player.OutfitComponent>();
       _playerAnimator = GameObject.Find("Player").GetComponent<Animator>();
+    }
+
+    public SortedDictionary<string, AnimatorOverrideController> GetSkinsAnimator() {
+      return _animatorOverrideController;
     }
 
     public string GetOutfitType() {

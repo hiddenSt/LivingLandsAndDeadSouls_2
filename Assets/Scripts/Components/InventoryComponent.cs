@@ -42,9 +42,10 @@ namespace Components {
       lootComponent.item = item;
       spriteRenderer.sprite = item.GeItemUi().GetItemImage();
       circleCollider2D.radius = 0.1f;
-      droppedItem.transform.position = gameObject.transform.position + new Vector3(0, dropDistanceY);
+      circleCollider2D.isTrigger = true;
 
-      Instantiate(droppedItem);
+      var droppedItemInstance = Instantiate(droppedItem);
+      droppedItemInstance.transform.position = gameObject.transform.position + new Vector3(0, dropDistanceY);
     }
 
     public void SetInventoryUi(IInventoryUi inventoryInventoryUiParam) {

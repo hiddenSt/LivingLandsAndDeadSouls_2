@@ -102,10 +102,11 @@ namespace Player {
       var spriteRenderer = droppedGun.AddComponent<SpriteRenderer>();
       lootComponent.item = _gun;
       circleCollider2D.radius = 0.3f;
+      circleCollider2D.isTrigger = true;
       spriteRenderer.sprite = _gun.GeItemUi().GetItemImage();
       _gun.Drop();
-      Instantiate(droppedGun);
-      droppedGun.transform.position = _playerTransform.position + new Vector3(0, 3f);
+      var droppedOutfit = Instantiate(droppedGun);
+      droppedOutfit.transform.position = _playerTransform.position + new Vector3(0, _playerInventoryComponent.dropDistanceY);
     }
 
     private void DeactivateGun() {

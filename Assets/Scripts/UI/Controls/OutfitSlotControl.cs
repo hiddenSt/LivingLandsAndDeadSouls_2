@@ -18,7 +18,7 @@ namespace UI.Controls {
     public void RemoveOutfitImageAndDeactivateListener() {
       _dropButton.interactable = false;
       _outfitImage.sprite = null;
-      playerOutfitComponent.RemoveOutfitSkin();
+      playerOutfitComponent.RemoveToInventoryOrDrop();
       _dropButton.onClick.RemoveListener(RemoveOutfitImageAndDeactivateListener);
     }
 
