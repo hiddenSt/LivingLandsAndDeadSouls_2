@@ -1,5 +1,4 @@
-﻿using System;
-using Components;
+﻿using Components;
 using InventorySystem;
 using UI.Controls;
 using UnityEngine;
@@ -34,14 +33,13 @@ namespace UI {
     }
 
     public void UseItem(int index) {
-      var item = inventoryComponent.GetItem(_identifiers[index]);
       inventoryComponent.GetItem(_identifiers[index]).Use();
       RemoveItem(_identifiers[index]);
     }
     
     public void RemoveItem(Identifier identifier) {
       for (int i = 0; i < _slotsSize; ++i) {
-        if (_identifiers[i] == null || _identifiers[i] != identifier) {
+        if (_identifiers[i] == null || !identifier.EqualsTo(_identifiers[i])) {
           continue;
         }
         inventoryComponent.RemoveItem(_identifiers[i]);
