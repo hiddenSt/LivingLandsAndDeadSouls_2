@@ -3389,6 +3389,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6783679401680027530, guid: 4797f038ee636a3408d0c3626ea6af76, type: 3}
     - {fileID: 326907164, guid: 4797f038ee636a3408d0c3626ea6af76, type: 3}
+    - {fileID: 326907171, guid: 4797f038ee636a3408d0c3626ea6af76, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4797f038ee636a3408d0c3626ea6af76, type: 3}
 --- !u!95 &812121756 stripped
 Animator:
@@ -16608,8 +16609,9 @@ GameObject:
   - component: {fileID: 1763787705}
   - component: {fileID: 1763787704}
   - component: {fileID: 1763787703}
+  - component: {fileID: 1763787706}
   m_Layer: 5
-  m_Name: SuitSlotButton
+  m_Name: SuitSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16677,9 +16679,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6245970541055623523}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
-        m_MethodName: Drop
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16727,6 +16729,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763787701}
   m_CullTransparentMesh: 0
+--- !u!114 &1763787706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763787701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc232ebe1b14dfe9d5a332656a28230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOutfitComponent: {fileID: 6783679401409266032}
 --- !u!1 &1821261931
 GameObject:
   m_ObjectHideFlags: 0
@@ -21485,6 +21500,8 @@ GameObject:
   - component: {fileID: 6245970541801193000}
   - component: {fileID: 6245970541801193001}
   - component: {fileID: 6245970541801192998}
+  - component: {fileID: 6245970541801192999}
+  - component: {fileID: 6245970541801192997}
   m_Layer: 5
   m_Name: GunSlot
   m_TagString: Untagged
@@ -21492,6 +21509,49 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6245970541801192997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245970541801192996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6245970541801193001}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6245970541801192998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21505,6 +21565,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmpty: 1
+--- !u!114 &6245970541801192999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245970541801192996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140e964db26e8e449bff61f3478ba36b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerGunComponent: {fileID: 6783679401409266034}
+  ammoText: {fileID: 4119644701433000530}
 --- !u!222 &6245970541801193000
 CanvasRenderer:
   m_ObjectHideFlags: 0

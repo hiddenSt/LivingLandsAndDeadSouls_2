@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3341735783027897303}
   - component: {fileID: 3341735783027897302}
   - component: {fileID: -2785213543574144182}
-  - component: {fileID: 4437381119687038376}
+  - component: {fileID: 7751175496390575810}
+  - component: {fileID: 4181736828797954482}
   m_Layer: 0
   m_Name: Outfit_1
   m_TagString: Untagged
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -99,7 +101,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
---- !u!114 &4437381119687038376
+--- !u!114 &7751175496390575810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,8 +110,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 3341735783027897300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb46660e9761d2b47bf346224cdea122, type: 3}
+  m_Script: {fileID: 11500000, guid: b7bf9e93336ad494d821f73f51273108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 3597022782940009738, guid: 25177b5a33b89884d8dd4eb0d140e7db,
+  outfitType: 
+  skinsName:
+  - WithoutGun
+  - Rifle
+  - MachineGun
+  animatorOverrideControllers:
+  - {fileID: 22100000, guid: 1f341944cb83f9042a8a91ffea45be6a, type: 2}
+  - {fileID: 22100000, guid: e1c3f2e0193ed1241882992d5d040d52, type: 2}
+  - {fileID: 22100000, guid: b8f43c04a1184374ebc48e0b49d66442, type: 2}
+--- !u!114 &4181736828797954482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3341735783027897300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01831aa0b82bb84d8cb2b13e265e7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemImage: {fileID: 8156613626934858934, guid: 600bc8e2ad1973f468e8c31c42ecb3c7,
     type: 3}
+  button: {fileID: 2075217616807376735, guid: 27541f0185ce5bd4e80ef9429c6d2926, type: 3}
+  relatedPosition: {x: 0, y: 0, z: 0}

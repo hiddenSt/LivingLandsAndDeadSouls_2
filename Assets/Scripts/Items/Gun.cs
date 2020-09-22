@@ -34,6 +34,7 @@ namespace Items {
 
     public override void PickUp() {
       _gunComponent = GameObject.Find("Player").GetComponent<GunComponent>();
+      _outfitComponent = GameObject.Find("Player").GetComponent<OutfitComponent>();
     }
 
     public void SetGunTypeIndex(int index) {

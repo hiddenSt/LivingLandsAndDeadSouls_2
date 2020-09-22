@@ -1,11 +1,10 @@
-﻿using Player;
-using UnityEngine.UI;
+﻿  using Player;
+using UnityEngine;
 
 namespace UI {
   
   public interface IOutfitSlotUi {
-    void SetOutfitImageAndActivateListener(Image outfitImage);
+    void SetOutfitImageAndActivateListener(Sprite outfitUi);
     void RemoveOutfitImageAndDeactivateListener();
-    void SetOutfitComponent(OutfitComponent outfitComponent);
   }
 }

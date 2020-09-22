@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Items {
   
   public class Outfit : InventorySystem.Item {
-    public Outfit(string outfitType, Image outfitImage) {
+    public Outfit(string outfitType, SortedDictionary<string, AnimatorOverrideController> animatorOverrideController) {
       _type = "Outfit";
       _outfitType = outfitType;
-      _outfitImage = outfitImage;
+      _animatorOverrideController = animatorOverrideController;
     }
 
     public override void Use() {
-      _outfitComponent.SetOutfit(_animatorOverrideController, _outfitImage);
+      _outfitComponent.SetOutfit(_animatorOverrideController, base.GeItemUi().GetItemImage());
     }
 
     public override void Drop() {
@@ -25,18 +24,13 @@ namespace Items {
       _playerAnimator = GameObject.Find("Player").GetComponent<Animator>();
     }
 
-    public Image GetOutfitImage() {
-      return _outfitImage;
-    }
-
     public string GetOutfitType() {
       return _outfitType;
     }
 
     private Player.OutfitComponent _outfitComponent;
     private Animator _playerAnimator;
-    private Dictionary<string, AnimatorOverrideController> _animatorOverrideController;
-    private Image _outfitImage;
+    private SortedDictionary<string, AnimatorOverrideController> _animatorOverrideController;
     private string _outfitType;
   }
 }

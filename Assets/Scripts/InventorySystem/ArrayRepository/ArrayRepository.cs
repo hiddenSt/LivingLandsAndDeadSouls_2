@@ -37,7 +37,7 @@ namespace InventorySystem.ArrayRepository {
       for (var i = 0; i < _itemsArray.Length; ++i) {
         if (_isEmptySlot[i])
           continue;
-        if (_itemsArray[i].GetIdentifier() == identifier)
+        if (identifier.EqualsTo(_itemsArray[i].GetIdentifier()))
           return _itemsArray[i];
       }
       return null;

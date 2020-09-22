@@ -7,7 +7,6 @@ namespace Characteristics {
     public void UpStrength() {
       characteristics = GameObject.Find("Characteristics");
       if (characteristics.GetComponent<AllParameters>().freePoints > 0) {
-        GameObject.Find("FireButton").GetComponent<Gun>().damageBuff += 10;
         characteristics.GetComponent<AllParameters>().freePoints -= 1;
         characteristics.GetComponent<AllParameters>().strength += 1;
         characteristics.GetComponent<AllParameters>().Display();

@@ -8,7 +8,7 @@ namespace Player {
   
   public class GunComponent : MonoBehaviour {
     public Button fireButton;
-    public IGunSlotUi gunSlotUi;
+    private IGunSlotUi _gunSlotUi;
     private int _damageBuff = 0;
     private int _ammoCount;
     private Vector2 _direction;
@@ -36,14 +36,14 @@ namespace Player {
       DeactivateGun();
       _gun.SetAmmoCount(_ammoCount);
       _gun = null;
-      gunSlotUi.ChangeAmmoCount(0);
+      _gunSlotUi.ChangeAmmoCount(0);
     }
     
     private void ActivateGun() {
       _isActive = true;
       fireButton.interactable = true;
       fireButton.onClick.AddListener(Shot);
-      gunSlotUi.SetGunImageAndActivateListener(_gun.GeItemUi().GetItemImage());
+      _gunSlotUi.SetGunImageAndActivateListener(_gun.GeItemUi().GetItemImage());
     }
 
     public void Shot() {
@@ -61,6 +61,10 @@ namespace Player {
           return;
         }
       }
+    }
+
+    public void SetGuSlotUi(IGunSlotUi gunSlotUi) {
+      _gunSlotUi = gunSlotUi;
     }
 
     private void SendBulletWhenStandStill() {
@@ -84,7 +88,7 @@ namespace Player {
       _bullet = Bullet.Create(_playerController.transform, directionVec2, 5f * _gun.GetFireRate(),
                       _gun.GetDamagePoints() + _damageBuff, 0.1f, gameObject.GetInstanceID());
       --_ammoCount;
-      gunSlotUi.ChangeAmmoCount(_ammoCount);
+      _gunSlotUi.ChangeAmmoCount(_ammoCount);
     }
 
     private void DropGun() {
@@ -104,7 +108,7 @@ namespace Player {
       _isActive = false;
       fireButton.interactable = false;
       fireButton.onClick.RemoveListener(Shot);
-      gunSlotUi.RemoveGunImageAndDeactivateListener();
+      _gunSlotUi.RemoveGunImageAndDeactivateListener();
     }
     
     private void Start() {
@@ -112,7 +116,7 @@ namespace Player {
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
       fireButton.interactable = false;
       _playerTransform = gameObject.transform;
-      gunSlotUi.SetGunComponent(this);
+      _gunSlotUi.SetGunComponent(this);
       _isActive = false;
     }
   }

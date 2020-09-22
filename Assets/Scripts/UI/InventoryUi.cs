@@ -1,4 +1,5 @@
-﻿using Components;
+﻿using System;
+using Components;
 using InventorySystem;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,7 +35,12 @@ namespace UI {
     }
 
     public void UseItem(int index) {
+      var item = inventoryComponent.GetItem(_identifiers[index]);
+      if (item == null) {
+        throw new Exception("item is NULL");
+      }
       inventoryComponent.GetItem(_identifiers[index]).Use();
+      RemoveItem(_identifiers[index]);
     }
     
     public void RemoveItem(Identifier identifier) {
@@ -57,6 +63,7 @@ namespace UI {
     }
 
     private void RemoveItemUi(int index) {
+      _buttons[index].GetComponent<Button>().onClick.RemoveListener(() => UseItem(index));
       Destroy(_buttons[index]);
       Destroy(_images[index]);
     }
