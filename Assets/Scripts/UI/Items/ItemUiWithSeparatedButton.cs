@@ -7,7 +7,7 @@ namespace UI.Items {
     public GameObject itemImage;
     public GameObject button;
     public Vector3 relatedPosition;
-    
+
     public GameObject SetItemButton(Transform position) {
       var instantiatedButton = Instantiate(button, position);
       instantiatedButton.transform.position += relatedPosition;

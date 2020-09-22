@@ -22,6 +22,7 @@ namespace Components.GunLootComponents {
       _itemUi = gameObject.GetComponent<ItemUiWithSeparatedButton>();
       _lootComponent.item = new Gun(gunType, fireRate, damagePoints, ammoCount, ammoLimit);
       _lootComponent.item.SetItemUi(_itemUi);
+      Debug.Log("INSTARTCOMP: " + _lootComponent.item.GeItemUi().GetItemImage());
     }
   }
 
