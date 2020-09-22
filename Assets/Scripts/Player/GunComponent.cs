@@ -104,9 +104,13 @@ namespace Player {
       circleCollider2D.radius = 0.3f;
       circleCollider2D.isTrigger = true;
       spriteRenderer.sprite = _gun.GeItemUi().GetItemImage();
+      spriteRenderer.sortingOrder = 100;
       _gun.Drop();
-      var droppedOutfit = Instantiate(droppedGun);
-      droppedOutfit.transform.position = _playerTransform.position + new Vector3(0, _playerInventoryComponent.dropDistanceY);
+      Vector2 spawnPosition = new Vector2(0, 0);
+      spawnPosition = gameObject.transform.position;
+      spawnPosition += new Vector2(0, 3);
+      droppedGun.SetActive(true);
+      Instantiate(droppedGun, spawnPosition, Quaternion.identity);
     }
 
     private void DeactivateGun() {
