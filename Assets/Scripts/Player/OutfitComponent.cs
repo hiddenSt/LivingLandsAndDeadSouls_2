@@ -75,6 +75,7 @@ namespace Player {
       _animator = gameObject.GetComponent<Animator>();
       _skinsAnimator = _characterDefaultAnimator;
       _gunType = "WithoutGun";
+      _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
     }
   }
 }
