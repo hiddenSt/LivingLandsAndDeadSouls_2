@@ -30,9 +30,8 @@ namespace Components {
       return true;
     }
 
-    public void DropItem(Identifier identifier) {
-      var item = _inventory.GetItem(identifier);
-      _inventory.RemoveItem(identifier);
+    public void DropItem(InventorySystem.Item item) {
+      _inventory.RemoveItem(item.GetIdentifier());
 
       var droppedItem = new GameObject();
       var lootComponent = droppedItem.AddComponent<LootComponent>();
@@ -41,11 +40,13 @@ namespace Components {
 
       lootComponent.item = item;
       spriteRenderer.sprite = item.GeItemUi().GetItemImage();
-      circleCollider2D.radius = 0.1f;
+      circleCollider2D.radius = 0.3f;
       circleCollider2D.isTrigger = true;
 
-      var droppedItemInstance = Instantiate(droppedItem);
-      droppedItemInstance.transform.position = gameObject.transform.position + new Vector3(0, dropDistanceY);
+      var dropPosition = new Vector3(0, 0);
+      dropPosition += gameObject.transform.position;
+      dropPosition += new Vector3(0, dropDistanceY);
+      Instantiate(droppedItem, dropPosition, Quaternion.identity);
     }
 
     public void SetInventoryUi(IInventoryUi inventoryInventoryUiParam) {

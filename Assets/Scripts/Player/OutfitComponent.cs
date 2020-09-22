@@ -33,9 +33,8 @@ namespace Player {
     public void RemoveToInventoryOrDrop() {
       var itemIsAdded = _playerInventoryComponent.AddItem(_outfit);
       if (!itemIsAdded) {
-        DropOutfit();
+        _playerInventoryComponent.DropItem(_outfit);
       }
-
       _outfit = null;
       RemoveOutfitSkin();
     }
@@ -53,20 +52,6 @@ namespace Player {
       _skinsAnimator = _outfit.GetSkinsAnimator();
       _animator.runtimeAnimatorController = _skinsAnimator[_gunType];
       _outfitSlotUi.SetOutfitImageAndActivateListener(_outfit.GeItemUi().GetItemImage());
-    }
-
-    private void DropOutfit() {
-      var droppedOutfit = new GameObject();
-      var lootComponent = droppedOutfit.AddComponent<LootComponent>();
-      var spriteRenderer = droppedOutfit.AddComponent<SpriteRenderer>();
-      var collider = droppedOutfit.AddComponent<CircleCollider2D>();
-      collider.isTrigger = true;
-      collider.radius = 0.3f;
-      lootComponent.item = _outfit;
-      spriteRenderer.sprite = _outfit.GeItemUi().GetItemImage();
-      _outfit.Drop();
-      var droppedItem = Instantiate(droppedOutfit);
-      droppedItem.transform.position = gameObject.transform.position + new Vector3(0, _playerInventoryComponent.dropDistanceY);
     }
     
     private void Start() {

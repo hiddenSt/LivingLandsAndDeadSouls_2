@@ -12,11 +12,9 @@ namespace Player {
     private int _damageBuff = 0;
     private int _ammoCount;
     private Vector2 _direction;
-    private GameObject _bullet;
     private bool _isActive;
     private InventoryComponent _playerInventoryComponent;
     private PlayerController _playerController;
-    private Transform _playerTransform;
     private Items.Gun _gun;
     private OutfitComponent _outfitComponent;
 
@@ -33,7 +31,7 @@ namespace Player {
     public void RemoveToInventoryOrDrop() {
       var itemIsAdded = _playerInventoryComponent.AddItem(_gun);
       if (!itemIsAdded) {
-        DropGun();
+        _playerInventoryComponent.DropItem(_gun);
       }
       DeactivateGun();
       _gun.SetAmmoCount(_ammoCount);
@@ -89,28 +87,10 @@ namespace Player {
     }
 
     private void SendBullet(Vector2 directionVec2) {
-      _bullet = Bullet.Create(_playerController.transform, directionVec2, 5f * _gun.GetFireRate(),
+      Bullet.Create(_playerController.transform, directionVec2, 5f * _gun.GetFireRate(),
                       _gun.GetDamagePoints() + _damageBuff, 0.1f, gameObject.GetInstanceID());
       --_ammoCount;
       _gunSlotUi.ChangeAmmoCount(_ammoCount);
-    }
-
-    private void DropGun() {
-      var droppedGun = new GameObject();
-      var lootComponent = droppedGun.AddComponent<LootComponent>();
-      var circleCollider2D = droppedGun.AddComponent<CircleCollider2D>();
-      var spriteRenderer = droppedGun.AddComponent<SpriteRenderer>();
-      lootComponent.item = _gun;
-      circleCollider2D.radius = 0.3f;
-      circleCollider2D.isTrigger = true;
-      spriteRenderer.sprite = _gun.GeItemUi().GetItemImage();
-      spriteRenderer.sortingOrder = 100;
-      _gun.Drop();
-      Vector2 spawnPosition = new Vector2(0, 0);
-      spawnPosition = gameObject.transform.position;
-      spawnPosition += new Vector2(0, 3);
-      droppedGun.SetActive(true);
-      Instantiate(droppedGun, spawnPosition, Quaternion.identity);
     }
 
     private void DeactivateGun() {
@@ -126,7 +106,6 @@ namespace Player {
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
       _outfitComponent = gameObject.GetComponent<OutfitComponent>();
       fireButton.interactable = false;
-      _playerTransform = gameObject.transform;
       _gunSlotUi.SetGunComponent(this);
       _isActive = false;
     }

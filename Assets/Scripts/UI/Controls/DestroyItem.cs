@@ -42,7 +42,7 @@ namespace InventorySystem {
     private void DoubleClick() {
       _destroyPanel = GameObject.Find("FakePanel");
       _destroyPanel.SetActive(true);
-      _destroyPanel.GetComponent<DestroyingItem>().destroyingItem = gameObject;
+      //_destroyPanel.GetComponent<DestroyingItem>().destroyingItem = gameObject;
     }
   }
 }

@@ -54,7 +54,8 @@ namespace UI {
     }
 
     public void DropItem(int index) {
-      inventoryComponent.DropItem(_identifiers[index]);
+      var item = inventoryComponent.GetItem(_identifiers[index]);
+      inventoryComponent.DropItem(item);
       RemoveItemUi(index);
     }
 
