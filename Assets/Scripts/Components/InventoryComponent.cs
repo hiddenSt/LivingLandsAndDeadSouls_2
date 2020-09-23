@@ -26,7 +26,7 @@ namespace Components {
       if (!CanAddItem())
         return false;
       _inventory.AddItem(item);
-      inventoryInventoryUi.SetItem(item.GeItemUi(), item.GetIdentifier());
+      inventoryInventoryUi.SetItem(item.GetItemUi(), item.GetIdentifier());
       return true;
     }
 
@@ -39,10 +39,9 @@ namespace Components {
       var spriteRenderer = droppedItem.AddComponent<SpriteRenderer>();
 
       lootComponent.item = item;
-      spriteRenderer.sprite = item.GeItemUi().GetItemImage();
+      spriteRenderer.sprite = item.GetItemUi().GetItemImage();
       circleCollider2D.radius = 0.15f;
       circleCollider2D.isTrigger = true;
-      Debug.Log("ITem ref is " + lootComponent.item);
       var dropPosition = new Vector3(0, 0);
       dropPosition += gameObject.transform.position;
       dropPosition += new Vector3(0, dropDistanceY);

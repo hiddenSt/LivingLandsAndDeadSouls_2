@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using DTOBetweenScenes;
 using Components;
-using InventorySystem;
 using Items;
 using UI;
 using UnityEngine;
@@ -51,7 +50,7 @@ namespace Player {
     private void ActivateUi() {
       _skinsAnimator = _outfit.GetSkinsAnimator();
       _animator.runtimeAnimatorController = _skinsAnimator[_gunType];
-      _outfitSlotUi.SetOutfitImageAndActivateListener(_outfit.GeItemUi().GetItemImage());
+      _outfitSlotUi.SetOutfitImageAndActivateListener(_outfit.GetItemUi().GetItemImage());
     }
     
     private void Start() {

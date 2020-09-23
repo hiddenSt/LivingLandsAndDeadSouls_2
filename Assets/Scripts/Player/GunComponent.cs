@@ -44,7 +44,7 @@ namespace Player {
       _isActive = true;
       fireButton.interactable = true;
       fireButton.onClick.AddListener(Shot);
-      _gunSlotUi.SetGunImageAndActivateListener(_gun.GeItemUi().GetItemImage());
+      _gunSlotUi.SetGunImageAndActivateListener(_gun.GetItemUi().GetItemImage());
       _gunSlotUi.ChangeAmmoCount(_ammoCount);
     }
 

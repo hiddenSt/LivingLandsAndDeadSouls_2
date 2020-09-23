@@ -9,7 +9,6 @@ namespace Player {
       _soundOfRun = GameObject.Find("RunSound").GetComponent<AudioSource>();
       animator = GetComponent<Animator>();
       mContr = GameObject.Find("JoystickBG").GetComponent<MobileController>();
-      Debug.Log("Controller is initialized");
       rigidBody = GetComponent<Rigidbody2D>();
       _anim = GetComponent<Animator>();
     }

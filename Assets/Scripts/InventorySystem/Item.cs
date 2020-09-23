@@ -17,7 +17,7 @@ namespace InventorySystem {
       return _type;
     }
     
-    public IItemUi GeItemUi() {
+    public IItemUi GetItemUi() {
       return _itemUi;
     }
 

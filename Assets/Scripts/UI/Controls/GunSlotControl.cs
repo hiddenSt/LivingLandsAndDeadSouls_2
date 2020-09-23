@@ -17,13 +17,15 @@ namespace UI.Controls {
 
     public void SetGunImageAndActivateListener(Sprite gunImage) {
       _gunImage.sprite = gunImage;
-      _dropButton.onClick.AddListener(playerGunComponent.RemoveToInventoryOrDrop);
+      _gunImage.enabled = true;
       _dropButton.interactable = true;
       _dropButton.enabled = true;
+      _dropButton.onClick.AddListener(playerGunComponent.RemoveToInventoryOrDrop);
     }
 
     public void RemoveGunImageAndDeactivateListener() {
       _gunImage.sprite = null;
+      _gunImage.enabled = false;
       _dropButton.onClick.RemoveListener(playerGunComponent.RemoveToInventoryOrDrop);
       _dropButton.interactable = false;
       _dropButton.enabled = false;
