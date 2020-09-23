@@ -31,7 +31,9 @@ namespace Components {
     }
 
     public void DropItem(InventorySystem.Item item) {
-      _inventory.RemoveItem(item.GetIdentifier());
+      if (_inventory.GetItem(item.GetIdentifier()) != null) {
+        _inventory.RemoveItem(item.GetIdentifier());
+      }
 
       var droppedItem = new GameObject();
       var lootComponent = droppedItem.AddComponent<LootComponent>();
