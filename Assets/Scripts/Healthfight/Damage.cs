@@ -1,14 +1,14 @@
 ﻿namespace HealthFight {
   public class Damage {
-    public Damage(int damagePoints) {
+    public Damage(float damagePoints) {
       _damagePoints = damagePoints;
     }
 
-    public void IncreaseDamage(int points) {
+    public void IncreaseDamage(float points) {
       _damagePoints += points;
     }
 
-    public void DecreaseDamage(int points) {
+    public void DecreaseDamage(float points) {
       _damagePoints -= points;
       if (_damagePoints < 0)
         _damagePoints = 0;
@@ -18,10 +18,10 @@
       health.Increase(_damagePoints);
     }
 
-    public int GetDamagePoints() {
+    public float GetDamagePoints() {
       return _damagePoints;
     }
 
-    private int _damagePoints;
+    private float _damagePoints;
   }
 }

@@ -1,51 +1,28 @@
 ﻿using System;
+using UI.HealthFightSystemUi;
 using UnityEngine;
 
 
 namespace HealthFight {
+  
   public class HealthComponent : MonoBehaviour {
-    private void Start() {
-      originId = gameObject.GetInstanceID();
+    public float health;
+    public int originId;
+    public float maxHealth = 100;
+    public HealthBarUi healthBarUi;
+    private Health _health;
+    private Animator _animator;
 
-      _health = new Health(health, maxHealth);
-
-      //Bad if statement
-      if (bar == null) CreateHealthBar();
-
-      _animator = gameObject.GetComponent<Animator>();
-    }
-
-    //Dependency on DamageComponent and Dirty function
     private void OnTriggerEnter2D(Collider2D other) {
       if (other.GetComponent<DamageComponent>() == null ||
           other.GetComponent<DamageComponent>().originId == originId)
         return;
       DecreaseHealth(other.gameObject.GetComponent<DamageComponent>().damagePoints);
-      Debug.Log("Got damagePoints from " + other.name);
-
-      if (_health.IsAlive())
-        return;
-      //:(   
-      _animator.Play("Death_left");
-      _animator.speed = 0.5f;
-      GameObject.Find("Characteristics").GetComponent<Characteristics.AllParameters>()
-        .AddExperience(50); // Dirty dependency
-
-      Destroy(bar.gameObject);
-      Destroy(other.gameObject);
-      Destroy(gameObject);
     }
 
-    public void IncreaseHealthPointsLimit(int points) {
-      maxHealth += points;
+    public void IncreaseHealthPointsLimit(float points) {
       _health.SetHealthPointsLimit(maxHealth);
-    }
-
-    //Bad Dependency
-    private void CreateHealthBar() {
-      bar = HealthBar.Create(gameObject.transform, new Vector3(60f, 10f), 7f, Color.green, Color.grey, 100f, 0.4f);
-      bar.initialHealth = health;
-      bar.maxHealth = maxHealth;
+      maxHealth = _health.GetHealthPointsLimit();
     }
 
     public void GetDamageFrom(Damage damage) {
@@ -53,7 +30,7 @@ namespace HealthFight {
     }
 
     //Bad parameter name
-    public void DecreaseHealth(int points) {
+    public void DecreaseHealth(float points) {
       _health.Decrease(points);
 
       if (_health.IsDead()) {
@@ -62,43 +39,22 @@ namespace HealthFight {
       }
 
       health = _health.GetHealthPoints();
-      //...
-      if (OnHealthChanged != null) OnHealthChanged.Invoke(health);
-
-      bar.SetSize(health / 100f);
     }
-
-    //...
-    public void SetHealth(int healthPoints) {
-      if (healthPoints > maxHealth)
-        healthPoints = maxHealth;
-
-      health = healthPoints;
-      //...
-      if (OnHealthChanged != null) OnHealthChanged.Invoke(health);
-      //...
-      bar.SetSize(health / maxHealth);
-    }
-
-    //Dependency on HealthBar
-    public void IncreaseHealth(int points) {
-      _health.Increase(points);
-
+    
+    public void SetHealth(float healthPoints) {
+      _health.SetHealthPoints(healthPoints);
       health = _health.GetHealthPoints();
-      //...
-      if (OnHealthChanged != null) OnHealthChanged.Invoke(health);
-
-      //...
-      bar.SetSize(health / maxHealth);
+    }
+    
+    public void IncreaseHealth(float points) {
+      _health.Increase(points);
+      health = _health.GetHealthPoints();
     }
 
-    public int health;
-    public int originId;
-    public int maxHealth = 100;
-    public HealthBar bar = null;
-    public event Action<int> OnHealthChanged;
-
-    private Health _health;
-    private Animator _animator;
+    private void Start() {
+      originId = gameObject.GetInstanceID();
+      _animator = gameObject.GetComponent<Animator>();
+      _health = new Health(health, maxHealth, healthBarUi);
+    }
   }
-} //end of namespace HealthFight
+}

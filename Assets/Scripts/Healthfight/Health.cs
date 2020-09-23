@@ -1,33 +1,59 @@
 ﻿namespace HealthFight {
+  
   public class Health {
-    public Health(int healthPoints, int healthPointsLimit) {
+    private float _healthPoints;
+    private float _healthPointsLimit;
+    private IHealthUi _healthUi;
+    
+    public Health(float healthPoints, float healthPointsLimit, IHealthUi healthUi) {
       _healthPoints = healthPoints;
       _healthPointsLimit = healthPointsLimit;
+      _healthUi = healthUi;
+      _healthUi.SetHealthPointsLimit(_healthPointsLimit);
+      _healthUi.SetHealthPoints(_healthPoints);
     }
 
-    public void Decrease(int points) {
+    public void SetHealthPoints(float points) {
+      _healthPoints = points;
+      if (_healthPoints < 0) {
+        _healthPoints = 0;
+      }
+
+      if (_healthPoints > _healthPointsLimit) {
+        _healthPoints = _healthPointsLimit;
+      }
+      _healthUi.SetHealthPoints(_healthPoints);
+    }
+
+    public void Decrease(float points) {
       _healthPoints -= points;
       if (_healthPoints < 0)
         _healthPoints = 0;
+      _healthUi.SetHealthPoints(_healthPoints);
     }
 
-    public void Increase(int points) {
+    public void Increase(float points) {
       _healthPoints += points;
-      if (_healthPoints >= _healthPointsLimit)
+      if (_healthPoints >= _healthPointsLimit) {
         _healthPoints = _healthPointsLimit;
+      }
+      _healthUi.SetHealthPoints(points);
     }
 
-    public int GetHealthPoints() {
+    public float GetHealthPoints() {
       return _healthPoints;
     }
 
-    public void SetHealthPointsLimit(int points) {
+    public void SetHealthPointsLimit(float points) {
       _healthPointsLimit = points;
-      if (_healthPoints > _healthPointsLimit)
+      if (_healthPoints > _healthPointsLimit) {
         _healthPoints = _healthPointsLimit;
+      }
+
+      _healthUi.SetHealthPointsLimit(_healthPointsLimit);
     }
 
-    public int GetHealthPointsLimit() {
+    public float GetHealthPointsLimit() {
       return _healthPointsLimit;
     }
 
@@ -38,8 +64,6 @@
     public bool IsAlive() {
       return _healthPoints >= 0;
     }
-
-    private int _healthPoints;
-    private int _healthPointsLimit;
   }
+  
 }

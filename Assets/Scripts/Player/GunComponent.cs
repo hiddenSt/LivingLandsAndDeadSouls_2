@@ -9,7 +9,7 @@ namespace Player {
   public class GunComponent : MonoBehaviour {
     public Button fireButton;
     private IGunSlotUi _gunSlotUi;
-    private int _damageBuff = 0;
+    private float _damageBuff = 0;
     private int _ammoCount;
     private Vector2 _direction;
     private bool _isActive;

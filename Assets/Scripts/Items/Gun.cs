@@ -62,7 +62,7 @@ namespace Items {
       return _damage;
     }
 
-    public int GetDamagePoints() {
+    public float GetDamagePoints() {
       return _damage.GetDamagePoints();
     }
 

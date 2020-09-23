@@ -2,7 +2,7 @@
 
 namespace HealthFight {
   public class Bullet : MonoBehaviour {
-    public static GameObject Create(Transform parentTransform, Vector2 direction, float speed, int damage,
+    public static GameObject Create(Transform parentTransform, Vector2 direction, float speed, float damage,
       float damageRadius_, int originID) {
       var bulletGameObject = new GameObject("Bullet");
       var bulletSpriteRenderer = bulletGameObject.AddComponent<SpriteRenderer>();
@@ -30,7 +30,7 @@ namespace HealthFight {
     }
 
     public static GameObject CreateFromBandit(Transform parentTransform, Transform target,
-      float speed, int damage, float damageRadius_, int originID) {
+      float speed, float damage, float damageRadius_, int originID) {
       var bulletGameObject = new GameObject("Bullet");
       var bulletSpriteRenderer = bulletGameObject.AddComponent<SpriteRenderer>();
 

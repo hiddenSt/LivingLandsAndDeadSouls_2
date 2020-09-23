@@ -11,7 +11,7 @@ namespace HealthFight {
       _damage = new Damage(damagePoints);
     }
 
-    [FormerlySerializedAs("damage")] public int damagePoints;
+    [FormerlySerializedAs("damage")] public float damagePoints;
     public float damageRadius;
     public int originId;
     public CircleCollider2D damageCollider;
