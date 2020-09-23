@@ -40,13 +40,14 @@ namespace Components {
 
       lootComponent.item = item;
       spriteRenderer.sprite = item.GeItemUi().GetItemImage();
-      circleCollider2D.radius = 0.3f;
+      circleCollider2D.radius = 0.15f;
       circleCollider2D.isTrigger = true;
-
+      Debug.Log("ITem ref is " + lootComponent.item);
       var dropPosition = new Vector3(0, 0);
       dropPosition += gameObject.transform.position;
       dropPosition += new Vector3(0, dropDistanceY);
-      Instantiate(droppedItem, dropPosition, Quaternion.identity);
+      droppedItem.transform.position = dropPosition;
+      droppedItem.transform.localScale = new Vector3(3f, 3f);
     }
 
     public void SetInventoryUi(IInventoryUi inventoryInventoryUiParam) {

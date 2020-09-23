@@ -8,6 +8,5 @@ namespace UI {
     void ChangeAmmoCount(int count);
     void SetGunImageAndActivateListener(Sprite gunImage);
     void RemoveGunImageAndDeactivateListener();
-    void SetGunComponent(GunComponent gunComponent);
   }
 }

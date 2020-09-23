@@ -21620,7 +21620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 6
-  dropDistanceY: 8.86
+  dropDistanceY: 3.67
 --- !u!222 &6817741584698001172
 CanvasRenderer:
   m_ObjectHideFlags: 0

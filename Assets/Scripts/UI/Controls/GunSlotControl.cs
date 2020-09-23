@@ -1,6 +1,5 @@
 ﻿using Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Controls {
@@ -14,10 +13,6 @@ namespace UI.Controls {
     
     public void ChangeAmmoCount(int count) {
       ammoText.text = count.ToString();
-    }
-
-    public void SetGunComponent(GunComponent gunComponent) {
-      playerGunComponent = gunComponent;
     }
 
     public void SetGunImageAndActivateListener(Sprite gunImage) {

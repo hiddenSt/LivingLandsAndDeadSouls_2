@@ -106,7 +106,6 @@ namespace Player {
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
       _outfitComponent = gameObject.GetComponent<OutfitComponent>();
       fireButton.interactable = false;
-      _gunSlotUi.SetGunComponent(this);
       _isActive = false;
     }
   }
