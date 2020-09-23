@@ -1,5 +1,4 @@
-﻿using System;
-using UI.HealthFightSystemUi;
+﻿using UI.HealthFightSystemUi;
 using UnityEngine;
 
 

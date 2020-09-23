@@ -9,8 +9,8 @@
       _healthPoints = healthPoints;
       _healthPointsLimit = healthPointsLimit;
       _healthUi = healthUi;
-      _healthUi.SetHealthPointsLimit(_healthPointsLimit);
       _healthUi.SetHealthPoints(_healthPoints);
+      _healthUi.SetHealthPointsLimit(_healthPointsLimit);
     }
 
     public void SetHealthPoints(float points) {

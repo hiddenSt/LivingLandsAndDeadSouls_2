@@ -4,7 +4,7 @@ using UnityEngine;
 namespace UI.HealthFightSystemUi {
 
   public class HealthBarUi : MonoBehaviour, IHealthUi {
-    private float _healthPointsLimit;
+    private float _healthPointsLimit = 100;
     private float _healthPoints;
     private Transform _bar;
 
@@ -12,20 +12,17 @@ namespace UI.HealthFightSystemUi {
       _healthPointsLimit = points;
       SetHealthPoints(_healthPoints);
     }
-    
+
     public void SetHealthPoints(float points) {
       _healthPoints = points;
-      _bar.localScale = new Vector3(-_healthPoints/_healthPointsLimit, 1f);
+      _bar.localScale = new Vector3(_healthPoints/_healthPointsLimit, 1f);
       if (_healthPoints <= 0) {
         Destroy(gameObject);
       }
     }
     
-    private void Start() {
+    private void Awake() {
       _bar = transform.Find("Bar");
-      if (_bar == null) {
-        Debug.Log("Can't find Bar");
-      }
     }
   }
 
