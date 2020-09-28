@@ -18,12 +18,19 @@ namespace Player {
 
     public void SetOutfit(Outfit outfit) {
       if (_outfit != null) {
-        RemoveToInventoryOrDrop();
+        DeactivateOutfit();
+        _playerInventoryComponent.AddItem(_outfit);
       }
       _outfit = outfit;
       ActivateUi();
     }
-
+    
+    private void ActivateUi() {
+      _skinsAnimator = _outfit.GetSkinsAnimator();
+      _animator.runtimeAnimatorController = _skinsAnimator[_gunType];
+      _outfitSlotUi.SetOutfitImageAndActivateListener(_outfit.GetItemUi().GetItemImage());
+    }
+    
     public void ChangeGunSkin(string gunType) {
       _gunType = gunType;
       _animator.runtimeAnimatorController = _skinsAnimator[_gunType];
@@ -35,6 +42,11 @@ namespace Player {
         _playerInventoryComponent.DropItem(_outfit);
       }
       _outfit = null;
+      DeactivateOutfit();
+    }
+    
+    public void DeactivateOutfit() {
+      _outfitSlotUi.RemoveOutfitImageAndDeactivateListener();
       RemoveOutfitSkin();
     }
     
@@ -47,12 +59,6 @@ namespace Player {
       _outfitSlotUi = outfitSlotUi;
     }
 
-    private void ActivateUi() {
-      _skinsAnimator = _outfit.GetSkinsAnimator();
-      _animator.runtimeAnimatorController = _skinsAnimator[_gunType];
-      _outfitSlotUi.SetOutfitImageAndActivateListener(_outfit.GetItemUi().GetItemImage());
-    }
-    
     private void Start() {
       _characterDefaultAnimator = GameObject.Find("PlayerParameters")
         .GetComponent<PlayerParameters>().characterDefaultAnimator;

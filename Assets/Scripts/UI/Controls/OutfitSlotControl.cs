@@ -14,21 +14,21 @@ namespace UI.Controls {
       _outfitImage.enabled = true;
       _dropButton.interactable = true;
       _dropButton.enabled = true;
-      Debug.Log(":::" + _outfitImage.sprite);
       _dropButton.onClick.AddListener(playerOutfitComponent.RemoveToInventoryOrDrop);
     }
 
     public void RemoveOutfitImageAndDeactivateListener() {
-      _dropButton.interactable = false;
-      _outfitImage.enabled = false;
       _outfitImage.sprite = null;
+      _outfitImage.enabled = false;
       _dropButton.onClick.RemoveListener(playerOutfitComponent.RemoveToInventoryOrDrop);
+      _dropButton.interactable = false;
+      _dropButton.enabled = false;
     }
 
     private void Start() {
+      playerOutfitComponent.SetOutfitSlotUi(this);
       _dropButton = gameObject.GetComponent<Button>();
       _outfitImage = gameObject.GetComponent<Image>();
-      playerOutfitComponent.SetOutfitSlotUi(this);
     }
   }
 

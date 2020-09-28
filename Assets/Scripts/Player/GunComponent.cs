@@ -54,9 +54,15 @@ namespace Player {
       }
       _direction = _playerController.moveVelocity;
       if (_direction == Vector2.zero) {
-        SendBulletWhenStandStill();
+        for (int i = 0; i < _gun.GetFireRate(); ++i) {
+          SendBulletWhenStandStill();
+          if (_ammoCount <= 0) {
+            return;
+          }
+        }
         return;
       }
+      
       for (var i = 0; i < _gun.GetFireRate(); ++i) {
         SendBullet(_direction);
         if (_ammoCount <= 0) {
