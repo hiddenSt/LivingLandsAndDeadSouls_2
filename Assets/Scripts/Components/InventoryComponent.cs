@@ -9,7 +9,7 @@ namespace Components {
   public class InventoryComponent : MonoBehaviour {
     public int inventorySize;
     public float dropDistanceY = 0.3f;
-    public IInventoryUi inventoryInventoryUi;
+    private IInventoryUi _inventoryUi;
     private Inventory _inventory;
     private Image[] _itemsImages;
 
@@ -26,7 +26,7 @@ namespace Components {
       if (!CanAddItem())
         return false;
       _inventory.AddItem(item);
-      inventoryInventoryUi.SetItem(item.GetItemUi(), item.GetIdentifier());
+      _inventoryUi.SetItem(item.GetItemUi(), item.GetIdentifier());
       return true;
     }
 
@@ -52,7 +52,7 @@ namespace Components {
     }
 
     public void SetInventoryUi(IInventoryUi inventoryInventoryUiParam) {
-      inventoryInventoryUi = inventoryInventoryUiParam;
+      _inventoryUi = inventoryInventoryUiParam;
     }
     
     public void RemoveItem(Identifier identifier) {

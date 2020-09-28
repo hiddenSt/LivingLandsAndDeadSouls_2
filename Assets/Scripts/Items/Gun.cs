@@ -27,7 +27,7 @@ namespace Items {
     }
 
     public override void Drop() {
-      _gunComponent = null;
+      
     }
 
     public override void PickUp() {

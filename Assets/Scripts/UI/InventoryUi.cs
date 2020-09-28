@@ -15,7 +15,8 @@ namespace UI {
     private IItemUi[] _itemsUi;
     private GameObject[] _buttons;
     private GameObject[] _images;
-
+    private bool[] _isEmpty;
+    
     public void SetItem(IItemUi itemUi, Identifier itemIdentifier) {
       for (int i = 0; i < _slotsSize; ++i)
         if (IsEmptySlot(i)) {
@@ -27,27 +28,21 @@ namespace UI {
     }
 
     private void SetItemUi(int index) {
+      _isEmpty[index] = false;
       _buttons[index] = _itemsUi[index].SetItemButton(slots[index].transform);
       _images[index] = _itemsUi[index].SetItemImage(slots[index].transform);
       _buttons[index].GetComponent<Button>().onClick.AddListener(() => UseItem(index));
     }
 
     public void UseItem(int index) {
-      inventoryComponent.GetItem(_identifiers[index]).Use();
-      RemoveItem(_identifiers[index]);
+      var item = inventoryComponent.GetItem(_identifiers[index]);
+      RemoveItem(index);
+      item.Use();
     }
     
-    public void RemoveItem(Identifier identifier) {
-      for (int i = 0; i < _slotsSize; ++i) {
-        if (_identifiers[i] == null || !identifier.EqualsTo(_identifiers[i])) {
-          continue;
-        }
-        inventoryComponent.RemoveItem(_identifiers[i]);
-        _identifiers[i] = null;
-        _itemsUi[i] = null;
-        RemoveItemUi(i);
-        return;
-      }
+    public void RemoveItem(int index) {
+      inventoryComponent.RemoveItem(_identifiers[index]);
+      RemoveItemUi(index);
     }
 
     public void DropItem(int index) {
@@ -57,18 +52,24 @@ namespace UI {
     }
 
     private void RemoveItemUi(int index) {
+      _isEmpty[index] = true;
       _buttons[index].GetComponent<Button>().onClick.RemoveListener(() => UseItem(index));
       Destroy(_buttons[index]);
       Destroy(_images[index]);
     }
 
     private bool IsEmptySlot(int index) {
-      return slots[index].transform.childCount <= 0;
+      return _isEmpty[index];
     }
 
     private void Awake() {
       _slotsSize = gameObject.transform.childCount;
       slots = new GameObject[_slotsSize];
+      _isEmpty = new bool[_slotsSize];
+      for (int i = 0; i < _slotsSize; ++i) {
+        _isEmpty[i] = true;
+      }
+      
       for (int i = 0; i < gameObject.transform.childCount; ++i) {
         slots[i] = gameObject.transform.GetChild(i).gameObject;
         var comp = slots[i].AddComponent<DropItem>();

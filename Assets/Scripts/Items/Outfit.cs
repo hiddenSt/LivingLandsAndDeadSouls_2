@@ -15,8 +15,6 @@ namespace Items {
     }
 
     public override void Drop() {
-      _outfitComponent = null;
-      _playerAnimator = null;
     }
 
     public override void PickUp() {

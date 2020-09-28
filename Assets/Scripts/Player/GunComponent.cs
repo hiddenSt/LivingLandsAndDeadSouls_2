@@ -12,15 +12,16 @@ namespace Player {
     private float _damageBuff = 0;
     private int _ammoCount;
     private Vector2 _direction;
-    private bool _isActive;
     private InventoryComponent _playerInventoryComponent;
     private PlayerController _playerController;
     private Items.Gun _gun;
     private OutfitComponent _outfitComponent;
 
     public void SetGun(Items.Gun gun) {
-      if (_isActive) {
-        RemoveToInventoryOrDrop();
+      if (_gun != null) {
+        DeactivateGun();
+        _gun.SetAmmoCount(_ammoCount);
+        _playerInventoryComponent.AddItem(_gun);
       }
       _gun = gun;
       _outfitComponent.ChangeGunSkin(_gun.GetGunType());
@@ -41,7 +42,6 @@ namespace Player {
     }
     
     private void ActivateGun() {
-      _isActive = true;
       fireButton.interactable = true;
       fireButton.onClick.AddListener(Shot);
       _gunSlotUi.SetGunImageAndActivateListener(_gun.GetItemUi().GetItemImage());
@@ -94,7 +94,6 @@ namespace Player {
     }
 
     private void DeactivateGun() {
-      _isActive = false;
       fireButton.interactable = false;
       fireButton.onClick.RemoveListener(Shot);
       _gunSlotUi.RemoveGunImageAndDeactivateListener();
@@ -106,7 +105,7 @@ namespace Player {
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
       _outfitComponent = gameObject.GetComponent<OutfitComponent>();
       fireButton.interactable = false;
-      _isActive = false;
+      _gun = null;
     }
   }
 }
