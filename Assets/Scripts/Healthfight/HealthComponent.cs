@@ -27,8 +27,7 @@ namespace HealthFight {
     public void GetDamageFrom(Damage damage) {
       damage.MakeDamage(_health);
     }
-
-    //Bad parameter name
+    
     public void DecreaseHealth(float points) {
       _health.Decrease(points);
 

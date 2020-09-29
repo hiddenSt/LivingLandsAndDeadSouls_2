@@ -6,7 +6,6 @@ namespace Menu {
   public class EndGameController : MonoBehaviour {
     private void Start() {
       _playerHealth = GameObject.Find("Player").GetComponent<HealthComponent>();
-      _playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBar>();
     }
 
     private void Update() {
@@ -33,14 +32,12 @@ namespace Menu {
 
       endofGame = true;
       endGameCanvas.SetActive(true);
-      _playerHealthBar.SetSize(0);
     }
 
     //dataMembers
     public GameObject endGameCanvas;
 
     private HealthComponent _playerHealth;
-    private HealthBar _playerHealthBar;
     private float _delay = 4f;
     private bool endofGame = false;
   }
