@@ -17743,7 +17743,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c3c8434d3e7634a9ce43bec5e87ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySlots: []
+  inventorySlots:
+  - {fileID: 5919126772684291313}
+  - {fileID: 5919126772937613838}
+  - {fileID: 5919126771333427231}
+  - {fileID: 5919126771606347389}
+  - {fileID: 5919126772354062079}
+  - {fileID: 5919126771369056055}
 --- !u!1001 &1831999966
 PrefabInstance:
   m_ObjectHideFlags: 0
