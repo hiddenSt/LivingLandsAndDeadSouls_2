@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4521897921405742523}
   - component: {fileID: 2055638483160076294}
   - component: {fileID: 402097037822697480}
+  - component: {fileID: 3365250396448278549}
   m_Layer: 0
   m_Name: Small_house Variant
   m_TagString: Small House
@@ -74,6 +75,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -121,12 +123,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664a05e250f58a44db19dbb7d36dfa7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lootButton: {fileID: 0}
-  loots:
-  - {fileID: 1358912297869063236, guid: d7ad449a060895843a6c4224e989de82, type: 3}
-  - {fileID: 2075217616807376735, guid: 27541f0185ce5bd4e80ef9429c6d2926, type: 3}
-  - {fileID: 858819677447254099, guid: 5e8fc62a09b302e4281791312065818d, type: 3}
-  - {fileID: 2032792334077885221, guid: 9759cd313f1bd19409f4c6d9c30688d3, type: 3}
-  - {fileID: 3597022782940009738, guid: 25177b5a33b89884d8dd4eb0d140e7db, type: 3}
-  - {fileID: 3042517254717511213, guid: d2e9501b9866a444895cb322f70ec510, type: 3}
-  - {fileID: 2006789691260030032, guid: d3d368ff1e9064244b2340beb3e153c5, type: 3}
+  items:
+  - {fileID: 1627506103263643169, guid: eb07650b2863625418dda66dce5bd1c5, type: 3}
+  - {fileID: 6283363105668257727, guid: 79384acf907ff3e49871f3a34b7dbe15, type: 3}
+  - {fileID: 3341735783027897300, guid: 2129c1b683f03534685517b667a62afa, type: 3}
+  - {fileID: 8959464943015607736, guid: 7b1a374fdbf729b46958209bcbb831e1, type: 3}
+--- !u!58 &3365250396448278549
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308680078392486819}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.09, y: -0.18}
+  serializedVersion: 2
+  m_Radius: 0.16

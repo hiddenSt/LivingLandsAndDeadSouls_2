@@ -10155,7 +10155,6 @@ GameObject:
   - component: {fileID: 1253560661}
   - component: {fileID: 1253560660}
   - component: {fileID: 1253560659}
-  - component: {fileID: 1253560662}
   m_Layer: 5
   m_Name: EButton
   m_TagString: Untagged
@@ -10225,7 +10224,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1253560662}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: Use
         m_Mode: 1
@@ -10275,18 +10274,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253560657}
   m_CullTransparentMesh: 0
---- !u!114 &1253560662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253560657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 664a05e250f58a44db19dbb7d36dfa7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1287373621
 PrefabInstance:
   m_ObjectHideFlags: 0
