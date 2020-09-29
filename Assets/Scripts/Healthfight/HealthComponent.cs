@@ -16,7 +16,7 @@ namespace HealthFight {
       if (other.GetComponent<DamageComponent>() == null ||
           other.GetComponent<DamageComponent>().originId == originId)
         return;
-      DecreaseHealth(other.gameObject.GetComponent<DamageComponent>().damagePoints);
+      GetDamageFrom(other.GetComponent<DamageComponent>().GetDamage());
     }
 
     public void IncreaseHealthPointsLimit(float points) {

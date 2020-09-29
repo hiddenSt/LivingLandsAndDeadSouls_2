@@ -11,6 +11,10 @@ namespace HealthFight {
       _damage = new Damage(damagePoints);
     }
 
+    public Damage GetDamage() {
+      return _damage;
+    }
+
     [FormerlySerializedAs("damage")] public float damagePoints;
     public float damageRadius;
     public int originId;
