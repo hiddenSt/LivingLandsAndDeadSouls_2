@@ -12,7 +12,6 @@ namespace TimeSystem {
       public Light2D Light;
       public Light2D PlayerLight;
       public Text DayYear;
-      public Generator Generator;
       public GameObject RainGenerator;
       public GameObject SnowGenerator;
       public float Hour = 12;

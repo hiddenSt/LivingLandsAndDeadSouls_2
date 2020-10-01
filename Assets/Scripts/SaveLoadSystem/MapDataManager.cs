@@ -11,7 +11,7 @@ namespace SaveLoadSystem
     {
         public override void Save()
         {
-            var generator = GameObject.Find("Generate").GetComponent<Generator>();
+            var generator = GameObject.Find("Generate").GetComponent<MapController>();
             var formatter = new BinaryFormatter();
             var path = Application.persistentDataPath + "/map.data";
             var season =  GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>().Season;
@@ -31,7 +31,7 @@ namespace SaveLoadSystem
             var stream = new FileStream(path, FileMode.Open);
             var data = formatter.Deserialize(stream) as MapData;
             stream.Close();
-            var generator = GameObject.Find("Generate").GetComponent<Generator>();
+            var generator = GameObject.Find("Generate").GetComponent<MapController>();
             var tmpSize = new Vector3Int(data.tmpSizeX, data.tmpSizeY, data.tmpSizeZ);
             //enerator.GenerateMap(data, tmpSize);
             var timeController = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>();
