@@ -30,7 +30,6 @@ namespace GenerateMap {
     }
 
     private MapGenerator CreateGenerator() {
-      _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
       _mapSize = _parameterManager.MapSizeVector.x;
       int currentScaler = 0;
       switch (_mapSize) {
