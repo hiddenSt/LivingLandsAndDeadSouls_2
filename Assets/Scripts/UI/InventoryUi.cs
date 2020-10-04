@@ -43,8 +43,8 @@ namespace UI {
 
     private void SetItemUi(int index) {
       _isEmpty[index] = false;
-      _buttons[index] = _itemsUi[index].SetItemButton(slots[index].transform);
       _images[index] = _itemsUi[index].SetItemImage(slots[index].transform);
+      _buttons[index] = _itemsUi[index].SetItemButton(slots[index].transform);
       _buttons[index].GetComponent<Button>().onClick.AddListener(() => UseItem(index));
     }
 
@@ -85,7 +85,6 @@ namespace UI {
         comp.slotIndex = i;
       }
     }
-    
     
     private void Start() {
       inventoryComponent.SetInventoryUi(this);

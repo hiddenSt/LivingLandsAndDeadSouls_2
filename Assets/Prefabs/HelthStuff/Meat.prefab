@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1783865713948994117}
   - component: {fileID: 6905240819409871223}
-  - component: {fileID: 5693574459130318805}
-  - component: {fileID: 657850192104636515}
+  - component: {fileID: -2988471703521677377}
+  - component: {fileID: -2708532620856382034}
+  - component: {fileID: -5346100435255836570}
   m_Layer: 0
-  m_Name: Meat (1)
+  m_Name: Meat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3987287109579355602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.69, y: -2.6651738, z: -158.6393}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.69, y: 3.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5693574459130318805
+--- !u!58 &-2988471703521677377
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,7 +101,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.080000006
---- !u!114 &657850192104636515
+--- !u!114 &-2708532620856382034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,8 +110,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3987287109579355602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb46660e9761d2b47bf346224cdea122, type: 3}
+  m_Script: {fileID: 11500000, guid: 28ce3146d0ac6b64a80d8ea628b72f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 2032792334077885221, guid: 9759cd313f1bd19409f4c6d9c30688d3,
+  itemButton: {fileID: 8376930826966795645, guid: d53c15235812d6f4581dc5192f52d66c,
     type: 3}
+  itemImage: {fileID: 2032792334077885221, guid: 9759cd313f1bd19409f4c6d9c30688d3,
+    type: 3}
+--- !u!114 &-5346100435255836570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3987287109579355602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00762baeebbee0541bf3aa7a9f08f71f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBoostPoints: 10

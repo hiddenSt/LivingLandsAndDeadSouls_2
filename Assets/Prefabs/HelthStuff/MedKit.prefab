@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 810298228015925534}
   - component: {fileID: 810298228015925533}
   - component: {fileID: 810298228015925530}
-  - component: {fileID: 5374853616784181843}
+  - component: {fileID: -840072739770255370}
+  - component: {fileID: -3288895795924348223}
   m_Layer: 0
   m_Name: MedKit
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810298228015925529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.988, y: 1.194, z: -0.6059359}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.15, y: 3.65, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -99,7 +101,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
---- !u!114 &5374853616784181843
+--- !u!114 &-840072739770255370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,8 +110,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 810298228015925529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb46660e9761d2b47bf346224cdea122, type: 3}
+  m_Script: {fileID: 11500000, guid: 28ce3146d0ac6b64a80d8ea628b72f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 2006789691260030032, guid: d3d368ff1e9064244b2340beb3e153c5,
+  itemButton: {fileID: 8376930826966795645, guid: d53c15235812d6f4581dc5192f52d66c,
     type: 3}
+  itemImage: {fileID: 2006789691260030032, guid: d3d368ff1e9064244b2340beb3e153c5,
+    type: 3}
+--- !u!114 &-3288895795924348223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810298228015925529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00762baeebbee0541bf3aa7a9f08f71f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBoostPoints: 20

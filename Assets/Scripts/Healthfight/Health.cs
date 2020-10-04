@@ -37,7 +37,7 @@
       if (_healthPoints >= _healthPointsLimit) {
         _healthPoints = _healthPointsLimit;
       }
-      _healthUi.SetHealthPoints(points);
+      _healthUi.SetHealthPoints(_healthPoints);
     }
 
     public float GetHealthPoints() {

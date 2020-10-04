@@ -1,10 +1,9 @@
 ﻿using HealthFight;
-using InventorySystem;
 using UnityEngine;
 
 namespace Items {
   public class MedKit : InventorySystem.Item {
-    public MedKit(int healthBoostPoints) {
+    public MedKit(float healthBoostPoints) {
       _type = "MedKit";
       _healthBoostPoints = healthBoostPoints;
     }
@@ -18,10 +17,9 @@ namespace Items {
     }
 
     public override void Drop() {
-      _playerHealthComponent = null;
     }
 
     private HealthComponent _playerHealthComponent;
-    private int _healthBoostPoints;
+    private float _healthBoostPoints;
   }
 }

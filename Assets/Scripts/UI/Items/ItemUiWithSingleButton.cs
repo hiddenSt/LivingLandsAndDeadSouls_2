@@ -1,23 +1,28 @@
 ﻿using InventorySystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Items {
 
-  public class NewBehaviourScript : MonoBehaviour, IItemUi {
+  public class ItemUiWithSingleButton : MonoBehaviour, IItemUi {
     public GameObject itemButton;
-    private GameObject _instantiatedItemButton;
-    
+    public GameObject itemImage;
+    private Sprite _itemImageSprite;
+
     public GameObject SetItemButton(Transform position) {
-      _instantiatedItemButton = Instantiate(itemButton, position);
-      return _instantiatedItemButton;
+      return Instantiate(itemButton, position);
     }
 
     public GameObject SetItemImage(Transform position) {
-      return _instantiatedItemButton;
+      return Instantiate(itemImage, position);
     }
 
     public Sprite GetItemImage() {
-      return itemButton.GetComponent<Sprite>();
+      return _itemImageSprite;
+    }
+
+    private void Start() {
+      _itemImageSprite = itemImage.GetComponent<Image>().sprite;
     }
   }
 
