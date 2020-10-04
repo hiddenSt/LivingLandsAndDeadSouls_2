@@ -32,5 +32,6 @@ namespace InventorySystem {
     public void SetIdentifier(Identifier identifier) {
       _identifier = identifier;
     }
+    
   }
 }

@@ -1,4 +1,4 @@
-﻿using Components;
+﻿using Components.Player;
 using InventorySystem;
 using UI.Controls;
 using UnityEngine;
@@ -10,6 +10,7 @@ namespace UI {
   public class InventoryUi : MonoBehaviour, IInventoryUi {
     public InventoryComponent inventoryComponent;
     public GameObject[] slots;
+    private Inventory _inventory;
     private int _slotsSize;
     private Identifier[] _identifiers;
     private IItemUi[] _itemsUi;
@@ -27,6 +28,19 @@ namespace UI {
         }
     }
 
+    public void RemoveItem(Identifier itemIdentifier) {
+      for (int i = 0; i < _slotsSize; ++i) {
+        if (_identifiers[i] != null && _identifiers[i].EqualsTo(itemIdentifier)) {
+          RemoveItemUi(i);
+          return;
+        }
+      }
+    }
+
+    public void SetInventory(Inventory inventory) {
+      _inventory = inventory;
+    }
+
     private void SetItemUi(int index) {
       _isEmpty[index] = false;
       _buttons[index] = _itemsUi[index].SetItemButton(slots[index].transform);
@@ -35,20 +49,15 @@ namespace UI {
     }
 
     public void UseItem(int index) {
-      var item = inventoryComponent.GetItem(_identifiers[index]);
-      RemoveItem(index);
+      var item = _inventory.GetItem(_identifiers[index]);
+      _inventory.RemoveItem(item.GetIdentifier());
       item.Use();
-    }
-    
-    public void RemoveItem(int index) {
-      inventoryComponent.RemoveItem(_identifiers[index]);
-      RemoveItemUi(index);
     }
 
     public void DropItem(int index) {
-      var item = inventoryComponent.GetItem(_identifiers[index]);
+      var item = _inventory.GetItem(_identifiers[index]);
+      _inventory.RemoveItem(_identifiers[index]);
       inventoryComponent.DropItem(item);
-      RemoveItemUi(index);
     }
 
     private void RemoveItemUi(int index) {
@@ -76,7 +85,8 @@ namespace UI {
         comp.slotIndex = i;
       }
     }
-
+    
+    
     private void Start() {
       inventoryComponent.SetInventoryUi(this);
       _identifiers = new Identifier[_slotsSize];

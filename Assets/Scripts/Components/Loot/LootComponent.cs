@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components {
+namespace Components.Loot {
   public class LootComponent : MonoBehaviour {
     public InventorySystem.Item item;
   }

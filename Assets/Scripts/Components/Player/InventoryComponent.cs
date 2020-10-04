@@ -1,17 +1,16 @@
 ﻿using InventorySystem;
 using InventorySystem.ArrayRepository;
 using UnityEngine;
-using UnityEngine.UI;
 using Utility;
+using Components.Loot;
 
-namespace Components {
+namespace Components.Player {
   
   public class InventoryComponent : MonoBehaviour {
     public int inventorySize;
     public float dropDistanceY = 0.3f;
     private IInventoryUi _inventoryUi;
     private Inventory _inventory;
-    private Image[] _itemsImages;
 
     private void OnTriggerEnter2D(Collider2D other) {
       var loot = other.gameObject.GetComponent<LootComponent>();
@@ -22,19 +21,14 @@ namespace Components {
         Destroy(other.gameObject);
     }
     
-    public bool AddItem(InventorySystem.Item item) {
+    public bool AddItem(Item item) {
       if (!CanAddItem())
         return false;
       _inventory.AddItem(item);
-      _inventoryUi.SetItem(item.GetItemUi(), item.GetIdentifier());
       return true;
     }
 
-    public void DropItem(InventorySystem.Item item) {
-      if (_inventory.GetItem(item.GetIdentifier()) != null) {
-        _inventory.RemoveItem(item.GetIdentifier());
-      }
-
+    public void DropItem(Item item) {
       var droppedItem = new GameObject();
       var lootComponent = droppedItem.AddComponent<LootComponent>();
       var circleCollider2D = droppedItem.AddComponent<CircleCollider2D>();
@@ -42,6 +36,7 @@ namespace Components {
 
       lootComponent.item = item;
       spriteRenderer.sprite = item.GetItemUi().GetItemImage();
+      spriteRenderer.sortingOrder = 100;
       circleCollider2D.radius = 0.15f;
       circleCollider2D.isTrigger = true;
       var dropPosition = new Vector3(0, 0);
@@ -50,25 +45,37 @@ namespace Components {
       droppedItem.transform.position = dropPosition;
       droppedItem.transform.localScale = new Vector3(3f, 3f);
     }
-
-    public void SetInventoryUi(IInventoryUi inventoryInventoryUiParam) {
-      _inventoryUi = inventoryInventoryUiParam;
-    }
     
-    public void RemoveItem(Identifier identifier) {
-      _inventory.RemoveItem(identifier);
+    
+    public void SetInventory(Inventory inventory) {
+      _inventory = inventory;
     }
 
-    public InventorySystem.Item GetItem(Identifier identifier) {
+    public Inventory GetInventory() {
+      return _inventory;
+    }
+
+    public Item GetItem(Identifier identifier) {
       return _inventory.GetItem(identifier);
     }
+    
+    public void SetInventoryUi(IInventoryUi inventoryUi) {
+      _inventoryUi = inventoryUi;
+    }
 
+    private void SetItemsUi() {
+      IItemIterator iterator = _inventory.GetIterator();
+      for (iterator.First(); iterator.IsDone(); iterator.Next()) {
+        _inventoryUi.SetItem(iterator.CurrentItem().GetItemUi(), iterator.CurrentItem().GetIdentifier());
+      }
+    }
+    
     private bool CanAddItem() {
       return _inventory.GetInventorySize() <= _inventory.GetInventoryCapacity();
     }
     
     private void Start() {
-      _inventory = new Inventory(new ArrayRepository(inventorySize), inventorySize);
+      _inventory = new Inventory(new ArrayRepository(inventorySize), _inventoryUi, inventorySize);
     }
   }
 }

@@ -1,10 +1,11 @@
-﻿using Components;
-using HealthFight;
+﻿using HealthFight;
+using Items;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Player;
 
-namespace Player {
+namespace Components.Player {
   
   public class GunComponent : MonoBehaviour {
     public Button fireButton;
@@ -39,6 +40,11 @@ namespace Player {
       _gun = null;
       _outfitComponent.ChangeGunSkin("WithoutGun");
       _gunSlotUi.ChangeAmmoCount(0);
+    }
+
+    public Gun GetGun() {
+      _gun.SetAmmoCount(_ammoCount);
+      return _gun;
     }
     
     private void ActivateGun() {

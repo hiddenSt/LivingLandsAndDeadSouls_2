@@ -11199,9 +11199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088f2ebaa8090584f8847c3c310f4feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dumping: 1.5
   offset: {x: 2, y: 1}
-  country: 0
 --- !u!114 &1434150526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22140,7 +22138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 6
-  dropDistanceY: 3.67
+  dropDistanceY: 1.95
 --- !u!222 &6817741584698001172
 CanvasRenderer:
   m_ObjectHideFlags: 0

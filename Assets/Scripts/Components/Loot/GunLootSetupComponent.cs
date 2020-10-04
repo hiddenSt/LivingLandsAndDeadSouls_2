@@ -2,7 +2,7 @@
 using UI.Items;
 using UnityEngine;
 
-namespace Components.GunLootComponents {
+namespace Components.Loot {
 
   public class GunLootSetupComponent : MonoBehaviour {
     public string gunType;

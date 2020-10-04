@@ -5,7 +5,7 @@ using Items;
 using UI;
 using UnityEngine;
 
-namespace Player {
+namespace Components.Player {
   
   public class OutfitComponent : MonoBehaviour {
     private IOutfitSlotUi _outfitSlotUi;
@@ -23,6 +23,10 @@ namespace Player {
       }
       _outfit = outfit;
       ActivateUi();
+    }
+
+    public Outfit GetOutfit() {
+      return _outfit;
     }
     
     private void ActivateUi() {

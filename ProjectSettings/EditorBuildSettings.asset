@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FirstPage.unity
     guid: 11d4b48e1a39fe1458a69e1498acc441
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Login.unity
     guid: e8bcd9c6036e70a4a8a05f94d8be3e60
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PasswordReset.unity
     guid: b58e434276b1ebe428bd5560d140b773
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Register.unity
     guid: 0db18a1b27858e547ba67d79297bea0e
   - enabled: 1

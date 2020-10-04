@@ -14,10 +14,6 @@
         _damagePoints = 0;
     }
 
-    public void MakeDamage(Health health) {
-      health.Increase(_damagePoints);
-    }
-
     public float GetDamagePoints() {
       return _damagePoints;
     }

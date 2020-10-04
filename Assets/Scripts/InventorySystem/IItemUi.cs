@@ -6,6 +6,7 @@ namespace InventorySystem {
      GameObject SetItemButton(Transform position);
      GameObject SetItemImage(Transform position);
      Sprite GetItemImage();
+
   }
 
 }

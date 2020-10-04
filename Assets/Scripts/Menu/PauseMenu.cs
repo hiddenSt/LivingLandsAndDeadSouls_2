@@ -26,7 +26,6 @@ namespace Menu {
       parameterManager.hostileCharVal = 92;
       parameterManager.neutralCharVal = 128;
       parameterManager.startSeason = 0;
-      SaveLoadSystem.SaveSystem.Save();
       SceneManager.LoadScene("Menu");
     }
 

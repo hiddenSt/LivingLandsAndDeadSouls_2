@@ -16,18 +16,12 @@ namespace Menu {
           var sounds = GameObject.Find("Sounds");
           for (var i = 1; i < sounds.transform.childCount; i++)
             sounds.transform.GetChild(i).GetComponent<AudioSource>().Stop();
-
-          Debug.Log("Before");
-          SaveLoadSystem.SaveSystem.DeleteSaves();
-          Debug.Log("Between");
           SceneManager.LoadScene("Menu");
-          Debug.Log("After");
         }
-
         return;
       }
 
-      if (_playerHealth != null || _playerHealth.health > 0)
+      if (_playerHealth != null || !_playerHealth.IsDead())
         return;
 
       endofGame = true;

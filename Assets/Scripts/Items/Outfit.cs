@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Components.Player;
 using UnityEngine;
 
 namespace Items {
@@ -18,7 +19,7 @@ namespace Items {
     }
 
     public override void PickUp() {
-      _outfitComponent = GameObject.Find("Player").GetComponent<Player.OutfitComponent>();
+      _outfitComponent = GameObject.Find("Player").GetComponent<OutfitComponent>();
       _playerAnimator = GameObject.Find("Player").GetComponent<Animator>();
     }
 
@@ -30,7 +31,7 @@ namespace Items {
       return _outfitType;
     }
 
-    private Player.OutfitComponent _outfitComponent;
+    private OutfitComponent _outfitComponent;
     private Animator _playerAnimator;
     private SortedDictionary<string, AnimatorOverrideController> _animatorOverrideController;
     private string _outfitType;

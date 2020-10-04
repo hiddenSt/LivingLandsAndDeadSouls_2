@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 70
   originId: 0
-  maxHealth: 100
+  maxHealth: 70
   healthBarUi: {fileID: 7385183903228114425}
 --- !u!114 &-3508857367956100435
 MonoBehaviour:

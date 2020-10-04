@@ -3,7 +3,7 @@ using Items;
 using UI.Items;
 using UnityEngine;
 
-namespace Components.OutfitLootComponents {
+namespace Components.Loot {
 
   public class OutfitSetupLootComponent : MonoBehaviour {
     public string outfitType;

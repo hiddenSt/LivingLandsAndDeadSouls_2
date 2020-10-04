@@ -1,5 +1,6 @@
 ﻿using HealthFight;
-using Player;
+using Components.Player;
+using SaveLoadSystem.DTO;
 using UnityEngine;
 
 namespace Items {
@@ -9,7 +10,6 @@ namespace Items {
     private int _ammoLimit;
     private Damage _damage;
     private int _ammoCount;
-    private int _gunTypeIndex;
     private GunComponent _gunComponent;
     private string _gunType;
 
@@ -33,15 +33,7 @@ namespace Items {
     public override void PickUp() {
       _gunComponent = GameObject.Find("Player").GetComponent<GunComponent>();
     }
-
-    public void SetGunTypeIndex(int index) {
-      _gunTypeIndex = index;
-    }
-
-    public int GetGunTypeIndex() {
-      return _gunTypeIndex;
-    }
-
+    
     public void SetAmmoLimit(int points) {
       _ammoLimit = points;
     }
@@ -72,6 +64,16 @@ namespace Items {
 
     public string GetGunType() {
       return _gunType;
+    }
+
+    public GunData GetGunData() {
+      var gunData = new GunData();
+      gunData.damage = _damage.GetDamagePoints();
+      gunData.ammoCount = _ammoCount;
+      gunData.ammoLimit = _ammoLimit;
+      gunData.gunType = _gunType;
+      gunData.fireRate = _fireRate;
+      return gunData;
     }
   }
 }

@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: Rifle
-  fireRate: 5
+  fireRate: 2
   damagePoints: 5
   ammoCount: 10
   ammoLimit: 15
