@@ -46,6 +46,14 @@ namespace Components.Player {
       _gun.SetAmmoCount(_ammoCount);
       return _gun;
     }
+
+    public void AddAmmo(int ammo) {
+      if (_gun == null) {
+        return;
+      }
+      _ammoCount += ammo;
+      _gunSlotUi.ChangeAmmoCount(_ammoCount);
+    }
     
     private void ActivateGun() {
       fireButton.interactable = true;

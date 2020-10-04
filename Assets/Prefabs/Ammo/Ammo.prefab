@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4385187240096724827}
   - component: {fileID: 552530937843760975}
   - component: {fileID: 2832750492512083313}
-  - component: {fileID: 8158291390897706536}
+  - component: {fileID: 8844061696068498828}
+  - component: {fileID: 4565187851365729693}
   m_Layer: 0
-  m_Name: Ammo1
+  m_Name: Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -99,7 +101,7 @@ CircleCollider2D:
   m_Offset: {x: -0.02, y: -0.02}
   serializedVersion: 2
   m_Radius: 0.08
---- !u!114 &8158291390897706536
+--- !u!114 &8844061696068498828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,8 +110,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1515075103078067140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb46660e9761d2b47bf346224cdea122, type: 3}
+  m_Script: {fileID: 11500000, guid: 53f575d2c4cb5d5459ecaed5918441a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemButton: {fileID: 1358912297869063236, guid: d7ad449a060895843a6c4224e989de82,
+  ammoCount: 10
+--- !u!114 &4565187851365729693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515075103078067140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ce3146d0ac6b64a80d8ea628b72f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemButton: {fileID: 8376930826966795645, guid: d53c15235812d6f4581dc5192f52d66c,
+    type: 3}
+  itemImage: {fileID: 1358912297869063236, guid: d7ad449a060895843a6c4224e989de82,
     type: 3}
