@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-namespace DTOBetweenScenes {
+namespace DataTransferObjects {
   
   public class ParameterManager : MonoBehaviour {
     private void Start() {
@@ -33,6 +34,7 @@ namespace DTOBetweenScenes {
     public int startSeason = 0;
     public Vector3Int tmpSize;
     public bool needToLoad = false;
+    public SortedDictionary<string, AnimatorOverrideController> defaultAnimatorController;
 
     private int _mapScalerSmall;
     private int _mapScalerMedium;

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DTOBetweenScenes;
+using DataTransferObjects;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 

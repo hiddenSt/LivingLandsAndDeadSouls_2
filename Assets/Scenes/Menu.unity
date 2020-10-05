@@ -2166,6 +2166,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcccf7650be46d84683710951ddf6f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunTypes:
+  - WithoutGun
+  - Rifle
+  - MachineGun
+  animatorOverrideControllersClark:
+  - {fileID: 22100000, guid: 7097d1f322e508f4e866e447469dc8bf, type: 2}
+  - {fileID: 22100000, guid: 3cf79dd8971236343a1a7e1735d1e143, type: 2}
+  - {fileID: 22100000, guid: 88aad2b026f91cb4c8aeb1e193489043, type: 2}
+  animatorOverrideControllersHuLie:
+  - {fileID: 22100000, guid: 94a2bc3d7cec6d14abb5b1aca59f0274, type: 2}
+  - {fileID: 22100000, guid: 82f037a77893cd84888b305feda57e30, type: 2}
+  - {fileID: 22100000, guid: d81c4b10db81ba14abe383bf4626d1ba, type: 2}
+  animatorOverrideControllersTsal:
+  - {fileID: 22100000, guid: 5dd51590fad7d7d44b1f97672b824055, type: 2}
+  - {fileID: 22100000, guid: 068b8fd27e803504aa647bf693109982, type: 2}
+  - {fileID: 22100000, guid: 57ae962a7c6a99b46a27f920f28bfe46, type: 2}
 --- !u!114 &290939360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4822,7 +4838,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 600758881}
   m_HandleRect: {fileID: 600758880}
   m_Direction: 2
-  m_Value: 1.0000004
+  m_Value: 0.99999964
   m_Size: 0.7943122
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8087,7 +8103,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 765154746}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

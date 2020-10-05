@@ -1,4 +1,4 @@
-﻿using DTOBetweenScenes;
+﻿using DataTransferObjects;
 using GenerateMap;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;

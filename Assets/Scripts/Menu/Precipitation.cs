@@ -1,4 +1,4 @@
-﻿using DTOBetweenScenes;
+﻿using DataTransferObjects;
 using UnityEngine;
 using UnityEngine.UI;
 

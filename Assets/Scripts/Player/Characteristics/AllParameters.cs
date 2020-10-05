@@ -1,5 +1,6 @@
-﻿using Menu;
+﻿using DataTransferObjects;
 using UnityEngine;
+
 
 namespace Characteristics {
   public class AllParameters : MonoBehaviour {
@@ -27,7 +28,7 @@ namespace Characteristics {
     }
 
     private void Start() {
-      switch (GameObject.Find("ParametersManager").GetComponent<DTOBetweenScenes.ParameterManager>().characterI) {
+      switch (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().characterI) {
         case 0:
           _playerName = "Dick Clarque";
           break;

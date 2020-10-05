@@ -1,9 +1,15 @@
-﻿using DTOBetweenScenes;
+﻿using System.Collections.Generic;
+using DataTransferObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Menu {
   public class CharacterSelect : MonoBehaviour {
+    public string[] gunTypes;
+    public AnimatorOverrideController[] animatorOverrideControllersClark;
+    public AnimatorOverrideController[] animatorOverrideControllersHuLie;
+    public AnimatorOverrideController[] animatorOverrideControllersTsal;
+
     private void Start() {
       var button1T = gameObject.transform.Find("DickClarkButton");
       var button2T = gameObject.transform.Find("HuLieButton");
@@ -15,16 +21,28 @@ namespace Menu {
 
     public void DickClarkPressed() {
       ParameterManager.instance.characterI = 0;
+      ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
+      for (int i = 0; i < gunTypes.Length; ++i) {
+        ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersClark[i]);
+      }
       SwitchButtonColor(1);
     }
 
     public void HuLiePressed() {
       ParameterManager.instance.characterI = 1;
+      ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
+      for (int i = 0; i < gunTypes.Length; ++i) {
+        ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersHuLie[i]);
+      }
       SwitchButtonColor(2);
     }
 
     public void VitaliTsalPressed() {
       ParameterManager.instance.characterI = 2;
+      ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
+      for (int i = 0; i < gunTypes.Length; ++i) {
+        ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersTsal[i]);
+      }
       SwitchButtonColor(3);
     }
 

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using DataTransferObjects;
 
 namespace Player {
   public class PlayerController : MonoBehaviour {
     private void Start() {
       _height = GameObject.Find("ParametersManager").GetComponent
-        <DTOBetweenScenes.ParameterManager>().tmpSize.y;
+        <ParameterManager>().tmpSize.y;
       _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
       _soundOfRun = GameObject.Find("RunSound").GetComponent<AudioSource>();
       animator = GetComponent<Animator>();
@@ -82,4 +83,10 @@ namespace Player {
     private float _dirY;
     private GameObject _bullet;
   }
+}
+
+namespace DTOBetweenScenes {
+
+  internal class ParameterManager { }
+
 }

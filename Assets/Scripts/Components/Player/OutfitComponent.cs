@@ -28,6 +28,13 @@ namespace Components.Player {
     public Outfit GetOutfit() {
       return _outfit;
     }
+
+    public void SetCharacterDefaultOutfit(
+      SortedDictionary<string, AnimatorOverrideController> characterDefaultAnimator) {
+      Debug.Log(1);
+      _gunType = "WithoutGun";
+      _characterDefaultAnimator = characterDefaultAnimator;
+    }
     
     private void ActivateUi() {
       _skinsAnimator = _outfit.GetSkinsAnimator();
@@ -64,12 +71,11 @@ namespace Components.Player {
     }
 
     private void Start() {
-      _characterDefaultAnimator = GameObject.Find("PlayerParameters")
-        .GetComponent<PlayerParameters>().characterDefaultAnimator;
       _animator = gameObject.GetComponent<Animator>();
       _skinsAnimator = _characterDefaultAnimator;
       _gunType = "WithoutGun";
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
+      _animator.runtimeAnimatorController = _characterDefaultAnimator[_gunType];
     }
   }
 }
