@@ -1,4 +1,5 @@
-﻿using DataTransferObjects;
+﻿using Components;
+using DataTransferObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,6 +27,8 @@ namespace Menu {
       parameterManager.hostileCharVal = 92;
       parameterManager.neutralCharVal = 128;
       parameterManager.startSeason = 0;
+      var saver = gameObject.GetComponent<GameSaver>();
+      saver.Save();
       SceneManager.LoadScene("Menu");
     }
 

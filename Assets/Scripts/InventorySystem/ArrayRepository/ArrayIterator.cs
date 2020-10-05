@@ -17,9 +17,10 @@
     }
 
     public void Next() {
-      while (_currentItem == null && IsDone()) {
+      ++_index;
+      _currentItem = _itemsRepository.GetItemByIndex(_index);
+      while (!IsDone() && _itemsRepository.GetItemByIndex(_index) == null) {
         ++_index;
-        _currentItem = _itemsRepository.GetItemByIndex(_index);
       }
     }
 

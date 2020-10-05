@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using InventorySystem;
+using Items;
+using SaveLoadSystem;
 using UnityEngine;
+using Object = System.Object;
 
 namespace DataTransferObjects {
   
@@ -19,6 +23,8 @@ namespace DataTransferObjects {
       else if (instance == this)
         Destroy(gameObject);
       DontDestroyOnLoad(gameObject);
+      suitedGun = null;
+      suitedOutfit = null;
     }
 
     //data members
@@ -34,8 +40,16 @@ namespace DataTransferObjects {
     public int startSeason = 0;
     public Vector3Int tmpSize;
     public bool needToLoad = false;
+    
+    //playerData
     public SortedDictionary<string, AnimatorOverrideController> defaultAnimatorController;
-
+    public string characterName;
+    public Item[] inventoryItems;
+    public Gun suitedGun;
+    public Outfit suitedOutfit;
+    public ObjectPosition playerPosition;
+    
+    //mapData
     private int _mapScalerSmall;
     private int _mapScalerMedium;
     private int _mapScalerBig;

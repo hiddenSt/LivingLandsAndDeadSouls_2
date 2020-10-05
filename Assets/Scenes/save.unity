@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 138974783}
   - component: {fileID: 138974782}
   - component: {fileID: 138974786}
+  - component: {fileID: 138974787}
   m_Layer: 5
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -604,6 +605,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 138974781}
+--- !u!114 &138974787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138974781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87783331c4c8ba24cba29a4caa27a235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &158061246
 GameObject:
   m_ObjectHideFlags: 0
@@ -17130,6 +17143,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOutfitComponent: {fileID: 6783679401409266032}
   playerGunComponent: {fileID: 6783679401409266034}
+  playerAnimator: {fileID: 812121756}
+  player: {fileID: 6783679401409266029}
+  playerInventory: {fileID: 6783679401409266035}
 --- !u!4 &1604084570
 Transform:
   m_ObjectHideFlags: 0
@@ -18678,7 +18694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 691.29346, y: -360.00085}
+  m_AnchoredPosition: {x: 803.3337, y: -360.00085}
   m_SizeDelta: {x: 426.1892, y: 602.4033}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2031515191

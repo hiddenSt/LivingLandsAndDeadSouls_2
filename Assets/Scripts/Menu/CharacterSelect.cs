@@ -17,6 +17,7 @@ namespace Menu {
       _button1 = button1T.gameObject.GetComponent<Image>();
       _button2 = button2T.gameObject.GetComponent<Image>();
       _button3 = button3T.gameObject.GetComponent<Image>();
+      DickClarkPressed();
     }
 
     public void DickClarkPressed() {

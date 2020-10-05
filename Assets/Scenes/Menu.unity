@@ -2438,6 +2438,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303306060}
   m_CullTransparentMesh: 0
+--- !u!1 &328220483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328220485}
+  - component: {fileID: 328220484}
+  m_Layer: 0
+  m_Name: LootImages
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &328220484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328220483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4eb2462d1f3ad346a5f70681c9416d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoImage: {fileID: 0}
+  medKitImage: {fileID: 0}
+  meatImage: {fileID: 0}
+  gunTypes:
+  - Rifle
+  - MachineGun
+  guns:
+  - {fileID: 2090505161963202784, guid: dd56ce400ac2f2445a022e8e3738c144, type: 3}
+  - {fileID: 7668690026397558194, guid: 41b34b881b4e23942a914fc8bb3b99b2, type: 3}
+--- !u!4 &328220485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328220483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 360.8437, y: 247.72003, z: -21.928879}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &342593517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3919,6 +3971,11 @@ MonoBehaviour:
   startSeason: 0
   tmpSize: {x: 0, y: 0, z: 0}
   needToLoad: 0
+  characterName: 
+  playerPosition:
+    x: 0
+    y: 0
+    z: 0
 --- !u!4 &487497129
 Transform:
   m_ObjectHideFlags: 0

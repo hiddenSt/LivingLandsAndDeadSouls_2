@@ -19,8 +19,20 @@ namespace Items {
     }
 
     public override void PickUp() {
-      _outfitComponent = GameObject.Find("Player").GetComponent<OutfitComponent>();
-      _playerAnimator = GameObject.Find("Player").GetComponent<Animator>();
+      var player = GameObject.Find("Player");
+      if (player == null) {
+        return;
+      }
+      _outfitComponent = player.GetComponent<OutfitComponent>();
+      _playerAnimator = player.GetComponent<Animator>();
+    }
+
+    public void SetOutfitComponent(OutfitComponent outfitComponent) {
+      _outfitComponent = outfitComponent;
+    }
+
+    public void SetAnimator(Animator animator) {
+      _playerAnimator = animator;
     }
 
     public SortedDictionary<string, AnimatorOverrideController> GetSkinsAnimator() {

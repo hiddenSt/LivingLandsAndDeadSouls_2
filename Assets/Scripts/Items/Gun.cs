@@ -13,7 +13,7 @@ namespace Items {
     private GunComponent _gunComponent;
     private string _gunType;
 
-    public Gun(string gunType, int fireRate, int damagePoints, int ammoCount, int ammoLimit) {
+    public Gun(string gunType, int fireRate, float damagePoints, int ammoCount, int ammoLimit) {
       _type = "Gun";
       _fireRate = fireRate;
       _ammoCount = ammoCount;
@@ -31,11 +31,19 @@ namespace Items {
     }
 
     public override void PickUp() {
-      _gunComponent = GameObject.Find("Player").GetComponent<GunComponent>();
+      var player = GameObject.Find("Player");
+      if (player == null) {
+        return;
+      }
+      _gunComponent = player.GetComponent<GunComponent>();
     }
     
     public void SetAmmoLimit(int points) {
       _ammoLimit = points;
+    }
+
+    public void SetGunComponent(GunComponent gunComponent) {
+      _gunComponent = gunComponent;
     }
 
     public int GetAmmoLimit() {
@@ -65,15 +73,6 @@ namespace Items {
     public string GetGunType() {
       return _gunType;
     }
-
-    public GunData GetGunData() {
-      var gunData = new GunData();
-      gunData.damage = _damage.GetDamagePoints();
-      gunData.ammoCount = _ammoCount;
-      gunData.ammoLimit = _ammoLimit;
-      gunData.gunType = _gunType;
-      gunData.fireRate = _fireRate;
-      return gunData;
-    }
+    
   }
 }

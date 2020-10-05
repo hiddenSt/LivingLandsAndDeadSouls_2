@@ -4,17 +4,10 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using InventorySystem;
 
-namespace InventorySystem {
- /* public class LongTouchUnity : UIBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler {
+namespace UI.Controls {
+ public class LongTouchUnity : UIBehaviour, IPointerDownHandler {
     private void Update() {
-      if (!_isPointerDown) return;
-      if (!(Time.time - _timePressStarted > durationThreshold)) return;
-      _longPressTrigger = true;
-      var canvas = GameObject.Find("DestroyCanvas");
-      var fakePanel = canvas.transform.GetChild(0).gameObject;
-      fakePanel.SetActive(true);
-      var destroyItem = canvas.transform.GetChild(1).GetComponent<Item>().destroyingItem = gameObject;
-      canvas.transform.GetChild(1).GetComponent<Item>().dropItemComp = gameObject.GetComponent<DropItem>();
+      
     }
 
     public void OnPointerDown(PointerEventData eventData) {
@@ -26,7 +19,7 @@ namespace InventorySystem {
     public void OnPointerUp(PointerEventData eventData) { }
 
     public void OnPointerExit(PointerEventData eventData) {
-      //gameObject.GetComponent<DropItem>().isActive = true;
+      
       _isPointerDown = false;
     }
 
@@ -38,5 +31,5 @@ namespace InventorySystem {
     private bool _isPointerDown = false;
     private bool _longPressTrigger = false;
     private float _timePressStarted;
-  }*/
+  }
 } //end of namespace InventorySystem
