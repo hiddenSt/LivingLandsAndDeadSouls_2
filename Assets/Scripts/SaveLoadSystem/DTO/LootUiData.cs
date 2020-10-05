@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SaveLoadSystem.DTO {
 
-  public class ItemImages : MonoBehaviour {
+  public class LootUiData : MonoBehaviour {
     public SortedDictionary<string, GameObject> gunsImages;
     public SortedDictionary<string, GameObject> outfitImages;
     public GameObject ammoImage;
@@ -11,6 +11,9 @@ namespace SaveLoadSystem.DTO {
     public GameObject meatImage;
     public string[] gunTypes;
     public GameObject[] guns;
+
+    public GameObject separatedButton;
+    public GameObject singleButton;
 
     private void Start() {
       gunsImages = new SortedDictionary<string, GameObject>();

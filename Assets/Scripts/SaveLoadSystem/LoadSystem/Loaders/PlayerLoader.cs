@@ -11,6 +11,7 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
   public class PlayerLoader : ILoader {
     public PlayerLoader(string fileName) {
       _fileName = fileName;
+      _lootUiData = GameObject.Find("LootImages").GetComponent<LootUiData>();
     }
     
     public void Load() {
@@ -23,13 +24,15 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       var fileStream = new FileStream(path, FileMode.Open);
       _playerData = binaryFormatter.Deserialize(fileStream) as PlayerData;
       fileStream.Close();
+      LoadSuitedGun();
     }
 
     private void LoadSuitedGun() {
       var gunSerializer = new GunSerializer();
       ItemUiWithSeparatedButton gunUi = new ItemUiWithSeparatedButton();
-      gunUi.itemImage = GameObject.Find("LootImages").GetComponent<ItemImages>().gunsImages[_playerData.suitedGun.gunType];
-        ParameterManager.instance.suitedGun = gunSerializer.Deserialize(_playerData.suitedGun);
+      gunUi.itemImage = _lootUiData.gunsImages[_playerData.suitedGun.gunType];
+      gunUi.button = _lootUiData.separatedButton;
+        ParameterManager.instance.suitedGun = gunSerializer.Deserialize(_playerData.suitedGun, gunUi);
     }
     
 
@@ -42,6 +45,7 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
     }
 
     private string _fileName;
+    private LootUiData _lootUiData;
     private PlayerData _playerData;
   }
 

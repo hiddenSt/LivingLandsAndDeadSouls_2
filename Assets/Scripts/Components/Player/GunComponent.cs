@@ -89,6 +89,10 @@ namespace Components.Player {
       _gunSlotUi = gunSlotUi;
     }
 
+    public void SetOutfitComponent(OutfitComponent outfitComponent) {
+      _outfitComponent = outfitComponent;
+    }
+
     private void SendBulletWhenStandStill() {
       switch (_playerController.direction) {
         case 0:

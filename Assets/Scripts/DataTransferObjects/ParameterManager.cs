@@ -3,7 +3,6 @@ using InventorySystem;
 using Items;
 using SaveLoadSystem;
 using UnityEngine;
-using Object = System.Object;
 
 namespace DataTransferObjects {
   

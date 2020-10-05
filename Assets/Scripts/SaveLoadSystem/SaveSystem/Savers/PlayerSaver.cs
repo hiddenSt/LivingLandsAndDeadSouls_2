@@ -52,7 +52,7 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       inventoryData.size = inventory.GetInventorySize();
 
       var iterator = inventory.GetIterator();
-      for (iterator.First(); !iterator.IsDone(); iterator.Next()) { }
+      //for (iterator.First(); !iterator.IsDone(); iterator.Next()) { }
 
       return inventoryData;
     }

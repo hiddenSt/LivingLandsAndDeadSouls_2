@@ -14,6 +14,7 @@ namespace Components {
 
     private void Awake() {
       _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
+      SetDependencies();
       SetUpPlayer();
     }
 
@@ -21,6 +22,7 @@ namespace Components {
       var playerPosition = _parameterManager.playerPosition;
       player.transform.position = new Vector3(playerPosition.x, playerPosition.y, playerPosition.z);
       playerOutfitComponent.SetCharacterDefaultOutfit(_parameterManager.defaultAnimatorController);
+
       if (_parameterManager.suitedGun != null) {
         _parameterManager.suitedGun.SetGunComponent(playerGunComponent);
         _parameterManager.suitedGun.Use();
@@ -28,7 +30,6 @@ namespace Components {
 
       if (_parameterManager.suitedOutfit != null) {
         _parameterManager.suitedOutfit.SetOutfitComponent(playerOutfitComponent);
-        _parameterManager.suitedOutfit.SetAnimator(playerAnimator);
         _parameterManager.suitedOutfit.Use();
       }
 
@@ -40,6 +41,12 @@ namespace Components {
         inventory.AddItem(_parameterManager.inventoryItems[i]);
       }
 
+    }
+    
+    private void SetDependencies() {
+      Debug.Log("Animator: " + playerAnimator);
+      playerGunComponent.SetOutfitComponent(playerOutfitComponent);
+      playerOutfitComponent.SetAnimator(playerAnimator);
     }
   }
 

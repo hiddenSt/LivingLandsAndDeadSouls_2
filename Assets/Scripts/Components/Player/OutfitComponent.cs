@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using DTOBetweenScenes;
-using Components;
 using Items;
 using UI;
 using UnityEngine;
 
 namespace Components.Player {
-  
+
   public class OutfitComponent : MonoBehaviour {
     private IOutfitSlotUi _outfitSlotUi;
     private InventoryComponent _playerInventoryComponent;
@@ -21,6 +19,7 @@ namespace Components.Player {
         DeactivateOutfit();
         _playerInventoryComponent.AddItem(_outfit);
       }
+
       _outfit = outfit;
       ActivateUi();
     }
@@ -34,16 +33,20 @@ namespace Components.Player {
       Debug.Log(1);
       _gunType = "WithoutGun";
       _characterDefaultAnimator = characterDefaultAnimator;
+      _skinsAnimator = _characterDefaultAnimator;
     }
-    
+
     private void ActivateUi() {
       _skinsAnimator = _outfit.GetSkinsAnimator();
       _animator.runtimeAnimatorController = _skinsAnimator[_gunType];
       _outfitSlotUi.SetOutfitImageAndActivateListener(_outfit.GetItemUi().GetItemImage());
     }
-    
+
     public void ChangeGunSkin(string gunType) {
       _gunType = gunType;
+      Debug.Log("_GUNTYPE: " + _gunType);
+      Debug.Log("ANIMATOR: " + _animator);
+      Debug.Log("SKINSANIMATOR: " + _skinsAnimator);
       _animator.runtimeAnimatorController = _skinsAnimator[_gunType];
     }
 
@@ -52,15 +55,20 @@ namespace Components.Player {
       if (!itemIsAdded) {
         _playerInventoryComponent.DropItem(_outfit);
       }
+
       _outfit = null;
       DeactivateOutfit();
     }
-    
+
     public void DeactivateOutfit() {
       _outfitSlotUi.RemoveOutfitImageAndDeactivateListener();
       RemoveOutfitSkin();
     }
-    
+
+    public void SetAnimator(Animator animator) {
+      _animator = animator;
+    }
+
     private void RemoveOutfitSkin() {
       _skinsAnimator = _characterDefaultAnimator;
       _animator.runtimeAnimatorController = _skinsAnimator[_gunType];
@@ -69,6 +77,7 @@ namespace Components.Player {
     public void SetOutfitSlotUi(IOutfitSlotUi outfitSlotUi) {
       _outfitSlotUi = outfitSlotUi;
     }
+
 
     private void Start() {
       _animator = gameObject.GetComponent<Animator>();

@@ -2476,6 +2476,10 @@ MonoBehaviour:
   guns:
   - {fileID: 2090505161963202784, guid: dd56ce400ac2f2445a022e8e3738c144, type: 3}
   - {fileID: 7668690026397558194, guid: 41b34b881b4e23942a914fc8bb3b99b2, type: 3}
+  separatedButton: {fileID: 2075217616807376735, guid: 27541f0185ce5bd4e80ef9429c6d2926,
+    type: 3}
+  singleButton: {fileID: 8376930826966795645, guid: d53c15235812d6f4581dc5192f52d66c,
+    type: 3}
 --- !u!4 &328220485
 Transform:
   m_ObjectHideFlags: 0
