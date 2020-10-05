@@ -30,7 +30,6 @@ namespace Components.Player {
 
     public void SetCharacterDefaultOutfit(
       SortedDictionary<string, AnimatorOverrideController> characterDefaultAnimator) {
-      Debug.Log(1);
       _gunType = "WithoutGun";
       _characterDefaultAnimator = characterDefaultAnimator;
       _skinsAnimator = _characterDefaultAnimator;
@@ -44,9 +43,6 @@ namespace Components.Player {
 
     public void ChangeGunSkin(string gunType) {
       _gunType = gunType;
-      Debug.Log("_GUNTYPE: " + _gunType);
-      Debug.Log("ANIMATOR: " + _animator);
-      Debug.Log("SKINSANIMATOR: " + _skinsAnimator);
       _animator.runtimeAnimatorController = _skinsAnimator[_gunType];
     }
 

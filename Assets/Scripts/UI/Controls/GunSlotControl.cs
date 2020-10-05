@@ -32,7 +32,6 @@ namespace UI.Controls {
     }
 
     private void Start() {
-      playerGunComponent.SetGuSlotUi(this);
       _dropButton = gameObject.GetComponent<Button>();
       _gunImage = gameObject.GetComponent<Image>();
     }

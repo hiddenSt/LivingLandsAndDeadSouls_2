@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bf9e93336ad494d821f73f51273108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outfitType: 
+  outfitType: Outfit_1
   gunTypes:
   - WithoutGun
   - Rifle

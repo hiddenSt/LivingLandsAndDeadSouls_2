@@ -1415,7 +1415,7 @@ RectTransform:
   - {fileID: 5919126772354062078}
   - {fileID: 5919126771369056054}
   m_Father: {fileID: 5919126772530493812}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10325,7 +10325,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5919126772530493812}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -17145,6 +17145,7 @@ MonoBehaviour:
   playerGunComponent: {fileID: 6783679401409266034}
   playerAnimator: {fileID: 812121756}
   player: {fileID: 6783679401409266029}
+  gunSlotControl: {fileID: 1952260239}
   playerInventory: {fileID: 6783679401409266035}
 --- !u!4 &1604084570
 Transform:
@@ -21856,7 +21857,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 6245970541801193003}
   - {fileID: 6245970541055623520}
   - {fileID: 1253560658}
   - {fileID: 284581156}
@@ -22146,8 +22146,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1465376566}
+  - {fileID: 6245970541801193003}
   m_Father: {fileID: 5919126772530493812}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -22275,15 +22276,15 @@ RectTransform:
   m_GameObject: {fileID: 6245970541801192996}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.59999526, y: 0.59999526, z: 1}
+  m_LocalScale: {x: 0.5999952, y: 0.5999952, z: 1}
   m_Children:
   - {fileID: 1952260235}
-  m_Father: {fileID: 5919126772530493812}
-  m_RootOrder: 0
+  m_Father: {fileID: 6245970541055623520}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 166, y: 190}
+  m_AnchoredPosition: {x: -3.9999847, y: 124.254005}
   m_SizeDelta: {x: 350.90033, y: 148.5078}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6783679401409266029 stripped

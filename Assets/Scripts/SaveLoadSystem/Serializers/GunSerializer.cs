@@ -1,5 +1,4 @@
-﻿using InventorySystem;
-using Items;
+﻿using Items;
 using SaveLoadSystem.DTO;
 
 namespace SaveLoadSystem.Serializers {
@@ -15,9 +14,8 @@ namespace SaveLoadSystem.Serializers {
       return gunData;
     }
 
-    public Gun Deserialize(GunData gunData, IItemUi gunUi) {
+    public Gun Deserialize(GunData gunData) {
       var gun = new Gun(gunData.gunType, gunData.fireRate, gunData.damage, gunData.ammoCount, gunData.ammoLimit);
-      gun.SetItemUi(gunUi);
       return gun;
     }
   }

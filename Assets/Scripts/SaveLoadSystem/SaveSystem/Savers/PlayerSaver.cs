@@ -59,6 +59,9 @@ namespace SaveLoadSystem.SaveSystem.Savers {
 
     private GunData GetSuitedGun() {
       var gun = _player.GetComponent<GunComponent>().GetGun();
+      if (gun == null) {
+        return null;
+      }
       var gunSerializer = new GunSerializer();
       return gunSerializer.Serialize(gun);
     }

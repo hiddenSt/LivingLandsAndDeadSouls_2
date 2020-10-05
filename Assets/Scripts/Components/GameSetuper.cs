@@ -1,5 +1,7 @@
 ﻿using Components.Player;
 using DataTransferObjects;
+using HealthFight;
+using UI.Controls;
 using UnityEngine;
 
 namespace Components {
@@ -9,44 +11,46 @@ namespace Components {
     public GunComponent playerGunComponent;
     public Animator playerAnimator;
     public GameObject player;
+    public GunSlotControl gunSlotControl;
     public InventoryComponent playerInventory;
-    private ParameterManager _parameterManager;
 
-    private void Awake() {
-      _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
+    private void Start() {
       SetDependencies();
       SetUpPlayer();
     }
 
     private void SetUpPlayer() {
-      var playerPosition = _parameterManager.playerPosition;
+      var playerPosition = ParameterManager.instance.playerPosition;
       player.transform.position = new Vector3(playerPosition.x, playerPosition.y, playerPosition.z);
-      playerOutfitComponent.SetCharacterDefaultOutfit(_parameterManager.defaultAnimatorController);
+      playerOutfitComponent.SetCharacterDefaultOutfit(ParameterManager.instance.defaultAnimatorController);
+      var playerHealth = player.GetComponent<HealthComponent>().GetHealthEntity();
+      playerHealth.SetHealthPointsLimit(ParameterManager.instance.healthLimit);
+      playerHealth.SetHealthPoints(ParameterManager.instance.health);
 
-      if (_parameterManager.suitedGun != null) {
-        _parameterManager.suitedGun.SetGunComponent(playerGunComponent);
-        _parameterManager.suitedGun.Use();
+      if (ParameterManager.instance.suitedGun != null) {
+        ParameterManager.instance.suitedGun.SetGunComponent(playerGunComponent);
+        ParameterManager.instance.suitedGun.Use();
       }
 
-      if (_parameterManager.suitedOutfit != null) {
-        _parameterManager.suitedOutfit.SetOutfitComponent(playerOutfitComponent);
-        _parameterManager.suitedOutfit.Use();
+      if (ParameterManager.instance.suitedOutfit != null) {
+        ParameterManager.instance.suitedOutfit.SetOutfitComponent(playerOutfitComponent);
+        ParameterManager.instance.suitedOutfit.Use();
       }
 
       var inventory = playerInventory.GetInventory();
-      if (_parameterManager.inventoryItems == null) {
+      if (ParameterManager.instance.inventoryItems == null) {
         return;
       }
-      for (int i = 0; i < _parameterManager.inventoryItems.Length; ++i) {
-        inventory.AddItem(_parameterManager.inventoryItems[i]);
+      for (int i = 0; i < ParameterManager.instance.inventoryItems.Length; ++i) {
+        inventory.AddItem(ParameterManager.instance.inventoryItems[i]);
       }
 
     }
     
     private void SetDependencies() {
-      Debug.Log("Animator: " + playerAnimator);
       playerGunComponent.SetOutfitComponent(playerOutfitComponent);
       playerOutfitComponent.SetAnimator(playerAnimator);
+      playerGunComponent.SetGuSlotUi(gunSlotControl);
     }
   }
 

@@ -2467,15 +2467,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4eb2462d1f3ad346a5f70681c9416d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoImage: {fileID: 0}
-  medKitImage: {fileID: 0}
-  meatImage: {fileID: 0}
+  ammoImage: {fileID: 1358912297869063236, guid: d7ad449a060895843a6c4224e989de82,
+    type: 3}
+  medKitImage: {fileID: 2006789691260030032, guid: d3d368ff1e9064244b2340beb3e153c5,
+    type: 3}
+  meatImage: {fileID: 2032792334077885221, guid: 9759cd313f1bd19409f4c6d9c30688d3,
+    type: 3}
   gunTypes:
   - Rifle
   - MachineGun
   guns:
   - {fileID: 2090505161963202784, guid: dd56ce400ac2f2445a022e8e3738c144, type: 3}
   - {fileID: 7668690026397558194, guid: 41b34b881b4e23942a914fc8bb3b99b2, type: 3}
+  outfitsTypes:
+  - Outfit_1
+  - Outfit_2
+  outfitsImages:
+  - {fileID: 8156613626934858934, guid: 600bc8e2ad1973f468e8c31c42ecb3c7, type: 3}
+  - {fileID: 4565447936479215907, guid: f7873f0427608a14d84b3244e0bd0877, type: 3}
   separatedButton: {fileID: 2075217616807376735, guid: 27541f0185ce5bd4e80ef9429c6d2926,
     type: 3}
   singleButton: {fileID: 8376930826966795645, guid: d53c15235812d6f4581dc5192f52d66c,

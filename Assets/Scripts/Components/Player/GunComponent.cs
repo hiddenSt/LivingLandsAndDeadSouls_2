@@ -15,7 +15,7 @@ namespace Components.Player {
     private Vector2 _direction;
     private InventoryComponent _playerInventoryComponent;
     private PlayerController _playerController;
-    private Items.Gun _gun;
+    private Gun _gun;
     private OutfitComponent _outfitComponent;
 
     public void SetGun(Items.Gun gun) {
@@ -43,6 +43,9 @@ namespace Components.Player {
     }
 
     public Gun GetGun() {
+      if (_gun == null) {
+        return null;
+      }
       _gun.SetAmmoCount(_ammoCount);
       return _gun;
     }
