@@ -76,7 +76,6 @@ namespace Components {
       outfit.SetAnimatorOverrider(outfitsAnimators.GetAnimators(outfit.GetOutfitType()));
       var outfitUi = lootUiData.GetOutfitUi(outfit.GetOutfitType());
       outfit.SetItemUi(outfitUi);
-      Debug.Log("SpriteInSetuper: " + outfit.GetItemUi().GetItemImage());
       outfit.SetOutfitComponent(playerOutfitComponent);
       outfit.Use();
     }
@@ -100,6 +99,7 @@ namespace Components {
 
     private void SetItemUi(Item item) {
       IItemUi itemUi = null;
+      Debug.Log("ITEMTYPE " + item.GetItemType());
       switch (item.GetItemType()) {
         case "Gun":
           var gun = item as Gun;
@@ -108,6 +108,7 @@ namespace Components {
         case "Outfit":
           var outfit = item as Outfit;
           itemUi = lootUiData.GetOutfitUi(outfit.GetOutfitType());
+          Debug.Log("OutfitUi " + itemUi);
           break;
         case "MedKit":
           var medKit = item as MedKit;

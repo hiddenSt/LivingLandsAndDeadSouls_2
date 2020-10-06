@@ -12,6 +12,7 @@ namespace Items {
     }
 
     public Outfit(string outfitType) {
+      _type = "Outfit";
       _outfitType = outfitType;
     }
 
