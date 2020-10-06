@@ -1,6 +1,8 @@
 ﻿using Components.Player;
 using DataTransferObjects;
 using HealthFight;
+using InventorySystem;
+using Items;
 using SaveLoadSystem.DTO;
 using UI;
 using UI.Controls;
@@ -17,6 +19,7 @@ namespace Components {
     public OutfitSlotControl outfitSlotControl;
     public InventoryUi inventoryUi;
     public LootUiData lootUiData;
+    public OutfitsAnimators outfitsAnimators;
 
     private void Start() {
       SetDependencies();
@@ -52,25 +55,30 @@ namespace Components {
     }
     
     private void SetupPlayerGun() {
-      if (ParameterManager.instance.suitedGun != null) {
-        var gun = ParameterManager.instance.suitedGun;
-        var gunUi = lootUiData.GetGunUi(gun.GetGunType());
-        gun.SetItemUi(gunUi);
-        gun.SetGunComponent(playerGunComponent);
-        gun.Use();
+      if (ParameterManager.instance.suitedGun == null) {
+        return;
       }
+      
+      var gun = ParameterManager.instance.suitedGun;
+      var gunUi = lootUiData.GetGunUi(gun.GetGunType());
+      gun.SetItemUi(gunUi);
+      gun.SetGunComponent(playerGunComponent);
+      gun.Use();
     }
 
     private void SetupPlayerOutfit() {
       playerOutfitComponent.SetCharacterDefaultOutfit(ParameterManager.instance.defaultAnimatorController);
-      if (ParameterManager.instance.suitedOutfit != null) {
-        var outfit = ParameterManager.instance.suitedOutfit;
-        var outfitUi = lootUiData.GetOutfitUi(outfit.GetOutfitType());
-        outfit.SetItemUi(outfitUi);
-        Debug.Log("SpriteInSetuper: " + outfit.GetItemUi().GetItemImage());
-        outfit.SetOutfitComponent(playerOutfitComponent);
-        outfit.Use();
+      if (ParameterManager.instance.suitedOutfit == null) {
+        return;
       }
+      
+      var outfit = ParameterManager.instance.suitedOutfit;
+      outfit.SetAnimatorOverrider(outfitsAnimators.GetAnimators(outfit.GetOutfitType()));
+      var outfitUi = lootUiData.GetOutfitUi(outfit.GetOutfitType());
+      outfit.SetItemUi(outfitUi);
+      Debug.Log("SpriteInSetuper: " + outfit.GetItemUi().GetItemImage());
+      outfit.SetOutfitComponent(playerOutfitComponent);
+      outfit.Use();
     }
 
     private void SetupPlayerInventory() {
@@ -78,6 +86,39 @@ namespace Components {
       if (ParameterManager.instance.inventoryItems == null) {
         return;
       }
+
+      var items = ParameterManager.instance.inventoryItems;
+      for (int i = 0; i < items.Count; ++i) {
+        if (items[i].GetItemType() == "Outfit") {
+          var outfit = items[i] as Outfit;
+          outfit.SetAnimatorOverrider(outfitsAnimators.GetAnimators(outfit.GetOutfitType()));
+        }
+        SetItemUi(items[i]);
+        inventory.AddItem(items[i]);
+      }
+    }
+
+    private void SetItemUi(Item item) {
+      IItemUi itemUi = null;
+      switch (item.GetItemType()) {
+        case "Gun":
+          var gun = item as Gun;
+          itemUi = lootUiData.GetGunUi(gun.GetGunType());
+          break;
+        case "Outfit":
+          var outfit = item as Outfit;
+          itemUi = lootUiData.GetOutfitUi(outfit.GetOutfitType());
+          break;
+        case "MedKit":
+          var medKit = item as MedKit;
+          itemUi = lootUiData.GetMedKitUi(medKit.GetMedKitType());
+          break;
+        case "Ammo":
+          var ammo = item as Ammo;
+          itemUi = lootUiData.GetAmmoUi();
+          break;
+      }
+      item.SetItemUi(itemUi);
     }
   }
 

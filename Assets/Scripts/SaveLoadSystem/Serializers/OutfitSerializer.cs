@@ -12,8 +12,8 @@ namespace SaveLoadSystem.Serializers {
       return outfitData;
     }
 
-    public Outfit Deserialize(OutfitData outfitData, SortedDictionary<string, AnimatorOverrideController> animatorOverrideControllers) {
-      var outfit = new Outfit(outfitData.outfitType, animatorOverrideControllers);
+    public Outfit Deserialize(OutfitData outfitData) {
+      var outfit = new Outfit(outfitData.outfitType);
       return outfit;
     }
   }

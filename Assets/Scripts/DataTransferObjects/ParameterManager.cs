@@ -43,7 +43,7 @@ namespace DataTransferObjects {
     //playerData
     public SortedDictionary<string, AnimatorOverrideController> defaultAnimatorController;
     public string characterName;
-    public Item[] inventoryItems;
+    public List<Item> inventoryItems;
     public Gun suitedGun;
     public Outfit suitedOutfit;
     public ObjectPosition playerPosition;

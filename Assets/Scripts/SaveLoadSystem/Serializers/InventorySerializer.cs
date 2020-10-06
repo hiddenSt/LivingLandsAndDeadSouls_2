@@ -42,6 +42,10 @@ namespace SaveLoadSystem.Serializers {
         items.Add(_ammoSerializer.Deserialize(t));
       }
 
+      for (int i = 0; i < inventoryData.outfits.Count; ++i) {
+        items.Add(_outfitSerializer.Deserialize(inventoryData.outfits[i]));
+      }
+
       return items;
     }
 
@@ -67,8 +71,6 @@ namespace SaveLoadSystem.Serializers {
         }
       }
     }
-    
-
   }
 
 }

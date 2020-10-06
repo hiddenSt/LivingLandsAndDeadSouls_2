@@ -29,6 +29,7 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       LoadSuitedOutfit();
       LoadPlayerPosition();
       LoadPlayerHealth();
+      LoadInventory();
     }
 
     private void LoadSuitedGun() {
@@ -45,9 +46,8 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
         return;
       }
       var outfitSerializer = new OutfitSerializer();
-
-      var animatorsObject = GameObject.Find("OutfitsAnimators").GetComponent<OutfitsAnimators>();
-      var suitedOutfit = outfitSerializer.Deserialize(_playerData.suitedOutfit, animatorsObject.GetAnimators(_playerData.suitedOutfit.outfitType));
+      
+      var suitedOutfit = outfitSerializer.Deserialize(_playerData.suitedOutfit);
       ParameterManager.instance.suitedOutfit = suitedOutfit;
     }
 
@@ -61,7 +61,8 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
     }
 
     private void LoadInventory() {
-      
+      var inventorySerializer = new InventorySerializer();
+      ParameterManager.instance.inventoryItems = inventorySerializer.Deserialize(_playerData.inventory);
     }
 
     public void DeleteSaves() {

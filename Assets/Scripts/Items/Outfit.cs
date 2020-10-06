@@ -11,6 +11,10 @@ namespace Items {
       _animatorOverrideController = animatorOverrideController;
     }
 
+    public Outfit(string outfitType) {
+      _outfitType = outfitType;
+    }
+
     public override void Use() {
       _outfitComponent.SetOutfit(this);
     }
@@ -27,6 +31,10 @@ namespace Items {
       _playerAnimator = player.GetComponent<Animator>();
     }
 
+    public void SetAnimatorOverrider(SortedDictionary<string, AnimatorOverrideController> animatorOverrider) {
+      _animatorOverrideController = animatorOverrider;
+    }
+    
     public void SetOutfitComponent(OutfitComponent outfitComponent) {
       _outfitComponent = outfitComponent;
     }

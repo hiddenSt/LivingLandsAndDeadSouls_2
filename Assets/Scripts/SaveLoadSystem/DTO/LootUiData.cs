@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using InventorySystem;
+﻿using InventorySystem;
 using UI.Items;
 using UnityEngine;
 
@@ -8,12 +6,15 @@ namespace SaveLoadSystem.DTO {
 
   public class LootUiData : MonoBehaviour {
     public GameObject ammoUi;
-    public GameObject medKitUi;
-    public GameObject meatUi;
+
     public string[] gunTypes;
     public GameObject[] gunsUiArray;
+    
     public string[] outfitsTypes;
     public GameObject[] outfitsUiArray;
+
+    public string[] medKitTypes;
+    public GameObject[] medKitsUi;
     
     
 
@@ -57,21 +58,21 @@ namespace SaveLoadSystem.DTO {
       return ammoUi_;
     }
 
-    public IItemUi MedKitUi() {
-      var medKitUi_ = Instantiate(medKitUi.GetComponent<ItemUiWithSingleButton>());
-      medKitUi_.itemImage = Instantiate(ammoUi.GetComponent<ItemUiWithSingleButton>().itemImage);
-      medKitUi_.itemButton = Instantiate(medKitUi.GetComponent<ItemUiWithSingleButton>().itemButton);
+    public IItemUi GetMedKitUi(string medKitType) {
+      int index = 0;
+      for (int i = 0; i < medKitTypes.Length; ++i) {
+        if (medKitType == medKitTypes[i]) {
+          index = i;
+        }
+      }
+      
+      var medKitUi_ = Instantiate(medKitsUi[index].GetComponent<ItemUiWithSingleButton>());
+      medKitUi_.itemImage = Instantiate(medKitsUi[index].GetComponent<ItemUiWithSingleButton>().itemImage);
+      medKitUi_.itemButton = Instantiate(medKitsUi[index].GetComponent<ItemUiWithSingleButton>().itemButton);
       medKitUi_.SetSprite();
       return medKitUi_;
     }
     
-    public IItemUi MeatUi() {
-      var meatUi_ = Instantiate(meatUi.GetComponent<ItemUiWithSingleButton>());
-      meatUi_.itemImage = Instantiate(meatUi.GetComponent<ItemUiWithSingleButton>().itemImage);
-      meatUi_.itemButton = Instantiate(meatUi.GetComponent<ItemUiWithSingleButton>().itemButton);
-      meatUi_.SetSprite();
-      return meatUi_;
-    }
   }
 
 }
