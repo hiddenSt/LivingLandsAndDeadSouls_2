@@ -4,17 +4,22 @@ namespace SaveLoadSystem.DTO {
 
   [System.Serializable]
   public class InventoryData {
-    public InventoryData() {
-      outfits = new List<OutfitData>();
-      guns = new List<GunData>();
-      medKits = new List<MedKitData>();
-      ammoData = new List<AmmoData>();
+
+    public void SetUp() {
+      guns = new GunData[gunsSize];
+      outfits = new OutfitData[outfitsSize];
+      medKits = new MedKitData[medKitsSize];
+      ammoData = new AmmoData[ammoSize];
     }
     
-    public List<OutfitData> outfits;
-    public List<GunData> guns;
-    public List<MedKitData> medKits;
-    public List<AmmoData> ammoData;
+    public int outfitsSize;
+    public int gunsSize;
+    public int medKitsSize;
+    public int ammoSize;
+    public OutfitData[] outfits;
+    public GunData[] guns;
+    public MedKitData[] medKits;
+    public AmmoData[] ammoData;
     public int size;
     public int capacity;
   }

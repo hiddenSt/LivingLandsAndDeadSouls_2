@@ -29,26 +29,26 @@ namespace SaveLoadSystem.Serializers {
 
     public List<Item> Deserialize(InventoryData inventoryData) {
       var items = new List<Item>();
-      foreach (var t in inventoryData.guns) {
-        var gun = _gunSerializer.Deserialize(t);
+      for (int i = 0; i < inventoryData.gunsSize; ++i) {
+        var gun = _gunSerializer.Deserialize(inventoryData.guns[i]);
         items.Add(gun);
         Debug.Log("GunType: " + gun.GetGunType());
       }
 
-      foreach (var t in inventoryData.medKits) {
-        var medKit = _medKitSerializer.Deserialize(t);
+      for (int i = 0; i < inventoryData.medKitsSize; ++i) {
+        var medKit = _medKitSerializer.Deserialize(inventoryData.medKits[i]);
         items.Add(medKit);
         Debug.Log("MedKitType: " + medKit.GetMedKitType());
       }
 
-      foreach (var t in inventoryData.ammoData) {
-        var ammo = _ammoSerializer.Deserialize(t);
+      for (int i = 0; i < inventoryData.ammoSize; ++i) {
+        var ammo = _ammoSerializer.Deserialize(inventoryData.ammoData[i]);
         items.Add(ammo);
         Debug.Log("Ammo:" + ammo);
       }
 
-      foreach (var t in inventoryData.outfits) {
-        var outfit = _outfitSerializer.Deserialize(t);
+      for (int i = 0; i < inventoryData.outfitsSize; ++i) {
+        var outfit = _outfitSerializer.Deserialize(inventoryData.outfits[i]);
         items.Add(outfit);
         Debug.Log("OutfitType: " + outfit.GetItemType());
       }
@@ -59,29 +59,57 @@ namespace SaveLoadSystem.Serializers {
     private void SerializeItems(InventoryData inventoryData, Inventory inventory) {
       var iterator = inventory.GetIterator();
       Item item;
+
+      inventoryData.gunsSize = CalculateItemTypeCount(iterator, "Gun");
+      inventoryData.outfitsSize = CalculateItemTypeCount(iterator, "Outfit");
+      inventoryData.medKitsSize = CalculateItemTypeCount(iterator, "MedKit");
+      inventoryData.ammoSize = CalculateItemTypeCount(iterator, "Ammo");
+      inventoryData.SetUp();
+      int gunIndex = 0;
+      int outfitIndex = 0;
+      int medKitIndex = 0;
+      int ammoIndex = 0;
       
       for (iterator.First(); !iterator.IsDone(); iterator.Next()) {
         item = iterator.CurrentItem();
         switch (item.GetItemType()) {
           case "Gun":
             var gun = item as Gun;
-            inventoryData.guns.Add(_gunSerializer.Serialize(gun));
+            inventoryData.guns[gunIndex] = _gunSerializer.Serialize(gun);
+            ++gunIndex;
             break;
           case "Outfit":
             var outfit = item as Outfit;
-            inventoryData.outfits.Add(_outfitSerializer.Serialize(outfit));
+            inventoryData.outfits[outfitIndex] = _outfitSerializer.Serialize(outfit);
+            ++outfitIndex;
             break;
           case "MedKit":
             var medKit = item as MedKit;
-            inventoryData.medKits.Add(_medKitSerializer.Serialize(medKit));
+            inventoryData.medKits[medKitIndex] = _medKitSerializer.Serialize(medKit);
+            ++medKitIndex;
             break;
           case "Ammo":
             var ammo = item as Ammo;
-            inventoryData.ammoData.Add(_ammoSerializer.Serialize(ammo));
+            inventoryData.ammoData[ammoIndex] = _ammoSerializer.Serialize(ammo);
+            ++ammoIndex;
             break;
         }
       }
     }
+    
+    
+    private int CalculateItemTypeCount(IItemIterator iterator, string itemType) {
+      int count = 0;
+      for (iterator.First(); !iterator.IsDone(); iterator.Next()) {
+        if (iterator.CurrentItem().GetItemType() == itemType) {
+          ++count;
+        }
+      }
+
+      return count;
+    }
+    
+    
   }
 
 }
