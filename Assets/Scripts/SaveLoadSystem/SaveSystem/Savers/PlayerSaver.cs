@@ -23,6 +23,7 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       playerData.healthPointsLimit = playerHealth.GetHealthPointsLimit();
       playerData.inventory = GetPlayerInventory();
       playerData.suitedGun = GetSuitedGun();
+      playerData.suitedOutfit = GetSuitedOutfit();
       
       var binaryFormatter = new BinaryFormatter();
       var path = Application.persistentDataPath + _fileName;
@@ -65,6 +66,17 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       }
       var gunSerializer = new GunSerializer();
       return gunSerializer.Serialize(gun);
+    }
+
+    private OutfitData GetSuitedOutfit() {
+      var outfit = _player.GetComponent<OutfitComponent>().GetOutfit();
+      if (outfit == null) {
+        return null;
+      }
+      Debug.Log("PlayerIsSaved");
+      
+      var outfitSerializer = new OutfitSerializer();
+      return outfitSerializer.Serialize(outfit);
     }
 
     private string _fileName;

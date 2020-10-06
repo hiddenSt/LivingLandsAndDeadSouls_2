@@ -6328,6 +6328,61 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &932248022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932248024}
+  - component: {fileID: 932248023}
+  m_Layer: 0
+  m_Name: OutfitsAnimators
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &932248023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932248022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7501ba3320789904882924bbc02d652f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outfitsTypes:
+  - Outfit_1
+  - Outfit_2
+  outfitsWithoutGun:
+  - {fileID: 22100000, guid: 1f341944cb83f9042a8a91ffea45be6a, type: 2}
+  - {fileID: 22100000, guid: 4959a19326963bc418bfa745b7e7bcdc, type: 2}
+  outfitsWithGun1:
+  - {fileID: 22100000, guid: e1c3f2e0193ed1241882992d5d040d52, type: 2}
+  - {fileID: 22100000, guid: 7f0d80fe52296c747b656b1709df9d62, type: 2}
+  outfitsWithGun2:
+  - {fileID: 22100000, guid: b8f43c04a1184374ebc48e0b49d66442, type: 2}
+  - {fileID: 22100000, guid: 2f0dab31f2c589f42b0d705f3dbfcce1, type: 2}
+--- !u!4 &932248024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932248022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 483.77997, y: 219.27122, z: -134.22849}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958313343
 GameObject:
   m_ObjectHideFlags: 0

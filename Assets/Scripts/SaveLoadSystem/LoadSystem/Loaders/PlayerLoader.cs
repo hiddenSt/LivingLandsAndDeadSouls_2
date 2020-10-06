@@ -26,6 +26,7 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       _playerData = binaryFormatter.Deserialize(fileStream) as PlayerData;
       fileStream.Close();
       LoadSuitedGun();
+      LoadSuitedOutfit();
       LoadPlayerPosition();
       LoadPlayerHealth();
     }
@@ -44,8 +45,10 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
         return;
       }
       var outfitSerializer = new OutfitSerializer();
-      
-      //ParameterManager.instance.suitedOutfit = outfitSerializer.Deserialize(_playerData.suitedOutfit);
+
+      var animatorsObject = GameObject.Find("OutfitsAnimators").GetComponent<OutfitsAnimators>();
+      var suitedOutfit = outfitSerializer.Deserialize(_playerData.suitedOutfit, animatorsObject.GetAnimators(_playerData.suitedOutfit.outfitType));
+      ParameterManager.instance.suitedOutfit = suitedOutfit;
     }
 
     private void LoadPlayerHealth() {

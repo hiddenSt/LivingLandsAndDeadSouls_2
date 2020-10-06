@@ -56,8 +56,6 @@ namespace Components {
         var gun = ParameterManager.instance.suitedGun;
         var gunUi = lootUiData.GetGunUi(gun.GetGunType());
         gun.SetItemUi(gunUi);
-        Debug.Log("GunUI: " + gun.GetItemUi());
-        Debug.Log("GunUiImage: " + gun.GetItemUi().GetItemImage());
         gun.SetGunComponent(playerGunComponent);
         gun.Use();
       }
@@ -66,8 +64,11 @@ namespace Components {
     private void SetupPlayerOutfit() {
       playerOutfitComponent.SetCharacterDefaultOutfit(ParameterManager.instance.defaultAnimatorController);
       if (ParameterManager.instance.suitedOutfit != null) {
-        ParameterManager.instance.suitedOutfit.SetOutfitComponent(playerOutfitComponent);
-        ParameterManager.instance.suitedOutfit.Use();
+        var outfit = ParameterManager.instance.suitedOutfit;
+        var outfitUi = lootUiData.GetOutfitUi(outfit.GetOutfitType());
+        outfit.SetItemUi(outfitUi);
+        outfit.SetOutfitComponent(playerOutfitComponent);
+        outfit.Use();
       }
     }
 

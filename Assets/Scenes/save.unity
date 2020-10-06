@@ -1110,7 +1110,6 @@ MonoBehaviour:
   outfitsTypes:
   - Outfit_1
   - Outfit_2
-  outfitImages: []
   outfitsUiArray:
   - {fileID: 3341735783027897300, guid: 2129c1b683f03534685517b667a62afa, type: 3}
   - {fileID: 8959464943015607736, guid: 7b1a374fdbf729b46958209bcbb831e1, type: 3}
@@ -17209,7 +17208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOutfitComponent: {fileID: 6783679401409266032}
   playerGunComponent: {fileID: 6783679401409266034}
-  playerAnimator: {fileID: 812121756}
   player: {fileID: 6783679401409266029}
   gunSlotControl: {fileID: 1952260239}
   playerInventory: {fileID: 6783679401409266035}

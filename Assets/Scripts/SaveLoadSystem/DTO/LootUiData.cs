@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using InventorySystem;
 using UI.Items;
 using UnityEngine;
@@ -12,7 +13,6 @@ namespace SaveLoadSystem.DTO {
     public string[] gunTypes;
     public GameObject[] gunsUiArray;
     public string[] outfitsTypes;
-    public GameObject[] outfitImages;
     public GameObject[] outfitsUiArray;
 
     public GameObject separatedButton;
@@ -37,7 +37,17 @@ namespace SaveLoadSystem.DTO {
     }
     
     public IItemUi GetOutfitUi(string outfitType) {
-      return null;
+      int index = 0;
+      for (int i = 0; i < outfitsTypes.Length; ++i) {
+        if (outfitsTypes[i] == outfitType) {
+          index = i;
+        }
+      }
+
+      var newOutfitUi = Instantiate(outfitsUiArray[index].GetComponent<ItemUiWithSeparatedButton>());
+      newOutfitUi.itemImage = Instantiate(outfitsUiArray[index].GetComponent<ItemUiWithSeparatedButton>().itemImage);
+      newOutfitUi.button = Instantiate(outfitsUiArray[index].GetComponent<ItemUiWithSeparatedButton>().button);
+      return newOutfitUi;
     }
 
     public IItemUi GetAmmoUi() {
