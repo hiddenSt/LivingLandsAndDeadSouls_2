@@ -1,4 +1,6 @@
-﻿namespace InventorySystem.ArrayRepository {
+﻿
+
+namespace InventorySystem.ArrayRepository {
 
   public class ArrayRepositoryIterator : IItemIterator {
     private ArrayRepository _itemsRepository;
@@ -13,19 +15,29 @@
 
     public void First() {
       _index = 0;
+      if (_index >= _arraySize) {
+        return;
+      }
       _currentItem = _itemsRepository.GetItemByIndex(_index);
     }
 
     public void Next() {
       ++_index;
       _currentItem = _itemsRepository.GetItemByIndex(_index);
-      while (!IsDone() && _itemsRepository.GetItemByIndex(_index) == null) {
-        ++_index;
-      }
     }
 
     public bool IsDone() {
-      return _index >=  _arraySize;
+      ++_index;
+      while (_index < _arraySize && _itemsRepository.GetItemByIndex(_index) == null) {
+        ++_index;
+      }
+      
+      if (_index < _arraySize) {
+        --_index;
+        return false;
+      }
+
+      return true;
     }
 
     public Item CurrentItem() {

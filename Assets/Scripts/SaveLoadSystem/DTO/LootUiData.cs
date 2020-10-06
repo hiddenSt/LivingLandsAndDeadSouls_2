@@ -7,16 +7,14 @@ using UnityEngine;
 namespace SaveLoadSystem.DTO {
 
   public class LootUiData : MonoBehaviour {
-    public GameObject ammoImage;
-    public GameObject medKitImage;
-    public GameObject meatImage;
+    public GameObject ammoUi;
+    public GameObject medKitUi;
+    public GameObject meatUi;
     public string[] gunTypes;
     public GameObject[] gunsUiArray;
     public string[] outfitsTypes;
     public GameObject[] outfitsUiArray;
-
-    public GameObject separatedButton;
-    public GameObject singleButton;
+    
     
 
     public IItemUi GetGunUi(string gunType) {
@@ -52,18 +50,27 @@ namespace SaveLoadSystem.DTO {
     }
 
     public IItemUi GetAmmoUi() {
-      var ammoUi = Instantiate(ammoImage);
-      return ammoUi.GetComponent<ItemUiWithSingleButton>();
+      var ammoUi_ = Instantiate(ammoUi.GetComponent<ItemUiWithSingleButton>());
+      ammoUi_.itemImage = Instantiate(ammoUi.GetComponent<ItemUiWithSingleButton>().itemImage);
+      ammoUi_.itemButton = Instantiate(ammoUi.GetComponent<ItemUiWithSingleButton>().itemButton);
+      ammoUi_.SetSprite();
+      return ammoUi_;
     }
 
     public IItemUi MedKitUi() {
-      var medKitUi = Instantiate(medKitImage);
-      return medKitUi.GetComponent<ItemUiWithSingleButton>();
+      var medKitUi_ = Instantiate(medKitUi.GetComponent<ItemUiWithSingleButton>());
+      medKitUi_.itemImage = Instantiate(ammoUi.GetComponent<ItemUiWithSingleButton>().itemImage);
+      medKitUi_.itemButton = Instantiate(medKitUi.GetComponent<ItemUiWithSingleButton>().itemButton);
+      medKitUi_.SetSprite();
+      return medKitUi_;
     }
     
     public IItemUi MeatUi() {
-      var meatUi = Instantiate(meatImage);
-      return meatUi.GetComponent<ItemUiWithSingleButton>();
+      var meatUi_ = Instantiate(meatUi.GetComponent<ItemUiWithSingleButton>());
+      meatUi_.itemImage = Instantiate(meatUi.GetComponent<ItemUiWithSingleButton>().itemImage);
+      meatUi_.itemButton = Instantiate(meatUi.GetComponent<ItemUiWithSingleButton>().itemButton);
+      meatUi_.SetSprite();
+      return meatUi_;
     }
   }
 

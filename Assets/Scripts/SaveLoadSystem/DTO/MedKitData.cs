@@ -2,7 +2,7 @@
 
   [System.Serializable]
   public class MedKitData {
-    public string type;
+    public string medKitType;
     public float healthBoost;
   }
 

@@ -17,6 +17,10 @@ namespace UI.Items {
       return Instantiate(itemImage, position);
     }
 
+    public void SetSprite() {
+      _itemImageSprite = itemImage.GetComponent<Image>().sprite;
+    }
+    
     public Sprite GetItemImage() {
       return _itemImageSprite;
     }

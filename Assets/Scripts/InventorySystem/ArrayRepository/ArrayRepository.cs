@@ -5,6 +5,9 @@ using Utility;
 namespace InventorySystem.ArrayRepository {
   
   public class ArrayRepository : IItemsRepositoryStrategy {
+    private Item[] _itemsArray;
+    private bool[] _isEmptySlot;
+    
     public ArrayRepository(int size) {
       _itemsArray = new Item[size];
       _isEmptySlot = new bool[size];
@@ -57,9 +60,5 @@ namespace InventorySystem.ArrayRepository {
     public IItemIterator GetIterator() {
       return new ArrayRepositoryIterator(this);
     }
-    
-    
-    private Item[] _itemsArray;
-    private bool[] _isEmptySlot;
   }
 }

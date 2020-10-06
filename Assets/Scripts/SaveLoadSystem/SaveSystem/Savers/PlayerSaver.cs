@@ -48,15 +48,9 @@ namespace SaveLoadSystem.SaveSystem.Savers {
     }
 
     private InventoryData GetPlayerInventory() {
-      var inventoryData = new InventoryData();
       var inventory = _player.GetComponent<InventoryComponent>().GetInventory();
-      inventoryData.capacity = inventory.GetInventoryCapacity();
-      inventoryData.size = inventory.GetInventorySize();
-
-      var iterator = inventory.GetIterator();
-      //for (iterator.First(); !iterator.IsDone(); iterator.Next()) { }
-
-      return inventoryData;
+      var inventorySerializer = new InventorySerializer();
+      return inventorySerializer.Serialize(inventory);
     }
 
     private GunData GetSuitedGun() {
@@ -73,8 +67,7 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       if (outfit == null) {
         return null;
       }
-      Debug.Log("PlayerIsSaved");
-      
+
       var outfitSerializer = new OutfitSerializer();
       return outfitSerializer.Serialize(outfit);
     }

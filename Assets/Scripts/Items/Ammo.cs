@@ -11,6 +11,7 @@ namespace Items {
 
     public Ammo(int ammoCount) {
       _ammoCount = ammoCount;
+      _type = "Ammo";
     }
     
     public override void Use() {
@@ -19,6 +20,10 @@ namespace Items {
 
     public override void Drop() {
       
+    }
+
+    public int GetAmmoCount() {
+      return _ammoCount;
     }
 
     public override void PickUp() {

@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Components.Loot {
   public class MedKitSetupLootComponent : MonoBehaviour {
     public float healthBoostPoints;
+    public string medKitType;
     private LootComponent _lootComponent;
     private IItemUi _itemUi;
 
@@ -15,7 +16,7 @@ namespace Components.Loot {
 
     private void Start() {
       _itemUi = gameObject.GetComponent<ItemUiWithSingleButton>();
-      _lootComponent.item = new MedKit(healthBoostPoints);
+      _lootComponent.item = new MedKit(medKitType, healthBoostPoints);
       _lootComponent.item.SetItemUi(_itemUi);
     }
   }

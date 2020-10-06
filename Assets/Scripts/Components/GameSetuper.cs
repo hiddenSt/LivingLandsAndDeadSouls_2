@@ -78,12 +78,7 @@ namespace Components {
       if (ParameterManager.instance.inventoryItems == null) {
         return;
       }
-      /*for (int i = 0; i < ParameterManager.instance.inventoryItems.Length; ++i) {
-        inventory.AddItem(ParameterManager.instance.inventoryItems[i]);
-      }*/
     }
-    
-    
   }
 
 }

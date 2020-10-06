@@ -130,3 +130,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBoostPoints: 20
+  medKitType: MedKit
