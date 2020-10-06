@@ -22,6 +22,7 @@ namespace Menu {
 
     public void DickClarkPressed() {
       ParameterManager.instance.characterI = 0;
+      ParameterManager.instance.characterName = "DickClark";
       ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
         ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersClark[i]);
@@ -29,8 +30,9 @@ namespace Menu {
       SwitchButtonColor(1);
     }
 
-    public void HuLiePressed() {
+    public void HuLeePressed() {
       ParameterManager.instance.characterI = 1;
+      ParameterManager.instance.characterName = "HuLee";
       ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
         ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersHuLie[i]);
@@ -40,6 +42,7 @@ namespace Menu {
 
     public void VitaliTsalPressed() {
       ParameterManager.instance.characterI = 2;
+      ParameterManager.instance.characterName = "VitaliTsal";
       ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
         ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersTsal[i]);

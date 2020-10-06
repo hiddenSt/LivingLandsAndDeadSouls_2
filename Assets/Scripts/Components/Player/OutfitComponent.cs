@@ -30,9 +30,9 @@ namespace Components.Player {
 
     public void SetCharacterDefaultOutfit(
       SortedDictionary<string, AnimatorOverrideController> characterDefaultAnimator) {
-      _gunType = "WithoutGun";
       _characterDefaultAnimator = characterDefaultAnimator;
       _skinsAnimator = _characterDefaultAnimator;
+      ChangeGunSkin("WithoutGun");
     }
 
     private void ActivateUi() {

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Components.Player;
+using DataTransferObjects;
 using HealthFight;
 using SaveLoadSystem.DTO;
 using SaveLoadSystem.Serializers;
@@ -27,6 +28,7 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       playerData.inventory = GetPlayerInventory();
       playerData.suitedGun = GetSuitedGun();
       playerData.suitedOutfit = GetSuitedOutfit();
+      playerData.characterName = ParameterManager.instance.characterName;
       
       var binaryFormatter = new BinaryFormatter();
       var path = Application.persistentDataPath + _fileName;

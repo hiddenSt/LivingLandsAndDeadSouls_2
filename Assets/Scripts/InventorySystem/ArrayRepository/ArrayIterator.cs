@@ -34,7 +34,7 @@ namespace InventorySystem.ArrayRepository {
         ++_index;
       }
       --_index;
-      if (_index < _arraySize) {
+      if (_index < _arraySize && _index != _arraySize - 1) {
         return false;
       }
       return true;

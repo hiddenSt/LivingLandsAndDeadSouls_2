@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using DataTransferObjects;
+using Menu;
 using SaveLoadSystem.DTO;
 using SaveLoadSystem.Serializers;
 using UnityEngine;
@@ -41,6 +42,22 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       ParameterManager.instance.suitedGun = suitedGun;
     }
 
+    private void LoadCharacter() {
+      ParameterManager.instance.characterName = _playerData.characterName;
+      var characterSelect = GameObject.Find("CharacterSelection").GetComponent<CharacterSelect>();
+      switch (ParameterManager.instance.characterName) {
+        case "DickClark":
+          characterSelect.DickClarkPressed();
+          break;
+        case "HuLee":
+          characterSelect.HuLeePressed();
+          break;
+        case "VitaliTsal":
+          characterSelect.VitaliTsalPressed();
+          break;
+      }
+    }
+    
     private void LoadSuitedOutfit() {
       if (_playerData.suitedOutfit == null) {
         return;
