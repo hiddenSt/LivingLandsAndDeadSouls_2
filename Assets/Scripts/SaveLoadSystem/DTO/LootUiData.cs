@@ -47,6 +47,7 @@ namespace SaveLoadSystem.DTO {
       var newOutfitUi = Instantiate(outfitsUiArray[index].GetComponent<ItemUiWithSeparatedButton>());
       newOutfitUi.itemImage = Instantiate(outfitsUiArray[index].GetComponent<ItemUiWithSeparatedButton>().itemImage);
       newOutfitUi.button = Instantiate(outfitsUiArray[index].GetComponent<ItemUiWithSeparatedButton>().button);
+      newOutfitUi.SetSprite();
       return newOutfitUi;
     }
 

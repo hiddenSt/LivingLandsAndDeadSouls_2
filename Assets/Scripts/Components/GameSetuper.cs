@@ -67,6 +67,7 @@ namespace Components {
         var outfit = ParameterManager.instance.suitedOutfit;
         var outfitUi = lootUiData.GetOutfitUi(outfit.GetOutfitType());
         outfit.SetItemUi(outfitUi);
+        Debug.Log("SpriteInSetuper: " + outfit.GetItemUi().GetItemImage());
         outfit.SetOutfitComponent(playerOutfitComponent);
         outfit.Use();
       }
