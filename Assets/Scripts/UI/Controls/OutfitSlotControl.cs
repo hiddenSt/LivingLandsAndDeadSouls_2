@@ -25,7 +25,7 @@ namespace UI.Controls {
       _dropButton.enabled = false;
     }
 
-    private void Start() {
+    public void SetUp() {
       playerOutfitComponent.SetOutfitSlotUi(this);
       _dropButton = gameObject.GetComponent<Button>();
       _outfitImage = gameObject.GetComponent<Image>();

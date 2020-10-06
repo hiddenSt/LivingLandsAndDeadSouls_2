@@ -14,9 +14,8 @@ namespace SaveLoadSystem.Serializers {
       return outfitData;
     }
 
-    public Outfit Deserialize(OutfitData outfitData, SortedDictionary<string, AnimatorOverrideController> animatorOverrideControllers, IItemUi outfitUi) {
+    public Outfit Deserialize(OutfitData outfitData, SortedDictionary<string, AnimatorOverrideController> animatorOverrideControllers) {
       var outfit = new Outfit(outfitData.outfitType, animatorOverrideControllers);
-      outfit.SetItemUi(outfitUi);
       return outfit;
     }
   }

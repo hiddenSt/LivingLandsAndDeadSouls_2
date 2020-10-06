@@ -3,12 +3,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 using DataTransferObjects;
 using SaveLoadSystem.DTO;
 using SaveLoadSystem.Serializers;
-using UI.Items;
 using UnityEngine;
 
 namespace SaveLoadSystem.LoadSystem.Loaders {
 
   public class PlayerLoader : ILoader {
+    private string _fileName;
+    private PlayerData _playerData;
+    
     public PlayerLoader(string fileName) {
       _fileName = fileName;
     }
@@ -33,12 +35,17 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
         return;
       }
       var gunSerializer = new GunSerializer();
-      
-      ParameterManager.instance.suitedGun = gunSerializer.Deserialize(_playerData.suitedGun);
+      var suitedGun = gunSerializer.Deserialize(_playerData.suitedGun);
+      ParameterManager.instance.suitedGun = suitedGun;
     }
 
     private void LoadSuitedOutfit() {
+      if (_playerData.suitedOutfit == null) {
+        return;
+      }
+      var outfitSerializer = new OutfitSerializer();
       
+      //ParameterManager.instance.suitedOutfit = outfitSerializer.Deserialize(_playerData.suitedOutfit);
     }
 
     private void LoadPlayerHealth() {
@@ -61,10 +68,6 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       }
       File.Delete(path);
     }
-
-    private string _fileName;
-    private LootUiData _lootUiData;
-    private PlayerData _playerData;
   }
 
 }

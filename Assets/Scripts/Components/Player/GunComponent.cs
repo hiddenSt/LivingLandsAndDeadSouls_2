@@ -88,7 +88,7 @@ namespace Components.Player {
       }
     }
 
-    public void SetGuSlotUi(IGunSlotUi gunSlotUi) {
+    public void SetGunSlotUi(IGunSlotUi gunSlotUi) {
       _gunSlotUi = gunSlotUi;
     }
 
@@ -127,7 +127,7 @@ namespace Components.Player {
       _gunSlotUi.ChangeAmmoCount(0);
     }
     
-    private void Start() {
+    public void SetUp() {
       _playerController = gameObject.GetComponent<PlayerController>();
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
       _outfitComponent = gameObject.GetComponent<OutfitComponent>();

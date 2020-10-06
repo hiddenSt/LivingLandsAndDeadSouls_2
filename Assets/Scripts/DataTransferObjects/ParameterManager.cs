@@ -47,8 +47,8 @@ namespace DataTransferObjects {
     public Gun suitedGun;
     public Outfit suitedOutfit;
     public ObjectPosition playerPosition;
-    public float health = 100f;
-    public float healthLimit = 100f;
+    public float health;
+    public float healthLimit;
     
     //mapData
     private int _mapScalerSmall;

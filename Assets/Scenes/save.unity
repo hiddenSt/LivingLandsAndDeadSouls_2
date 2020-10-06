@@ -1066,6 +1066,72 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &211632884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 211632886}
+  - component: {fileID: 211632885}
+  m_Layer: 0
+  m_Name: ItemsUi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &211632885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211632884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4eb2462d1f3ad346a5f70681c9416d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoImage: {fileID: 1358912297869063236, guid: d7ad449a060895843a6c4224e989de82,
+    type: 3}
+  medKitImage: {fileID: 2006789691260030032, guid: d3d368ff1e9064244b2340beb3e153c5,
+    type: 3}
+  meatImage: {fileID: 2032792334077885221, guid: 9759cd313f1bd19409f4c6d9c30688d3,
+    type: 3}
+  gunTypes:
+  - Rifle
+  - MachineGun
+  gunsUiArray:
+  - {fileID: 1627506103263643169, guid: eb07650b2863625418dda66dce5bd1c5, type: 3}
+  - {fileID: 6283363105668257727, guid: 79384acf907ff3e49871f3a34b7dbe15, type: 3}
+  outfitsTypes:
+  - Outfit_1
+  - Outfit_2
+  outfitImages: []
+  outfitsUiArray:
+  - {fileID: 3341735783027897300, guid: 2129c1b683f03534685517b667a62afa, type: 3}
+  - {fileID: 8959464943015607736, guid: 7b1a374fdbf729b46958209bcbb831e1, type: 3}
+  separatedButton: {fileID: 2075217616807376735, guid: 27541f0185ce5bd4e80ef9429c6d2926,
+    type: 3}
+  singleButton: {fileID: 8376930826966795645, guid: d53c15235812d6f4581dc5192f52d66c,
+    type: 3}
+--- !u!4 &211632886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211632884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 494.61975, y: 217.13525, z: -108.895676}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 44
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &215581956
 GameObject:
   m_ObjectHideFlags: 0
@@ -17147,6 +17213,9 @@ MonoBehaviour:
   player: {fileID: 6783679401409266029}
   gunSlotControl: {fileID: 1952260239}
   playerInventory: {fileID: 6783679401409266035}
+  outfitSlotControl: {fileID: 1465376570}
+  inventoryUi: {fileID: 284581157}
+  lootUiData: {fileID: 211632885}
 --- !u!4 &1604084570
 Transform:
   m_ObjectHideFlags: 0

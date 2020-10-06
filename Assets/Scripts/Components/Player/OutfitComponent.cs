@@ -74,13 +74,14 @@ namespace Components.Player {
       _outfitSlotUi = outfitSlotUi;
     }
 
-
-    private void Start() {
+    public void SetUp() {
       _animator = gameObject.GetComponent<Animator>();
       _skinsAnimator = _characterDefaultAnimator;
       _gunType = "WithoutGun";
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
-      _animator.runtimeAnimatorController = _characterDefaultAnimator[_gunType];
+      Debug.Log("Animator: " + _animator);
+      Debug.Log("characterDefaultAnimator: " + _characterDefaultAnimator);
+      //_animator.runtimeAnimatorController = _characterDefaultAnimator[_gunType];
     }
   }
 }

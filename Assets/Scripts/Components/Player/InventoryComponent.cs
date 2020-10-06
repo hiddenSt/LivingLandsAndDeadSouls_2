@@ -74,7 +74,7 @@ namespace Components.Player {
       return _inventory.GetInventorySize() <= _inventory.GetInventoryCapacity();
     }
     
-    private void Start() {
+    public void SetUp() {
       _inventory = new Inventory(new ArrayRepository(inventorySize), _inventoryUi, inventorySize);
     }
   }

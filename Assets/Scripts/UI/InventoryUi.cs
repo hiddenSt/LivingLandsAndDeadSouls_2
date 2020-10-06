@@ -86,7 +86,7 @@ namespace UI {
       }
     }
     
-    private void Start() {
+    public void SetUp() {
       inventoryComponent.SetInventoryUi(this);
       _identifiers = new Identifier[_slotsSize];
       _itemsUi = new IItemUi[_slotsSize];

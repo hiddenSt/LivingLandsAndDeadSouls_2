@@ -16,6 +16,10 @@ namespace UI.Items {
       return instantiatedButton;
     }
 
+    public void SetSprite() {
+      _itemImageSprite = itemImage.GetComponent<Image>().sprite;
+    }
+
     public GameObject SetItemImage(Transform position) {
       return Instantiate(itemImage, position);
     }
