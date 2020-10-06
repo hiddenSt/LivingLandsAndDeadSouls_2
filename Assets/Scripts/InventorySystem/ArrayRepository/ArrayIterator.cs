@@ -23,7 +23,9 @@ namespace InventorySystem.ArrayRepository {
 
     public void Next() {
       ++_index;
-      _currentItem = _itemsRepository.GetItemByIndex(_index);
+      if (_index < _arraySize) {
+        _currentItem = _itemsRepository.GetItemByIndex(_index);
+      }
     }
 
     public bool IsDone() {
@@ -31,12 +33,10 @@ namespace InventorySystem.ArrayRepository {
       while (_index < _arraySize && _itemsRepository.GetItemByIndex(_index) == null) {
         ++_index;
       }
-      
+      --_index;
       if (_index < _arraySize) {
-        --_index;
         return false;
       }
-
       return true;
     }
 

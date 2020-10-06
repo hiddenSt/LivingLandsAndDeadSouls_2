@@ -79,8 +79,6 @@ namespace Components.Player {
       _skinsAnimator = _characterDefaultAnimator;
       _gunType = "WithoutGun";
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
-      Debug.Log("Animator: " + _animator);
-      Debug.Log("characterDefaultAnimator: " + _characterDefaultAnimator);
       //_animator.runtimeAnimatorController = _characterDefaultAnimator[_gunType];
     }
   }

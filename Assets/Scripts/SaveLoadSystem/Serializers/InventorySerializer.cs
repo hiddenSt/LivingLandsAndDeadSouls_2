@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using InventorySystem;
 using Items;
 using SaveLoadSystem.DTO;
@@ -31,19 +30,27 @@ namespace SaveLoadSystem.Serializers {
     public List<Item> Deserialize(InventoryData inventoryData) {
       var items = new List<Item>();
       foreach (var t in inventoryData.guns) {
-        items.Add(_gunSerializer.Deserialize(t));
+        var gun = _gunSerializer.Deserialize(t);
+        items.Add(gun);
+        Debug.Log("GunType: " + gun.GetGunType());
       }
 
       foreach (var t in inventoryData.medKits) {
-        items.Add(_medKitSerializer.Deserialize(t));
+        var medKit = _medKitSerializer.Deserialize(t);
+        items.Add(medKit);
+        Debug.Log("MedKitType: " + medKit.GetMedKitType());
       }
 
       foreach (var t in inventoryData.ammoData) {
-        items.Add(_ammoSerializer.Deserialize(t));
+        var ammo = _ammoSerializer.Deserialize(t);
+        items.Add(ammo);
+        Debug.Log("Ammo:" + ammo);
       }
 
-      for (int i = 0; i < inventoryData.outfits.Count; ++i) {
-        items.Add(_outfitSerializer.Deserialize(inventoryData.outfits[i]));
+      foreach (var t in inventoryData.outfits) {
+        var outfit = _outfitSerializer.Deserialize(t);
+        items.Add(outfit);
+        Debug.Log("OutfitType: " + outfit.GetItemType());
       }
 
       return items;
@@ -52,21 +59,25 @@ namespace SaveLoadSystem.Serializers {
     private void SerializeItems(InventoryData inventoryData, Inventory inventory) {
       var iterator = inventory.GetIterator();
       Item item;
+      
       for (iterator.First(); !iterator.IsDone(); iterator.Next()) {
         item = iterator.CurrentItem();
-        Debug.Log("item: " + item.GetItemType());
         switch (item.GetItemType()) {
           case "Gun":
-            inventoryData.guns.Add(_gunSerializer.Serialize(item as Gun));
+            var gun = item as Gun;
+            inventoryData.guns.Add(_gunSerializer.Serialize(gun));
             break;
           case "Outfit":
-            inventoryData.outfits.Add(_outfitSerializer.Serialize(item as Outfit));
+            var outfit = item as Outfit;
+            inventoryData.outfits.Add(_outfitSerializer.Serialize(outfit));
             break;
           case "MedKit":
-            inventoryData.medKits.Add(_medKitSerializer.Serialize(item as MedKit));
+            var medKit = item as MedKit;
+            inventoryData.medKits.Add(_medKitSerializer.Serialize(medKit));
             break;
           case "Ammo":
-            inventoryData.ammoData.Add(_ammoSerializer.Serialize(item as Ammo));
+            var ammo = item as Ammo;
+            inventoryData.ammoData.Add(_ammoSerializer.Serialize(ammo));
             break;
         }
       }

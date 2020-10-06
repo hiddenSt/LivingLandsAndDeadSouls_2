@@ -9,6 +9,9 @@ using UnityEngine;
 namespace SaveLoadSystem.SaveSystem.Savers {
 
   public class PlayerSaver : ISaver {
+    private string _fileName;
+    private GameObject _player;
+    
     public PlayerSaver(string fileName) {
       _fileName = fileName;
       _player = GameObject.Find("Player");
@@ -71,9 +74,6 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       var outfitSerializer = new OutfitSerializer();
       return outfitSerializer.Serialize(outfit);
     }
-
-    private string _fileName;
-    private GameObject _player;
   }
 
 }
