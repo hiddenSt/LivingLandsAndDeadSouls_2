@@ -14,20 +14,20 @@ namespace Menu {
     }
 
     public void SmallPressed() {
-      ParameterManager.instance.tmpSize.x = 200;
-      ParameterManager.instance.tmpSize.y = 200;
+      ParameterManager.instance.MapSizeVector.x = 200;
+      ParameterManager.instance.MapSizeVector.y = 200;
       SwitchButtonColor(1);
     }
 
     public void MedPressed() {
-      ParameterManager.instance.tmpSize.x = 500;
-      ParameterManager.instance.tmpSize.y = 500;
+      ParameterManager.instance.MapSizeVector.x = 500;
+      ParameterManager.instance.MapSizeVector.y = 500;
       SwitchButtonColor(2);
     }
 
     public void LargePressed() {
-      ParameterManager.instance.tmpSize.x = 1000;
-      ParameterManager.instance.tmpSize.y = 1000;
+      ParameterManager.instance.MapSizeVector.x = 1000;
+      ParameterManager.instance.MapSizeVector.y = 1000;
       SwitchButtonColor(3);
     }
 

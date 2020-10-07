@@ -4,8 +4,8 @@ using UnityEngine;
 namespace SpawnSystem {
   public class InitSpawner : MonoBehaviour {
     private void Start() {
-      _enemyCount = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().hostileCharVal;
-      _animalsCount = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().neutralCharVal;
+      _enemyCount = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().HostileCharVal;
+      _animalsCount = GameObject.Find("ParametersManager").GetComponent<ParameterManager>().NeutralCharVal;
       for (var i = 0; i < enemyGameObjects.Length; ++i)
       for (var j = 0; j < _enemyCount / enemyGameObjects.Length; ++j) {
         _randX = Random.Range(xAxisBeginOfRange, xAxisEndOfRange);

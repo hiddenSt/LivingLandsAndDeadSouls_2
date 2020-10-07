@@ -12,22 +12,22 @@ namespace Menu {
     }
 
     public void Summer() {
-      GameObject.Find("ParametersManager").GetComponent<ParameterManager>().startSeason = 0;
+      GameObject.Find("ParametersManager").GetComponent<ParameterManager>().StartSeason = 0;
       SwitchButtonColor(1);
     }
 
     public void Autumn() {
-      GameObject.Find("ParametersManager").GetComponent<ParameterManager>().startSeason = 1;
+      GameObject.Find("ParametersManager").GetComponent<ParameterManager>().StartSeason = 1;
       SwitchButtonColor(2);
     }
 
     public void Winter() {
-      GameObject.Find("ParametersManager").GetComponent<ParameterManager>().startSeason = 2;
+      GameObject.Find("ParametersManager").GetComponent<ParameterManager>().StartSeason = 2;
       SwitchButtonColor(3);
     }
 
     public void Spring() {
-      GameObject.Find("ParametersManager").GetComponent<ParameterManager>().startSeason = 3;
+      GameObject.Find("ParametersManager").GetComponent<ParameterManager>().StartSeason = 3;
       SwitchButtonColor(4);
     }
 

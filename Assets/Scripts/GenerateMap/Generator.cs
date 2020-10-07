@@ -7,11 +7,11 @@ using UnityEngine.Tilemaps;
 namespace GenerateMap {
   public class Generator : MonoBehaviour {
     private void Start() {
-      tmpSize = ParameterManager.instance.tmpSize;
-      forestValue = ParameterManager.instance.forestValue;
-      forestSize = ParameterManager.instance.sizeOfForest;
-      buildingValue = ParameterManager.instance.buildingValue;
-      if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().needToLoad)
+      tmpSize = ParameterManager.instance.MapSizeVector;
+      forestValue = ParameterManager.instance.ForestValue;
+      forestSize = ParameterManager.instance.SizeOfForest;
+      buildingValue = ParameterManager.instance.BuildingValue;
+      if (GameObject.Find("ParametersManager").GetComponent<ParameterManager>().NeedToLoad)
         return;
       Generate();
     }

@@ -18,15 +18,15 @@ namespace Menu {
     public void OnGameExit() {
       OnGameResume();
       var parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
-      parameterManager.precipitation = 1;
-      parameterManager.rockValue = 4;
-      parameterManager.buildingValue = 8;
-      parameterManager.forestValue = 3;
-      parameterManager.sizeOfForest = 10;
-      parameterManager.characterI = 0;
-      parameterManager.hostileCharVal = 92;
-      parameterManager.neutralCharVal = 128;
-      parameterManager.startSeason = 0;
+      parameterManager.Precipitation = 1;
+      parameterManager.RockValue = 4;
+      parameterManager.BuildingValue = 8;
+      parameterManager.ForestValue = 3;
+      parameterManager.SizeOfForest = 10;
+      parameterManager.CharacterI = 0;
+      parameterManager.HostileCharVal = 92;
+      parameterManager.NeutralCharVal = 128;
+      parameterManager.StartSeason = 0;
       var saver = gameObject.GetComponent<GameSaver>();
       saver.Save();
       SceneManager.LoadScene("Menu");

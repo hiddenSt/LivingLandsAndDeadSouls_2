@@ -27,7 +27,7 @@ namespace Menu {
     }
 
     private void SetPrecipitationSettings(int precipitation, int button) {
-      ParameterManager.instance.precipitation = precipitation;
+      ParameterManager.instance.Precipitation = precipitation;
       SwitchButtonColor(button);
     }
 

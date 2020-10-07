@@ -11,12 +11,12 @@ namespace DataTransferObjects {
       _mapScalerSmall = 3;
       _mapScalerMedium = 5;
       _mapScalerBig = 10;
-      tmpSize.x = 200;
-      tmpSize.y = 200;
-      buildingValue = 8;
-      rockValue = 4;
-      forestValue = 3;
-      sizeOfForest = 10;
+      MapSizeVector.x = 200;
+      MapSizeVector.y = 200;
+      BuildingValue = 8;
+      RockValue = 4;
+      ForestValue = 3;
+      SizeOfForest = 10;
       if (instance == null)
         instance = this;
       else if (instance == this)
@@ -26,19 +26,21 @@ namespace DataTransferObjects {
       suitedOutfit = null;
     }
 
+    
+    
     //data members
     public static ParameterManager instance = null;
-    public int rockValue = 4;
-    public int buildingValue = 8;
-    public int forestValue = 3;
-    public int sizeOfForest = 10;
-    public int characterI = 0;
-    public int hostileCharVal;
-    public int neutralCharVal;
-    public int precipitation;
-    public int startSeason = 0;
-    public Vector3Int tmpSize;
-    public bool needToLoad = false;
+    public int RockValue = 4;
+    public int BuildingValue = 8;
+    public int ForestValue = 3;
+    public int SizeOfForest = 10;
+    public int CharacterI = 0;
+    public int HostileCharVal;
+    public int NeutralCharVal;
+    public int Precipitation;
+    public int StartSeason = 0;
+    public bool NeedToLoad = false;
+    public Vector3Int MapSizeVector;
     
     //playerData
     public SortedDictionary<string, AnimatorOverrideController> defaultAnimatorController;
@@ -51,6 +53,7 @@ namespace DataTransferObjects {
     public float healthLimit;
     
     //mapData
+    public int[,] MapData;
     private int _mapScalerSmall;
     private int _mapScalerMedium;
     private int _mapScalerBig;
