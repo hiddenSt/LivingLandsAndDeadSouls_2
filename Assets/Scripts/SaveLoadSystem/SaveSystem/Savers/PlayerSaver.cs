@@ -15,10 +15,10 @@ namespace SaveLoadSystem.SaveSystem.Savers {
     
     public PlayerSaver(string fileName) {
       _fileName = fileName;
-      _player = GameObject.Find("Player");
     }
 
     public void Save() {
+      _player = GameObject.Find("Player");
       ObjectPosition playerPosition = GetPlayerPosition();
       Health playerHealth = GetHealthEntity();
       var playerData = new PlayerData();
@@ -35,7 +35,6 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       var fileStream = new FileStream(path, FileMode.Create);
       binaryFormatter.Serialize(fileStream, playerData);
       fileStream.Close();
-      Debug.Log("Hello i am saver");
     }
 
     private ObjectPosition GetPlayerPosition() {

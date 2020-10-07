@@ -6,5 +6,6 @@ namespace SaveLoadSystem.DTO {
     public int mapSizeX;
     public int mapSizeY;
     public int[,] map;
+    public int season;
   }
 }

@@ -17,6 +17,7 @@ namespace SaveLoadSystem.SaveSystem.Savers {
     public void Save() {
       var mapData = new MapData();
       mapData.map = ParameterManager.instance.MapData;
+      mapData.season = ParameterManager.instance.StartSeason;
       mapData.mapSizeX = ParameterManager.instance.MapSizeVector.x;
       mapData.mapSizeY = ParameterManager.instance.MapSizeVector.y;
       var binaryFormatter = new BinaryFormatter();

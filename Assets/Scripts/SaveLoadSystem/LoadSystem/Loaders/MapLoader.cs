@@ -26,6 +26,7 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       ParameterManager.instance.MapData = _mapData.map;
       ParameterManager.instance.MapSizeVector = new Vector3Int(_mapData.mapSizeX, _mapData.mapSizeY, 0);
       ParameterManager.instance.NeedToLoad = true;
+      ParameterManager.instance.StartSeason = _mapData.season;
     }
 
     public void DeleteSaves() {
