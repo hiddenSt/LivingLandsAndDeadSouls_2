@@ -18,14 +18,19 @@ namespace Components.Player {
     }
 
     public void SetUp(Health playerHealth, GunComponent playerGunComponent, ICharacteristicsUi characteristicsUi) {
-      _damageBuff = 0f;
-      _freePoints = 0;
-      _experiencePoints = 0;
       _characteristicsUi = characteristicsUi;
       _playerHealth = playerHealth;
       _playerGunComponent = playerGunComponent;
-      _healthLimit = _playerHealth.GetHealthPointsLimit();
-      _characteristicsUi.SetHealthLimitPoints((int)_healthLimit);
+    }
+
+    public void SetUpCharacteristics(int experience, int freePoints, float damageBuff, float healthLimit) {
+      _experiencePoints = experience;
+      _freePoints = freePoints;
+      _damageBuff = damageBuff;
+      _healthLimit = healthLimit;
+      _characteristicsUi.SetFreePoints(_freePoints);
+      _characteristicsUi.SetHealthLimitPoints((int)(_healthLimit));
+      _characteristicsUi.SetDamageBuffPoints((int)(_damageBuff));
     }
     
     public void BuffHealthLimit() {
@@ -57,6 +62,18 @@ namespace Components.Player {
       }
       ++_freePoints;
       _characteristicsUi.SetFreePoints(_freePoints);
+    }
+
+    public float GetDamageBuff() {
+      return _damageBuff;
+    }
+
+    public int GetExperience() {
+      return _experiencePoints;
+    }
+
+    public int GetFreePoints() {
+      return _freePoints;
     }
   }
 

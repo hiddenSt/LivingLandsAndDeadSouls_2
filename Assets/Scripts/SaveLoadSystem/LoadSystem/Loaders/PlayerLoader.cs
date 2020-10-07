@@ -31,8 +31,17 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       LoadPlayerPosition();
       LoadPlayerHealth();
       LoadInventory();
+      LoadCharacteristics();
     }
 
+    public void DeleteSaves() {
+      var path = Application.persistentDataPath + _fileName;
+      if (!File.Exists(path)) {
+        return;
+      }
+      File.Delete(path);
+    }
+    
     private void LoadSuitedGun() {
       if (_playerData.suitedGun == null) {
         return;
@@ -70,13 +79,13 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       ParameterManager.instance.inventoryItems = inventorySerializer.Deserialize(_playerData.inventory);
     }
 
-    public void DeleteSaves() {
-      var path = Application.persistentDataPath + _fileName;
-      if (!File.Exists(path)) {
-        return;
-      }
-      File.Delete(path);
+    private void LoadCharacteristics() {
+      ParameterManager.instance.experience = _playerData.experience;
+      ParameterManager.instance.freePoints = _playerData.freePoints;
+      ParameterManager.instance.damageBuff = _playerData.damageBuff;
     }
+
+    
   }
 
 }

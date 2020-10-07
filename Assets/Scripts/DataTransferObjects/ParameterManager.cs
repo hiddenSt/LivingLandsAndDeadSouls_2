@@ -51,6 +51,9 @@ namespace DataTransferObjects {
     public ObjectPosition playerPosition;
     public float health;
     public float healthLimit;
+    public int experience;
+    public int freePoints;
+    public float damageBuff;
     
     //mapData
     public int[,] MapData;

@@ -9,5 +9,8 @@ namespace SaveLoadSystem.DTO {
     public GunData suitedGun;
     public OutfitData suitedOutfit;
     public string characterName;
+    public int experience;
+    public int freePoints;
+    public float damageBuff;
   }
 }

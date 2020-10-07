@@ -53,6 +53,7 @@ namespace Components {
       SetupPlayerOutfit();
       SetupPlayerGun();
       SetupPlayerInventory();
+      SetUpPlayerCharacteristics();
       playerHealthComponent.AddSubscriber(endGameController);
     }
 
@@ -115,6 +116,14 @@ namespace Components {
         SetItemUi(items[i]);
         inventory.AddItem(items[i]);
       }
+    }
+
+    private void SetUpPlayerCharacteristics() {
+      var experience = ParameterManager.instance.experience;
+      var freePoints = ParameterManager.instance.freePoints;
+      var healthLimit = ParameterManager.instance.healthLimit;
+      var damageBuff = ParameterManager.instance.damageBuff;
+      playerCharacteristicsComponent.SetUpCharacteristics(experience, freePoints, damageBuff, healthLimit);
     }
 
     private void SetItemUi(Item item) {

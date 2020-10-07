@@ -22,6 +22,9 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       ObjectPosition playerPosition = GetPlayerPosition();
       Health playerHealth = GetHealthEntity();
       var playerData = new PlayerData();
+
+      
+      
       playerData.position = playerPosition;
       playerData.healthPoints = playerHealth.GetHealthPoints();
       playerData.healthPointsLimit = playerHealth.GetHealthPointsLimit();
@@ -29,7 +32,7 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       playerData.suitedGun = GetSuitedGun();
       playerData.suitedOutfit = GetSuitedOutfit();
       playerData.characterName = ParameterManager.instance.characterName;
-      
+      SetUpCharacteristics(playerData);
       var binaryFormatter = new BinaryFormatter();
       var path = Application.persistentDataPath + _fileName;
       var fileStream = new FileStream(path, FileMode.Create);
@@ -37,6 +40,13 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       fileStream.Close();
     }
 
+    private void SetUpCharacteristics(PlayerData playerData) {
+      var characteristicsComp = _player.GetComponent<CharacteristicsComponent>();
+      playerData.experience = characteristicsComp.GetExperience();
+      playerData.freePoints = characteristicsComp.GetFreePoints();
+      playerData.damageBuff = characteristicsComp.GetDamageBuff();
+    }
+    
     private ObjectPosition GetPlayerPosition() {
       var playerPosition = new ObjectPosition();
       playerPosition.x = _player.transform.position.x;
