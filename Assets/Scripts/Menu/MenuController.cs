@@ -7,7 +7,9 @@ namespace Menu {
   public class MenuController : MonoBehaviour {
     private void Start() {
       var playerLoader = new PlayerLoader("Player.data");
+      var mapLoader = new MapLoader("Map.data");
       LoadSystem.AddLoader(playerLoader);
+      LoadSystem.AddLoader(mapLoader);
     }
 
     public void PlayPressed() {

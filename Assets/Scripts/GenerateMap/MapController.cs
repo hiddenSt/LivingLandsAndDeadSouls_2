@@ -15,10 +15,11 @@ namespace GenerateMap {
       int[,] mapData;
       _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
       if (_parameterManager.NeedToLoad) {
-        mapData = _parameterManager.MapData;
+        mapData = ParameterManager.instance.MapData;
       } else {
         MapGenerator generator = CreateGenerator();
         mapData = generator.GenerateMap(_mapSize);
+        ParameterManager.instance.MapData = mapData;
       }
 
       Load(mapData);
