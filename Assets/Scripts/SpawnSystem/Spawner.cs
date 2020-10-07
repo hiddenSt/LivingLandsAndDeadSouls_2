@@ -11,8 +11,6 @@ namespace SpawnSystem {
       _yAxisEndOfRange = ParameterManager.instance.MapSizeVector.y / 2f;
       _enemyCount = ParameterManager.instance.HostileCharVal;
       _animalsCount = ParameterManager.instance.NeutralCharVal;
-      Debug.Log("XMAX: " +  _xAxisEndOfRange);
-      Debug.Log("YMAX: " + _yAxisEndOfRange);
     }
 
     public void SpawnEnemies(IHealthEventSubscriber[] subscribers) {
