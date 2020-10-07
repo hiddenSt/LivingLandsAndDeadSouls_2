@@ -11,13 +11,16 @@ using UnityEngine;
 namespace Components {
 
   public class GameSetuper : MonoBehaviour {
+    public HealthComponent playerHealthComponent;
     public OutfitComponent playerOutfitComponent;
     public GunComponent playerGunComponent;
     public GameObject player;
     public GunSlotControl gunSlotControl;
     public InventoryComponent playerInventory;
     public OutfitSlotControl outfitSlotControl;
+    public CharacteristicsComponent playerCharacteristicsComponent;
     public InventoryUi inventoryUi;
+    public CharacteristicsUi characteristicsUi;
     public LootUiData lootUiData;
     public OutfitsAnimators outfitsAnimators;
 
@@ -27,8 +30,11 @@ namespace Components {
     }
     
     private void SetDependencies() {
+      playerHealthComponent.SetUp();
       playerOutfitComponent.SetUp();
       playerGunComponent.SetUp();
+      playerCharacteristicsComponent.SetUp(playerHealthComponent.GetHealthEntity(), playerGunComponent, characteristicsUi);
+      characteristicsUi.SetUp(playerCharacteristicsComponent);
       inventoryUi.SetUp();
       playerInventory.SetUp();
       gunSlotControl.SetUp();

@@ -17,7 +17,6 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
     }
     
     public void Load() {
-      
       var path = Application.persistentDataPath + _fileName;
       if (!File.Exists(path)) {
         return;

@@ -8,8 +8,10 @@ namespace Menu {
     private void Start() {
       var playerLoader = new PlayerLoader("Player.data");
       var mapLoader = new MapLoader("Map.data");
+      var botsLoader = new BotsLoader("Bots.data");
       LoadSystem.AddLoader(playerLoader);
       LoadSystem.AddLoader(mapLoader);
+      LoadSystem.AddLoader(botsLoader);
     }
 
     public void PlayPressed() {

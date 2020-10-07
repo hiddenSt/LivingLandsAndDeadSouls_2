@@ -1,4 +1,5 @@
-﻿using UI.HealthFightSystemUi;
+﻿using System.Collections.Generic;
+using UI.HealthFightSystemUi;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,6 +11,7 @@ namespace HealthFight {
     public int originId;
     public float maxHealth = 100;
     public HealthBarUi healthBarUi;
+    private List<IHealthEventSubscriber> _subscribers;
     private Health _health;
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -19,11 +21,16 @@ namespace HealthFight {
       var damage = other.GetComponent<DamageComponent>().GetDamage();
       DecreaseHealth(damage.GetDamagePoints());
     }
+
+    public void AddSubscriber(IHealthEventSubscriber subscriber) {
+      _subscribers.Add(subscriber);
+    }
     
     public void DecreaseHealth(float points) {
       _health.Decrease(points);
 
       if (_health.IsDead()) {
+        NotifySubscribers();
         Destroy(gameObject);
       }
 
@@ -57,7 +64,14 @@ namespace HealthFight {
       return _health.IsDead();
     }
 
-    private void Start() {
+    private void  NotifySubscribers() {
+      foreach (var subscriber in _subscribers) {
+        subscriber.EntityIsDead();
+      }
+    }
+
+    public void SetUp() {
+      _subscribers = new List<IHealthEventSubscriber>();
       originId = gameObject.GetInstanceID();
       _health = new Health(healthPoints, maxHealth, healthBarUi);
     }

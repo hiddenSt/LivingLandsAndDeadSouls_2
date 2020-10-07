@@ -96,6 +96,10 @@ namespace Components.Player {
       _outfitComponent = outfitComponent;
     }
 
+    public void SetDamageBuff(float points) {
+      _damageBuff = points;
+    }
+    
     private void SendBulletWhenStandStill() {
       switch (_playerController.direction) {
         case 0:
@@ -119,6 +123,7 @@ namespace Components.Player {
       --_ammoCount;
       _gunSlotUi.ChangeAmmoCount(_ammoCount);
     }
+    
 
     private void DeactivateGun() {
       fireButton.interactable = false;

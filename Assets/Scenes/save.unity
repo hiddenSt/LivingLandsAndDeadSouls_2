@@ -3003,20 +3003,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &634521467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5254768785817598085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10cba923c2fd784f9e397a0dc28691a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characteristics: {fileID: 0}
-  parameters: {fileID: 0}
 --- !u!1 &694305241
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,20 +3391,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743146946}
   m_CullTransparentMesh: 0
---- !u!114 &746775254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5254768785724173732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10cba923c2fd784f9e397a0dc28691a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characteristics: {fileID: 0}
-  parameters: {fileID: 0}
 --- !u!1 &748891537
 GameObject:
   m_ObjectHideFlags: 0
@@ -3927,6 +3899,18 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 812121755}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &812121757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 326907163, guid: 4797f038ee636a3408d0c3626ea6af76,
+    type: 3}
+  m_PrefabInstance: {fileID: 812121755}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6783679401409266029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f8b56a00a9cd344afa454f5a4285a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &827961551
 GameObject:
   m_ObjectHideFlags: 0
@@ -10546,10 +10530,6 @@ MonoBehaviour:
   commonAnimals:
   - {fileID: 1854727094969625946, guid: 4cc4607220d6be64399942d36413484f, type: 3}
   - {fileID: 6147726387976033482, guid: 3180df350c46ffb45a28222cedebbf04, type: 3}
-  xAxisBeginOfRange: -100
-  xAxisEndOfRange: 100
-  yAxisBeginOfRange: -100
-  yAxisEndOfRange: 100
 --- !u!4 &1293234445
 Transform:
   m_ObjectHideFlags: 0
@@ -17127,13 +17107,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6f17f40759a374eb7cd65f462baae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealthComponent: {fileID: 812121757}
   playerOutfitComponent: {fileID: 6783679401409266032}
   playerGunComponent: {fileID: 6783679401409266034}
   player: {fileID: 6783679401409266029}
   gunSlotControl: {fileID: 1952260239}
   playerInventory: {fileID: 6783679401409266035}
   outfitSlotControl: {fileID: 1465376570}
+  playerCharacteristicsComponent: {fileID: 6783679401409266036}
   inventoryUi: {fileID: 284581157}
+  characteristicsUi: {fileID: 5254768787270282663}
   lootUiData: {fileID: 211632885}
   outfitsAnimators: {fileID: 932248023}
 --- !u!4 &1604084570
@@ -20079,7 +20062,6 @@ GameObject:
   - component: {fileID: 5254768785724173728}
   - component: {fileID: 5254768785724173729}
   - component: {fileID: 5254768785724173734}
-  - component: {fileID: 746775254}
   m_Layer: 5
   m_Name: PlusOne
   m_TagString: Untagged
@@ -20130,9 +20112,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 746775254}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: UpHealth
+      - m_Target: {fileID: 5254768787270282663}
+        m_TargetAssemblyTypeName: UI.CharacteristicsUi, Assembly-CSharp
+        m_MethodName: AddHealthLimit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20202,7 +20184,6 @@ GameObject:
   - component: {fileID: 5254768785817598081}
   - component: {fileID: 5254768785817598086}
   - component: {fileID: 5254768785817598087}
-  - component: {fileID: 634521467}
   m_Layer: 5
   m_Name: PlusOne
   m_TagString: Untagged
@@ -20283,9 +20264,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 634521467}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: UpStrength
+      - m_Target: {fileID: 5254768787270282663}
+        m_TargetAssemblyTypeName: UI.CharacteristicsUi, Assembly-CSharp
+        m_MethodName: AddDamageBuff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21510,6 +21491,7 @@ GameObject:
   - component: {fileID: 5254768787270282657}
   - component: {fileID: 5254768787270282659}
   - component: {fileID: 5254768787270282656}
+  - component: {fileID: 5254768787270282663}
   m_Layer: 5
   m_Name: PersonInfo
   m_TagString: Untagged
@@ -21517,6 +21499,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5254768787270282663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254768787270282662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ccaf6372b9bb543a91ed588ba29dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freePointsText: {fileID: 5254768787231013983}
+  damageBuffText: {fileID: 5254768786707915075}
+  healthLimitText: {fileID: 5254768785657663556}
+  characterName: {fileID: 5254768785926575217}
 --- !u!114 &5469697273772572431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22445,6 +22443,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventorySize: 6
   dropDistanceY: 1.95
+--- !u!114 &6783679401409266036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6783679401409266029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d058e7e4d6a1d72439959e0eaf0282d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &6817741584698001172
 CanvasRenderer:
   m_ObjectHideFlags: 0
