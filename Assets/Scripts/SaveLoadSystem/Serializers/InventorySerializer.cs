@@ -32,25 +32,21 @@ namespace SaveLoadSystem.Serializers {
       for (int i = 0; i < inventoryData.gunsSize; ++i) {
         var gun = _gunSerializer.Deserialize(inventoryData.guns[i]);
         items.Add(gun);
-        Debug.Log("GunType: " + gun.GetGunType());
       }
 
       for (int i = 0; i < inventoryData.medKitsSize; ++i) {
         var medKit = _medKitSerializer.Deserialize(inventoryData.medKits[i]);
         items.Add(medKit);
-        Debug.Log("MedKitType: " + medKit.GetMedKitType());
       }
 
       for (int i = 0; i < inventoryData.ammoSize; ++i) {
         var ammo = _ammoSerializer.Deserialize(inventoryData.ammoData[i]);
         items.Add(ammo);
-        Debug.Log("Ammo:" + ammo);
       }
 
       for (int i = 0; i < inventoryData.outfitsSize; ++i) {
         var outfit = _outfitSerializer.Deserialize(inventoryData.outfits[i]);
         items.Add(outfit);
-        Debug.Log("OutfitType: " + outfit.GetItemType());
       }
 
       return items;

@@ -1,6 +1,5 @@
 ﻿using System;
 using GenerateMap.DataTransferObjects;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace GenerateMap.Strategies {
@@ -13,7 +12,6 @@ namespace GenerateMap.Strategies {
     }
 
     public int[,] Generate(int[,] mapData) {
-      Debug.Log("Value" + _data.Value);
       _mapCountrySize = (int) Math.Sqrt(mapData.Length);
       for (int i = 0; i < _data.Value; i++) {
         var parentCoordinates = GenerateZoneCenterCoordinates(_data.DistanceFromAnotherObjects, mapData);

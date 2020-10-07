@@ -39,7 +39,6 @@ namespace SaveLoadSystem.SaveSystem.Savers {
 
     private ObjectPosition GetPlayerPosition() {
       var playerPosition = new ObjectPosition();
-      Debug.Log("Player" + _player);
       playerPosition.x = _player.transform.position.x;
       playerPosition.y = _player.transform.position.y;
       playerPosition.z = _player.transform.position.z;
