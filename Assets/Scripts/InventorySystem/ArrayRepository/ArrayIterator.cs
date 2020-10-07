@@ -29,15 +29,24 @@ namespace InventorySystem.ArrayRepository {
     }
 
     public bool IsDone() {
-      ++_index;
-      while (_index < _arraySize && _itemsRepository.GetItemByIndex(_index) == null) {
-        ++_index;
+      if (_index >= _arraySize) {
+        return true;
       }
-      --_index;
-      if (_index < _arraySize) {
+      
+      if (_currentItem != null) {
         return false;
       }
-      return true;
+      
+      while (_index < _arraySize - 1 && _currentItem == null) {
+        ++_index;
+        _currentItem = _itemsRepository.GetItemByIndex(_index);
+      }
+      
+      if (_currentItem == null) {
+        return true;
+      }
+      
+      return false;
     }
 
     public Item CurrentItem() {
