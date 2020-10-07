@@ -1,10 +1,13 @@
-﻿using SaveLoadSystem.LoadSystem;
+﻿using DataTransferObjects;
+using SaveLoadSystem.LoadSystem;
 using SaveLoadSystem.LoadSystem.Loaders;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Menu {
   public class MenuController : MonoBehaviour {
+    public CharacterSetuper characterSetuper;
+
     private void Start() {
       var playerLoader = new PlayerLoader("Player.data");
       var mapLoader = new MapLoader("Map.data");
@@ -16,11 +19,13 @@ namespace Menu {
 
     public void PlayPressed() {
       LoadSystem.DeleteSaves();
+      
       MoveToTheGameScene();
     }
 
     public void ContinuePressed() {
       LoadSystem.Load();
+      characterSetuper.SetupCharacter(ParameterManager.instance.characterName);
       MoveToTheGameScene();
     }
 

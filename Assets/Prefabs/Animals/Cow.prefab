@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 6147726387976033493}
   - component: {fileID: 6147726387976033492}
   - component: {fileID: 6147726387976033483}
-  - component: {fileID: -3508857367956100435}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Cow
@@ -200,23 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f8b56a00a9cd344afa454f5a4285a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 70
+  healthPoints: 70
   originId: 0
   maxHealth: 70
   healthBarUi: {fileID: 7385183903228114425}
---- !u!114 &-3508857367956100435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6147726387976033482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37c137ca9ed75c43b3ee398f362b00b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loot: {fileID: 3987287109579355602, guid: c011106cb2edb1e479b9f87f34a22b40, type: 3}
 --- !u!1001 &4569396090166651233
 PrefabInstance:
   m_ObjectHideFlags: 0

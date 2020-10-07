@@ -9,21 +9,21 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scripts/Scenes/FirstPage.unity
+    path: Assets/Scenes/FirstPage.unity
     guid: 11d4b48e1a39fe1458a69e1498acc441
   - enabled: 0
-    path: Assets/Scripts/Scenes/Login.unity
+    path: Assets/Scenes/Login.unity
     guid: e8bcd9c6036e70a4a8a05f94d8be3e60
   - enabled: 0
-    path: Assets/Scripts/Scenes/PasswordReset.unity
+    path: Assets/Scenes/PasswordReset.unity
     guid: b58e434276b1ebe428bd5560d140b773
   - enabled: 0
-    path: Assets/Scripts/Scenes/Register.unity
+    path: Assets/Scenes/Register.unity
     guid: 0db18a1b27858e547ba67d79297bea0e
   - enabled: 1
-    path: Assets/Scripts/Scenes/Menu.unity
+    path: Assets/Scenes/Menu.unity
     guid: 708aca4721931684d81a23b79b1d0c43
   - enabled: 1
-    path: Assets/Scripts/Scenes/save.unity
+    path: Assets/Scenes/save.unity
     guid: cdadf1bfe86770a40b30996c8481fdd6
   m_configObjects: {}

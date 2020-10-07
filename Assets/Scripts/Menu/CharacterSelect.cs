@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
-using DataTransferObjects;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Menu {
   public class CharacterSelect : MonoBehaviour {
-    public string[] gunTypes;
-    public AnimatorOverrideController[] animatorOverrideControllersClark;
-    public AnimatorOverrideController[] animatorOverrideControllersHuLie;
-    public AnimatorOverrideController[] animatorOverrideControllersTsal;
+    public CharacterSetuper characterSetuper;
 
     private void Start() {
       var button1T = gameObject.transform.Find("DickClarkButton");
@@ -21,33 +16,17 @@ namespace Menu {
     }
 
     public void DickClarkPressed() {
-      ParameterManager.instance.CharacterI = 0;
-      ParameterManager.instance.characterName = "Dick Clark";
-      ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
-      for (int i = 0; i < gunTypes.Length; ++i) {
-        ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersClark[i]);
-      }
+      characterSetuper.SetupCharacter("Dick Clark");
       SwitchButtonColor(1);
     }
 
     public void HuLeePressed() {
-      ParameterManager.instance.CharacterI = 1;
-      ParameterManager.instance.characterName = "Hu Lee";
-      ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
-      for (int i = 0; i < gunTypes.Length; ++i) {
-        ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersHuLie[i]);
-      }
+      characterSetuper.SetupCharacter("Hu Lee");
       SwitchButtonColor(2);
     }
 
     public void VitaliTsalPressed() {
-      ParameterManager.instance.CharacterI = 2;
-      ParameterManager.instance.characterName = "Vitali Tsal";
-      Debug.Log("I am Tsal");
-      ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
-      for (int i = 0; i < gunTypes.Length; ++i) {
-        ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersTsal[i]);
-      }
+      characterSetuper.SetupCharacter("Vitali Tsal");
       SwitchButtonColor(3);
     }
 

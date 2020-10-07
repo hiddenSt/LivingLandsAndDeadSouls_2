@@ -44,18 +44,6 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
 
     private void LoadCharacter() {
       ParameterManager.instance.characterName = _playerData.characterName;
-      var characterSelect = GameObject.Find("CharacterSelection").GetComponent<CharacterSelect>();
-      switch (ParameterManager.instance.characterName) {
-        case "Dick Clark":
-          characterSelect.DickClarkPressed();
-          break;
-        case "Hu Lee":
-          characterSelect.HuLeePressed();
-          break;
-        case "Vitali Tsal":
-          characterSelect.VitaliTsalPressed();
-          break;
-      }
     }
     
     private void LoadSuitedOutfit() {

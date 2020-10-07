@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1854727094969625951}
   - component: {fileID: 1854727094969625944}
   - component: {fileID: 1854727094969625945}
-  - component: {fileID: 9044902468755996660}
   m_Layer: 0
   m_Name: Bull
   m_TagString: Cow
@@ -200,23 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f8b56a00a9cd344afa454f5a4285a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 70
+  healthPoints: 70
   originId: 0
   maxHealth: 70
   healthBarUi: {fileID: 4957079960783125769}
---- !u!114 &9044902468755996660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854727094969625946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37c137ca9ed75c43b3ee398f362b00b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loot: {fileID: 0}
 --- !u!1001 &2152621513650889105
 PrefabInstance:
   m_ObjectHideFlags: 0

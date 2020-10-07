@@ -2166,22 +2166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcccf7650be46d84683710951ddf6f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunTypes:
-  - WithoutGun
-  - Rifle
-  - MachineGun
-  animatorOverrideControllersClark:
-  - {fileID: 22100000, guid: 7097d1f322e508f4e866e447469dc8bf, type: 2}
-  - {fileID: 22100000, guid: 3cf79dd8971236343a1a7e1735d1e143, type: 2}
-  - {fileID: 22100000, guid: 88aad2b026f91cb4c8aeb1e193489043, type: 2}
-  animatorOverrideControllersHuLie:
-  - {fileID: 22100000, guid: 94a2bc3d7cec6d14abb5b1aca59f0274, type: 2}
-  - {fileID: 22100000, guid: 82f037a77893cd84888b305feda57e30, type: 2}
-  - {fileID: 22100000, guid: d81c4b10db81ba14abe383bf4626d1ba, type: 2}
-  animatorOverrideControllersTsal:
-  - {fileID: 22100000, guid: 5dd51590fad7d7d44b1f97672b824055, type: 2}
-  - {fileID: 22100000, guid: 068b8fd27e803504aa647bf693109982, type: 2}
-  - {fileID: 22100000, guid: 57ae962a7c6a99b46a27f920f28bfe46, type: 2}
+  characterSetuper: {fileID: 1640783010}
 --- !u!114 &290939360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3879,6 +3864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295dd59978456cb45b426c95b725951b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSetuper: {fileID: 0}
 --- !u!1 &487497127
 GameObject:
   m_ObjectHideFlags: 0
@@ -9368,6 +9354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1640783009}
+  - component: {fileID: 1640783010}
   m_Layer: 0
   m_Name: CharacterSeleter
   m_TagString: Untagged
@@ -9389,6 +9376,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1640783010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640783008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b802bea79348484fabcc2f6ddb2c7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunTypes:
+  - WithoutGun
+  - Rifle
+  - MachineGun
+  animatorOverrideControllersClark:
+  - {fileID: 22100000, guid: 7097d1f322e508f4e866e447469dc8bf, type: 2}
+  - {fileID: 22100000, guid: 3cf79dd8971236343a1a7e1735d1e143, type: 2}
+  - {fileID: 22100000, guid: 88aad2b026f91cb4c8aeb1e193489043, type: 2}
+  animatorOverrideControllersHuLie:
+  - {fileID: 22100000, guid: 94a2bc3d7cec6d14abb5b1aca59f0274, type: 2}
+  - {fileID: 22100000, guid: 82f037a77893cd84888b305feda57e30, type: 2}
+  - {fileID: 22100000, guid: d81c4b10db81ba14abe383bf4626d1ba, type: 2}
+  animatorOverrideControllersTsal:
+  - {fileID: 22100000, guid: 5dd51590fad7d7d44b1f97672b824055, type: 2}
+  - {fileID: 22100000, guid: 068b8fd27e803504aa647bf693109982, type: 2}
+  - {fileID: 22100000, guid: 57ae962a7c6a99b46a27f920f28bfe46, type: 2}
 --- !u!1 &1644784529
 GameObject:
   m_ObjectHideFlags: 0
@@ -9728,6 +9743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295dd59978456cb45b426c95b725951b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSetuper: {fileID: 1640783010}
 --- !u!1 &1696332813
 GameObject:
   m_ObjectHideFlags: 0
