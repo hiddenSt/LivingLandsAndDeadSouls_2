@@ -29,7 +29,7 @@ namespace UI {
     }
 
     public void AddDamageBuff() {
-      _playerCharacteristics.BuffHealthLimit();
+      _playerCharacteristics.BuffDamage();
     }
 
     public void SetUp(CharacteristicsComponent playerCharacteristics) {

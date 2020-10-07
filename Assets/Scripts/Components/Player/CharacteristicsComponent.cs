@@ -8,7 +8,7 @@ namespace Components.Player {
     private GunComponent _playerGunComponent;
     private int _experiencePoints;
     private int _freePoints;
-    private float _damageBuff = 0f;
+    private float _damageBuff;
     private float _healthLimit;
     private ICharacteristicsUi _characteristicsUi;
 
@@ -18,10 +18,14 @@ namespace Components.Player {
     }
 
     public void SetUp(Health playerHealth, GunComponent playerGunComponent, ICharacteristicsUi characteristicsUi) {
+      _damageBuff = 0f;
+      _freePoints = 0;
+      _experiencePoints = 0;
       _characteristicsUi = characteristicsUi;
       _playerHealth = playerHealth;
       _playerGunComponent = playerGunComponent;
       _healthLimit = _playerHealth.GetHealthPointsLimit();
+      _characteristicsUi.SetHealthLimitPoints((int)_healthLimit);
     }
     
     public void BuffHealthLimit() {
