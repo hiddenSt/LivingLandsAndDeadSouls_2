@@ -3908,17 +3908,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acd34dd8424fd14ca6eb1628b7bf97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rockValue: 4
-  buildingValue: 8
-  forestValue: 3
-  sizeOfForest: 10
-  characterI: 0
-  hostileCharVal: 20
-  neutralCharVal: 20
-  precipitation: 10
-  startSeason: 0
-  tmpSize: {x: 0, y: 0, z: 0}
-  needToLoad: 0
+  RockValue: 4
+  BuildingValue: 8
+  ForestValue: 3
+  SizeOfForest: 10
+  CharacterI: 0
+  HostileCharVal: 0
+  NeutralCharVal: 0
+  Precipitation: 0
+  StartSeason: 0
+  NeedToLoad: 0
+  MapSizeVector: {x: 0, y: 0, z: 0}
   characterName: 
   playerPosition:
     x: 0
@@ -9359,6 +9359,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617854940}
   m_CullTransparentMesh: 0
+--- !u!1 &1640783008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1640783009}
+  m_Layer: 0
+  m_Name: CharacterSeleter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1640783009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640783008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.027754, y: -0.5696241, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1644784529
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,6 +26,7 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       _playerData = binaryFormatter.Deserialize(fileStream) as PlayerData;
       fileStream.Close();
       LoadSuitedGun();
+      LoadCharacter();
       LoadSuitedOutfit();
       LoadPlayerPosition();
       LoadPlayerHealth();
@@ -45,13 +46,13 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       ParameterManager.instance.characterName = _playerData.characterName;
       var characterSelect = GameObject.Find("CharacterSelection").GetComponent<CharacterSelect>();
       switch (ParameterManager.instance.characterName) {
-        case "DickClark":
+        case "Dick Clark":
           characterSelect.DickClarkPressed();
           break;
-        case "HuLee":
+        case "Hu Lee":
           characterSelect.HuLeePressed();
           break;
-        case "VitaliTsal":
+        case "Vitali Tsal":
           characterSelect.VitaliTsalPressed();
           break;
       }

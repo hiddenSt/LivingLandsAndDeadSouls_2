@@ -3,7 +3,9 @@ using DataTransferObjects;
 using HealthFight;
 using InventorySystem;
 using Items;
+using Menu;
 using SaveLoadSystem.DTO;
+using SpawnSystem;
 using UI;
 using UI.Controls;
 using UnityEngine;
@@ -23,10 +25,13 @@ namespace Components {
     public CharacteristicsUi characteristicsUi;
     public LootUiData lootUiData;
     public OutfitsAnimators outfitsAnimators;
+    public Spawner spawner;
+    public EndGameController endGameController;
 
     private void Start() {
       SetDependencies();
       SetUpPlayer();
+      SpawnBots();
     }
     
     private void SetDependencies() {
@@ -39,6 +44,7 @@ namespace Components {
       playerInventory.SetUp();
       gunSlotControl.SetUp();
       outfitSlotControl.SetUp();
+      spawner.SetUp();
     }
 
     private void SetUpPlayer() {
@@ -47,6 +53,14 @@ namespace Components {
       SetupPlayerOutfit();
       SetupPlayerGun();
       SetupPlayerInventory();
+      playerHealthComponent.AddSubscriber(endGameController);
+    }
+
+    private void SpawnBots() {
+      IHealthEventSubscriber[] subscribers = new IHealthEventSubscriber[1];
+      subscribers[0] = playerCharacteristicsComponent;
+      spawner.SpawnEnemies(subscribers);
+      spawner.SpawnAnimals(subscribers);
     }
 
     private void SetupPlayerPosition() {

@@ -4,23 +4,26 @@ using UnityEngine;
 
 namespace SpawnSystem {
   public class Spawner : MonoBehaviour {
-    private void SetUp() {
-      _xAxisBeginOfRange = 0;
-      _xAxisEndOfRange = ParameterManager.instance.MapSizeVector.x;
-      _yAxisBeginOfRange = 0;
-      _yAxisEndOfRange = ParameterManager.instance.MapSizeVector.y;
+    public void SetUp() {
+      _xAxisBeginOfRange = -ParameterManager.instance.MapSizeVector.x / 2f;
+      _xAxisEndOfRange = ParameterManager.instance.MapSizeVector.x / 2f;
+      _yAxisBeginOfRange = -ParameterManager.instance.MapSizeVector.y / 2f; 
+      _yAxisEndOfRange = ParameterManager.instance.MapSizeVector.y / 2f;
       _enemyCount = ParameterManager.instance.HostileCharVal;
       _animalsCount = ParameterManager.instance.NeutralCharVal;
+      Debug.Log("XMAX: " +  _xAxisEndOfRange);
+      Debug.Log("YMAX: " + _yAxisEndOfRange);
     }
 
     public void SpawnEnemies(IHealthEventSubscriber[] subscribers) {
       for (int i = 0; i < enemyGameObjects.Length; ++i) {
         for (int j = 0; j < _enemyCount / enemyGameObjects.Length; ++j) {
           _randX = Random.Range(_xAxisBeginOfRange, _xAxisEndOfRange);
-          _randY = Random.Range(_yAxisEndOfRange, _yAxisEndOfRange);
+          _randY = Random.Range(_yAxisBeginOfRange, _yAxisEndOfRange);
           _spawnPosition = new Vector2(_randX, _randY);
           var spawnedObj = Instantiate(enemyGameObjects[i], _spawnPosition, Quaternion.identity);
           var healthComp = spawnedObj.GetComponent<HealthComponent>();
+          healthComp.SetUp();
           AddSubscribers(healthComp, subscribers);
         }
       }
@@ -29,11 +32,12 @@ namespace SpawnSystem {
     public void SpawnAnimals(IHealthEventSubscriber[] subscribers) {
       for (int i = 0; i < commonAnimals.Length; ++i) {
         for (int j = 0; j < _animalsCount / commonAnimals.Length; ++j) {
-          _randX = Random.Range(_xAxisBeginOfRange, _xAxisBeginOfRange);
-          _randY = Random.Range(_yAxisEndOfRange, _yAxisEndOfRange);
+          _randX = Random.Range(_xAxisBeginOfRange, _xAxisEndOfRange);
+          _randY = Random.Range(_yAxisBeginOfRange, _yAxisEndOfRange);
           _spawnPosition = new Vector2(_randX, _randY);
           var spawnedObj = Instantiate(commonAnimals[i], _spawnPosition, Quaternion.identity);
           var healthComp = spawnedObj.GetComponent<HealthComponent>();
+          healthComp.SetUp();
           AddSubscribers(healthComp, subscribers);
         }
       }

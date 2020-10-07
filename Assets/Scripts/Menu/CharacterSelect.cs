@@ -22,7 +22,7 @@ namespace Menu {
 
     public void DickClarkPressed() {
       ParameterManager.instance.CharacterI = 0;
-      ParameterManager.instance.characterName = "DickClark";
+      ParameterManager.instance.characterName = "Dick Clark";
       ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
         ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersClark[i]);
@@ -32,7 +32,7 @@ namespace Menu {
 
     public void HuLeePressed() {
       ParameterManager.instance.CharacterI = 1;
-      ParameterManager.instance.characterName = "HuLee";
+      ParameterManager.instance.characterName = "Hu Lee";
       ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
         ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersHuLie[i]);
@@ -42,7 +42,8 @@ namespace Menu {
 
     public void VitaliTsalPressed() {
       ParameterManager.instance.CharacterI = 2;
-      ParameterManager.instance.characterName = "VitaliTsal";
+      ParameterManager.instance.characterName = "Vitali Tsal";
+      Debug.Log("I am Tsal");
       ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
         ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersTsal[i]);
