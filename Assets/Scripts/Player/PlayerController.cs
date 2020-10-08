@@ -56,15 +56,14 @@ namespace Player {
       moveVelocity = moveInput * playerSpeed;
       if (_dirX == 0 && _dirY == 0) {
         _soundOfRun.Stop();
-      }
-      else {
+      } else {
         if (!_soundOfRun.isPlaying) _soundOfRun.Play();
       }
     }
 
     private void FixedUpdate() {
       rigidBody.MovePosition(rigidBody.position + moveVelocity);
-      _spriteRenderer.sortingOrder = _height / 2 - (int) gameObject.transform.position.y + 1;
+      _spriteRenderer.sortingOrder = _height / 2 - (int) gameObject.transform.position.y + 2;
     }
 
     private int _height;
@@ -83,10 +82,4 @@ namespace Player {
     private float _dirY;
     private GameObject _bullet;
   }
-}
-
-namespace DTOBetweenScenes {
-
-  internal class ParameterManager { }
-
 }
