@@ -6,6 +6,7 @@ using Items;
 using Menu;
 using SaveLoadSystem.DTO;
 using SpawnSystem;
+using TimeSystem;
 using UI;
 using UI.Controls;
 using UnityEngine;
@@ -28,12 +29,14 @@ namespace Components {
     public BotsSpawner botsSpawner;
     public LootSpawner lootSpawner;
     public EndGameController endGameController;
+    public TimeController timeController;
 
     private void Start() {
       SetDependencies();
       SetUpPlayer();
       SpawnBots();
       SpawnLoot();
+      SetUpSeason();
     }
     
     private void SetDependencies() {
@@ -70,6 +73,26 @@ namespace Components {
 
     private void SpawnLoot() {
       lootSpawner.Spawn(ParameterManager.instance.lootSize, ParameterManager.instance.MapSizeVector);
+    }
+
+    private void SetUpSeason() {
+      if (!ParameterManager.instance.NeedToLoad) {
+        return;
+      }
+      
+      switch (ParameterManager.instance.StartSeason) {
+        case 0:
+          break;
+        case 1:
+          timeController.ChangeToFall();
+          break;
+        case 2:
+          timeController.ChangeToWinter();
+          break;
+        case 3:
+          timeController.ChangeToSpring();
+          break;
+      }
     }
 
     private void SetupPlayerPosition() {

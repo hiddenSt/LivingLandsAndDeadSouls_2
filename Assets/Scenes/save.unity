@@ -16324,6 +16324,7 @@ MonoBehaviour:
   botsSpawner: {fileID: 1009794387}
   lootSpawner: {fileID: 472325384}
   endGameController: {fileID: 1042073657}
+  timeController: {fileID: 1977813987}
 --- !u!4 &1604084570
 Transform:
   m_ObjectHideFlags: 0
