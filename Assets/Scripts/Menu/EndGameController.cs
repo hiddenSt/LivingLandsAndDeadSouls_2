@@ -7,7 +7,7 @@ namespace Menu {
     public GameObject endGameCanvas;
     private float _delay = 40f;
     
-    public void EntityIsDead() {
+    public void EntityIsDead(Vector3 position) {
       _delay = 4f;
       endGameCanvas.SetActive(true);
       while (_delay > 0) {

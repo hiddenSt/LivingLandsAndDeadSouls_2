@@ -12,7 +12,7 @@ namespace Components.Player {
     private float _healthLimit;
     private ICharacteristicsUi _characteristicsUi;
 
-    public void EntityIsDead() {
+    public void EntityIsDead(Vector3 position) {
       _experiencePoints += 1;
       IncreaseExperiencePoints();
     }

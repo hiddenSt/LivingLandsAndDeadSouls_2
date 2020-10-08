@@ -1,4 +1,5 @@
-﻿using Components.Player;
+﻿using Components.Drop;
+using Components.Player;
 using DataTransferObjects;
 using HealthFight;
 using InventorySystem;
@@ -30,6 +31,7 @@ namespace Components {
     public LootSpawner lootSpawner;
     public EndGameController endGameController;
     public TimeController timeController;
+    public MeatDrop meatDrop;
 
     private void Start() {
       SetDependencies();
@@ -68,6 +70,10 @@ namespace Components {
       IHealthEventSubscriber[] subscribers = new IHealthEventSubscriber[1];
       subscribers[0] = playerCharacteristicsComponent;
       botsSpawner.SpawnEnemies(subscribers);
+      
+      subscribers = new IHealthEventSubscriber[2];
+      subscribers[0] = playerCharacteristicsComponent;
+      subscribers[1] = meatDrop;
       botsSpawner.SpawnAnimals(subscribers);
     }
 
