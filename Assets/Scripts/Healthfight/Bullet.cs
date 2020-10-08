@@ -47,7 +47,6 @@ namespace HealthFight {
       bulletGameObject.transform.position = parentTransform.transform.position + new Vector3(0, -0.1f, 0);
       Vector2 moveDirection = (target.position - parentTransform.position).normalized * speed;
       myRigidBody.velocity = moveDirection;
-      Debug.Log((target.position - parentTransform.position).normalized);
 
       myRigidBody.mass = 0;
       myRigidBody.freezeRotation = true;

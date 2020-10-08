@@ -5,6 +5,12 @@ using Random = UnityEngine.Random;
 
 namespace Interaction {
   public class HouseInteraction : MonoBehaviour {
+    public GameObject[] items;
+    public float damage;
+    private bool _isLooted;
+    private Button _interactButton;
+    private Transform _playerPosition;
+    
     private void OnTriggerEnter2D(Collider2D other) {
       if (_isLooted)
           return;
@@ -20,7 +26,7 @@ namespace Interaction {
         return;
       }
       _isLooted = true;
-      var dropChance = Random.Range(0, items.Length);
+      var dropChance = Random.Range(0, items.Length + 1);
       if (dropChance == items.Length) {
         DropDamage();
       } else {
@@ -40,7 +46,7 @@ namespace Interaction {
       var damageComponent = droppedDamage.AddComponent<DamageComponent>();
       damageComponent.originId = gameObject.GetInstanceID();
       damageComponent.damageRadius = 0.2f;
-      damageComponent.damagePoints = 10;
+      damageComponent.damagePoints = damage;
       droppedDamage.transform.position = _playerPosition.position;
     }
 
@@ -52,12 +58,5 @@ namespace Interaction {
       _interactButton = GameObject.Find("EButton").GetComponent<Button>();
       _isLooted = false;
     }
-    
-    //data members
-    public GameObject[] items;
-    
-    private bool _isLooted;
-    private Button _interactButton;
-    private Transform _playerPosition;
   }
 } // end of namespace interaction

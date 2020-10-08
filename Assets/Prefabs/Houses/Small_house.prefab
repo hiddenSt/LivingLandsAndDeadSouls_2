@@ -124,10 +124,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 1627506103263643169, guid: eb07650b2863625418dda66dce5bd1c5, type: 3}
-  - {fileID: 6283363105668257727, guid: 79384acf907ff3e49871f3a34b7dbe15, type: 3}
+  - {fileID: 3987287109579355602, guid: c011106cb2edb1e479b9f87f34a22b40, type: 3}
+  - {fileID: 1515075103078067140, guid: 5ea223a0d4ee716459f4f8da031e575a, type: 3}
   - {fileID: 3341735783027897300, guid: 2129c1b683f03534685517b667a62afa, type: 3}
-  - {fileID: 8959464943015607736, guid: 7b1a374fdbf729b46958209bcbb831e1, type: 3}
+  - {fileID: 1627506103263643169, guid: eb07650b2863625418dda66dce5bd1c5, type: 3}
+  damage: 10
 --- !u!58 &3365250396448278549
 CircleCollider2D:
   m_ObjectHideFlags: 0
