@@ -14,7 +14,8 @@ namespace Menu {
       
       var audioSettingsLoader = new AudioSettingsLoader("Audio.data");
       audioSettingsLoader.Load();
-      
+      audioSettingsLoader.DeleteSaves();
+
       var playerLoader = new PlayerLoader("Player.data");
       var mapLoader = new MapLoader("Map.data");
       var botsLoader = new BotsLoader("Bots.data");
