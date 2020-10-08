@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Menu {
   public class AudioManager : MonoBehaviour {
-    private void Start() {
+    public void Setup() {
       _musicVolume = GameObject.Find("MenuMusic").GetComponent<AudioSource>();
       _sounds = GameObject.Find("Sounds");
       masterVolume = 50f;

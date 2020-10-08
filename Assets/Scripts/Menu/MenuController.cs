@@ -1,6 +1,7 @@
 ﻿using DataTransferObjects;
 using SaveLoadSystem.LoadSystem;
 using SaveLoadSystem.LoadSystem.Loaders;
+using SaveLoadSystem.SaveSystem.Savers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,11 @@ namespace Menu {
     public CharacterSetuper characterSetuper;
 
     private void Start() {
+      AudioManager.instance.Setup();
+      
+      var audioSettingsLoader = new AudioSettingsLoader("Audio.data");
+      audioSettingsLoader.Load();
+      
       var playerLoader = new PlayerLoader("Player.data");
       var mapLoader = new MapLoader("Map.data");
       var botsLoader = new BotsLoader("Bots.data");
@@ -30,6 +36,8 @@ namespace Menu {
     }
 
     public void ExitPressed() {
+      var audioSettingsSaver = new AudioSettingsSaver("Audio.data");
+      audioSettingsSaver.Save();
       Application.Quit();
     }
 
