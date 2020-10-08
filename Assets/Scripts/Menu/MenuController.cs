@@ -12,6 +12,7 @@ namespace Menu {
       var playerLoader = new PlayerLoader("Player.data");
       var mapLoader = new MapLoader("Map.data");
       var botsLoader = new BotsLoader("Bots.data");
+      ParameterManager.instance.SetDefaults();
       LoadSystem.AddLoader(playerLoader);
       LoadSystem.AddLoader(mapLoader);
       LoadSystem.AddLoader(botsLoader);

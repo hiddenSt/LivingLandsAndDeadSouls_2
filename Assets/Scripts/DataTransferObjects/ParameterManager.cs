@@ -2,6 +2,7 @@
 using InventorySystem;
 using Items;
 using SaveLoadSystem;
+using TMPro;
 using UnityEngine;
 
 namespace DataTransferObjects {
@@ -31,6 +32,8 @@ namespace DataTransferObjects {
       characterName = "Dick Clark";
       inventoryItems = null;
       lootSize = 30;
+      StartSeason = 0;
+      NeedToLoad = false;
     }
     
     //GeneratorInfo
