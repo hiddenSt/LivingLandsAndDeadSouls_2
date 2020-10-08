@@ -25,13 +25,15 @@ namespace Components {
     public CharacteristicsUi characteristicsUi;
     public LootUiData lootUiData;
     public OutfitsAnimators outfitsAnimators;
-    public Spawner spawner;
+    public BotsSpawner botsSpawner;
+    public LootSpawner lootSpawner;
     public EndGameController endGameController;
 
     private void Start() {
       SetDependencies();
       SetUpPlayer();
       SpawnBots();
+      SpawnLoot();
     }
     
     private void SetDependencies() {
@@ -44,7 +46,9 @@ namespace Components {
       playerInventory.SetUp();
       gunSlotControl.SetUp();
       outfitSlotControl.SetUp();
-      spawner.SetUp();
+      botsSpawner.SetUp(ParameterManager.instance.HostileCharVal, 
+                        ParameterManager.instance.NeutralCharVal, 
+                                   ParameterManager.instance.MapSizeVector);
     }
 
     private void SetUpPlayer() {
@@ -60,8 +64,12 @@ namespace Components {
     private void SpawnBots() {
       IHealthEventSubscriber[] subscribers = new IHealthEventSubscriber[1];
       subscribers[0] = playerCharacteristicsComponent;
-      spawner.SpawnEnemies(subscribers);
-      spawner.SpawnAnimals(subscribers);
+      botsSpawner.SpawnEnemies(subscribers);
+      botsSpawner.SpawnAnimals(subscribers);
+    }
+
+    private void SpawnLoot() {
+      lootSpawner.Spawn(ParameterManager.instance.lootSize, ParameterManager.instance.MapSizeVector);
     }
 
     private void SetupPlayerPosition() {

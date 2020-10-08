@@ -25,7 +25,6 @@ namespace Menu {
     }
 
     private void SetUpDickClark() {
-      ParameterManager.instance.CharacterI = 0;
       ParameterManager.instance.characterName = "Dick Clark";
       ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
@@ -34,7 +33,6 @@ namespace Menu {
     }
 
     private void SetUpHeLee() {
-      ParameterManager.instance.CharacterI = 1;
       ParameterManager.instance.characterName = "Hu Lee";
       ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
@@ -43,7 +41,6 @@ namespace Menu {
     }
 
     private void SetUpVitaliTsal() {
-      ParameterManager.instance.CharacterI = 2;
       ParameterManager.instance.characterName = "Vitali Tsal";
       ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {

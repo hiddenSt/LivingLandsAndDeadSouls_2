@@ -19,7 +19,6 @@ namespace Menu {
 
     public void PlayPressed() {
       LoadSystem.DeleteSaves();
-      
       MoveToTheGameScene();
     }
 
