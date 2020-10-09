@@ -10,6 +10,8 @@ namespace UI {
   public class InventoryUi : MonoBehaviour, IInventoryUi {
     public InventoryComponent inventoryComponent;
     public GameObject[] slots;
+    public DestroyCanvasControl destroyCanvasControl;
+    public float longTouchTime;
     private Inventory _inventory;
     private int _slotsSize;
     private Identifier[] _identifiers;
@@ -60,6 +62,10 @@ namespace UI {
       inventoryComponent.DropItem(item);
     }
 
+    public void RemoveItem(int index) {
+      _inventory.RemoveItem(_identifiers[index]);
+    }
+    
     private void RemoveItemUi(int index) {
       _isEmpty[index] = true;
       _buttons[index].GetComponent<Button>().onClick.RemoveListener(() => UseItem(index));
@@ -83,6 +89,8 @@ namespace UI {
         slots[i] = gameObject.transform.GetChild(i).gameObject;
         var comp = slots[i].AddComponent<DropItem>();
         comp.slotIndex = i;
+        comp.destroyCanvasControl = destroyCanvasControl;
+        comp.longTouchTime = longTouchTime;
       }
     }
     
