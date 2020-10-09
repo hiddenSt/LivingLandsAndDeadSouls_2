@@ -10,7 +10,7 @@ namespace Menu {
     public CharacterSetuper characterSetuper;
 
     private void Start() {
-      AudioManager.instance.Setup();
+      AudioManager.Instance.Setup();
       
       var audioSettingsLoader = new AudioSettingsLoader("Audio.data");
       audioSettingsLoader.Load();

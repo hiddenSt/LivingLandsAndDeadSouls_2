@@ -2,32 +2,35 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu {
-  public class Precipitation : MonoBehaviour {
+namespace Menu.Selectors {
+  
+  public class NeutralBotsAmountSelector : MonoBehaviour {
+    private Image _button1;
+    private Image _button2;
+    private Image _button3;
+    
     private void Start() {
-      var button1T = gameObject.transform.Find("FewButton");
-      var button2T = gameObject.transform.Find("MediumButton");
-      var button3T = gameObject.transform.Find("ManyButton");
-      _button1 = button1T.gameObject.GetComponent<Image>();
-      _button2 = button2T.gameObject.GetComponent<Image>();
-      _button3 = button3T.gameObject.GetComponent<Image>();
+      _button1 = gameObject.transform.Find("FewButton").GetComponent<Image>();
+      _button2 = gameObject.transform.Find("MediumButton").GetComponent<Image>();
+      _button3 = gameObject.transform.Find("ManyButton").GetComponent<Image>();
     }
 
-    // Update is called once per frame
     public void SmallPressed() {
-      SetPrecipitationSettings(1, 1);
+      ParameterManager.instance.NeutralCharVal = Random.Range(50, 200);
+      SetNeutralCharSettings(50, 200, 1);
     }
 
-    public void MedPressed() {
-      SetPrecipitationSettings(2, 2);
+    public void MediumPressed() {
+      ParameterManager.instance.NeutralCharVal = Random.Range(100, 300);
+      SetNeutralCharSettings(100, 300, 2);
     }
 
     public void LargePressed() {
-      SetPrecipitationSettings(3, 3);
+      SetNeutralCharSettings(200, 450, 3);
     }
 
-    private void SetPrecipitationSettings(int precipitation, int button) {
-      ParameterManager.instance.Precipitation = precipitation;
+    private void SetNeutralCharSettings(int beginOfRange, int endORange, int button) {
+      ParameterManager.instance.NeutralCharVal = Random.Range(beginOfRange, endORange);
       SwitchButtonColor(button);
     }
 
@@ -50,10 +53,6 @@ namespace Menu {
           break;
       }
     }
-
-    //data members
-    private Image _button1;
-    private Image _button2;
-    private Image _button3;
   }
+  
 }

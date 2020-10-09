@@ -2,7 +2,20 @@
 using UnityEngine.UI;
 
 namespace Menu {
+  
   public class AudioManager : MonoBehaviour {
+    public GameObject masterSlider;
+    public GameObject musicSlider;
+    public float masterVolume;
+    public float musicVolume;
+    private float _lastMusicVolume;
+    private float _lastAllVolume;
+    public static AudioManager Instance = null;
+    private AudioSource _soundOfRun;
+    private AudioSource _musicVolume;
+    private GameObject _sounds;
+    private GameObject _rainSound;
+    
     public void Setup() {
       _musicVolume = GameObject.Find("MenuMusic").GetComponent<AudioSource>();
       _sounds = GameObject.Find("Sounds");
@@ -46,36 +59,16 @@ namespace Menu {
       masterSlider.GetComponent<Slider>().value = masterVolume;
       musicSlider.GetComponent<Slider>().value = musicVolume;
     }
-
-    public static AudioManager Instance {
-      get {
-        if (instance == null) instance = new GameObject("GameManager").AddComponent<AudioManager>();
-        return instance;
-      }
-    }
-
+    
     private void Awake() {
-      if (instance) {
+      if (Instance) {
         DestroyImmediate(gameObject);
       }
       else {
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
       }
     }
-
-
-    //data members
-    public GameObject masterSlider;
-    public GameObject musicSlider;
-    public float masterVolume;
-    public float musicVolume;
-    private float _lastMusicVolume;
-    private float _lastAllVolume;
-    public static AudioManager instance = null;
-    private AudioSource _soundOfRun;
-    private AudioSource _musicVolume;
-    private GameObject _sounds;
-    private GameObject _rainSound;
   }
-} //end of namespace Menu
+  
+}

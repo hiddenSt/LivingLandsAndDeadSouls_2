@@ -1,32 +1,35 @@
-﻿using UnityEngine;
+﻿using DataTransferObjects;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu {
-  public class CharacterSelect : MonoBehaviour {
-    public CharacterSetuper characterSetuper;
-
+namespace Menu.Selectors {
+  
+  public class HostileBotsAmountSelector : MonoBehaviour {
+    private Image _button1;
+    private Image _button2;
+    private Image _button3;
+    
     private void Start() {
-      var button1T = gameObject.transform.Find("DickClarkButton");
-      var button2T = gameObject.transform.Find("HuLieButton");
-      var button3T = gameObject.transform.Find("VitaliTsalButton");
+      var button1T = gameObject.transform.Find("FewButton");
+      var button2T = gameObject.transform.Find("MediumButton");
+      var button3T = gameObject.transform.Find("ManyButton");
       _button1 = button1T.gameObject.GetComponent<Image>();
       _button2 = button2T.gameObject.GetComponent<Image>();
       _button3 = button3T.gameObject.GetComponent<Image>();
-      DickClarkPressed();
     }
 
-    public void DickClarkPressed() {
-      characterSetuper.SetupCharacter("Dick Clark");
+    public void SmallPressed() {
+      ParameterManager.instance.HostileCharVal = Random.Range(50, 150);
       SwitchButtonColor(1);
     }
 
-    public void HuLeePressed() {
-      characterSetuper.SetupCharacter("Hu Lee");
+    public void MediumPressed() {
+      ParameterManager.instance.HostileCharVal = Random.Range(100, 250);
       SwitchButtonColor(2);
     }
 
-    public void VitaliTsalPressed() {
-      characterSetuper.SetupCharacter("Vitali Tsal");
+    public void LargePressed() {
+      ParameterManager.instance.HostileCharVal = Random.Range(150, 350);
       SwitchButtonColor(3);
     }
 
@@ -49,10 +52,6 @@ namespace Menu {
           break;
       }
     }
-
-    //data  members
-    private Image _button1;
-    private Image _button2;
-    private Image _button3;
   }
-} //end of namespace Menu
+  
+}

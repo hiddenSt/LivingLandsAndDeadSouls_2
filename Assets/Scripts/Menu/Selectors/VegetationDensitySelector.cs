@@ -2,8 +2,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu {
-  public class GreenDensity : MonoBehaviour {
+namespace Menu.Selectors {
+  
+  public class VegetationDensitySelector : MonoBehaviour {
+    private Image _button1;
+    private Image _button2;
+    private Image _button3;
+    private Image _button4;
+    
     private void Start() {
       var button1T = gameObject.transform.Find("NormalButton");
       var button2T = gameObject.transform.Find("MediumButton");
@@ -20,7 +26,7 @@ namespace Menu {
       SwitchButtonColor(1);
     }
 
-    public void MedPressed() {
+    public void MediumPressed() {
       SetForestSettings(5, 15);
       SwitchButtonColor(2);
     }
@@ -68,11 +74,6 @@ namespace Menu {
           break;
       }
     }
-
-    //data members
-    private Image _button1;
-    private Image _button2;
-    private Image _button3;
-    private Image _button4;
   }
-} //end of namespace Menu
+  
+}

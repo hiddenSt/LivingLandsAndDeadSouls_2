@@ -23,9 +23,9 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       var fileStream = new FileStream(path, FileMode.Open);
       var audioData = binaryFormatter.Deserialize(fileStream) as AudioData;
       fileStream.Close();
-      AudioManager.instance.masterVolume = audioData.masterVolume;
-      AudioManager.instance.musicVolume = audioData.musicVolume;
-      AudioManager.instance.ChangeSlider();
+      AudioManager.Instance.masterVolume = audioData.masterVolume;
+      AudioManager.Instance.musicVolume = audioData.musicVolume;
+      AudioManager.Instance.ChangeSlider();
     }
 
     public void DeleteSaves() {

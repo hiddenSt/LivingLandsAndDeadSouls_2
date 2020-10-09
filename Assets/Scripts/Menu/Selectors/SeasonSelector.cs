@@ -2,8 +2,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu {
-  public class StartSeason : MonoBehaviour {
+namespace Menu.Selectors {
+  
+  public class SeasonSelector : MonoBehaviour {
+    private Image _button1;
+    private Image _button2;
+    private Image _button3;
+    private Image _button4;
+    
     private void Start() {
       _button1 = gameObject.transform.Find("Summer").GetComponent<Image>();
       _button2 = gameObject.transform.Find("Autumn").GetComponent<Image>();
@@ -59,11 +65,6 @@ namespace Menu {
           break;
       }
     }
-
-    //data members
-    private Image _button1;
-    private Image _button2;
-    private Image _button3;
-    private Image _button4;
   }
+  
 }

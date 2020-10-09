@@ -2,8 +2,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu {
-  public class MapSize : MonoBehaviour {
+namespace Menu.Selectors {
+  
+  public class MapSizeSelector : MonoBehaviour {
+    private Image _button1;
+    private Image _button2;
+    private Image _button3;
+    
     private void Start() {
       var button1T = gameObject.transform.Find("SmallButton");
       var button2T = gameObject.transform.Find("MediumButton");
@@ -19,7 +24,7 @@ namespace Menu {
       SwitchButtonColor(1);
     }
 
-    public void MedPressed() {
+    public void MediumPressed() {
       ParameterManager.instance.MapSizeVector.x = 500;
       ParameterManager.instance.MapSizeVector.y = 500;
       SwitchButtonColor(2);
@@ -50,10 +55,6 @@ namespace Menu {
           break;
       }
     }
-
-    //data members
-    private Image _button1;
-    private Image _button2;
-    private Image _button3;
   }
+  
 }

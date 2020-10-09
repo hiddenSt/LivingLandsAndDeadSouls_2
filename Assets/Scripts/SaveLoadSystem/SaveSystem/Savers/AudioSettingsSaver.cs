@@ -15,8 +15,8 @@ namespace SaveLoadSystem.SaveSystem.Savers {
     
     public void Save() {
       var audioData = new AudioData();
-      audioData.masterVolume = AudioManager.instance.masterVolume;
-      audioData.musicVolume = AudioManager.instance.musicVolume;
+      audioData.masterVolume = AudioManager.Instance.masterVolume;
+      audioData.musicVolume = AudioManager.Instance.musicVolume;
       
       var binaryFormatter = new BinaryFormatter();
       var path = Application.persistentDataPath + _fileName;

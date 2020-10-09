@@ -2948,7 +2948,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 379604196}
         m_TargetAssemblyTypeName: 
-        m_MethodName: MedPressed
+        m_MethodName: MediumPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3424,7 +3424,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1580436323}
         m_TargetAssemblyTypeName: 
-        m_MethodName: MedPressed
+        m_MethodName: MediumPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4300,7 +4300,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1696332815}
         m_TargetAssemblyTypeName: 
-        m_MethodName: MedPressed
+        m_MethodName: MediumPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6923,7 +6923,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1296665223}
         m_TargetAssemblyTypeName: 
-        m_MethodName: MedPressed
+        m_MethodName: MediumPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11228,7 +11228,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1468997437}
         m_TargetAssemblyTypeName: 
-        m_MethodName: MedPressed
+        m_MethodName: MediumPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
