@@ -16389,6 +16389,9 @@ MonoBehaviour:
   meatDrop: {fileID: 1407609797}
   mapController: {fileID: 1549871023}
   gameSaver: {fileID: 138974787}
+  tileInstanceStorage: {fileID: 803684218}
+  mapDataStorage: {fileID: 1194777616}
+  landTileMap: {fileID: 2011389895}
 --- !u!4 &1604084570
 Transform:
   m_ObjectHideFlags: 0

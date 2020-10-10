@@ -2,6 +2,7 @@
 using Components.Player;
 using DataTransferObjects;
 using GenerateMap;
+using GenerateMap.TileGenerator;
 using HealthFight;
 using InventorySystem;
 using Items;
@@ -12,6 +13,7 @@ using TimeSystem;
 using UI;
 using UI.Controls;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Components {
 
@@ -35,6 +37,9 @@ namespace Components {
     public MeatDrop meatDrop;
     public MapController mapController;
     public GameSaver gameSaver;
+    public TileInstancesStorage tileInstanceStorage;
+    public MapDataStorage mapDataStorage;
+    public Tilemap landTileMap;
 
     private void Start() {
       SetDependencies();
@@ -59,7 +64,7 @@ namespace Components {
       botsSpawner.Setup(ParameterManager.instance.HostileCharVal, 
                         ParameterManager.instance.NeutralCharVal, 
                                     ParameterManager.instance.MapSizeVector);
-        //timeController.SetUp(); // TODO: need fix
+      timeController.SetUp(tileInstanceStorage, landTileMap, mapDataStorage);
       gameSaver.Setup();
    
     }
@@ -94,10 +99,6 @@ namespace Components {
     }
 
     private void SetUpSeason() {
-      if (!ParameterManager.instance.NeedToLoad) {
-        return;
-      }
-      
       switch (ParameterManager.instance.StartSeason) {
         case 0:
           break;
