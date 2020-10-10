@@ -1293,7 +1293,7 @@ MonoBehaviour:
   inventoryComponent: {fileID: 6783679401409266035}
   slots: []
   destroyCanvasControl: {fileID: 1121923910}
-  longTouchTime: 5
+  longTouchTime: 2
 --- !u!1 &307248692
 GameObject:
   m_ObjectHideFlags: 0
