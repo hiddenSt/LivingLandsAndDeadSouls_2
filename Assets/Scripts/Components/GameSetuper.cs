@@ -60,9 +60,8 @@ namespace Components {
                         ParameterManager.instance.NeutralCharVal, 
                                     ParameterManager.instance.MapSizeVector);
         //timeController.SetUp(); // TODO: need fix
-      gameSaver.Setup(ParameterManager.instance.playerDataFileName, 
-                      ParameterManager.instance.mapDataFileName, 
-                      ParameterManager.instance.botsDataFileName);
+      gameSaver.Setup();
+   
     }
 
     private void LoadMap() {

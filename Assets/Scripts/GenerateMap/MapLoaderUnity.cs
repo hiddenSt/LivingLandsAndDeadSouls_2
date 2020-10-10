@@ -87,28 +87,28 @@ namespace GenerateMap {
               generatedObject = Instantiate(_bigHouse);
               _houseList.Add(generatedObject);
               _houseTypeList.Add(1);
-              ChangeGameObjectParameters(generatedObject, i, j, 3);
+              ChangeGameObjectParameters(generatedObject, i, j, 2);
               break;
             case 2:
               generatedObject = Instantiate(_tree);
               _treeList.Add(generatedObject);
-              ChangeGameObjectParameters(generatedObject, i, j, 2);
+              ChangeGameObjectParameters(generatedObject, i, j, 3);
               break;
             case 3:
               generatedObject = Instantiate(_bush);
               _bushList.Add(generatedObject);
-              ChangeGameObjectParameters(generatedObject, i, j, 2);
+              ChangeGameObjectParameters(generatedObject, i, j, 3);
               break;
             case 4:
               generatedObject = Instantiate(_rock);
               _rockList.Add(generatedObject);
-              ChangeGameObjectParameters(generatedObject, i, j, 2);
+              ChangeGameObjectParameters(generatedObject, i, j, 3);
               break;
             case -1:
               generatedObject = Instantiate(_smallHouse);
               _houseList.Add(generatedObject);
               _houseTypeList.Add(0);
-              ChangeGameObjectParameters(generatedObject, i, j, 3);
+              ChangeGameObjectParameters(generatedObject, i, j, 2);
               break;
           }
         }

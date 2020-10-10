@@ -33,6 +33,8 @@ namespace DataTransferObjects {
       lootSize = 30;
       StartSeason = 0;
       NeedToLoad = false;
+      NeutralCharVal = 20;
+      HostileCharVal = 15;
     }
     
     //GeneratorInfo

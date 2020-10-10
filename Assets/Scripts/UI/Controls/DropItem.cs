@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace UI.Controls {
 
-  public class DropItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler,
+  public class DropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler,
     IDragHandler {
     public int slotIndex;
     public float longTouchTime;
@@ -16,13 +16,15 @@ namespace UI.Controls {
         _isDestroying = false;
         return;
       }
-      DetectLongTouch();
+    }
+
+    public void OnPointerUp(PointerEventData eventData) {
+      
     }
 
     public void OnBeginDrag(PointerEventData eventData) { }
 
     public void OnDrag(PointerEventData eventData) {
-      Debug.Log("I am drag");
     }
 
     public void DestroyItem() {
