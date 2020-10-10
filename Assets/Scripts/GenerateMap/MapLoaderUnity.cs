@@ -92,7 +92,7 @@ namespace GenerateMap {
             case 2:
               generatedObject = Instantiate(_tree);
               _treeList.Add(generatedObject);
-              ChangeGameObjectParameters(generatedObject, i, j, 3);
+              ChangeGameObjectParameters(generatedObject, i, j, 4);
               break;
             case 3:
               generatedObject = Instantiate(_bush);
