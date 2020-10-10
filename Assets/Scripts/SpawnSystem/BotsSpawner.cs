@@ -9,7 +9,7 @@ namespace SpawnSystem {
     private int _enemyCount;
     private int _animalsCount;
     
-    public void SetUp(int enemyCount, int animalsCount, Vector3Int mapSize) {
+    public void Setup(int enemyCount, int animalsCount, Vector3Int mapSize) {
       _mapSize = mapSize;
       _animalsCount = animalsCount;
       _enemyCount = enemyCount;
@@ -20,7 +20,7 @@ namespace SpawnSystem {
         for (int j = 0; j < _enemyCount / enemyGameObjects.Length; ++j) {
           var spawnedObj = Instantiate(enemyGameObjects[i], GetRandomSpawnPosition(_mapSize), Quaternion.identity);
           var healthComp = spawnedObj.GetComponent<HealthComponent>();
-          healthComp.SetUp();
+          healthComp.Setup();
           AddSubscribers(healthComp, subscribers);
         }
       }
@@ -31,7 +31,7 @@ namespace SpawnSystem {
         for (int j = 0; j < _animalsCount / commonAnimals.Length; ++j) {
           var spawnedObj = Instantiate(commonAnimals[i], GetRandomSpawnPosition(_mapSize), Quaternion.identity);
           var healthComp = spawnedObj.GetComponent<HealthComponent>();
-          healthComp.SetUp();
+          healthComp.Setup();
           AddSubscribers(healthComp, subscribers);
         }
       }

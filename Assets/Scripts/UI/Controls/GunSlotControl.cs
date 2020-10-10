@@ -31,7 +31,7 @@ namespace UI.Controls {
       _dropButton.enabled = false;
     }
 
-    public void SetUp() {
+    public void Setup() {
       playerGunComponent.SetGunSlotUi(this);
       _dropButton = gameObject.GetComponent<Button>();
       _gunImage = gameObject.GetComponent<Image>();

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace SaveLoadSystem.DTO {
 
   [System.Serializable]

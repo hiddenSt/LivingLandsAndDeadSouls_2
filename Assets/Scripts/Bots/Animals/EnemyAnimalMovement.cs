@@ -3,8 +3,24 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-namespace Animals {
+namespace Bots.Animals {
+  
   public class EnemyAnimalMovement : MonoBehaviour {
+    public float moveSpeed;
+    public float waitTime;
+    public bool isWalking;
+    public int damage;
+
+    private Rigidbody2D _myRigidBody;
+    private Animator _animator;
+    private float _walkCounter;
+    private float _waitCounter;
+    private int _walkDirection;
+    private Vector2 _moveVelocity;
+    private bool _isAttacking;
+    private HealthComponent _playerHealthComponent;
+    private float _attackDelay = 1f;
+    
     private void Start() {
       _myRigidBody = GetComponent<Rigidbody2D>();
       _animator = GetComponent<Animator>();
@@ -50,12 +66,12 @@ namespace Animals {
             _animator.Play("Idle_right");
             break;
         }
-      }
-      else {
+      } else {
         _waitCounter -= Time.deltaTime;
         _myRigidBody.velocity = Vector2.zero;
-        if (_waitCounter < 0)
+        if (_waitCounter < 0) {
           ChoseDirection();
+        }
       }
     }
 
@@ -71,16 +87,19 @@ namespace Animals {
         _isAttacking = true;
         _moveVelocity = _myRigidBody.velocity;
         _myRigidBody.velocity = new Vector2(0, 0);
-        if (other.transform.position.x > transform.position.x)
+        if (other.transform.position.x > transform.position.x) {
           _animator.Play("Attack_right");
-        else
+        } else {
           _animator.Play("Attack_left");
+        }
+
         other.GetComponent<HealthComponent>().DecreaseHealth(damage);
         return;
       }
 
-      if (other.GetComponent<DamageComponent>() != null)
+      if (other.GetComponent<DamageComponent>() != null) {
         return;
+      }
       switch (_walkDirection) {
         case 0:
           _walkDirection = 1;
@@ -90,7 +109,10 @@ namespace Animals {
           break;
       }
 
-      if (isWalking != false) return;
+      if (isWalking != false) {
+        return;
+      }
+      
       isWalking = true;
       _waitCounter = 0;
       _walkCounter = waitTime;
@@ -102,22 +124,6 @@ namespace Animals {
         _myRigidBody.velocity = _moveVelocity;
       }
     }
-
-
-    //data members
-    public float moveSpeed;
-    public float waitTime;
-    public bool isWalking;
-    public int damage;
-
-    private Rigidbody2D _myRigidBody;
-    private Animator _animator;
-    private float _walkCounter;
-    private float _waitCounter;
-    private int _walkDirection;
-    private Vector2 _moveVelocity;
-    private bool _isAttacking;
-    private HealthComponent _playerHealthComponent;
-    private float _attackDelay = 1f;
   }
+  
 }

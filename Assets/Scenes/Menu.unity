@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 29508052}
   - component: {fileID: 29508054}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: Event System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -728,7 +728,7 @@ PrefabInstance:
     - target: {fileID: 410411516537853177, guid: f55e615a100137244a04577717b80d9d,
         type: 3}
       propertyPath: m_Name
-      value: AudioManager
+      value: Audio Manager
       objectReference: {fileID: 0}
     - target: {fileID: 410411516537853179, guid: f55e615a100137244a04577717b80d9d,
         type: 3}
@@ -3865,6 +3865,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSetuper: {fileID: 0}
+  gameSceneName: 
+  dontDestroyOnLoad: []
 --- !u!1 &487497127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3876,7 +3878,7 @@ GameObject:
   - component: {fileID: 487497129}
   - component: {fileID: 487497128}
   m_Layer: 0
-  m_Name: ParametersManager
+  m_Name: Parameters Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3898,13 +3900,13 @@ MonoBehaviour:
   BuildingValue: 8
   ForestValue: 3
   SizeOfForest: 10
-  CharacterI: 0
   HostileCharVal: 0
   NeutralCharVal: 0
   Precipitation: 0
   StartSeason: 0
   NeedToLoad: 0
   MapSizeVector: {x: 0, y: 0, z: 0}
+  lootSize: 0
   characterName: 
   playerPosition:
     x: 0
@@ -3912,6 +3914,12 @@ MonoBehaviour:
     z: 0
   health: 100
   healthLimit: 100
+  experience: 0
+  freePoints: 0
+  damageBuff: 0
+  playerDataFileName: 
+  mapDataFileName: 
+  botsDataFileName: 
 --- !u!4 &487497129
 Transform:
   m_ObjectHideFlags: 0
@@ -8597,6 +8605,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8a4d3c1ad1e854e8d925ef33648e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1469561145 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 410411516537853177, guid: f55e615a100137244a04577717b80d9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 130529502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1500870609
 GameObject:
   m_ObjectHideFlags: 0
@@ -9356,7 +9370,7 @@ GameObject:
   - component: {fileID: 1640783009}
   - component: {fileID: 1640783010}
   m_Layer: 0
-  m_Name: CharacterSeleter
+  m_Name: Character Seleter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9744,6 +9758,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSetuper: {fileID: 1640783010}
+  gameSceneName: Game
+  dontDestroyOnLoad:
+  - {fileID: 1469561145}
+  - {fileID: 1167001294}
 --- !u!1 &1696332813
 GameObject:
   m_ObjectHideFlags: 0

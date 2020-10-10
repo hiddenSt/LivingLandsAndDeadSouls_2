@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Enemy {
+namespace Bots.Enemy {
   public class EnemyAnimator : MonoBehaviour {
     private void Start() {
       _animator = gameObject.GetComponent<Animator>();

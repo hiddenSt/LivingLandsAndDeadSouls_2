@@ -4,8 +4,7 @@ using DataTransferObjects;
 namespace Player {
   public class PlayerController : MonoBehaviour {
     private void Start() {
-      _height = GameObject.Find("ParametersManager").GetComponent
-        <ParameterManager>().MapSizeVector.y;
+      _height = ParameterManager.instance.MapSizeVector.y;
       _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
       _soundOfRun = GameObject.Find("RunSound").GetComponent<AudioSource>();
       animator = GetComponent<Animator>();

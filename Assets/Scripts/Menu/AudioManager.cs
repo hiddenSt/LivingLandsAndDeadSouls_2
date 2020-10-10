@@ -31,13 +31,13 @@ namespace Menu {
 
     private void Update() {
       _rainSound = GameObject.Find("Rain Generator");
-
+      var rainSoundAudioSource = GameObject.Find("Rain Sound").GetComponent<AudioSource>();
       if (_rainSound != null) {
-        if (!GameObject.Find("Rain Sound").GetComponent<AudioSource>().isPlaying)
-          GameObject.Find("Rain Sound").GetComponent<AudioSource>().Play();
-      }
-      else {
-        GameObject.Find("Rain Sound").GetComponent<AudioSource>().Stop();
+        if (!rainSoundAudioSource.isPlaying) {
+          rainSoundAudioSource.Play();
+        }
+      } else {
+        rainSoundAudioSource.Stop();
       }
 
       if (musicVolume != _lastMusicVolume)
@@ -63,8 +63,7 @@ namespace Menu {
     private void Awake() {
       if (Instance) {
         DestroyImmediate(gameObject);
-      }
-      else {
+      } else {
         Instance = this;
         DontDestroyOnLoad(gameObject);
       }

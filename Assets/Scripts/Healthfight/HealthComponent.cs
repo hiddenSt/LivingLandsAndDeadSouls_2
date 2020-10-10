@@ -14,6 +14,12 @@ namespace HealthFight {
     private List<IHealthEventSubscriber> _subscribers;
     private Health _health;
 
+    public void Setup() {
+      _subscribers = new List<IHealthEventSubscriber>();
+      originId = gameObject.GetInstanceID();
+      _health = new Health(healthPoints, maxHealth, healthBarUi);
+    }
+    
     private void OnTriggerEnter2D(Collider2D other) {
       if (other.GetComponent<DamageComponent>() == null ||
           other.GetComponent<DamageComponent>().originId == originId)
@@ -22,10 +28,6 @@ namespace HealthFight {
       DecreaseHealth(damage.GetDamagePoints());
     }
 
-    public void AddSubscriber(IHealthEventSubscriber subscriber) {
-      _subscribers.Add(subscriber);
-    }
-    
     public void DecreaseHealth(float points) {
       _health.Decrease(points);
 
@@ -64,17 +66,15 @@ namespace HealthFight {
       return _health.IsDead();
     }
 
+    public void AddSubscriber(IHealthEventSubscriber subscriber) {
+      _subscribers.Add(subscriber);
+    }
+    
     private void  NotifySubscribers() {
       var objectPosition = new Vector3(transform.position.x, transform.position.y);
       foreach (var subscriber in _subscribers) {
         subscriber.EntityIsDead(objectPosition);
       }
-    }
-
-    public void SetUp() {
-      _subscribers = new List<IHealthEventSubscriber>();
-      originId = gameObject.GetInstanceID();
-      _health = new Health(healthPoints, maxHealth, healthBarUi);
     }
   }
   

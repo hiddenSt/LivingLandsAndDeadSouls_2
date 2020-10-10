@@ -1,8 +1,19 @@
 ﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Animals {
+namespace Bots.Animals {
+  
   public class CommonAnimalMovement : MonoBehaviour {
+    public float moveSpeed;
+    public float waitTime;
+    public bool isWalking;
+
+    private Rigidbody2D _myRigidBody;
+    private Animator _animator;
+    private float _walkCounter;
+    private float _waitCounter;
+    private int _walkDirection;
+    
     private void Start() {
       _myRigidBody = GetComponent<Rigidbody2D>();
       _animator = GetComponent<Animator>();
@@ -14,7 +25,9 @@ namespace Animals {
       if (isWalking) {
         ChangeWalkDirection();
 
-        if (!(_walkCounter < 0)) return;
+        if (!(_walkCounter < 0)) {
+          return;
+        }
 
         isWalking = false;
         _waitCounter = waitTime;
@@ -32,12 +45,12 @@ namespace Animals {
             _animator.Play("stay_left");
             break;
         }
-      }
-      else {
+      } else {
         _waitCounter -= Time.deltaTime;
         _myRigidBody.velocity = Vector2.zero;
-        if (_waitCounter < 0)
+        if (_waitCounter < 0) {
           ChoseDirection();
+        }
       }
     }
 
@@ -70,12 +83,15 @@ namespace Animals {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-      if (other.GetComponent<HealthFight.DamageComponent>() != null)
+      if (other.GetComponent<HealthFight.DamageComponent>() != null) {
         return;
+      }
 
       ChangeDirectionAfterCollision();
 
-      if (isWalking != false) return;
+      if (isWalking != false) {
+        return;
+      }
       isWalking = true;
       _waitCounter = 0;
       _walkCounter = waitTime;
@@ -97,16 +113,6 @@ namespace Animals {
           break;
       }
     }
-
-    //data members
-    public float moveSpeed;
-    public float waitTime;
-    public bool isWalking;
-
-    private Rigidbody2D _myRigidBody;
-    private Animator _animator;
-    private float _walkCounter;
-    private float _waitCounter;
-    private int _walkDirection;
   }
+  
 }

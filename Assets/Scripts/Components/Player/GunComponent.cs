@@ -132,7 +132,7 @@ namespace Components.Player {
       _gunSlotUi.ChangeAmmoCount(0);
     }
     
-    public void SetUp() {
+    public void Setup() {
       _playerController = gameObject.GetComponent<PlayerController>();
       _playerInventoryComponent = gameObject.GetComponent<InventoryComponent>();
       _outfitComponent = gameObject.GetComponent<OutfitComponent>();

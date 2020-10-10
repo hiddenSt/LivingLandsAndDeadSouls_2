@@ -1,8 +1,20 @@
 ﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Enemy {
+namespace Bots.Enemy {
+  
   public class EnemyLogic : MonoBehaviour {
+    public float moveSpeed;
+    public float waitTime;
+    public bool isWalking;
+
+    private Rigidbody2D _myRigidBody;
+    private Animator _animator;
+    private float _walkCounter;
+    private float _waitCounter;
+    private int _walkDirection;
+    public bool isActive = true;
+    
     private void Start() {
       _myRigidBody = gameObject.GetComponent<Rigidbody2D>();
       _animator = gameObject.GetComponent<Animator>();
@@ -37,7 +49,9 @@ namespace Enemy {
             break;
         }
 
-        if (!(_walkCounter < 0)) return;
+        if (!(_walkCounter < 0)) {
+          return;
+        }
 
         isWalking = false;
         _waitCounter = waitTime;
@@ -55,12 +69,12 @@ namespace Enemy {
             _animator.Play("IdleLeft");
             break;
         }
-      }
-      else {
+      } else {
         _waitCounter -= Time.deltaTime;
         _myRigidBody.velocity = Vector2.zero;
-        if (_waitCounter < 0)
+        if (_waitCounter < 0) {
           ChoseDirection();
+        }
       }
     }
 
@@ -71,8 +85,10 @@ namespace Enemy {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-      if (other.GetComponent<HealthFight.DamageComponent>() != null && other.name == "Player")
+      if (other.GetComponent<HealthFight.DamageComponent>() != null && other.name == "Player") {
         return;
+      }
+
       switch (_walkDirection) {
         case 0:
           _walkDirection = 2;
@@ -88,23 +104,13 @@ namespace Enemy {
           break;
       }
 
-      if (isWalking != false)
+      if (isWalking != false) {
         return;
+      }
       isWalking = true;
       _waitCounter = 0;
       _walkCounter = waitTime;
     }
-
-    //data members
-    public float moveSpeed;
-    public float waitTime;
-    public bool isWalking;
-
-    private Rigidbody2D _myRigidBody;
-    private Animator _animator;
-    private float _walkCounter;
-    private float _waitCounter;
-    private int _walkDirection;
-    public bool isActive = true;
   }
-} //end of namespace Enemy
+  
+}

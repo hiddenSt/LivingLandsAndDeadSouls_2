@@ -10,19 +10,21 @@ namespace GenerateMap {
     private const int _mapScalerMedium = 5;
     private const int _mapScalerBig = 20;
     private int _mapSize;
+    private int[,] _mapData;
 
-    public void Start() {
-      int[,] mapData;
-      _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
+    public void Setup() {
+      _parameterManager = ParameterManager.instance;
       if (_parameterManager.NeedToLoad) {
-        mapData = ParameterManager.instance.MapData;
+        _mapData = ParameterManager.instance.MapData;
       } else {
         MapGenerator generator = CreateGenerator();
-        mapData = generator.GenerateMap(_mapSize);
-        ParameterManager.instance.MapData = mapData;
+        _mapData = generator.GenerateMap(_mapSize);
+        ParameterManager.instance.MapData = _mapData;
       }
+    }
 
-      Load(mapData);
+    public void LoadMap() {
+      Load(_mapData);
     }
 
     private void Load(int[,] mapData) {

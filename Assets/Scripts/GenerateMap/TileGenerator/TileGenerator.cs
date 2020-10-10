@@ -15,8 +15,8 @@ namespace GenerateMap.TileGenerator {
       _horizonWidth = horizonWidth;
       _landTileMap = GameObject.Find("LandTileMap").GetComponent<Tilemap>();
       _horizonTileMap = GameObject.Find("HorizonTileMap").GetComponent<Tilemap>();
-      _horizonTile = GameObject.Find("TileStorage").GetComponent<TileInstancesStorage>().FindTile("Water");
-      _landTile = GameObject.Find("TileStorage").GetComponent<TileInstancesStorage>().FindTile("Grass");
+      _horizonTile = GameObject.Find("Tile Storage").GetComponent<TileInstancesStorage>().FindTile("Water");
+      _landTile = GameObject.Find("Tile Storage").GetComponent<TileInstancesStorage>().FindTile("Grass");
     }
 
     public void GenerateHorizon() {

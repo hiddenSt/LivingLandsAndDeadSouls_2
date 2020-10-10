@@ -2,7 +2,6 @@
 using InventorySystem;
 using Items;
 using SaveLoadSystem;
-using TMPro;
 using UnityEngine;
 
 namespace DataTransferObjects {
@@ -71,5 +70,10 @@ namespace DataTransferObjects {
     private int _mapScalerSmall;
     private int _mapScalerMedium;
     private int _mapScalerBig;
+    
+    //Game Data File Names
+    public string playerDataFileName;
+    public string mapDataFileName;
+    public string botsDataFileName;
   }
 }

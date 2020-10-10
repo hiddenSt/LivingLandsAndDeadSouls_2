@@ -5,10 +5,10 @@ using UnityEngine;
 namespace Components {
 
   public class GameSaver : MonoBehaviour {
-    private void Start() {
-      var playerSaver = new PlayerSaver("Player.data");
-      var mapSaver = new MapSaver("Map.data");
-      var botsSaver = new BotsSaver("Bots.data");
+    public void Setup(string playerDataFileName, string mapDataFileName, string botsDataFileName) {
+      var playerSaver = new PlayerSaver(playerDataFileName);
+      var mapSaver = new MapSaver(mapDataFileName);
+      var botsSaver = new BotsSaver(botsDataFileName);
       SaveSystem.AddSaver(playerSaver);
       SaveSystem.AddSaver(mapSaver);
       SaveSystem.AddSaver(botsSaver);

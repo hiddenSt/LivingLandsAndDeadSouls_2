@@ -32,7 +32,7 @@ namespace UI {
       _playerCharacteristics.BuffDamage();
     }
 
-    public void SetUp(CharacteristicsComponent playerCharacteristics) {
+    public void Setup(CharacteristicsComponent playerCharacteristics) {
       _playerCharacteristics = playerCharacteristics;
       characterName.text = ParameterManager.instance.characterName;
     }

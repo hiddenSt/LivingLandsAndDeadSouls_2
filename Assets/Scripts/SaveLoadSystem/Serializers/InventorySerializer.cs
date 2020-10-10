@@ -2,7 +2,6 @@
 using InventorySystem;
 using Items;
 using SaveLoadSystem.DTO;
-using UnityEngine;
 
 namespace SaveLoadSystem.Serializers {
 
@@ -61,6 +60,7 @@ namespace SaveLoadSystem.Serializers {
       inventoryData.medKitsSize = CalculateItemTypeCount(iterator, "MedKit");
       inventoryData.ammoSize = CalculateItemTypeCount(iterator, "Ammo");
       inventoryData.SetUp();
+      
       int gunIndex = 0;
       int outfitIndex = 0;
       int medKitIndex = 0;
@@ -93,7 +93,6 @@ namespace SaveLoadSystem.Serializers {
       }
     }
     
-    
     private int CalculateItemTypeCount(IItemIterator iterator, string itemType) {
       int count = 0;
       for (iterator.First(); !iterator.IsDone(); iterator.Next()) {
@@ -104,8 +103,6 @@ namespace SaveLoadSystem.Serializers {
 
       return count;
     }
-    
-    
   }
 
 }

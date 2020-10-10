@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DataTransferObjects;
+using TimeSystem;
 using UnityEngine;
 
 namespace GenerateMap {
@@ -17,13 +18,11 @@ namespace GenerateMap {
     private List<int> _houseTypeList;
     private int[,] _mapData;
     private ParameterManager _parameterManager;
-    private int _season;
-
+    
     public MapLoaderUnity(int[,] mapData) {
-      _parameterManager = GameObject.Find("ParametersManager").GetComponent<ParameterManager>();
+      _parameterManager = ParameterManager.instance;
       _mapData = mapData;
-      _season = _parameterManager.StartSeason;
-      _objectInstanceStorage = GameObject.Find("ObjectInstanceStorage");
+      _objectInstanceStorage = GameObject.Find("Objects Instances Storage");
     }
 
     public void MapLoad() {
@@ -32,7 +31,6 @@ namespace GenerateMap {
       CreateMapDataStorage();
       InstantiateObjects();
       LoadMapDataStorage();
-      LoadTimeControlParameters();
     }
 
     private void FindObjectInstances() {
@@ -54,12 +52,6 @@ namespace GenerateMap {
         extraLayerValue;
     }
 
-    private void LoadTimeControlParameters() {
-      var timeController = GameObject.Find("ClockControl").GetComponent<TimeSystem.TimeController>();
-      timeController.season = _season;
-      timeController.ChangeSeason();
-    }
-
     private void TileLoad() {
       TileGenerator.TileGenerator tileGenerator = new TileGenerator.TileGenerator(15,
         _parameterManager.MapSizeVector.x);
@@ -78,7 +70,7 @@ namespace GenerateMap {
 
 
     private void LoadMapDataStorage() {
-      MapDataStorage mapDataStorage = GameObject.Find("MapDataStorage").GetComponent<MapDataStorage>();
+      MapDataStorage mapDataStorage = GameObject.Find("Map Data Storage").GetComponent<MapDataStorage>();
       mapDataStorage.BushList = _bushList;
       mapDataStorage.TreeList = _treeList;
       mapDataStorage.RockList = _rockList;

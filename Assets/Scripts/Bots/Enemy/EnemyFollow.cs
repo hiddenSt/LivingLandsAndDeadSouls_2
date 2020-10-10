@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Enemy {
+namespace Bots.Enemy {
   public class EnemyFollow : MonoBehaviour {
     private void Start() {
       _target = GameObject.Find("Player").GetComponent<Transform>();

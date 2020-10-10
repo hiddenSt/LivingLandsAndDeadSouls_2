@@ -17,7 +17,7 @@ namespace Components.Player {
       IncreaseExperiencePoints();
     }
 
-    public void SetUp(Health playerHealth, GunComponent playerGunComponent, ICharacteristicsUi characteristicsUi) {
+    public void Setup(Health playerHealth, GunComponent playerGunComponent, ICharacteristicsUi characteristicsUi) {
       _characteristicsUi = characteristicsUi;
       _playerHealth = playerHealth;
       _playerGunComponent = playerGunComponent;

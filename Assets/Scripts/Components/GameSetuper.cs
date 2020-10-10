@@ -1,6 +1,7 @@
 ﻿using Components.Drop;
 using Components.Player;
 using DataTransferObjects;
+using GenerateMap;
 using HealthFight;
 using InventorySystem;
 using Items;
@@ -32,9 +33,12 @@ namespace Components {
     public EndGameController endGameController;
     public TimeController timeController;
     public MeatDrop meatDrop;
+    public MapController mapController;
+    public GameSaver gameSaver;
 
     private void Start() {
       SetDependencies();
+      LoadMap();
       SetUpPlayer();
       SpawnBots();
       SpawnLoot();
@@ -42,20 +46,29 @@ namespace Components {
     }
     
     private void SetDependencies() {
-      playerHealthComponent.SetUp();
-      playerOutfitComponent.SetUp();
-      playerGunComponent.SetUp();
-      playerCharacteristicsComponent.SetUp(playerHealthComponent.GetHealthEntity(), playerGunComponent, characteristicsUi);
-      characteristicsUi.SetUp(playerCharacteristicsComponent);
-      inventoryUi.SetUp();
-      playerInventory.SetUp();
-      gunSlotControl.SetUp();
-      outfitSlotControl.SetUp();
-      botsSpawner.SetUp(ParameterManager.instance.HostileCharVal, 
+      mapController.Setup();
+      playerHealthComponent.Setup();
+      playerOutfitComponent.Setup();
+      playerGunComponent.Setup();
+      playerCharacteristicsComponent.Setup(playerHealthComponent.GetHealthEntity(), playerGunComponent, characteristicsUi);
+      characteristicsUi.Setup(playerCharacteristicsComponent);
+      inventoryUi.Setup();
+      playerInventory.Setup();
+      gunSlotControl.Setup();
+      outfitSlotControl.Setup();
+      botsSpawner.Setup(ParameterManager.instance.HostileCharVal, 
                         ParameterManager.instance.NeutralCharVal, 
-                                   ParameterManager.instance.MapSizeVector);
+                                    ParameterManager.instance.MapSizeVector);
+        //timeController.SetUp(); // TODO: need fix
+      gameSaver.Setup(ParameterManager.instance.playerDataFileName, 
+                      ParameterManager.instance.mapDataFileName, 
+                      ParameterManager.instance.botsDataFileName);
     }
 
+    private void LoadMap() {
+      mapController.LoadMap();
+    }
+    
     private void SetUpPlayer() {
       SetupPlayerPosition();
       SetupPlayerHealth();

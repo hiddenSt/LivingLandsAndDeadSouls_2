@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 namespace Menu.Settings {
   public class MasterVolumeControl : MonoBehaviour {
+    public Slider slider;
+    
     public void Awake() {
       slider.value = AudioManager.Instance.masterVolume;
     }
@@ -10,8 +12,5 @@ namespace Menu.Settings {
     public void IsChanged() {
       AudioManager.Instance.masterVolume = slider.value;
     }
-
-    //data members
-    public Slider slider;
   }
 }

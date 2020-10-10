@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 namespace Menu {
   public class MenuController : MonoBehaviour {
     public CharacterSetuper characterSetuper;
+    public string gameSceneName;
+    public GameObject[] dontDestroyOnLoad;
 
     private void Start() {
       AudioManager.Instance.Setup();
@@ -43,9 +45,10 @@ namespace Menu {
     }
 
     private void MoveToTheGameScene() {
-      DontDestroyOnLoad(GameObject.Find("AudioManager"));
-      DontDestroyOnLoad(GameObject.Find("Sounds"));
-      SceneManager.LoadScene("save");
+      foreach (var gObject in dontDestroyOnLoad) {
+        DontDestroyOnLoad(gObject);
+      }
+      SceneManager.LoadScene(gameSceneName);
     }
   }
 }
