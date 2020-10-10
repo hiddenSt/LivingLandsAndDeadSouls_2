@@ -57,7 +57,6 @@ namespace TimeSystem {
       var landTile = tileInstancesStorage.FindTile("Grass");
       var winterTile = tileInstancesStorage.FindTile("Winter_grass");
       var fallTile = tileInstancesStorage.FindTile("OrangeGrass");
-      //var landTileMap = GameObject.Find("LandTileMap").GetComponent<Tilemap>();
       playerLight = GameObject.Find("Player").GetComponent<Light2D>();
       playerLight.intensity = 0;
       _precipitation = ParameterManager.instance.Precipitation;
