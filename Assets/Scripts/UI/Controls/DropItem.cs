@@ -10,16 +10,33 @@ namespace UI.Controls {
     public DestroyCanvasControl destroyCanvasControl;
     private InventoryUi _inventoryUi;
     private bool _isDestroying;
+    private bool _isPointerDown;
+    private float _touchStartTime;
 
     public void OnPointerDown(PointerEventData eventData) {
       if (gameObject.transform.childCount <= 0) {
-        _isDestroying = false;
         return;
       }
+
+      _isPointerDown = true;
+    }
+
+    private void Update() {
+      if (!_isPointerDown) {
+        return;
+      }
+
+      if (Time.time - _touchStartTime >= longTouchTime) {
+        _isDestroying = true;
+        ActivateDestroyCanvas();
+        _isPointerDown = false;
+      }
+      
     }
 
     public void OnPointerUp(PointerEventData eventData) {
-      
+      _isPointerDown = false;
+      _touchStartTime = Time.time;
     }
 
     public void OnBeginDrag(PointerEventData eventData) { }
@@ -46,15 +63,6 @@ namespace UI.Controls {
       }
     }
 
-    private void DetectLongTouch() {
-      float holdTime = 0f;
-      while (holdTime < longTouchTime) {
-        holdTime += Time.deltaTime;
-      }
-      _isDestroying = true;
-      ActivateDestroyCanvas();
-    }
-    
     private void ActivateDestroyCanvas() {
       destroyCanvasControl.gameObject.SetActive(true);
       destroyCanvasControl.noButton.onClick.AddListener(DontDestroyItem);
@@ -69,6 +77,8 @@ namespace UI.Controls {
     
     private void Start() {
       _inventoryUi = transform.parent.gameObject.GetComponent<InventoryUi>();
+      _isPointerDown = false;
+      _isDestroying = false;
     }
   }
   
