@@ -1,4 +1,5 @@
-﻿using DataTransferObjects;
+﻿using System.IO;
+using DataTransferObjects;
 using SaveLoadSystem.LoadSystem;
 using SaveLoadSystem.LoadSystem.Loaders;
 using SaveLoadSystem.SaveSystem.Savers;
@@ -30,6 +31,9 @@ namespace Menu {
     }
 
     public void ContinuePressed() {
+      if (!File.Exists("Player.data")) {
+        return;
+      }
       LoadSystem.Load();
       characterSetuper.SetupCharacter(ParameterManager.Instance.characterName);
       MoveToTheGameScene();
