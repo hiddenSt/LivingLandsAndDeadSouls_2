@@ -19714,6 +19714,7 @@ MonoBehaviour:
   freePointsText: {fileID: 5254768787231013983}
   damageBuffText: {fileID: 5254768786707915075}
   healthLimitText: {fileID: 5254768785657663556}
+  accuracyText: {fileID: 7851724691121921055}
   characterName: {fileID: 5254768785926575217}
 --- !u!114 &5469697273772572431
 MonoBehaviour:
@@ -20710,9 +20711,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: UpSniper
+      - m_Target: {fileID: 5254768787270282663}
+        m_TargetAssemblyTypeName: UI.CharacteristicsUi, Assembly-CSharp
+        m_MethodName: AddAccuracy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
