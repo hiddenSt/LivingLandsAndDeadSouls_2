@@ -45,6 +45,7 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       playerData.experience = characteristicsComp.GetExperience();
       playerData.freePoints = characteristicsComp.GetFreePoints();
       playerData.damageBuff = characteristicsComp.GetDamageBuff();
+      playerData.accuracy = characteristicsComp.GetAccuracy();
     }
     
     private ObjectPosition GetPlayerPosition() {

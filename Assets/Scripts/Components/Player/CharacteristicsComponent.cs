@@ -10,6 +10,7 @@ namespace Components.Player {
     private int _freePoints;
     private float _damageBuff;
     private float _healthLimit;
+    private int _accuracy;
     private ICharacteristicsUi _characteristicsUi;
 
     public void EntityIsDead(Vector3 position) {
@@ -23,14 +24,16 @@ namespace Components.Player {
       _playerGunComponent = playerGunComponent;
     }
 
-    public void SetUpCharacteristics(int experience, int freePoints, float damageBuff, float healthLimit) {
+    public void SetUpCharacteristics(int experience, int freePoints, float damageBuff, float healthLimit, int accuracy) {
       _experiencePoints = experience;
       _freePoints = freePoints;
       _damageBuff = damageBuff;
       _healthLimit = healthLimit;
+      _accuracy = accuracy;
       _characteristicsUi.SetFreePoints(_freePoints);
       _characteristicsUi.SetHealthLimitPoints((int)(_healthLimit));
       _characteristicsUi.SetDamageBuffPoints((int)(_damageBuff));
+      _characteristicsUi.SetAccuracyPoints(_accuracy);
     }
     
     public void BuffHealthLimit() {
@@ -54,6 +57,15 @@ namespace Components.Player {
       var points = (int) (_damageBuff);
       _characteristicsUi.SetDamageBuffPoints(points);
     }
+
+    public void BuffAccuracy() {
+      if (_freePoints <= 0)
+        return;
+      --_freePoints;
+      _characteristicsUi.SetFreePoints(_freePoints);
+      _accuracy += 1;
+      _characteristicsUi.SetAccuracyPoints(_accuracy);
+    }
     
     private void IncreaseExperiencePoints() {
       ++_experiencePoints;
@@ -74,6 +86,10 @@ namespace Components.Player {
 
     public int GetFreePoints() {
       return _freePoints;
+    }
+
+    public int GetAccuracy() {
+      return _accuracy;
     }
   }
 

@@ -12,5 +12,6 @@ namespace SaveLoadSystem.DTO {
     public int experience;
     public int freePoints;
     public float damageBuff;
+    public int accuracy;
   }
 }

@@ -83,6 +83,7 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       ParameterManager.Instance.experience = _playerData.experience;
       ParameterManager.Instance.freePoints = _playerData.freePoints;
       ParameterManager.Instance.damageBuff = _playerData.damageBuff;
+      ParameterManager.Instance.accuracy = _playerData.accuracy;
     }
 
     

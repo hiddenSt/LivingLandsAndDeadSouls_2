@@ -35,6 +35,7 @@ namespace DataTransferObjects {
       NeedToLoad = false;
       NeutralCharVal = 20;
       HostileCharVal = 15;
+      accuracy = 0;
     }
     
     //GeneratorInfo
@@ -66,6 +67,7 @@ namespace DataTransferObjects {
     public int experience;
     public int freePoints;
     public float damageBuff;
+    public int accuracy;
     
     //mapData
     public int[,] MapData;
@@ -73,9 +75,5 @@ namespace DataTransferObjects {
     private int _mapScalerMedium;
     private int _mapScalerBig;
     
-    //Game Data File Names
-    public string playerDataFileName;
-    public string mapDataFileName;
-    public string botsDataFileName;
   }
 }

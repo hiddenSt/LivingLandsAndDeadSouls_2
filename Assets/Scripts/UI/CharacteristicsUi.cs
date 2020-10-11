@@ -9,6 +9,7 @@ namespace UI {
     public Text freePointsText;
     public Text damageBuffText;
     public Text healthLimitText;
+    public Text accuracyText;
     public Text characterName;
     private CharacteristicsComponent _playerCharacteristics;
 
@@ -24,12 +25,20 @@ namespace UI {
       healthLimitText.text = points.ToString();
     }
 
+    public void SetAccuracyPoints(int points) {
+      accuracyText.text = points.ToString();
+    }
+
     public void AddHealthLimit() {
       _playerCharacteristics.BuffHealthLimit();
     }
 
     public void AddDamageBuff() {
       _playerCharacteristics.BuffDamage();
+    }
+
+    public void AddAccuracy() {
+      _playerCharacteristics.BuffAccuracy();
     }
 
     public void Setup(CharacteristicsComponent playerCharacteristics) {

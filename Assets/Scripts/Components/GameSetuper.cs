@@ -176,7 +176,8 @@ namespace Components {
       var freePoints = ParameterManager.Instance.freePoints;
       var healthLimit = ParameterManager.Instance.healthLimit;
       var damageBuff = ParameterManager.Instance.damageBuff;
-      playerCharacteristicsComponent.SetUpCharacteristics(experience, freePoints, damageBuff, healthLimit);
+      var accuracy = ParameterManager.Instance.accuracy;
+      playerCharacteristicsComponent.SetUpCharacteristics(experience, freePoints, damageBuff, healthLimit, accuracy);
     }
 
     private void SetItemUi(Item item) {
