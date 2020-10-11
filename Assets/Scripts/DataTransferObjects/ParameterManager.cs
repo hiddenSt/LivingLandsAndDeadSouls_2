@@ -36,6 +36,9 @@ namespace DataTransferObjects {
       NeutralCharVal = 20;
       HostileCharVal = 15;
       accuracy = 0;
+      playerPosition.x = 0;
+      playerPosition.y = 0;
+      playerPosition.z = 0;
     }
     
     //GeneratorInfo
