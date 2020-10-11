@@ -11,7 +11,6 @@ namespace Menu {
 
     private void Start() {
       AudioManager.Instance.Setup();
-      
       var audioSettingsLoader = new AudioSettingsLoader("Audio.data");
       audioSettingsLoader.Load();
       audioSettingsLoader.DeleteSaves();
@@ -19,7 +18,7 @@ namespace Menu {
       var playerLoader = new PlayerLoader("Player.data");
       var mapLoader = new MapLoader("Map.data");
       var botsLoader = new BotsLoader("Bots.data");
-      ParameterManager.instance.SetDefaults();
+      ParameterManager.Instance.SetDefaults();
       LoadSystem.AddLoader(playerLoader);
       LoadSystem.AddLoader(mapLoader);
       LoadSystem.AddLoader(botsLoader);
@@ -32,7 +31,7 @@ namespace Menu {
 
     public void ContinuePressed() {
       LoadSystem.Load();
-      characterSetuper.SetupCharacter(ParameterManager.instance.characterName);
+      characterSetuper.SetupCharacter(ParameterManager.Instance.characterName);
       MoveToTheGameScene();
     }
 
@@ -43,8 +42,6 @@ namespace Menu {
     }
 
     private void MoveToTheGameScene() {
-      DontDestroyOnLoad(GameObject.Find("Audio Manager"));
-      DontDestroyOnLoad(GameObject.Find("Sounds"));
       SceneManager.LoadScene("Game");
     }
   }

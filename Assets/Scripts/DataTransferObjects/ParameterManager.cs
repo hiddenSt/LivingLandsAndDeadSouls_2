@@ -9,9 +9,9 @@ namespace DataTransferObjects {
   public class ParameterManager : MonoBehaviour {
     private void Start() {
       SetDefaults();
-      if (instance == null)
-        instance = this;
-      else if (instance == this)
+      if (Instance == null)
+        Instance = this;
+      else if (Instance == this)
         Destroy(gameObject);
       DontDestroyOnLoad(gameObject);    
     }
@@ -38,7 +38,7 @@ namespace DataTransferObjects {
     }
     
     //GeneratorInfo
-    public static ParameterManager instance = null;
+    public static ParameterManager Instance = null;
     public int RockValue = 4;
     public int BuildingValue = 8;
     public int ForestValue = 3;

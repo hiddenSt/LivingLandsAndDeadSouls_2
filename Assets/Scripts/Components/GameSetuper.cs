@@ -14,6 +14,7 @@ using UI;
 using UI.Controls;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 namespace Components {
 
@@ -61,12 +62,11 @@ namespace Components {
       playerInventory.Setup();
       gunSlotControl.Setup();
       outfitSlotControl.Setup();
-      botsSpawner.Setup(ParameterManager.instance.HostileCharVal, 
-                        ParameterManager.instance.NeutralCharVal, 
-                                    ParameterManager.instance.MapSizeVector);
+      botsSpawner.Setup(ParameterManager.Instance.HostileCharVal, 
+                        ParameterManager.Instance.NeutralCharVal, 
+                                    ParameterManager.Instance.MapSizeVector);
       timeController.SetUp(tileInstanceStorage, landTileMap, mapDataStorage);
       gameSaver.Setup();
-   
     }
 
     private void LoadMap() {
@@ -95,11 +95,11 @@ namespace Components {
     }
 
     private void SpawnLoot() {
-      lootSpawner.Spawn(ParameterManager.instance.lootSize, ParameterManager.instance.MapSizeVector);
+      lootSpawner.Spawn(ParameterManager.Instance.lootSize, ParameterManager.Instance.MapSizeVector);
     }
 
     private void SetUpSeason() {
-      switch (ParameterManager.instance.StartSeason) {
+      switch (ParameterManager.Instance.StartSeason) {
         case 0:
           break;
         case 1:
@@ -115,22 +115,23 @@ namespace Components {
     }
 
     private void SetupPlayerPosition() {
-      var playerPosition = ParameterManager.instance.playerPosition;
+      var playerPosition = ParameterManager.Instance.playerPosition;
       player.transform.position = new Vector3(playerPosition.x, playerPosition.y, playerPosition.z);
     }
     
     private void SetupPlayerHealth() {
       var playerHealth = player.GetComponent<HealthComponent>().GetHealthEntity();
-      playerHealth.SetHealthPointsLimit(ParameterManager.instance.healthLimit);
-      playerHealth.SetHealthPoints(ParameterManager.instance.health);
+      playerHealth.SetHealthPointsLimit(ParameterManager.Instance.healthLimit);
+      playerHealth.SetHealthPoints(ParameterManager.Instance.health);
     }
     
     private void SetupPlayerGun() {
-      if (ParameterManager.instance.suitedGun == null) {
+      playerGunComponent.SetDamageBuff(ParameterManager.Instance.damageBuff);
+      if (ParameterManager.Instance.suitedGun == null) {
         return;
       }
       
-      var gun = ParameterManager.instance.suitedGun;
+      var gun = ParameterManager.Instance.suitedGun;
       var gunUi = lootUiData.GetGunUi(gun.GetGunType());
       gun.SetItemUi(gunUi);
       gun.SetGunComponent(playerGunComponent);
@@ -138,12 +139,12 @@ namespace Components {
     }
 
     private void SetupPlayerOutfit() {
-      playerOutfitComponent.SetCharacterDefaultOutfit(ParameterManager.instance.defaultAnimatorController);
-      if (ParameterManager.instance.suitedOutfit == null) {
+      playerOutfitComponent.SetCharacterDefaultOutfit(ParameterManager.Instance.defaultAnimatorController);
+      if (ParameterManager.Instance.suitedOutfit == null) {
         return;
       }
       
-      var outfit = ParameterManager.instance.suitedOutfit;
+      var outfit = ParameterManager.Instance.suitedOutfit;
       outfit.SetAnimatorOverrider(outfitsAnimators.GetAnimators(outfit.GetOutfitType()));
       var outfitUi = lootUiData.GetOutfitUi(outfit.GetOutfitType());
       outfit.SetItemUi(outfitUi);
@@ -153,11 +154,11 @@ namespace Components {
 
     private void SetupPlayerInventory() {
       var inventory = playerInventory.GetInventory();
-      if (ParameterManager.instance.inventoryItems == null) {
+      if (ParameterManager.Instance.inventoryItems == null) {
         return;
       }
 
-      var items = ParameterManager.instance.inventoryItems;
+      var items = ParameterManager.Instance.inventoryItems;
       for (int i = 0; i < items.Count; ++i) {
         if (items[i].GetItemType() == "Outfit") {
           var outfit = items[i] as Outfit;
@@ -171,10 +172,10 @@ namespace Components {
     }
 
     private void SetUpPlayerCharacteristics() {
-      var experience = ParameterManager.instance.experience;
-      var freePoints = ParameterManager.instance.freePoints;
-      var healthLimit = ParameterManager.instance.healthLimit;
-      var damageBuff = ParameterManager.instance.damageBuff;
+      var experience = ParameterManager.Instance.experience;
+      var freePoints = ParameterManager.Instance.freePoints;
+      var healthLimit = ParameterManager.Instance.healthLimit;
+      var damageBuff = ParameterManager.Instance.damageBuff;
       playerCharacteristicsComponent.SetUpCharacteristics(experience, freePoints, damageBuff, healthLimit);
     }
 

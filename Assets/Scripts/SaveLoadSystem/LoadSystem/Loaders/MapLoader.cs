@@ -23,10 +23,10 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       var fileStream = new FileStream(path, FileMode.Open);
       _mapData = binaryFormatter.Deserialize(fileStream) as MapData;
       fileStream.Close();
-      ParameterManager.instance.MapData = _mapData.map;
-      ParameterManager.instance.MapSizeVector = new Vector3Int(_mapData.mapSizeX, _mapData.mapSizeY, 0);
-      ParameterManager.instance.NeedToLoad = true;
-      ParameterManager.instance.StartSeason = _mapData.season;
+      ParameterManager.Instance.MapData = _mapData.map;
+      ParameterManager.Instance.MapSizeVector = new Vector3Int(_mapData.mapSizeX, _mapData.mapSizeY, 0);
+      ParameterManager.Instance.NeedToLoad = true;
+      ParameterManager.Instance.StartSeason = _mapData.season;
     }
 
     public void DeleteSaves() {

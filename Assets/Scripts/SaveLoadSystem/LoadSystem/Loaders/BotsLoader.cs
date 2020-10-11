@@ -25,8 +25,8 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       _botsData = binaryFormatter.Deserialize(fileStream) as BotsData;
       fileStream.Close();
 
-      ParameterManager.instance.NeutralCharVal = _botsData.animalsCount;
-      ParameterManager.instance.HostileCharVal = _botsData.enemyCount;
+      ParameterManager.Instance.NeutralCharVal = _botsData.animalsCount;
+      ParameterManager.Instance.HostileCharVal = _botsData.enemyCount;
     }
 
     public void DeleteSaves() {

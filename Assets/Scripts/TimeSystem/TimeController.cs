@@ -52,15 +52,15 @@ namespace TimeSystem {
     }
 
     public void SetUp(TileInstancesStorage tileInstancesStorage, Tilemap landTileMap, MapDataStorage mapDataStorage) {
-      var mapWidth = ParameterManager.instance.MapSizeVector.x;
-      var mapHeight = ParameterManager.instance.MapSizeVector.y;
+      var mapWidth = ParameterManager.Instance.MapSizeVector.x;
+      var mapHeight = ParameterManager.Instance.MapSizeVector.y;
       var landTile = tileInstancesStorage.FindTile("Grass");
       var winterTile = tileInstancesStorage.FindTile("Winter_grass");
       var fallTile = tileInstancesStorage.FindTile("OrangeGrass");
       playerLight = GameObject.Find("Player").GetComponent<Light2D>();
       playerLight.intensity = 0;
-      _precipitation = ParameterManager.instance.Precipitation;
-      season = ParameterManager.instance.StartSeason;
+      _precipitation = ParameterManager.Instance.Precipitation;
+      season = ParameterManager.Instance.StartSeason;
       
       _seasonChanger = new SeasonChanger(mapWidth, mapHeight, mapDataStorage, landTile, winterTile, fallTile, landTileMap);
       

@@ -16,8 +16,8 @@ namespace SaveLoadSystem.SaveSystem.Savers {
     public void Save() {
       var botsData = new BotsData();
 
-      botsData.animalsCount = ParameterManager.instance.NeutralCharVal;
-      botsData.enemyCount = ParameterManager.instance.HostileCharVal;
+      botsData.animalsCount = ParameterManager.Instance.NeutralCharVal;
+      botsData.enemyCount = ParameterManager.Instance.HostileCharVal;
       
       var binaryFormatter = new BinaryFormatter();
       var path = Application.persistentDataPath + _fileName;

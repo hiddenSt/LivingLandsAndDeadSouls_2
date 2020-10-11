@@ -25,26 +25,26 @@ namespace Menu {
     }
 
     private void SetUpDickClark() {
-      ParameterManager.instance.characterName = "Dick Clark";
-      ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
+      ParameterManager.Instance.characterName = "Dick Clark";
+      ParameterManager.Instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
-        ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersClark[i]);
+        ParameterManager.Instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersClark[i]);
       }
     }
 
     private void SetUpHeLee() {
-      ParameterManager.instance.characterName = "Hu Lee";
-      ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
+      ParameterManager.Instance.characterName = "Hu Lee";
+      ParameterManager.Instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
-        ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersHuLie[i]);
+        ParameterManager.Instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersHuLie[i]);
       }
     }
 
     private void SetUpVitaliTsal() {
-      ParameterManager.instance.characterName = "Vitali Tsal";
-      ParameterManager.instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
+      ParameterManager.Instance.characterName = "Vitali Tsal";
+      ParameterManager.Instance.defaultAnimatorController = new SortedDictionary<string, AnimatorOverrideController>();
       for (int i = 0; i < gunTypes.Length; ++i) {
-        ParameterManager.instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersTsal[i]);
+        ParameterManager.Instance.defaultAnimatorController.Add(gunTypes[i], animatorOverrideControllersTsal[i]);
       }
     }
   }

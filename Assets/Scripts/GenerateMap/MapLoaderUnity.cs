@@ -20,7 +20,7 @@ namespace GenerateMap {
     private ParameterManager _parameterManager;
     
     public MapLoaderUnity(int[,] mapData) {
-      _parameterManager = ParameterManager.instance;
+      _parameterManager = ParameterManager.Instance;
       _mapData = mapData;
       _objectInstanceStorage = GameObject.Find("Objects Instances Storage");
     }

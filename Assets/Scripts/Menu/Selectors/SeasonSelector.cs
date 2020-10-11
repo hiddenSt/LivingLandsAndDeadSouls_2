@@ -18,22 +18,22 @@ namespace Menu.Selectors {
     }
 
     public void Summer() {
-      ParameterManager.instance.StartSeason = 0;
+      ParameterManager.Instance.StartSeason = 0;
       SwitchButtonColor(1);
     }
 
     public void Autumn() {
-      ParameterManager.instance.StartSeason = 1;
+      ParameterManager.Instance.StartSeason = 1;
       SwitchButtonColor(2);
     }
 
     public void Winter() {
-      ParameterManager.instance.StartSeason = 2;
+      ParameterManager.Instance.StartSeason = 2;
       SwitchButtonColor(3);
     }
 
     public void Spring() {
-      ParameterManager.instance.StartSeason = 3;
+      ParameterManager.Instance.StartSeason = 3;
       SwitchButtonColor(4);
     }
 

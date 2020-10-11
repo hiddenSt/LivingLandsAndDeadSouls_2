@@ -15,10 +15,17 @@ namespace Menu {
     private AudioSource _musicVolume;
     private GameObject _sounds;
     private GameObject _rainSound;
+    private bool _isSetupped = false;
     
     public void Setup() {
+      if (_isSetupped) {
+        return;
+      }
+        _isSetupped = true;
       _musicVolume = GameObject.Find("MenuMusic").GetComponent<AudioSource>();
       _sounds = GameObject.Find("Sounds");
+      DontDestroyOnLoad(_sounds);
+      DontDestroyOnLoad(gameObject);
       masterVolume = 50f;
       musicVolume = 50f;
 

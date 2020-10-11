@@ -31,7 +31,7 @@ namespace SaveLoadSystem.SaveSystem.Savers {
       playerData.inventory = GetPlayerInventory();
       playerData.suitedGun = GetSuitedGun();
       playerData.suitedOutfit = GetSuitedOutfit();
-      playerData.characterName = ParameterManager.instance.characterName;
+      playerData.characterName = ParameterManager.Instance.characterName;
       SetUpCharacteristics(playerData);
       var binaryFormatter = new BinaryFormatter();
       var path = Application.persistentDataPath + _fileName;

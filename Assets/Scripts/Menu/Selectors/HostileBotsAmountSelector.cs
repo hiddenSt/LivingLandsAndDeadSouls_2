@@ -19,17 +19,17 @@ namespace Menu.Selectors {
     }
 
     public void SmallPressed() {
-      ParameterManager.instance.HostileCharVal = Random.Range(50, 150);
+      ParameterManager.Instance.HostileCharVal = Random.Range(50, 150);
       SwitchButtonColor(1);
     }
 
     public void MediumPressed() {
-      ParameterManager.instance.HostileCharVal = Random.Range(100, 250);
+      ParameterManager.Instance.HostileCharVal = Random.Range(100, 250);
       SwitchButtonColor(2);
     }
 
     public void LargePressed() {
-      ParameterManager.instance.HostileCharVal = Random.Range(150, 350);
+      ParameterManager.Instance.HostileCharVal = Random.Range(150, 350);
       SwitchButtonColor(3);
     }
 

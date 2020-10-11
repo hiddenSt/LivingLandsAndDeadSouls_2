@@ -1,4 +1,5 @@
 ﻿using Components;
+using DataTransferObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,7 @@ namespace Menu {
       OnGameResume();
       var saver = gameObject.GetComponent<GameSaver>();
       saver.Save();
+      DontDestroyOnLoad(ParameterManager.Instance);
       SceneManager.LoadScene("Menu");
     }
 

@@ -19,20 +19,20 @@ namespace Menu.Selectors {
     }
 
     public void SmallPressed() {
-      ParameterManager.instance.MapSizeVector.x = 200;
-      ParameterManager.instance.MapSizeVector.y = 200;
+      ParameterManager.Instance.MapSizeVector.x = 200;
+      ParameterManager.Instance.MapSizeVector.y = 200;
       SwitchButtonColor(1);
     }
 
     public void MediumPressed() {
-      ParameterManager.instance.MapSizeVector.x = 500;
-      ParameterManager.instance.MapSizeVector.y = 500;
+      ParameterManager.Instance.MapSizeVector.x = 500;
+      ParameterManager.Instance.MapSizeVector.y = 500;
       SwitchButtonColor(2);
     }
 
     public void LargePressed() {
-      ParameterManager.instance.MapSizeVector.x = 1000;
-      ParameterManager.instance.MapSizeVector.y = 1000;
+      ParameterManager.Instance.MapSizeVector.x = 1000;
+      ParameterManager.Instance.MapSizeVector.y = 1000;
       SwitchButtonColor(3);
     }
 

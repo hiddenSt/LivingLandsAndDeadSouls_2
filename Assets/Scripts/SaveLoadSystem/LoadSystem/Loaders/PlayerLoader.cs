@@ -48,11 +48,11 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       }
       var gunSerializer = new GunSerializer();
       var suitedGun = gunSerializer.Deserialize(_playerData.suitedGun);
-      ParameterManager.instance.suitedGun = suitedGun;
+      ParameterManager.Instance.suitedGun = suitedGun;
     }
 
     private void LoadCharacter() {
-      ParameterManager.instance.characterName = _playerData.characterName;
+      ParameterManager.Instance.characterName = _playerData.characterName;
     }
     
     private void LoadSuitedOutfit() {
@@ -62,27 +62,27 @@ namespace SaveLoadSystem.LoadSystem.Loaders {
       var outfitSerializer = new OutfitSerializer();
       
       var suitedOutfit = outfitSerializer.Deserialize(_playerData.suitedOutfit);
-      ParameterManager.instance.suitedOutfit = suitedOutfit;
+      ParameterManager.Instance.suitedOutfit = suitedOutfit;
     }
 
     private void LoadPlayerHealth() {
-      ParameterManager.instance.health = _playerData.healthPoints;
-      ParameterManager.instance.healthLimit = _playerData.healthPointsLimit;
+      ParameterManager.Instance.health = _playerData.healthPoints;
+      ParameterManager.Instance.healthLimit = _playerData.healthPointsLimit;
     }
 
     private void LoadPlayerPosition() {
-      ParameterManager.instance.playerPosition = _playerData.position;
+      ParameterManager.Instance.playerPosition = _playerData.position;
     }
 
     private void LoadInventory() {
       var inventorySerializer = new InventorySerializer();
-      ParameterManager.instance.inventoryItems = inventorySerializer.Deserialize(_playerData.inventory);
+      ParameterManager.Instance.inventoryItems = inventorySerializer.Deserialize(_playerData.inventory);
     }
 
     private void LoadCharacteristics() {
-      ParameterManager.instance.experience = _playerData.experience;
-      ParameterManager.instance.freePoints = _playerData.freePoints;
-      ParameterManager.instance.damageBuff = _playerData.damageBuff;
+      ParameterManager.Instance.experience = _playerData.experience;
+      ParameterManager.Instance.freePoints = _playerData.freePoints;
+      ParameterManager.Instance.damageBuff = _playerData.damageBuff;
     }
 
     

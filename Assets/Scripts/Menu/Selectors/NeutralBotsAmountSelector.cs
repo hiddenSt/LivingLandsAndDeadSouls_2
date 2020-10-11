@@ -16,12 +16,12 @@ namespace Menu.Selectors {
     }
 
     public void SmallPressed() {
-      ParameterManager.instance.NeutralCharVal = Random.Range(50, 200);
+      ParameterManager.Instance.NeutralCharVal = Random.Range(50, 200);
       SetNeutralCharSettings(50, 200, 1);
     }
 
     public void MediumPressed() {
-      ParameterManager.instance.NeutralCharVal = Random.Range(100, 300);
+      ParameterManager.Instance.NeutralCharVal = Random.Range(100, 300);
       SetNeutralCharSettings(100, 300, 2);
     }
 
@@ -30,7 +30,7 @@ namespace Menu.Selectors {
     }
 
     private void SetNeutralCharSettings(int beginOfRange, int endORange, int button) {
-      ParameterManager.instance.NeutralCharVal = Random.Range(beginOfRange, endORange);
+      ParameterManager.Instance.NeutralCharVal = Random.Range(beginOfRange, endORange);
       SwitchButtonColor(button);
     }
 

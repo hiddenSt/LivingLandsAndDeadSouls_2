@@ -13,13 +13,13 @@ namespace GenerateMap {
     private int[,] _mapData;
 
     public void Setup() {
-      _parameterManager = ParameterManager.instance;
+      _parameterManager = ParameterManager.Instance;
       if (_parameterManager.NeedToLoad) {
-        _mapData = ParameterManager.instance.MapData;
+        _mapData = ParameterManager.Instance.MapData;
       } else {
         MapGenerator generator = CreateGenerator();
         _mapData = generator.GenerateMap(_mapSize);
-        ParameterManager.instance.MapData = _mapData;
+        ParameterManager.Instance.MapData = _mapData;
       }
     }
 

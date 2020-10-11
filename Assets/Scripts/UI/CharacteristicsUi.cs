@@ -34,7 +34,7 @@ namespace UI {
 
     public void Setup(CharacteristicsComponent playerCharacteristics) {
       _playerCharacteristics = playerCharacteristics;
-      characterName.text = ParameterManager.instance.characterName;
+      characterName.text = ParameterManager.Instance.characterName;
     }
   }
 
