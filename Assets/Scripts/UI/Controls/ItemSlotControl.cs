@@ -22,10 +22,6 @@ namespace UI.Controls {
       _destroyCanvasControl = destroyCanvasControl;
     }
 
-    public void SetItemButton() {
-      
-    }
-    
     private void Update() {
       if (!_isPointerDown) {
         return;
@@ -55,6 +51,7 @@ namespace UI.Controls {
 
     public void DontDestroyItem() {
       _isDestroying = false;
+      _inventoryUi.ActivateButton(slotIndex);
       DeactivateDestroyCanvas();
     }
 
@@ -70,6 +67,7 @@ namespace UI.Controls {
 
     private void ActivateDestroyCanvas() {
       _isPointerDown = false;
+      _inventoryUi.DeactivateButton(slotIndex);
       _destroyCanvasControl.gameObject.SetActive(true);
       _destroyCanvasControl.noButton.onClick.AddListener(DontDestroyItem);
       _destroyCanvasControl.yesButton.onClick.AddListener(DestroyItem);

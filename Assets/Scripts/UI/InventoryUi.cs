@@ -78,6 +78,14 @@ namespace UI {
       _inventory.RemoveItem(_identifiers[index]);
     }
     
+    public void DeactivateButton(int index) {
+      _buttons[index].SetActive(false);
+    }
+
+    public void ActivateButton(int index) {
+      _buttons[index].SetActive(true);
+    }
+    
     private void RemoveItemUi(int index) {
       _itemsUi[index].RemoveItemUiSlotIndex();
       _isEmpty[index] = true;

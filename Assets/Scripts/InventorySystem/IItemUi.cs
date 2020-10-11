@@ -13,7 +13,7 @@ namespace InventorySystem {
      void RemoveItemUiSlotIndex();
      int GetItemUiSlotIndex();
      void SetLongTouchTime(float time);
-     void SetInventoryUi(InventoryUi inventoryUi);
+     void SetInventoryUi(IInventoryUi inventoryUi);
   }
 
 }

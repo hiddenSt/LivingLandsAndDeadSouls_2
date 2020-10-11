@@ -28,7 +28,7 @@ namespace SaveLoadSystem.DTO {
       return null;
     }
 
-    public void SetInventoryUi(InventoryUi inventoryUi) { }
+    public void SetInventoryUi(IInventoryUi inventoryUi) { }
 
     public void SetDestroyCanvas(DestroyCanvasControl destroyCanvasControl) { }
 

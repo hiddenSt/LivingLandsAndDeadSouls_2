@@ -53,9 +53,9 @@ namespace UI.Items {
       _itemSlotControl.longTouchTime = time;
     }
 
-    public void SetInventoryUi(InventoryUi inventoryUi) {
+    public void SetInventoryUi(IInventoryUi inventoryUi) {
       _itemSlotControl.slotIndex = _itemUiSlotIndex;
-      _itemSlotControl.SetInventoryUi(inventoryUi);
+      _itemSlotControl.SetInventoryUi(inventoryUi as InventoryUi);
     }
 
     private void Start() {
