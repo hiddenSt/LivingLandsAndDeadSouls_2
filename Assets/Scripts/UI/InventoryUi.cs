@@ -21,6 +21,14 @@ namespace UI {
     private bool[] _isEmpty;
     
     public void SetItem(IItemUi itemUi, Identifier itemIdentifier) {
+      int itemSlotIndex = itemUi.GetItemUiSlotIndex();
+      if (itemSlotIndex != -1) {
+        _identifiers[itemSlotIndex] = itemIdentifier;
+        _itemsUi[itemSlotIndex] = itemUi;
+        SetItemUi(itemSlotIndex);
+        return;
+      } 
+      
       for (int i = 0; i < _slotsSize; ++i)
         if (IsEmptySlot(i)) {
           _identifiers[i] = itemIdentifier;
@@ -45,8 +53,12 @@ namespace UI {
 
     private void SetItemUi(int index) {
       _isEmpty[index] = false;
+      _itemsUi[index].SetItemUiSlotIndex(index);
       _images[index] = _itemsUi[index].SetItemImage(slots[index].transform);
       _buttons[index] = _itemsUi[index].SetItemButton(slots[index].transform);
+      _itemsUi[index].SetDestroyCanvas(destroyCanvasControl);
+      _itemsUi[index].SetLongTouchTime(longTouchTime);
+      _itemsUi[index].SetInventoryUi(this);
       _buttons[index].GetComponent<Button>().onClick.AddListener(() => UseItem(index));
     }
 
@@ -67,6 +79,7 @@ namespace UI {
     }
     
     private void RemoveItemUi(int index) {
+      _itemsUi[index].RemoveItemUiSlotIndex();
       _isEmpty[index] = true;
       _buttons[index].GetComponent<Button>().onClick.RemoveListener(() => UseItem(index));
       Destroy(_buttons[index]);
@@ -82,15 +95,8 @@ namespace UI {
       slots = new GameObject[_slotsSize];
       _isEmpty = new bool[_slotsSize];
       for (int i = 0; i < _slotsSize; ++i) {
-        _isEmpty[i] = true;
-      }
-      
-      for (int i = 0; i < gameObject.transform.childCount; ++i) {
         slots[i] = gameObject.transform.GetChild(i).gameObject;
-        var comp = slots[i].AddComponent<DropItem>();
-        comp.slotIndex = i;
-        comp.destroyCanvasControl = destroyCanvasControl;
-        comp.longTouchTime = longTouchTime;
+        _isEmpty[i] = true;
       }
     }
     
