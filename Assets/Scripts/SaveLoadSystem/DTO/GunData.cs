@@ -8,6 +8,7 @@ namespace SaveLoadSystem.DTO {
     public float damage;
     public int ammoCount;
     public int ammoLimit;
+    public int slotUiIndex;
   }
 
 }

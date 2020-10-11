@@ -8,11 +8,15 @@ namespace SaveLoadSystem.Serializers {
       var medKitData = new MedKitData();
       medKitData.medKitType = medKit.GetMedKitType();
       medKitData.healthBoost = medKit.GetHealthPointsBoost();
+      medKitData.slotUiIndex = medKit.GetItemUi().GetItemUiSlotIndex();
       return medKitData;
     }
 
     public MedKit Deserialize(MedKitData medKitData) {
       var medKit = new MedKit(medKitData.medKitType, medKitData.healthBoost);
+      var itemUiDataTransfer = new ItemUiDataTransfer();
+      itemUiDataTransfer.SetItemUiSlotIndex(medKitData.slotUiIndex);
+      medKit.SetItemUi(itemUiDataTransfer);
       return medKit;
     }
   }

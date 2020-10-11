@@ -163,7 +163,9 @@ namespace Components {
           var outfit = items[i] as Outfit;
           outfit.SetAnimatorOverrider(outfitsAnimators.GetAnimators(outfit.GetOutfitType()));
         }
+        int slotUiIndex = items[i].GetItemUi().GetItemUiSlotIndex();
         SetItemUi(items[i]);
+        items[i].GetItemUi().SetItemUiSlotIndex(slotUiIndex);
         inventory.AddItem(items[i]);
       }
     }
