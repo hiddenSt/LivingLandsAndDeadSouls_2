@@ -26,19 +26,25 @@ namespace DataTransferObjects {
       RockValue = 4;
       ForestValue = 3;
       SizeOfForest = 10;
-      suitedGun = null;
-      suitedOutfit = null;
-      characterName = "Dick Clark";
       inventoryItems = null;
       lootSize = 30;
       StartSeason = 0;
       NeedToLoad = false;
       NeutralCharVal = 20;
       HostileCharVal = 15;
+      
+      //platyer
+      suitedGun = null;
+      suitedOutfit = null;
+      characterName = "Dick Clark";
       accuracy = 0;
       playerPosition.x = 0;
       playerPosition.y = 0;
       playerPosition.z = 0;
+      health = 100f;
+      healthLimit = 100f;
+      damageBuff = 0f;
+      Debug.Log("Defaults");
     }
     
     //GeneratorInfo

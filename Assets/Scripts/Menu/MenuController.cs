@@ -31,7 +31,8 @@ namespace Menu {
     }
 
     public void ContinuePressed() {
-      if (!File.Exists("Player.data")) {
+      var path = Application.persistentDataPath + "Player.data";
+      if (!File.Exists(path)) {
         return;
       }
       LoadSystem.Load();
