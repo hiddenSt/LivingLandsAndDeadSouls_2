@@ -3,6 +3,7 @@ using InventorySystem.ArrayRepository;
 using UnityEngine;
 using Utility;
 using Components.Loot;
+using DataTransferObjects;
 
 namespace Components.Player {
   
@@ -37,6 +38,7 @@ namespace Components.Player {
       lootComponent.item = item;
       spriteRenderer.sprite = item.GetItemUi().GetItemImage();
       spriteRenderer.sortingOrder = 100;
+      spriteRenderer.material = new Material(ParameterManager.Instance.material);
       circleCollider2D.radius = 0.15f;
       circleCollider2D.isTrigger = true;
       var dropPosition = new Vector3(0, 0);

@@ -33,7 +33,7 @@ namespace DataTransferObjects {
       NeutralCharVal = 20;
       HostileCharVal = 15;
       
-      //platyer
+      //player
       suitedGun = null;
       suitedOutfit = null;
       characterName = "Dick Clark";
@@ -44,7 +44,6 @@ namespace DataTransferObjects {
       health = 100f;
       healthLimit = 100f;
       damageBuff = 0f;
-      Debug.Log("Defaults");
     }
     
     //GeneratorInfo
@@ -83,6 +82,7 @@ namespace DataTransferObjects {
     private int _mapScalerSmall;
     private int _mapScalerMedium;
     private int _mapScalerBig;
-    
+
+    public Material material;
   }
 }

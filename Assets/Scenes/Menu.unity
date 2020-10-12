@@ -3865,8 +3865,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSetuper: {fileID: 0}
-  gameSceneName: 
-  dontDestroyOnLoad: []
 --- !u!1 &487497127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3917,9 +3915,8 @@ MonoBehaviour:
   experience: 0
   freePoints: 0
   damageBuff: 0
-  playerDataFileName: 
-  mapDataFileName: 
-  botsDataFileName: 
+  accuracy: 0
+  material: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
 --- !u!4 &487497129
 Transform:
   m_ObjectHideFlags: 0
@@ -4839,7 +4836,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 600758881}
   m_HandleRect: {fileID: 600758880}
   m_Direction: 2
-  m_Value: 0.99999964
+  m_Value: 1
   m_Size: 0.7943122
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8104,7 +8101,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 765154746}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8605,12 +8602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8a4d3c1ad1e854e8d925ef33648e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1469561145 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 410411516537853177, guid: f55e615a100137244a04577717b80d9d,
-    type: 3}
-  m_PrefabInstance: {fileID: 130529502}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1500870609
 GameObject:
   m_ObjectHideFlags: 0
@@ -9758,10 +9749,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSetuper: {fileID: 1640783010}
-  gameSceneName: Game
-  dontDestroyOnLoad:
-  - {fileID: 1469561145}
-  - {fileID: 1167001294}
 --- !u!1 &1696332813
 GameObject:
   m_ObjectHideFlags: 0
