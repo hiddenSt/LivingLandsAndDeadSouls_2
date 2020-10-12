@@ -43,6 +43,7 @@ namespace DataTransferObjects {
       playerPosition.z = 0;
       health = 100f;
       healthLimit = 100f;
+      experience = 0;
       damageBuff = 0f;
     }
     

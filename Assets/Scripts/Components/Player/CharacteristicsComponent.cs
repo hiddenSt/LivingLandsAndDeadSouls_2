@@ -19,9 +19,7 @@ namespace Components.Player {
       if (originId == _currentEntityId) {
         return;
       }
-      Debug.Log("I am here " + originId);
       _currentEntityId = originId;
-      _experiencePoints += 1;
       IncreaseExperiencePoints();
       _currentEntityId = -1;
     }
@@ -39,8 +37,11 @@ namespace Components.Player {
       _healthLimit = healthLimit;
       _accuracy = accuracy;
       _level = 1;
+      if (experience % 2 == 1) {
+        experience -= 1;
+      }
       while (experience > 0) {
-        experience -= 10;
+        experience -= 2;
         _level += 1;
       }
       _characteristicsUi.SetLevel(_level);

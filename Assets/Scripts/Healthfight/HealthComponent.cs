@@ -75,7 +75,6 @@ namespace HealthFight {
     
     private void  NotifySubscribers() {
       var objectPosition = new Vector3(transform.position.x, transform.position.y);
-      Debug.Log("Subs count + " + _subscribers.Count);
       foreach (var subscriber in _subscribers) {
         subscriber.EntityIsDead(objectPosition, originId);
       }
