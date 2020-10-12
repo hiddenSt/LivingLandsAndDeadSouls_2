@@ -5,6 +5,7 @@ namespace UI.Controls {
 
   public class ItemSlotControl : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler,
     IDragHandler {
+    public bool canDestroyItemType;
     public int slotIndex;
     public float longTouchTime;
     private DestroyCanvasControl _destroyCanvasControl;
@@ -23,6 +24,10 @@ namespace UI.Controls {
     }
 
     private void Update() {
+      if (!canDestroyItemType) {
+        return;
+      }
+      
       if (!_isPointerDown) {
         return;
       }

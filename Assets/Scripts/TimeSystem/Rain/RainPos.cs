@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 
-namespace Rain {
+namespace TimeSystem.Rain {
+
   public class RainPos : MonoBehaviour {
     private Transform _player;
 
+    private void Start() {
+      _player = GameObject.Find("Player").transform;
+    }
+
     private void Update() {
-      _player = GameObject.FindGameObjectWithTag("Player").transform;
       transform.position = new Vector3(_player.position.x, _player.position.y + 10, transform.position.z);
     }
   }

@@ -132,5 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea98d89ab19b7942a04a51c83b97f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDestroyItemType: 0
   slotIndex: 0
   longTouchTime: 0

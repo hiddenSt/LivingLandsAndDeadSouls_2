@@ -1,18 +1,15 @@
-﻿using DataTransferObjects;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Rain {
+namespace TimeSystem.Rain {
   public class SnowPos : MonoBehaviour {
+    private Transform _player;
+    
     private void Start() {
-      var particle = GetComponent<ParticleSystem>();
-      var sh = particle.shape;
-      sh.scale = new Vector3(ParameterManager.Instance.MapSizeVector.x * 18, 1, 1);
+      _player = GameObject.Find("Player").transform;
     }
 
     private void Update() {
-      transform.position = new Vector3(0, ParameterManager.Instance.MapSizeVector.y * 18, transform.position.z);
+      transform.position = new Vector3(_player.position.x, _player.position.y + 10, transform.position.z);
     }
-
-    private Transform _player;
   }
 }
