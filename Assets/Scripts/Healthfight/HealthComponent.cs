@@ -73,7 +73,7 @@ namespace HealthFight {
     private void  NotifySubscribers() {
       var objectPosition = new Vector3(transform.position.x, transform.position.y);
       foreach (var subscriber in _subscribers) {
-        subscriber.EntityIsDead(objectPosition);
+        subscriber.EntityIsDead(objectPosition, originId);
       }
     }
   }

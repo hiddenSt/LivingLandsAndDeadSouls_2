@@ -67,6 +67,9 @@ namespace UI.Controls {
 
     private void ActivateDestroyCanvas() {
       _isPointerDown = false;
+      if (_destroyCanvasControl.gameObject.active == true) {
+        return;
+      }
       _inventoryUi.DeactivateButton(slotIndex);
       _destroyCanvasControl.gameObject.SetActive(true);
       _destroyCanvasControl.noButton.onClick.AddListener(DontDestroyItem);

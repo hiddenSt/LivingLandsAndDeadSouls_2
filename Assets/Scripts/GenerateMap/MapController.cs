@@ -8,7 +8,7 @@ namespace GenerateMap {
     private ParameterManager _parameterManager;
     private const int _mapScalerSmall = 3;
     private const int _mapScalerMedium = 5;
-    private const int _mapScalerBig = 20;
+    private const int _mapScalerBig = 12;
     private int _mapSize;
     private int[,] _mapData;
 
@@ -50,12 +50,12 @@ namespace GenerateMap {
       var buildingGenerateStrategy = new BuildingGenerateStrategy(new BuildingData(
         _parameterManager.BuildingValue * currentScaler / 2, 7 * currentScaler, 1));
       var forestGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
-        _parameterManager.ForestValue * currentScaler, 7 * currentScaler, 2,
+        _parameterManager.ForestValue * currentScaler / 2, 6 * currentScaler, 2,
         _parameterManager.SizeOfForest * currentScaler, 5 * currentScaler));
       var bushGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
-        _parameterManager.ForestValue * currentScaler, 7 * currentScaler, 3, 4, 2));
+        _parameterManager.ForestValue * currentScaler, 2 * currentScaler, 3, 4, 2));
       var rockGenerateStrategy = new GenerateLandscapeStrategy(new ZoneData(
-        _parameterManager.ForestValue * currentScaler, 7 * currentScaler, 4, 4, 2));
+        _parameterManager.ForestValue * currentScaler, 2 * currentScaler, 4, 4, 2));
       return new MapGenerator(buildingGenerateStrategy, forestGenerateStrategy,
         bushGenerateStrategy, rockGenerateStrategy);
     }

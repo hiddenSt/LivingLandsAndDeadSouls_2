@@ -11,11 +11,18 @@ namespace Components.Player {
     private float _damageBuff;
     private float _healthLimit;
     private int _accuracy;
+    private int _currentEntityId = -1;
     private ICharacteristicsUi _characteristicsUi;
 
-    public void EntityIsDead(Vector3 position) {
+    public void EntityIsDead(Vector3 position, int originId) {
+      if (originId == _currentEntityId) {
+        return;
+      }
+      _currentEntityId = originId;
       _experiencePoints += 1;
+      Debug.Log("Entity Is dead");
       IncreaseExperiencePoints();
+      _currentEntityId = -1;
     }
 
     public void Setup(Health playerHealth, GunComponent playerGunComponent, ICharacteristicsUi characteristicsUi) {

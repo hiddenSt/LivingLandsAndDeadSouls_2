@@ -4,7 +4,7 @@ using UnityEngine;
 namespace HealthFight {
 
   public interface IHealthEventSubscriber {
-    void EntityIsDead(Vector3 position);
+    void EntityIsDead(Vector3 position, int originId);
   }
 
 }

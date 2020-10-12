@@ -51,7 +51,7 @@ namespace GenerateMap.Strategies {
       int errors = 0;
       while (true) {
         errors++;
-        if (errors > 1000) {
+        if (errors > 5000) {
           return null;
         }
 
