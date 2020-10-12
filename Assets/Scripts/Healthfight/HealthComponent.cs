@@ -13,6 +13,7 @@ namespace HealthFight {
     public HealthBarUi healthBarUi;
     private List<IHealthEventSubscriber> _subscribers;
     private Health _health;
+    private bool _isDead = false;
 
     public void Setup() {
       _subscribers = new List<IHealthEventSubscriber>();
@@ -31,7 +32,8 @@ namespace HealthFight {
     public void DecreaseHealth(float points) {
       _health.Decrease(points);
 
-      if (_health.IsDead()) {
+      if (_health.IsDead() && !_isDead) {
+        _isDead = true;
         NotifySubscribers();
         Destroy(gameObject);
       }
@@ -68,10 +70,12 @@ namespace HealthFight {
 
     public void AddSubscriber(IHealthEventSubscriber subscriber) {
       _subscribers.Add(subscriber);
+      
     }
     
     private void  NotifySubscribers() {
       var objectPosition = new Vector3(transform.position.x, transform.position.y);
+      Debug.Log("Subs count + " + _subscribers.Count);
       foreach (var subscriber in _subscribers) {
         subscriber.EntityIsDead(objectPosition, originId);
       }
