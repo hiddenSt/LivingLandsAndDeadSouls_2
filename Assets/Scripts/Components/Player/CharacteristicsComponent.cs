@@ -14,6 +14,8 @@ namespace Components.Player {
     private int _currentEntityId = -1;
     private ICharacteristicsUi _characteristicsUi;
     private int _level;
+    private int _damagePoints;
+    private int _healthPoints;
 
     public void EntityIsDead(Vector3 position, int originId) {
       if (originId == _currentEntityId) {
@@ -44,10 +46,24 @@ namespace Components.Player {
         experience -= 2;
         _level += 1;
       }
+
+      _healthPoints = 0;
+      healthLimit -= 100;
+      while (healthLimit > 0) {
+        _healthPoints += 1;
+        healthLimit -= 20f;
+      }
+
+      _damagePoints = 0;
+      while (damageBuff > 0) {
+        _damagePoints += 1;
+        damageBuff -= 5f;
+      }
+      
       _characteristicsUi.SetLevel(_level);
       _characteristicsUi.SetFreePoints(_freePoints);
-      _characteristicsUi.SetHealthLimitPoints((int)(_healthLimit));
-      _characteristicsUi.SetDamageBuffPoints((int)(_damageBuff));
+      _characteristicsUi.SetHealthLimitPoints(_healthPoints);
+      _characteristicsUi.SetDamageBuffPoints(_damagePoints);
       _characteristicsUi.SetAccuracyPoints(_accuracy);
     }
     
@@ -56,10 +72,10 @@ namespace Components.Player {
         return;
       --_freePoints;
       _characteristicsUi.SetFreePoints(_freePoints);
-      _healthLimit += 20f;  
+      _healthLimit += 20f;
+      _healthPoints += 1;
       _playerHealth.SetHealthPointsLimit(_healthLimit);
-      var points = (int)(_healthLimit);
-      _characteristicsUi.SetHealthLimitPoints(points);
+      _characteristicsUi.SetHealthLimitPoints(_healthPoints);
     }
 
     public void BuffDamage() {
@@ -68,9 +84,9 @@ namespace Components.Player {
       --_freePoints;
       _characteristicsUi.SetFreePoints(_freePoints);
       _damageBuff += 5f;
+      _damagePoints += 1;
       _playerGunComponent.SetDamageBuff(_damageBuff);
-      var points = (int) (_damageBuff);
-      _characteristicsUi.SetDamageBuffPoints(points);
+      _characteristicsUi.SetDamageBuffPoints(_damagePoints);
     }
 
     public void BuffAccuracy() {
