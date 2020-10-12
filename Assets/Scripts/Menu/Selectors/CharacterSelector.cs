@@ -16,7 +16,7 @@ namespace Menu.Selectors {
       _button1 = button1T.gameObject.GetComponent<Image>();
       _button2 = button2T.gameObject.GetComponent<Image>();
       _button3 = button3T.gameObject.GetComponent<Image>();
-      DickClarkPressed();
+      characterSetuper.SetupCharacter("Dick Clark");
     }
 
     public void DickClarkPressed() {
