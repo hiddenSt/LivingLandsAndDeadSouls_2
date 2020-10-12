@@ -13,6 +13,7 @@ namespace Components.Player {
     private int _accuracy;
     private int _currentEntityId = -1;
     private ICharacteristicsUi _characteristicsUi;
+    private int _level;
 
     public void EntityIsDead(Vector3 position, int originId) {
       if (originId == _currentEntityId) {
@@ -20,7 +21,6 @@ namespace Components.Player {
       }
       _currentEntityId = originId;
       _experiencePoints += 1;
-      Debug.Log("Entity Is dead");
       IncreaseExperiencePoints();
       _currentEntityId = -1;
     }
@@ -37,6 +37,11 @@ namespace Components.Player {
       _damageBuff = damageBuff;
       _healthLimit = healthLimit;
       _accuracy = accuracy;
+      while (experience > 0) {
+        experience -= 10;
+        _level += 1;
+      }
+      _characteristicsUi.SetLevel(_level);
       _characteristicsUi.SetFreePoints(_freePoints);
       _characteristicsUi.SetHealthLimitPoints((int)(_healthLimit));
       _characteristicsUi.SetDamageBuffPoints((int)(_damageBuff));
@@ -79,6 +84,9 @@ namespace Components.Player {
       if (_experiencePoints % 2 != 0 || _experiencePoints == 0) {
         return;
       }
+
+      ++_level;
+      _characteristicsUi.SetLevel(_level);
       ++_freePoints;
       _characteristicsUi.SetFreePoints(_freePoints);
     }

@@ -21126,6 +21126,7 @@ MonoBehaviour:
   healthLimitText: {fileID: 5254768785657663556}
   accuracyText: {fileID: 7851724691121921055}
   characterName: {fileID: 5254768785926575217}
+  level: {fileID: 5254768787036283018}
 --- !u!114 &5469697273772572431
 MonoBehaviour:
   m_ObjectHideFlags: 0

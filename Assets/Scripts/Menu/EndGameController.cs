@@ -1,4 +1,5 @@
 ﻿using HealthFight;
+using SaveLoadSystem.LoadSystem.Loaders;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,8 @@ namespace Menu {
       var sounds = GameObject.Find("Sounds");
       for (var i = 1; i < sounds.transform.childCount; i++)
         sounds.transform.GetChild(i).GetComponent<AudioSource>().Stop();
+      var playerSaves = new PlayerLoader("Player.data");
+      playerSaves.DeleteSaves();
       SceneManager.LoadScene("Menu");
     }
   }

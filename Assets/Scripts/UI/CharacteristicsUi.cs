@@ -11,6 +11,7 @@ namespace UI {
     public Text healthLimitText;
     public Text accuracyText;
     public Text characterName;
+    public Text level;
     private CharacteristicsComponent _playerCharacteristics;
 
     public void SetFreePoints(int points) {
@@ -27,6 +28,10 @@ namespace UI {
 
     public void SetAccuracyPoints(int points) {
       accuracyText.text = points.ToString();
+    }
+
+    public void SetLevel(int level_) {
+      level.text = level_.ToString();
     }
 
     public void AddHealthLimit() {

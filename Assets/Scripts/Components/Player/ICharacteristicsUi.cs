@@ -7,6 +7,7 @@ namespace Components.Player {
     void SetHealthLimitPoints(int points);
     void SetDamageBuffPoints(int points);
     void SetAccuracyPoints(int points);
+    void SetLevel(int level);
   }
 
 }
