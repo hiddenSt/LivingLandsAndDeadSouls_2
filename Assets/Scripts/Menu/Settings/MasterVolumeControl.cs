@@ -1,24 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu.Settings
-{
-    public class MasterVolumeControl : MonoBehaviour
-    {
-        public void Awake()
-        {
-            slider.value = AudioManager.instance.masterVolume;
-            SaveLoadSystem.AudioDataManager audioDataManager = new SaveLoadSystem.AudioDataManager();
-            audioDataManager.Load();
-        }
-        public void IsChanged()
-        {
-            AudioManager.instance.masterVolume = slider.value;
-        }
-        
-        //data members
-        public Slider slider;
+namespace Menu.Settings {
+  public class MasterVolumeControl : MonoBehaviour {
+    public Slider slider;
+    
+    public void Awake() {
+      slider.value = AudioManager.Instance.masterVolume;
     }
-}//end of namespace Menu.Settings
+
+    public void IsChanged() {
+      AudioManager.Instance.masterVolume = slider.value;
+    }
+  }
+}
