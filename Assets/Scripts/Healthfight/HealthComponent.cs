@@ -1,96 +1,84 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UI.HealthFightSystemUi;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 
-namespace HealthFight
-{
-    public class HealthComponent : MonoBehaviour
-    {
-        // Start is called before the first frame update
-        void Start()
-        {
-            originID = this.gameObject.GetInstanceID();
-            if (!isPlayer)
-            {
-                CreateHealthBar();
-                _bar.maxHealth = maxHealth;
-            }
-            else
-            {
-                var barObj = GameObject.Find("PlayerHealthBar");
-                _bar = barObj.GetComponent<HealthBar>();
-                _bar.initialHealth = health;
-            }
-            var circleCollider = this.gameObject.GetComponent<CircleCollider2D>();
-            _animator = this.gameObject.GetComponent<Animator>();
-        }
+namespace HealthFight {
+  
+  public class HealthComponent : MonoBehaviour {
+    [FormerlySerializedAs("health")] public float healthPoints;
+    public int originId;
+    public float maxHealth = 100;
+    public HealthBarUi healthBarUi;
+    private List<IHealthEventSubscriber> _subscribers;
+    private Health _health;
+    private bool _isDead = false;
 
-        private void CreateHealthBar()
-        {
-            _bar = HealthBar.Create(this.gameObject.transform, new Vector3(60f, 10f), 7f, Color.green, Color.grey, 100f, 0.4f);
-            _bar.initialHealth = health;
-        }
-        
-        
-        public void DecreaseHealth(int decrease)
-        {
-            health -= decrease;
-            if (health <= 0)
-            {
-                _animator.Play("Death_left");
-                Destroy(this.gameObject);
-            }
-            _bar.SetSize(health/100f);
-        }
-
-        public void SetHealth(int healthPoints)
-        {
-            if (healthPoints > maxHealth)
-                healthPoints = maxHealth;
-            health = healthPoints;
-            _bar.SetSize(health/maxHealth);
-        }
-        
-        public void IncreaseHealth(int increase)
-        {
-            health += increase;
-            if (health > maxHealth)
-                health = maxHealth;
-            _bar.SetSize(health/maxHealth);
-        }
-        
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.GetComponent<DamageComponent>() == null || other.GetComponent<DamageComponent>().originID == this.originID)
-                return;
-            DecreaseHealth(other.gameObject.GetComponent<DamageComponent>().damage);
-            Debug.Log("Got damage from " + other.name);
-            if (health > 0)
-                return;
-            _animator.Play("Death_left");
-            _animator.speed = 0.5f;
-            GameObject.Find("Characteristics").GetComponent<AllParameters>().AddExperience(50);
-            Destroy(_bar.gameObject);
-            Destroy(other.gameObject);
-            /*if (isPlayer)
-            {
-                SceneManager.LoadScene("Menu");
-                return;
-            }*/
-            Destroy(this.gameObject);
-        }
-        
-        //data members
-        public int health;
-        public bool isPlayer = false;
-        public int originID;
-        public int maxHealth = 100;
-        
-        private HealthBar _bar;
-        private Animator _animator;
+    public void Setup() {
+      _subscribers = new List<IHealthEventSubscriber>();
+      originId = gameObject.GetInstanceID();
+      _health = new Health(healthPoints, maxHealth, healthBarUi);
     }
-}//end of namespace HealthFight
+    
+    private void OnTriggerEnter2D(Collider2D other) {
+      if (other.GetComponent<DamageComponent>() == null ||
+          other.GetComponent<DamageComponent>().originId == originId)
+        return;
+      var damage = other.GetComponent<DamageComponent>().GetDamage();
+      DecreaseHealth(damage.GetDamagePoints());
+    }
+
+    public void DecreaseHealth(float points) {
+      _health.Decrease(points);
+
+      if (_health.IsDead() && !_isDead) {
+        _isDead = true;
+        NotifySubscribers();
+        Destroy(gameObject);
+      }
+
+      healthPoints = _health.GetHealthPoints();
+    }
+
+    public void IncreaseHealthPointsLimit(float points) {
+      _health.SetHealthPointsLimit(maxHealth);
+      maxHealth = _health.GetHealthPointsLimit();
+    }
+
+    public Health GetHealthEntity() {
+      return _health;
+    }
+
+    public void SetHealthEntity(Health health) {
+      _health = health;
+    }
+    
+    public void SetHealth(float healthPoints) {
+      _health.SetHealthPoints(healthPoints);
+      this.healthPoints = _health.GetHealthPoints();
+    }
+    
+    public void IncreaseHealth(float points) {
+      _health.Increase(points);
+      healthPoints = _health.GetHealthPoints();
+    }
+
+    public bool IsDead() {
+      return _health.IsDead();
+    }
+
+    public void AddSubscriber(IHealthEventSubscriber subscriber) {
+      _subscribers.Add(subscriber);
+      
+    }
+    
+    private void  NotifySubscribers() {
+      var objectPosition = new Vector3(transform.position.x, transform.position.y);
+      foreach (var subscriber in _subscribers) {
+        subscriber.EntityIsDead(objectPosition, originId);
+      }
+    }
+  }
+  
+}
