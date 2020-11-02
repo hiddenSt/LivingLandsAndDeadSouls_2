@@ -28,10 +28,10 @@ namespace InventorySystem {
 
     public void RemoveItem(Identifier identifier) {
       var item = GetItem(identifier);
-      _inventoryUi.RemoveItem(item.GetIdentifier());
       item.Drop();
       _itemsRepository.RemoveItem(item.GetIdentifier());
       --_inventorySize;
+      _inventoryUi.RemoveItem(item.GetIdentifier());
     }
 
     public void SetInventoryUi(IInventoryUi inventoryUi) {
